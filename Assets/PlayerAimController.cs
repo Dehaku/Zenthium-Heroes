@@ -12,40 +12,23 @@ public class PlayerAimController : MonoBehaviour
     public GameObject aimReticle;
     public float sensitivity = 1;
 
-    public Cinemachine.AxisState xAxis;
-    public Cinemachine.AxisState yAxis;
+    public AxisState xAxis;
+    public AxisState yAxis;
 
     public float camMainDistance = 10f;
     public float camShoulderDistance = 4.5f;
-    float _camTransitDistance;
 
     public Vector3 camMainOffset = new Vector3(1.5f, 0, 0);
     public Vector3 camShoulderOffset = new Vector3(1.5f, 0, 0);
-    Vector3 _camTransitOffset;
-
-
 
     // Start is called before the first frame update
     void Start()
     {
-        _camTransitDistance = camMainDistance;
-        _camTransitOffset = camMainOffset;
     }
-
-   
 
     // Update is called once per frame
     void Update()
     {
-
-        
-
-
-
-
-        
-        
-
         xAxis.Update(Time.deltaTime);
         yAxis.Update(Time.deltaTime);
 
@@ -64,9 +47,7 @@ public class PlayerAimController : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             aimReticle.SetActive(true);
-            //aim.CameraDistance = camShoulderDistance;
             aim.CameraDistance = Mathf.Lerp(aim.CameraDistance, camShoulderDistance, Time.deltaTime * 4);
-            //aim.ShoulderOffset = camShoulderOffset;
             aim.ShoulderOffset = Vector3.Lerp(aim.ShoulderOffset, camShoulderOffset, Time.deltaTime * 4);
 
             xAxis.m_MaxSpeed = 100;
@@ -75,9 +56,7 @@ public class PlayerAimController : MonoBehaviour
         else
         {
             aimReticle.SetActive(false);
-            //aim.CameraDistance = camMainDistance;
             aim.CameraDistance = Mathf.Lerp(aim.CameraDistance, camMainDistance, Time.deltaTime * 4);
-            //aim.ShoulderOffset = camMainOffset;
             aim.ShoulderOffset = Vector3.Lerp(aim.ShoulderOffset, camMainOffset, Time.deltaTime * 4);
             xAxis.m_MaxSpeed = 500;
             yAxis.m_MaxSpeed = 300;
@@ -89,26 +68,6 @@ public class PlayerAimController : MonoBehaviour
                 camMainDistance -= 3;
 
             camMainDistance = Mathf.Clamp(camMainDistance,camShoulderDistance,20);
-            
-
-        }
-            
-
-        if (aimCamera.activeSelf)
-        {
-            float vertical = Input.GetAxis("Mouse Y") * sensitivity;
-            float horizontal = Input.GetAxis("Mouse X") * sensitivity;
-
-            
-            
-
-            // aimLookAt.transform.Rotate(new Vector3(vertical,horizontal, -aimLookAt.transform.rotation.z));
-
-            
-
-            //aimLookAt.transform.position = new Vector3(aimLookAt.transform.position.x, aimLookAt.transform.position.y+vertical, aimLookAt.transform.position.z);
-
-
         }
     }
 }
