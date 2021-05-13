@@ -63,6 +63,7 @@ public class PlayerAimController : MonoBehaviour
 
         if (Input.GetMouseButton(1))
         {
+            aimReticle.SetActive(true);
             //aim.CameraDistance = camShoulderDistance;
             aim.CameraDistance = Mathf.Lerp(aim.CameraDistance, camShoulderDistance, Time.deltaTime * 4);
             //aim.ShoulderOffset = camShoulderOffset;
@@ -73,6 +74,7 @@ public class PlayerAimController : MonoBehaviour
         }
         else
         {
+            aimReticle.SetActive(false);
             //aim.CameraDistance = camMainDistance;
             aim.CameraDistance = Mathf.Lerp(aim.CameraDistance, camMainDistance, Time.deltaTime * 4);
             //aim.ShoulderOffset = camMainOffset;
