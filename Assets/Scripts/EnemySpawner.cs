@@ -9,6 +9,8 @@ public class EnemySpawner : MonoBehaviour
     public Vector3 spawnCenter;
     public float spawnRadius;
     public int maxEnemiesAtOnce;
+    public float spawnDelay;
+    float _timeToSpawn;
 
     public GameObject enemyPrefab;
     //[HideInInspector]
@@ -28,7 +30,8 @@ public class EnemySpawner : MonoBehaviour
                 Vector3 spawnPos = spawnCenter + new Vector3(Random.Range(-spawnRadius, spawnRadius), 0, Random.Range(-spawnRadius, spawnRadius));
                 enemy.transform.position = spawnPos;
                 enemy.SetActive(true);
-                return;
+                if(oneAtATime)
+                    return;
             }
 
         }
@@ -37,6 +40,7 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _timeToSpawn += Time.deltaTime;
         if (World.Instance.TimeOfDay == 725)
         {
             allowSpawning = true;
@@ -45,8 +49,10 @@ public class EnemySpawner : MonoBehaviour
         if (allowRespawning)
             RespawnDeadEnemies(true);
 
-        if (allowSpawning)
+        
+        if (allowSpawning && _timeToSpawn >= spawnDelay)
         {
+            _timeToSpawn = 0;
             for (int i = 0; i < maxEnemiesAtOnce; i++)
             {
                 Vector3 spawnPos = spawnCenter + new Vector3(Random.Range(-spawnRadius, spawnRadius), 0, Random.Range(-spawnRadius, spawnRadius));
