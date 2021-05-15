@@ -101,8 +101,18 @@ public class World : MonoBehaviour {
         else
             dayText = Day.ToString();
 
+
+        int enemyCount = 0;
+        var enemies = FindObjectsOfType<Enemy>();
+        foreach (var enemy in enemies)
+        {
+            if (enemy.Conscious)
+                enemyCount++;
+        }
+
+        
         // Adding "D2" to the ToString() command ensures that there will always be two digits displayed.
-        clock.text = string.Format("DAY: {0} TIME: {1}:{2}", dayText, hours.ToString("D2"), minutes.ToString("D2"));
+        clock.text = string.Format("DAY: {0} TIME: {1}:{2} ENEMIES: {3}", dayText, hours.ToString("D2"), minutes.ToString("D2"), enemyCount);
 
     }
 

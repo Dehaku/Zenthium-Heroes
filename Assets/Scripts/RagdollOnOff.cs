@@ -99,7 +99,7 @@ public class RagdollOnOff : MonoBehaviour
 
         ThisGuysAnimator.enabled = true;
         mainCollider.enabled = true;
-        ThisGuysRigid.isKinematic = true; // This needs to be false.
+        ThisGuysRigid.isKinematic = true; // This needs to be false. Or should it?
         
     }
 }

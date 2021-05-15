@@ -34,13 +34,13 @@ public class ShootKOBullet : MonoBehaviour
             GameObject pew = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
             //pew.transform.eulerAngles = Camera.main.transform.forward;
             //pew.transform.forward = spawnPos.forward;
-            pew.transform.forward = Camera.main.transform.forward;
-            //pew
 
 
             //spawnRotation = pew;
             //spawnRotation.transform.rotation.eulerAngles
-            pew.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 5;
+
+            pew.transform.forward = Camera.main.transform.forward;
+            // pew.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 5;
 
         }
 

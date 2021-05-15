@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public bool Conscious = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +16,7 @@ public class Enemy : MonoBehaviour
     public void Unconscious()
     {
         GetComponent<NavMeshAgent>().enabled = false;
+        Conscious = false;
     }
 
     // Update is called once per frame
