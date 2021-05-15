@@ -23,6 +23,8 @@ public class World : MonoBehaviour {
 
     public int HordeNightFrequency = 7;
 
+    public float speedForce = 1;
+
     // Check if the current day is divisible by the horde night frequency. If yes, return true.
     public bool IsHordeNight {
         get {

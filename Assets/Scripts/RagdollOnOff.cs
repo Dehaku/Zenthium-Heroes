@@ -69,6 +69,9 @@ public class RagdollOnOff : MonoBehaviour
         }
         mainCollider.enabled = false;
         ThisGuysRigid.isKinematic = true;
+        var enemy = GetComponent<Enemy>();
+        if(enemy != null)
+            enemy.Unconscious();
     }
 
     void RagdollModeOff(bool FixPosition = true)
