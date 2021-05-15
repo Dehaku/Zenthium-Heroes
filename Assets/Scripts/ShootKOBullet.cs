@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class ShootKOBullet : MonoBehaviour
 {
+    [Range(0.1f,2f)]
+    public float fireRate = 1;
+    float _fireRateTrack = 0;
+    
     public AudioSource gunSound;
     public GameObject bulletPrefab;
     public Transform spawnPos;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -17,32 +22,15 @@ public class ShootKOBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
+        _fireRateTrack += World.Instance.speedForce * Time.deltaTime;
+        gunSound.pitch = World.Instance.speedForce;
+
+        if (Input.GetButton("Fire1") && _fireRateTrack >= fireRate)
         {
-            //Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
-            
-
-
-            //if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) { return; }
-
+            _fireRateTrack = 0;
             gunSound.Play();
-
-            GameObject spawnRotation = new GameObject();
-            //spawnRotation.transform.LookAt(hit.point);
-
-            
             GameObject pew = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
-            //pew.transform.eulerAngles = Camera.main.transform.forward;
-            //pew.transform.forward = spawnPos.forward;
-
-
-            //spawnRotation = pew;
-            //spawnRotation.transform.rotation.eulerAngles
-
             pew.transform.forward = Camera.main.transform.forward;
-            // pew.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 5;
-
         }
-
     }
 }
