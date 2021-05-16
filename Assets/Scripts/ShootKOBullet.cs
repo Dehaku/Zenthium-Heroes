@@ -13,8 +13,14 @@ public class ShootKOBullet : MonoBehaviour
     public Transform spawnPos;
     public GameObject aimReticle;
 
-    
+    public PlayerAimController playerCamera;
+    public WeaponRecoil recoil;
 
+    private void Awake()
+    {
+        playerCamera = GetComponent<PlayerAimController>();
+        recoil.playerCamera = playerCamera;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +31,9 @@ public class ShootKOBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Setup a StartFiring() function and add:
+        // recoil.Reset();
+
 
         _fireRateTrack += World.Instance.speedForce * Time.deltaTime;
         gunSound.pitch = World.Instance.speedForce;
@@ -42,6 +51,8 @@ public class ShootKOBullet : MonoBehaviour
 
             if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) { pew.transform.forward = Camera.main.transform.forward;  }
             else { pew.transform.LookAt(hit.point); }
+
+            recoil.GenerateRecoil();
         }
     }
 
