@@ -55,6 +55,5 @@ public class ShootKOBullet : MonoBehaviour
         if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, aimLayer)) {}
 
         aimReticle.transform.position = Camera.main.WorldToScreenPoint(hit.point);
-        aimReticle.GetComponent<CanvasRenderer>().SetColor(Color.red);
     }
 }
