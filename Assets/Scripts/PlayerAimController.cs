@@ -10,10 +10,13 @@ public class PlayerAimController : MonoBehaviour
     public GameObject aimCamera;
     public Transform aimLookAt;
     public GameObject aimReticle;
+    public GameObject aimReticle2;
     public float sensitivity = 1;
 
     public AxisState xAxis;
     public AxisState yAxis;
+
+    public float camMainMaxZoom = 20;
 
     public float camMainDistance = 10f;
     public float camShoulderDistance = 4.5f;
@@ -21,10 +24,60 @@ public class PlayerAimController : MonoBehaviour
     public Vector3 camMainOffset = new Vector3(1.5f, 0, 0);
     public Vector3 camShoulderOffset = new Vector3(1.5f, 0, 0);
 
+    public float camMainFOV = 40;
+    public float camShoulderFOV = 20;
+
+    Cinemachine3rdPersonFollow aim;
+    CinemachineVirtualCamera aimSettings;
+
     // Start is called before the first frame update
     void Start()
     {
+        aimSettings = aimCamera.GetComponent<CinemachineVirtualCamera>();
+        aim = aimSettings.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
     }
+
+    void MainCam()
+    {
+        aimReticle.SetActive(false);
+        aimReticle2.SetActive(false);
+        aim.CameraDistance = Mathf.Lerp(aim.CameraDistance, camMainDistance, Time.deltaTime * 4);
+        aim.ShoulderOffset = Vector3.Lerp(aim.ShoulderOffset, camMainOffset, Time.deltaTime * 4);
+        aimSettings.m_Lens.FieldOfView = Mathf.Lerp(aimSettings.m_Lens.FieldOfView, camMainFOV, Time.deltaTime * 4);
+
+        xAxis.m_MaxSpeed = 500;
+        yAxis.m_MaxSpeed = 300;
+
+        var mouseScroll = Input.GetAxis("Mouse ScrollWheel");
+        if (mouseScroll < 0)
+            camMainDistance += 3;
+        if (mouseScroll > 0)
+            camMainDistance -= 3;
+
+        camMainDistance = Mathf.Clamp(camMainDistance, camShoulderDistance, camMainMaxZoom);
+    }
+
+    void ShoulderCam()
+    {
+        aimReticle.SetActive(true);
+        aimReticle2.SetActive(true);
+        aim.CameraDistance = Mathf.Lerp(aim.CameraDistance, camShoulderDistance, Time.deltaTime * 4);
+        aim.ShoulderOffset = Vector3.Lerp(aim.ShoulderOffset, camShoulderOffset, Time.deltaTime * 4);
+        aimSettings.m_Lens.FieldOfView = Mathf.Lerp(aimSettings.m_Lens.FieldOfView, camShoulderFOV, Time.deltaTime * 4);
+
+        xAxis.m_MaxSpeed = 100;
+        yAxis.m_MaxSpeed = 100;
+
+        var mouseScroll = Input.GetAxis("Mouse ScrollWheel");
+        if (mouseScroll < 0)
+            camShoulderFOV += 3;
+        if (mouseScroll > 0)
+            camShoulderFOV -= 3;
+
+        camShoulderFOV = Mathf.Clamp(camShoulderFOV, 10, camMainFOV);
+    }
+
+    
 
     // Update is called once per frame
     void Update()
@@ -34,7 +87,7 @@ public class PlayerAimController : MonoBehaviour
 
         aimLookAt.eulerAngles = new Vector3(yAxis.Value, xAxis.Value, 0);
 
-        var aim = aimCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+        
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -45,29 +98,9 @@ public class PlayerAimController : MonoBehaviour
         }
 
         if (Input.GetMouseButton(1))
-        {
-            aimReticle.SetActive(true);
-            aim.CameraDistance = Mathf.Lerp(aim.CameraDistance, camShoulderDistance, Time.deltaTime * 4);
-            aim.ShoulderOffset = Vector3.Lerp(aim.ShoulderOffset, camShoulderOffset, Time.deltaTime * 4);
-
-            xAxis.m_MaxSpeed = 100;
-            yAxis.m_MaxSpeed = 100;
-        }
+            ShoulderCam();
         else
-        {
-            aimReticle.SetActive(false);
-            aim.CameraDistance = Mathf.Lerp(aim.CameraDistance, camMainDistance, Time.deltaTime * 4);
-            aim.ShoulderOffset = Vector3.Lerp(aim.ShoulderOffset, camMainOffset, Time.deltaTime * 4);
-            xAxis.m_MaxSpeed = 500;
-            yAxis.m_MaxSpeed = 300;
-
-            var mouseScroll = Input.GetAxis("Mouse ScrollWheel");
-            if (mouseScroll < 0)
-                camMainDistance += 3;
-            if (mouseScroll > 0)
-                camMainDistance -= 3;
-
-            camMainDistance = Mathf.Clamp(camMainDistance,camShoulderDistance,20);
-        }
+            MainCam();
+        
     }
 }
