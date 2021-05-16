@@ -2596,6 +2596,9 @@ MonoBehaviour:
   camShoulderOffset: {x: 1.5, y: 0, z: 0}
   camMainFOV: 40
   camShoulderFOV: 30
+  aimLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &861604080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3765,7 +3768,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917599575}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f67134aeba2053e46b1eb07b8b963323, type: 3}
   m_Name: 

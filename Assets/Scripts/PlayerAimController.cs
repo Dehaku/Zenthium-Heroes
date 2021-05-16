@@ -30,6 +30,8 @@ public class PlayerAimController : MonoBehaviour
     Cinemachine3rdPersonFollow aim;
     CinemachineVirtualCamera aimSettings;
 
+    public LayerMask aimLayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,7 +89,10 @@ public class PlayerAimController : MonoBehaviour
 
         aimLookAt.eulerAngles = new Vector3(yAxis.Value, xAxis.Value, 0);
 
-        
+        AimReticleAdjust();
+
+
+
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -102,5 +107,17 @@ public class PlayerAimController : MonoBehaviour
         else
             MainCam();
         
+    }
+
+    private void AimReticleAdjust()
+    {
+        Vector3 center = aimLookAt.transform.position;
+        Ray camRay = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
+        if (!Physics.Raycast(camRay, out RaycastHit camHit, Mathf.Infinity)) { }
+
+        Ray ray = new Ray(center, (camHit.point - center).normalized * 100);
+        if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, aimLayer)) { }
+
+        aimReticle.transform.position = Camera.main.WorldToScreenPoint(hit.point);
     }
 }
