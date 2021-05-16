@@ -13,7 +13,7 @@ public class ShootKOBullet : MonoBehaviour
     public Transform spawnPos;
     public GameObject aimReticle;
 
-    public LayerMask aimLayer;
+    
 
 
     // Start is called before the first frame update
@@ -25,7 +25,6 @@ public class ShootKOBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AimReticleAdjust();
 
         _fireRateTrack += World.Instance.speedForce * Time.deltaTime;
         gunSound.pitch = World.Instance.speedForce;
@@ -46,14 +45,5 @@ public class ShootKOBullet : MonoBehaviour
         }
     }
 
-    private void AimReticleAdjust()
-    {
-        Ray camRay = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
-        if (!Physics.Raycast(camRay, out RaycastHit camHit, Mathf.Infinity)) {}
-
-        Ray ray = new Ray(spawnPos.position, (camHit.point - spawnPos.position).normalized * 100);
-        if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, aimLayer)) {}
-
-        aimReticle.transform.position = Camera.main.WorldToScreenPoint(hit.point);
-    }
+    
 }
