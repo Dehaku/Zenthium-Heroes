@@ -19,6 +19,7 @@ public class ShootKOBullet : MonoBehaviour
     private void Awake()
     {
         playerCamera = GetComponent<PlayerAimController>();
+        recoil = GetComponent<WeaponRecoil>();
         recoil.playerCamera = playerCamera;
     }
 
