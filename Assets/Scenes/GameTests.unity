@@ -1117,6 +1117,7 @@ GameObject:
   - component: {fileID: 243158144}
   - component: {fileID: 243158145}
   - component: {fileID: 243158146}
+  - component: {fileID: 243158147}
   m_Layer: 0
   m_Name: Third Person Camera(Shoulder)
   m_TagString: Untagged
@@ -1195,6 +1196,22 @@ MonoBehaviour:
   IgnoreTag: Player
   AimDistance: 1000
   AimTargetReticle: {fileID: 1886168352}
+--- !u!114 &243158147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243158143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
 --- !u!1 &261708754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2461,6 +2478,8 @@ GameObject:
   - component: {fileID: 861604080}
   - component: {fileID: 861604082}
   - component: {fileID: 861604081}
+  - component: {fileID: 861604083}
+  - component: {fileID: 861604084}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -2725,9 +2744,81 @@ MonoBehaviour:
     type: 3}
   spawnPos: {fileID: 1438501662}
   aimReticle: {fileID: 1886168351}
-  aimLayer:
-    serializedVersion: 2
-    m_Bits: 25911
+  playerCamera: {fileID: 0}
+  recoil: {fileID: 0}
+--- !u!114 &861604083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861604074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16699d6b8deecaa4a8bbd1936fbf613e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 861604079}
+  cameraShake: {fileID: 861604084}
+  recoilPattern:
+  - {x: 10, y: 10}
+  - {x: 7, y: 10}
+  - {x: 5, y: 10}
+  - {x: 2, y: 10}
+  - {x: 1, y: 10}
+  - {x: -2, y: 10}
+  - {x: -5, y: 10}
+  - {x: -7, y: 10}
+  - {x: -10, y: 10}
+  - {x: -7, y: 10}
+  - {x: -5, y: 10}
+  - {x: -2, y: 10}
+  - {x: -1, y: 10}
+  - {x: 2, y: 10}
+  - {x: 5, y: 10}
+  duration: 0.1
+--- !u!114 &861604084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861604074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 11400000, guid: 0f699b397e90b0e43800c653c284f28a, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &901124650 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4556870034385468819, guid: 85c0a17cb59c1814aa0c13c6a6662565,
