@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 8187214078303500885}
   - component: {fileID: 8187214079054983483}
   - component: {fileID: 8187214079054983482}
+  - component: {fileID: 993177733580732569}
   m_Layer: 0
   m_Name: Creature
   m_TagString: Untagged
@@ -297,6 +298,24 @@ MonoBehaviour:
   FlickRagdollModeOff: 0
   ragdollCenterFemale: {fileID: 5666534336359214882}
   ragdollCenterMale: {fileID: 6267365870180385333}
+--- !u!114 &993177733580732569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3297220718808129810}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4016100034528437685
 GameObject:
   m_ObjectHideFlags: 0

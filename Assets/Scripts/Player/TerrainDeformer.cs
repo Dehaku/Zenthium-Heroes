@@ -112,7 +112,7 @@ namespace Eldemarkki.VoxelTerrain.Player
                 _isFlattening = false;
             }
 
-            if (Input.GetMouseButton(0) && true == false)
+            if (Input.GetMouseButton(0))
             {
                 if (_isFlattening)
                 {
@@ -123,7 +123,7 @@ namespace Eldemarkki.VoxelTerrain.Player
                     RaycastToTerrain(leftClickAddsTerrain);
                 }
             }
-            else if (Input.GetMouseButton(1) && true == false)
+            else if (Input.GetMouseButton(1))
             {
                 RaycastToTerrain(!leftClickAddsTerrain);
             }

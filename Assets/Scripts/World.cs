@@ -111,7 +111,14 @@ public class World : MonoBehaviour {
                 enemyCount++;
         }
 
-        
+
+
+        if (TimeOfDay > (dayEndTime * 1.1) || TimeOfDay < (dayStartTime * 0.9) )
+            sun.gameObject.SetActive(false);
+        else
+            sun.gameObject.SetActive(true);
+
+
         // Adding "D2" to the ToString() command ensures that there will always be two digits displayed.
         clock.text = string.Format("DAY: {0} TIME: {1}:{2} ENEMIES: {3}", dayText, hours.ToString("D2"), minutes.ToString("D2"), enemyCount);
 
