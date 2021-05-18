@@ -23,7 +23,7 @@ namespace Eldemarkki.VoxelTerrain.World.Chunks
         {
             int3 worldPosition = chunkCoordinate * VoxelWorld.WorldSettings.ChunkSize;
             GameObject chunkGameObject = Instantiate(VoxelWorld.WorldSettings.ChunkPrefab, worldPosition.ToVectorInt(), Quaternion.identity);
-            chunkGameObject.layer = LayerMask.NameToLayer("Enviroment");
+            chunkGameObject.layer = LayerMask.NameToLayer("Environment");
 
             ChunkProperties chunkProperties = new ChunkProperties
             {

@@ -284,9 +284,6 @@ namespace Eldemarkki.VoxelTerrain.Player
 
                 return voxelData;
             });
-
-            // StartCoroutine(ExecuteAfterTime(0.1f));
-            //mouseNavScript.FireNavver();
         }
 
         private void EditTerrainCube(Vector3 point, bool addTerrain, float deformSpeed, float range)
@@ -316,10 +313,6 @@ namespace Eldemarkki.VoxelTerrain.Player
 
                 return (byte)(math.saturate(newVoxelData) * 255);
             });
-
-
-            // StartCoroutine(ExecuteAfterTime(0.1f));
-
         }
 
         private void EditTerrainCustom(Vector3 point, bool addTerrain, float deformSpeed, float range)
