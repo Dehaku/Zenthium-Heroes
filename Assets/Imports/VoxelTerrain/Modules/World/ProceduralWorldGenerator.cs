@@ -36,6 +36,7 @@ namespace Eldemarkki.VoxelTerrain.World
         /// </summary>
         [SerializeField] private Transform player;
 
+
         /// <summary>
         /// The coordinate of the chunk where terrain was last generated around
         /// </summary>
