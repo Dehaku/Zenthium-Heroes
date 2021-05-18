@@ -40,6 +40,21 @@ namespace Eldemarkki.VoxelTerrain.Player
         [SerializeField] private int debugNumber = 255;
 
         /// <summary>
+        /// Whether to limit the terrain modification or not.
+        /// </summary>
+        [SerializeField] public bool applyLevelLimit;
+
+        /// <summary>
+        /// Minimum terrain modification level
+        /// </summary>
+        [SerializeField] public float lowestLevel;
+
+        /// <summary>
+        /// Maximum terrain modification level
+        /// </summary>
+        [SerializeField] public float HighestLevel;
+
+        /// <summary>
         /// How far away points the player can deform
         /// </summary>
         [SerializeField] private float maxReachDistance = Mathf.Infinity;
@@ -76,6 +91,7 @@ namespace Eldemarkki.VoxelTerrain.Player
         /// The normal of the flattening plane
         /// </summary>
         private float3 _flatteningNormal;
+        
 
         private void Awake()
         {
@@ -255,6 +271,10 @@ namespace Eldemarkki.VoxelTerrain.Player
             voxelWorld.VoxelDataStore.SetVoxelDataCustom(queryBounds, (voxelDataWorldPosition, voxelData) =>
             {
                 float distance = math.distance(voxelDataWorldPosition, point);
+                if(applyLevelLimit)
+                    if(voxelDataWorldPosition.y <= lowestLevel || voxelDataWorldPosition.y > HighestLevel)
+                        return voxelData;
+
                 if (distance <= range)
                 {
                     float modificationAmount = deformSpeed / distance * buildModifier;
@@ -285,6 +305,10 @@ namespace Eldemarkki.VoxelTerrain.Player
 
             voxelWorld.VoxelDataStore.SetVoxelDataCustom(queryBounds, (voxelDataWorldPosition, voxelData) =>
             {
+                if (applyLevelLimit)
+                    if (voxelDataWorldPosition.y <= lowestLevel || voxelDataWorldPosition.y > HighestLevel)
+                        return voxelData;
+
                 float3 q = math.abs(voxelDataWorldPosition) - queryBounds.size.ToInt3();
                 float target = math.length(math.max(q, 0)) + math.min(math.max(q.x, math.max(q.y, q.z)), 0);
 
