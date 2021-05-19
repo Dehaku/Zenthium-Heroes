@@ -15,6 +15,7 @@ public class PaintTheWorld : MonoBehaviour
     [SerializeField] private VoxelWorld voxelWorld;
 
     [Header("Settings")]
+    public bool paintTerrainOverTime;
     [SerializeField] private float paintRange = 3f;
     public int2 snowRange;
     public int2 grassRange;
@@ -39,25 +40,61 @@ public class PaintTheWorld : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButton(2))
-            CountGoldHit();
+    float paintStartTime;
+    bool _paintOverTime = false;
+    ChunkTag[] chunks;
+    int chunkIterator = 0;
 
-        if(Input.GetKeyDown(KeyCode.Home))
+    public void PaintWorld()
+    {
+        if (paintTerrainOverTime)
         {
-            float startTime = Time.realtimeSinceStartup;
+            if (_paintOverTime == false)
+            {
+                paintStartTime = Time.realtimeSinceStartup;
+                _paintOverTime = true;
+                chunks = FindObjectsOfType<ChunkTag>();
+            }
+        }
+        else
+        {
             ChunkTag[] chunks = FindObjectsOfType<ChunkTag>();
             foreach (var chunk in chunks)
             {
 
                 PaintLevelTerrain(chunk.gameObject.transform.position);
             }
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetMouseButton(2))
+            CountGoldHit();
+
+        if (_paintOverTime && chunkIterator >= chunks.Length)
+        {
+            Debug.Log("Long Paint:" + ((Time.realtimeSinceStartup - paintStartTime) * 1000f) + "ms");
+            _paintOverTime = false;
+            chunks = null;
+            chunkIterator = 0;
+        }
+        else if(_paintOverTime)
+        {
+            PaintLevelTerrain(chunks[chunkIterator].gameObject.transform.position);
+            chunkIterator++;
+        }
+
+        
+
+        if (Input.GetKeyDown(KeyCode.Home))
+        {
+            float startTime = Time.realtimeSinceStartup;
+
+            PaintWorld();
 
             Debug.Log(((Time.realtimeSinceStartup - startTime) * 1000f) + "ms");
-            //voxelWorld.ChunkStore.Chunks
-            //PaintLevelTerrain();
         }
     }
 
