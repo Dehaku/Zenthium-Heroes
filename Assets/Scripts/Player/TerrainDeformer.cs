@@ -95,7 +95,7 @@ namespace Eldemarkki.VoxelTerrain.Player
 
         private void Awake()
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.lockState = CursorLockMode.Locked;
             mouseNavScript = FindObjectOfType<MouseNavScript>();
         }
 
