@@ -15,14 +15,13 @@ public class GameAssets : MonoBehaviour
         }
     }
 
-    public AudioClip playerAttack;
+    public SoundAudioClip[] soundAudioClipArray;
 
-    public AudioClip simpleWalk;
-    public AudioClip simpleWalk2;
-    
-    public AudioClip softSonicBoom;
-    public AudioClip boneImpact;
-
-
+    [System.Serializable]
+    public class SoundAudioClip
+    {
+        public SoundManager.Sound sound;
+        public AudioClip audioClip;
+    }
 
 }

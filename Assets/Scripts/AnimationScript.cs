@@ -22,6 +22,7 @@ public class AnimationScript : MonoBehaviour
         cc = GetComponent<CharacterController>();
     }
 
+
     // Update is called once per frame
     void Update()
     {

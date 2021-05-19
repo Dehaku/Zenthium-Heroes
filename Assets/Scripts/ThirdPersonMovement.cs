@@ -18,6 +18,9 @@ public class ThirdPersonMovement : MonoBehaviour
 
     Vector3 _movement = Vector3.zero;
 
+    public float walkSoundTimer;
+    float walkSoundTimerTrack = 0;
+
 
 
     // Start is called before the first frame update
@@ -63,6 +66,13 @@ public class ThirdPersonMovement : MonoBehaviour
             Vector3 moveTransition = new Vector3(moveDir.normalized.x * speed, _movement.y, moveDir.normalized.z * speed);
 
             _movement = moveTransition;
+
+            walkSoundTimerTrack += Time.deltaTime;
+            if(walkSoundTimerTrack >= walkSoundTimer)
+            {
+                walkSoundTimerTrack = 0;
+            }
+            SoundManager.PlaySound(SoundManager.Sound.PlayerMove);
         }
 
 

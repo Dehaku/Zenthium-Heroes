@@ -105,7 +105,7 @@ public class PlayerAimController : MonoBehaviour
 
             controller.transform.LookAt(lookPosition);
 
-            SoundManager.PlaySound();
+            
         }
 
         if (Input.GetMouseButton(1))
