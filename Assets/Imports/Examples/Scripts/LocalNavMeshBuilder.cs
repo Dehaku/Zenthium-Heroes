@@ -19,8 +19,11 @@ public class LocalNavMeshBuilder : MonoBehaviour
     NavMeshDataInstance m_Instance;
     List<NavMeshBuildSource> m_Sources = new List<NavMeshBuildSource>();
 
+    public bool WorkIteration;
+    public float WorkRate;
     public bool Work = false;
     public bool WorkOnce = false;
+    float workTrack;
 
     IEnumerator Start()
     {
@@ -49,8 +52,14 @@ public class LocalNavMeshBuilder : MonoBehaviour
 
     void UpdateNavMesh(bool asyncUpdate = false)
     {
-        if (Input.GetKeyDown(KeyCode.U))
-            Work = !Work;
+        workTrack += Time.deltaTime;
+
+        if (workTrack >= WorkRate)
+        {
+            workTrack = 0;
+            WorkOnce = true;
+        }
+            
 
 
 
