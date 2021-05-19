@@ -14,7 +14,6 @@ namespace Eldemarkki.VoxelTerrain.Player
     public class TerrainDeformer : MonoBehaviour
     {
 
-        MouseNavScript mouseNavScript;
 
         /// <summary>
         /// The voxel data store that will be deformed
@@ -95,8 +94,7 @@ namespace Eldemarkki.VoxelTerrain.Player
 
         private void Awake()
         {
-            //Cursor.lockState = CursorLockMode.Locked;
-            mouseNavScript = FindObjectOfType<MouseNavScript>();
+
         }
 
         private void Update()
@@ -213,12 +211,6 @@ namespace Eldemarkki.VoxelTerrain.Player
         }
 
 
-        private IEnumerator ExecuteAfterTime(float time)
-        {
-            yield return new WaitForSeconds(time);
-            mouseNavScript.FireNavver();
-
-        }
 
         /// <summary>
         /// Shoots a raycast to the terrain and deforms the terrain around the hit point

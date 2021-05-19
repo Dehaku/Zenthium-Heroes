@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public bool allowSpawning = false;
     public bool allowRespawning = true;
-    public Vector3 spawnCenter;
+    public Transform spawnCenter;
     public float spawnRadius;
     public int maxEnemiesAtOnce;
     public float spawnDelay;
@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if(enemy.activeSelf == false)
             {
-                Vector3 spawnPos = spawnCenter + new Vector3(Random.Range(-spawnRadius, spawnRadius), 0, Random.Range(-spawnRadius, spawnRadius));
+                Vector3 spawnPos = spawnCenter.position + new Vector3(Random.Range(-spawnRadius, spawnRadius), 0, Random.Range(-spawnRadius, spawnRadius));
                 enemy.transform.position = spawnPos;
                 enemy.SetActive(true);
                 if(oneAtATime)
@@ -55,7 +55,7 @@ public class EnemySpawner : MonoBehaviour
             _timeToSpawn = 0;
             for (int i = 0; i < maxEnemiesAtOnce; i++)
             {
-                Vector3 spawnPos = spawnCenter + new Vector3(Random.Range(-spawnRadius, spawnRadius), 0, Random.Range(-spawnRadius, spawnRadius));
+                Vector3 spawnPos = spawnCenter.position + new Vector3(Random.Range(-spawnRadius, spawnRadius), 0, Random.Range(-spawnRadius, spawnRadius));
                 GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, transform);
                 //enemyContainer[i] = enemy;
                 enemyContainer.Enqueue(enemy);
