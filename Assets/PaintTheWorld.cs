@@ -10,7 +10,6 @@ using UnityEngine;
 
 public class PaintTheWorld : MonoBehaviour
 {
-    bool method;
     [Header("References")]
     [SerializeField] private Transform playerCamera;
     [SerializeField] private VoxelWorld voxelWorld;
@@ -43,10 +42,23 @@ public class PaintTheWorld : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButton(2))
+        if (Input.GetMouseButton(2))
             CountGoldHit();
-        else if (Input.GetMouseButton(2))
-            PaintLevelTerrain();
+
+        if(Input.GetKeyDown(KeyCode.Home))
+        {
+            float startTime = Time.realtimeSinceStartup;
+            ChunkTag[] chunks = FindObjectsOfType<ChunkTag>();
+            foreach (var chunk in chunks)
+            {
+
+                PaintLevelTerrain(chunk.gameObject.transform.position);
+            }
+
+            Debug.Log(((Time.realtimeSinceStartup - startTime) * 1000f) + "ms");
+            //voxelWorld.ChunkStore.Chunks
+            //PaintLevelTerrain();
+        }
     }
 
     public int CountGoldHit()
@@ -91,18 +103,21 @@ public class PaintTheWorld : MonoBehaviour
         return goldFound;
     }
 
-    private void PaintLevelTerrain()
+    
+    private void PaintLevelTerrain(Vector3 coords)
     {
-        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        Vector3 point = coords;
+        point.x += 8;
+        point.y += 8;
+        point.z += 8;
+        float chunkPaintRange = 8;
 
-        if (!Physics.Raycast(ray, out RaycastHit hit)) { return; }
-        Vector3 point = hit.point;
 
         int hitX = Mathf.RoundToInt(point.x);
         int hitY = Mathf.RoundToInt(point.y);
         int hitZ = Mathf.RoundToInt(point.z);
         int3 hitPoint = new int3(hitX, hitY, hitZ);
-        int3 intRange = new int3(Mathf.CeilToInt(paintRange));
+        int3 intRange = new int3(Mathf.CeilToInt(chunkPaintRange));
 
         BoundsInt queryBounds = new BoundsInt((hitPoint - intRange).ToVectorInt(), (intRange * 2).ToVectorInt());
 
@@ -110,8 +125,6 @@ public class PaintTheWorld : MonoBehaviour
         {
             float distance = math.distance(voxelDataWorldPosition, point);
 
-            if (distance <= paintRange)
-            {
                 Color32 paintColor = new Color32(0,0,0,0);
 
                 if (Mathf.Clamp(voxelDataWorldPosition.y, snowRange.x, snowRange.y) == voxelDataWorldPosition.y)
@@ -130,9 +143,7 @@ public class PaintTheWorld : MonoBehaviour
                         paintColor = zennyColor;
 
                 return paintColor;
-            }
 
-            return voxelData;
         });
     }
 
