@@ -95,9 +95,6 @@ public class ThirdPersonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        particleTrails.Play();
-
         // Sprint
         if (Input.GetKey(KeyCode.LeftShift))
         {
