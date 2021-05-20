@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class ThirdPersonMovement : MonoBehaviour
 {
-
+    public bool hyperSpeed;
     public CharacterController controller;
     public Transform cam;
 
-    public float speed = 6f;
+    public ParticleSystem particleTrails;
+    public Vector2 trailLifeTime;
+
+    public float defaultSpeed = 6f;
+    public float defaultSprintSpeed = 10f;
+    public float speed;
     public float jumpSpeed = 8;
     public bool gravity = true;
     float _gravity = 20f;
@@ -21,12 +26,14 @@ public class ThirdPersonMovement : MonoBehaviour
     public float walkSoundTimer;
     float walkSoundTimerTrack = 0;
 
+    bool wentSuperSonic;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        speed = defaultSpeed;
     }
 
     void OriginalMove()
@@ -88,6 +95,42 @@ public class ThirdPersonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        particleTrails.Play();
+
+        // Sprint
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            
+            if(speed <= defaultSprintSpeed)
+                speed = Mathf.Lerp(speed, defaultSprintSpeed, Time.deltaTime);
+
+            if(speed >= defaultSprintSpeed * 0.95)
+            {
+                particleTrails.Play();
+                speed = defaultSprintSpeed * 3;
+                GetComponent<AnimationScript>().speed = 4;
+
+                if(!wentSuperSonic)
+                {
+                    wentSuperSonic = true;
+                    SoundManager.PlaySound(SoundManager.Sound.SoftSonicBoom);
+                }
+            }
+
+        }
+        else
+        {
+            particleTrails.Stop();
+            if (speed >= defaultSprintSpeed)
+            {
+                speed = defaultSprintSpeed;
+                wentSuperSonic = false;
+            }
+                
+            speed = Mathf.Lerp(speed, defaultSpeed, Time.deltaTime);
+        }
+
         // OriginalMove();
         OldMove();
         
