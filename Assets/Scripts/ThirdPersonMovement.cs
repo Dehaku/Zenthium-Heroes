@@ -27,6 +27,7 @@ public class ThirdPersonMovement : MonoBehaviour
     float walkSoundTimerTrack = 0;
 
     bool wentSuperSonic;
+    public bool isJumping = false;
 
 
 
@@ -79,12 +80,20 @@ public class ThirdPersonMovement : MonoBehaviour
             {
                 walkSoundTimerTrack = 0;
             }
-            SoundManager.PlaySound(SoundManager.Sound.PlayerMove);
+            
+            if(controller.isGrounded)
+                SoundManager.PlaySound(SoundManager.Sound.PlayerMove);
         }
 
 
         if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
             _movement.y = jumpSpeed;
+            isJumping = true;
+        }
+        if (controller.isGrounded)
+            isJumping = false;
+            
 
         if (gravity && !controller.isGrounded)
             _movement.y -= _gravity * Time.deltaTime;

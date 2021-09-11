@@ -32,6 +32,8 @@ public class AnimationScript : MonoBehaviour
         if (animator != null && cc != null)
             animator.SetFloat("Speed", speed);
 
+        
+
         if (navAgent != null)
         {
             if(navAgent.enabled)
@@ -43,7 +45,32 @@ public class AnimationScript : MonoBehaviour
             }
             
         }
-        
-        
+
+        if (animator == null || cc == null)
+        {
+            return;
+        }
+
+        animator.SetBool("IsGrounded", cc.isGrounded);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            animator.SetFloat("Speed", 0);
+            animator.SetBool("Jump", true);
+            
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            animator.SetBool("Jump", false);
+            // animator.Play("Jump", -1, 0f);
+        }
+
+        if(Input.GetKey(KeyCode.H))
+        {
+            animator.Play("Base Layer.Jump", 0, 0f);
+        }
+            
+
+
     }
 }
