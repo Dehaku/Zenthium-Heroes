@@ -10,6 +10,16 @@ public class AnimationScript : MonoBehaviour
     NavMeshAgent navAgent;
     CharacterController cc;
 
+    int movex = Animator.StringToHash("X_Move");
+    int movey = Animator.StringToHash("Y_Move");
+    int isJumping = Animator.StringToHash("Jump");
+    int isGrounded = Animator.StringToHash("isGrounded");
+
+    int moveSpeed = Animator.StringToHash("Speed");
+    int animationSpeed = Animator.StringToHash("AnimationSpeed");
+
+
+
     public float speed = 0f;
     public float divideBy = 0.5f;
 
@@ -23,6 +33,26 @@ public class AnimationScript : MonoBehaviour
     }
 
 
+    public void JumpingAnimation(bool value)
+    {
+        if (animator.GetBool(isJumping) != value)
+            animator.SetBool(isJumping, value);
+    }
+
+    public void isGroundedFunc(bool value)
+    {
+        if (animator.GetBool(isGrounded) != value)
+            animator.SetBool(isGrounded, value);
+    }
+
+    public void playerMovementAnimation(Vector2 value)
+    {
+        Debug.Log(value);
+        // animator.SetFloat(movex, value.x);
+        // animator.SetFloat(movey, value.y);
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -30,7 +60,14 @@ public class AnimationScript : MonoBehaviour
             speed = Mathf.Lerp(speed, cc.velocity.normalized.magnitude, Time.deltaTime * 10);
 
         if (animator != null && cc != null)
-            animator.SetFloat("Speed", speed);
+        {
+            animator.SetFloat(moveSpeed, speed);
+            if(speed > 1)
+                animator.SetFloat(animationSpeed, speed);
+            else
+                animator.SetFloat(animationSpeed, 1);
+        }
+            
 
         
 
@@ -41,7 +78,7 @@ public class AnimationScript : MonoBehaviour
                 var vel = (navAgent.velocity.magnitude + 0.001f);
                 speed = vel;
 
-                animator.SetFloat("Speed", vel);
+                animator.SetFloat(moveSpeed, vel);
             }
             
         }
@@ -51,11 +88,11 @@ public class AnimationScript : MonoBehaviour
             return;
         }
 
-        animator.SetBool("IsGrounded", cc.isGrounded);
+        animator.SetBool("isGrounded", cc.isGrounded);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            animator.SetFloat("Speed", 0);
+            animator.SetFloat(moveSpeed, 0);
             animator.SetBool("Jump", true);
             
         }

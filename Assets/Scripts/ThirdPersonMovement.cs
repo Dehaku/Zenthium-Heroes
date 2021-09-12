@@ -7,6 +7,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public bool hyperSpeed;
     public CharacterController controller;
     public Transform cam;
+    AnimationScript animationController;
 
     public ParticleSystem particleTrails;
     public Vector2 trailLifeTime;
@@ -35,6 +36,7 @@ public class ThirdPersonMovement : MonoBehaviour
     void Start()
     {
         speed = defaultSpeed;
+        animationController = GetComponent<AnimationScript>();
     }
 
     void OriginalMove()
@@ -64,6 +66,8 @@ public class ThirdPersonMovement : MonoBehaviour
         _movement.x = 0;
         _movement.z = 0;
 
+        animationController.playerMovementAnimation(new Vector2(direction.normalized.x, direction.normalized.z));
+
         if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
@@ -71,9 +75,15 @@ public class ThirdPersonMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
+            
+
             Vector3 moveTransition = new Vector3(moveDir.normalized.x * speed, _movement.y, moveDir.normalized.z * speed);
 
             _movement = moveTransition;
+
+            // animationController.playerMovementAnimation(new Vector2(moveTransition.normalized.x, moveTransition.normalized.z));
+
 
             walkSoundTimerTrack += Time.deltaTime;
             if(walkSoundTimerTrack >= walkSoundTimer)
@@ -90,9 +100,15 @@ public class ThirdPersonMovement : MonoBehaviour
         {
             _movement.y = jumpSpeed;
             isJumping = true;
+            animationController.JumpingAnimation(true);
+            animationController.isGroundedFunc(false);
         }
         if (controller.isGrounded)
+        {
+            animationController.isGroundedFunc(false);
             isJumping = false;
+        }
+            
             
 
         if (gravity && !controller.isGrounded)
