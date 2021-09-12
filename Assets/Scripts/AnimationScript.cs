@@ -104,7 +104,6 @@ public class AnimationScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            animator.SetFloat(moveSpeed, 0);
             animator.SetBool("Jump", true);
             
         }
