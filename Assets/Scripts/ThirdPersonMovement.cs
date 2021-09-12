@@ -15,6 +15,8 @@ public class ThirdPersonMovement : MonoBehaviour
     public float defaultSpeed = 6f;
     public float defaultSprintSpeed = 10f;
     public float speed;
+    public float flySpeed = 1;
+    public float airDrag = 0.2f;
     public float jumpSpeed = 8;
     public bool gravity = true;
     float _gravity = 20f;
@@ -29,6 +31,8 @@ public class ThirdPersonMovement : MonoBehaviour
 
     bool wentSuperSonic;
     public bool isJumping = false;
+
+    public bool isFlying = false;
 
     float timeOffGround = 0f;
 
@@ -60,17 +64,33 @@ public class ThirdPersonMovement : MonoBehaviour
         }
     }
 
-    void OldMove()
+    void Move()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-        _movement.x = 0;
-        _movement.z = 0;
+        if(!isFlying)
+        {
+            _movement.x = 0;
+            _movement.z = 0;
+        }
+        
 
         animationController.playerMovementAnimation(new Vector2(direction.normalized.x, direction.normalized.z));
 
-        if (direction.magnitude >= 0.1f)
+        if(isFlying)
+        {
+            var lookPosition = controller.transform.position + Camera.main.transform.forward;
+            if(Input.GetKey(KeyCode.W))
+            {
+                controller.transform.LookAt(lookPosition);
+                _movement += controller.transform.forward * (flySpeed * Time.deltaTime);
+                
+            }
+                
+        }    
+        
+        else if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
@@ -81,6 +101,9 @@ public class ThirdPersonMovement : MonoBehaviour
             
 
             Vector3 moveTransition = new Vector3(moveDir.normalized.x * speed, _movement.y, moveDir.normalized.z * speed);
+
+            if(isFlying)
+                moveTransition = new Vector3(moveDir.normalized.x * speed, moveDir.normalized.y * speed, moveDir.normalized.z * speed);
 
             _movement = moveTransition;
 
@@ -99,22 +122,25 @@ public class ThirdPersonMovement : MonoBehaviour
 
 
         if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
-        {
+        { // Jumping
             _movement.y = jumpSpeed;
             isJumping = true;
             animationController.JumpingAnimation(true);
             animationController.isGroundedFunc(false);
         }
         if (controller.isGrounded)
-        {
+        { // Landed
             animationController.isGroundedFunc(false);
             isJumping = false;
+            isFlying = false;
         }
 
         if (timeOffGround > 0.1 && Input.GetKeyDown(KeyCode.Space))
         { // Time to fly!
             animationController.FlyingAnimation(true);
-            _movement.y = jumpSpeed*10;
+            //_movement.y = jumpSpeed*10;
+            isFlying = true;
+            
         }
 
         if(animationController.FlyingAnimation())
@@ -129,10 +155,22 @@ public class ThirdPersonMovement : MonoBehaviour
 
 
 
-            if (gravity && !controller.isGrounded)
+        if (gravity && !controller.isGrounded && !isFlying)
             _movement.y -= _gravity * Time.deltaTime;
 
+        // if(!isFlying)
         controller.Move(_movement * Time.deltaTime);
+    }
+
+    void Flying()
+    {
+        // Air Drag
+        _movement = Vector3.Lerp(_movement, new Vector3(0, 0, 0), Time.deltaTime * airDrag);
+
+        if (Input.GetKey(KeyCode.Space))
+            _movement.y += (flySpeed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.LeftControl))
+            _movement.y -= (flySpeed * Time.deltaTime);
     }
 
     // Update is called once per frame
@@ -150,8 +188,10 @@ public class ThirdPersonMovement : MonoBehaviour
                 timeOffGround += Time.deltaTime;
 
         }
-        
-        
+
+        if (isFlying)
+            Flying();
+
         // Sprint
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -186,7 +226,7 @@ public class ThirdPersonMovement : MonoBehaviour
         }
 
         // OriginalMove();
-        OldMove();
+        Move();
         
 
     }

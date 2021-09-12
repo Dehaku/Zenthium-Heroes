@@ -393,7 +393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &35699114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1323,7 +1323,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.9308036, y: 1}
+    m_SensorSize: {x: 0.9285714, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3441,11 +3441,14 @@ MonoBehaviour:
   defaultSpeed: 6
   defaultSprintSpeed: 10
   speed: 6
+  flySpeed: 12
+  airDrag: 1
   jumpSpeed: 8
   gravity: 1
   turnSmoothTime: 0.1
   walkSoundTimer: 0.5
   isJumping: 0
+  isFlying: 0
 --- !u!143 &861604078
 CharacterController:
   m_ObjectHideFlags: 0
