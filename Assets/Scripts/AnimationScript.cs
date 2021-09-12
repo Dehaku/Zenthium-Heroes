@@ -14,6 +14,7 @@ public class AnimationScript : MonoBehaviour
     int movey = Animator.StringToHash("Y_Move");
     int isJumping = Animator.StringToHash("Jump");
     int isGrounded = Animator.StringToHash("isGrounded");
+    int isFlying = Animator.StringToHash("Flying");
 
     int moveSpeed = Animator.StringToHash("Speed");
     int animationSpeed = Animator.StringToHash("AnimationSpeed");
@@ -43,6 +44,17 @@ public class AnimationScript : MonoBehaviour
     {
         if (animator.GetBool(isGrounded) != value)
             animator.SetBool(isGrounded, value);
+    }
+
+    public void FlyingAnimation(bool value)
+    {
+        if (animator.GetBool(isFlying) != value)
+            animator.SetBool(isFlying, value);
+    }
+
+    public bool FlyingAnimation()
+    {
+        return animator.GetBool(isFlying);
     }
 
     public void playerMovementAnimation(Vector2 value)

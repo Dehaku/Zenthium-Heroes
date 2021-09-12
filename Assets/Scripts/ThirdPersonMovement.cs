@@ -30,6 +30,8 @@ public class ThirdPersonMovement : MonoBehaviour
     bool wentSuperSonic;
     public bool isJumping = false;
 
+    float timeOffGround = 0f;
+
 
 
     // Start is called before the first frame update
@@ -108,10 +110,26 @@ public class ThirdPersonMovement : MonoBehaviour
             animationController.isGroundedFunc(false);
             isJumping = false;
         }
-            
+
+        if (timeOffGround > 0.1 && Input.GetKeyDown(KeyCode.Space))
+        { // Time to fly!
+            animationController.FlyingAnimation(true);
+            _movement.y = jumpSpeed*10;
+        }
+
+        if(animationController.FlyingAnimation())
+        { // Flying Animation Facing, needs lerping, not sure how currently.
+            //controller.transform.rotation = Quaternion.LookRotation(controller.transform.position, Camera.main.transform.up);
+            var lookPosition = controller.transform.position + controller.velocity.normalized;
+
             
 
-        if (gravity && !controller.isGrounded)
+            controller.transform.LookAt(lookPosition);
+        }
+
+
+
+            if (gravity && !controller.isGrounded)
             _movement.y -= _gravity * Time.deltaTime;
 
         controller.Move(_movement * Time.deltaTime);
@@ -120,6 +138,19 @@ public class ThirdPersonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(controller != null)
+        {
+            if (controller.isGrounded)
+            {
+                timeOffGround = 0;
+                animationController.FlyingAnimation(false);
+            }
+                
+            else
+                timeOffGround += Time.deltaTime;
+        }
+        
+        
         // Sprint
         if (Input.GetKey(KeyCode.LeftShift))
         {

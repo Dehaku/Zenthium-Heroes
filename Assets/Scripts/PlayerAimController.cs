@@ -100,7 +100,7 @@ public class PlayerAimController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            controller.transform.rotation = Quaternion.LookRotation(controller.transform.position, Camera.main.transform.up);
+            //controller.transform.rotation = Quaternion.LookRotation(controller.transform.position, Camera.main.transform.up);
             var lookPosition = controller.transform.position + Camera.main.transform.forward;
 
             controller.transform.LookAt(lookPosition);
