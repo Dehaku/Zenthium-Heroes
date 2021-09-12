@@ -68,12 +68,12 @@ public class AnimationScript : MonoBehaviour
     void Update()
     {
         if (cc != null)
-            speed = Mathf.Lerp(speed, cc.velocity.normalized.magnitude, Time.deltaTime * 10);
+            speed = Mathf.Lerp(speed, cc.velocity.magnitude, Time.deltaTime * 10);
 
         if (animator != null && cc != null)
         {
             animator.SetFloat(moveSpeed, speed);
-            if(speed > 1)
+            if(speed > 50)
                 animator.SetFloat(animationSpeed, speed);
             else
                 animator.SetFloat(animationSpeed, 1);

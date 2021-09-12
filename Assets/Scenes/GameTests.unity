@@ -393,7 +393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &35699114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3449,6 +3449,7 @@ MonoBehaviour:
   walkSoundTimer: 0.5
   isJumping: 0
   isFlying: 0
+  Why: {x: 0, y: 0, z: 0}
 --- !u!143 &861604078
 CharacterController:
   m_ObjectHideFlags: 0

@@ -33,8 +33,11 @@ public class ThirdPersonMovement : MonoBehaviour
     public bool isJumping = false;
 
     public bool isFlying = false;
+    
 
     float timeOffGround = 0f;
+
+    public Vector3 Why;
 
 
 
@@ -80,13 +83,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
         if(isFlying)
         {
-            var lookPosition = controller.transform.position + Camera.main.transform.forward;
-            if(Input.GetKey(KeyCode.W))
-            {
-                controller.transform.LookAt(lookPosition);
-                _movement += controller.transform.forward * (flySpeed * Time.deltaTime);
-                
-            }
+            
                 
         }    
         
@@ -133,6 +130,10 @@ public class ThirdPersonMovement : MonoBehaviour
             animationController.isGroundedFunc(false);
             isJumping = false;
             isFlying = false;
+            
+            if(controller.transform.rotation.x != 0)
+                controller.transform.rotation = Quaternion.Euler(0, controller.transform.rotation.y, controller.transform.rotation.z);
+
         }
 
         if (timeOffGround > 0.1 && Input.GetKeyDown(KeyCode.Space))
@@ -149,8 +150,13 @@ public class ThirdPersonMovement : MonoBehaviour
             var lookPosition = controller.transform.position + controller.velocity.normalized;
 
             
+            // Make it look smooth as it aims towards velocity.
+            if(controller.velocity.magnitude > 1)
+                controller.transform.LookAt(lookPosition);
 
-            controller.transform.LookAt(lookPosition);
+            // Constantly adjust to be upright.
+            if (controller.transform.rotation.x != 0)
+                controller.transform.Rotate(new Vector3(-controller.transform.rotation.x, 0, 0));
         }
 
 
@@ -166,6 +172,15 @@ public class ThirdPersonMovement : MonoBehaviour
     {
         // Air Drag
         _movement = Vector3.Lerp(_movement, new Vector3(0, 0, 0), Time.deltaTime * airDrag);
+        
+
+        var lookPosition = controller.transform.position + Camera.main.transform.forward;
+        if (Input.GetKey(KeyCode.W))
+        {
+            controller.transform.LookAt(lookPosition);
+            _movement += controller.transform.forward * (flySpeed * Time.deltaTime);
+
+        }
 
         if (Input.GetKey(KeyCode.Space))
             _movement.y += (flySpeed * Time.deltaTime);
