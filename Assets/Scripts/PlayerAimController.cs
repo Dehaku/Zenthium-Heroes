@@ -103,7 +103,7 @@ public class PlayerAimController : MonoBehaviour
             //controller.transform.rotation = Quaternion.LookRotation(controller.transform.position, Camera.main.transform.up);
             var lookPosition = controller.transform.position + Camera.main.transform.forward;
 
-            controller.transform.LookAt(lookPosition);
+            //controller.transform.LookAt(lookPosition);
 
             
         }
