@@ -59,7 +59,6 @@ public class AnimationScript : MonoBehaviour
 
     public void playerMovementAnimation(Vector2 value)
     {
-        Debug.Log(value);
         // animator.SetFloat(movex, value.x);
         // animator.SetFloat(movey, value.y);
         

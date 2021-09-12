@@ -148,6 +148,7 @@ public class ThirdPersonMovement : MonoBehaviour
                 
             else
                 timeOffGround += Time.deltaTime;
+
         }
         
         

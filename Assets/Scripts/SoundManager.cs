@@ -16,7 +16,8 @@ public static class SoundManager
         Walk2,
         BoneHit,
         RoboTalk1,
-        RoboTalk2
+        RoboTalk2,
+        WindRushing
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;
@@ -78,6 +79,25 @@ public static class SoundManager
                         soundTimerDictionary[sound] = Time.time;
                         return true;
                     } 
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return true;
+                }
+            case Sound.WindRushing:
+                if (soundTimerDictionary.ContainsKey(sound))
+                {
+                    float lastTimePlayed = soundTimerDictionary[sound];
+                    float TimerMax = 13f;
+                    if (lastTimePlayed + TimerMax < Time.time)
+                    {
+                        soundTimerDictionary[sound] = Time.time;
+                        return true;
+                    }
                     else
                     {
                         return false;
