@@ -393,7 +393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &35699114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3011,6 +3011,7 @@ GameObject:
   - component: {fileID: 706551605}
   - component: {fileID: 706551607}
   - component: {fileID: 706551606}
+  - component: {fileID: 706551608}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -3066,6 +3067,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &706551608
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706551604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &708674379
 GameObject:
   m_ObjectHideFlags: 0
@@ -10744,6 +10762,7 @@ GameObject:
   - component: {fileID: 1923917744}
   - component: {fileID: 1923917746}
   - component: {fileID: 1923917745}
+  - component: {fileID: 1923917748}
   m_Layer: 11
   m_Name: WindSounds
   m_TagString: Untagged
@@ -10876,6 +10895,24 @@ MonoBehaviour:
   isPlaying: 0
   velocityToPlay: 15
   maxVolume: 0.8
+--- !u!114 &1923917748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923917743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1afcbe5f9a94f64782ebaea98e9f1d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Shake: 0
+  pulseShake: 0
+  ShakeDuration: 0.3
+  ShakeAmplitude: 0.2
+  ShakeFrequency: 0.1
+  VirtualCamera: {fileID: 243158145}
 --- !u!1001 &1925252530
 PrefabInstance:
   m_ObjectHideFlags: 0

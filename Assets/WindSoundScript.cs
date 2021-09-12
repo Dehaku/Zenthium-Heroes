@@ -6,7 +6,8 @@ public class WindSoundScript : MonoBehaviour
 {
     AudioSource audioSource;
     CharacterController cc;
-    
+    SimpleCameraShake cameraShake;
+
     [SerializeField]
     bool isPlaying = false;
     [SerializeField]
@@ -19,6 +20,7 @@ public class WindSoundScript : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         cc = GetComponentInParent<CharacterController>();
+        cameraShake = GetComponent<SimpleCameraShake>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,8 @@ public class WindSoundScript : MonoBehaviour
     {
         if(cc.velocity.magnitude > velocityToPlay)
         {
+            cameraShake.StartShake();
+
             isPlaying = true;
 
             if (!audioSource.isPlaying)
@@ -37,6 +41,8 @@ public class WindSoundScript : MonoBehaviour
         }
         else
         {
+            cameraShake.StopShake();
+
             isPlaying = false;
         }
         
@@ -44,6 +50,7 @@ public class WindSoundScript : MonoBehaviour
         if(isPlaying)
         {
             audioSource.volume = Mathf.Lerp(audioSource.volume, maxVolume, Time.deltaTime*2);
+            
         }
         else
         {
@@ -54,6 +61,7 @@ public class WindSoundScript : MonoBehaviour
                 audioSource.Stop();
             if (audioSource.volume < 0.2)
                 audioSource.volume = Mathf.Lerp(audioSource.volume, 0, Time.deltaTime * 2);
+
 
         }
     }
