@@ -25,6 +25,8 @@ public class ChaseTarget : MonoBehaviour
     {
         if(target == null)
             target = FindObjectOfType<Player>().gameObject;
+        if (target == null)
+            return;
 
         bool tooClose = false, tooFar = false;
 

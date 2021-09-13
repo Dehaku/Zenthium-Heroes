@@ -194,7 +194,7 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 0}
   - m_Name: Flying
     m_Type: 4
@@ -382,7 +382,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: e2d73a75f22724b42a8e8ece6beb726f,
       type: 3}
-    m_Threshold: 6
+    m_Threshold: 3.5
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
     m_CycleOffset: 0
