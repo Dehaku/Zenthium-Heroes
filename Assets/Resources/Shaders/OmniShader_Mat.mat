@@ -32,6 +32,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Albedo:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SaberGlowSubgraph_cbb671ab8771425a87e65623e48cc651_Occlusion_577680295:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -48,11 +56,28 @@ Material:
     m_Floats:
     - Dissolve: 0
     - EdgeWidth: 0.1
+    - GlowIntensity: -1.5
+    - GlowPower: 1
     - MeshPower: -0.01
     - NoiseIntensity: 50
     - ObjectBottom: 0
     - ObjectTop: 1.15
+    - _Dissolve: 0
+    - _DissolveEdgeWidth: 0.1
+    - _DissolveNoiseIntensity: 50
+    - _DissolveObjectBottom: 0
+    - _DissolveObjectTop: 1.15
+    - _EdgeWidth: 0.1
+    - _GlowIntensity: -1.5
+    - _GlowPower: 1
+    - _MeshPower: -0.01
+    - _NoiseIntensity: 50
+    - _ObjectBottom: 0
+    - _ObjectTop: 1.15
     m_Colors:
     - EdgeColor: {r: 0, g: 16, b: 15.37255, a: 0}
     - _Color: {r: 0.14117648, g: 0.03137255, b: 0.03137255, a: 0}
+    - _DissolveEdgeColor: {r: 0, g: 16, b: 15.37255, a: 0}
+    - _EdgeColor: {r: 0, g: 16, b: 15.37255, a: 0}
+    - _GlowColor: {r: 2, g: 1.058824, b: 0, a: 0}
   m_BuildTextureStacks: []

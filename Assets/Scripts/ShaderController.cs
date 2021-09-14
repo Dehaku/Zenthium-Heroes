@@ -11,7 +11,8 @@ public class MaterialHolder
     public float health;
     [SerializeField]
     public Color color;
-
+    [SerializeField]
+    public Color glowColor;
 }
 
 
@@ -26,7 +27,10 @@ public class ShaderController : MonoBehaviour
 
     public float dissolve = 0;
     float dissolvePrevious = 0;
-    
+
+    public float glowPower = 1;
+    public float glowIntensity = -1.5f;
+
 
     [SerializeField]
     public List<MaterialHolder> mats = new List<MaterialHolder>();
@@ -36,6 +40,10 @@ public class ShaderController : MonoBehaviour
         public int _Color;
         public int _Dissolve;
 
+        public int _GlowColor;
+        public int _GlowPower;
+        public int _GlowIntensity;
+
     }
     private ShaderPropertyIDs shaderProps;
     // Start is called before the first frame update
@@ -43,7 +51,11 @@ public class ShaderController : MonoBehaviour
     {
         shaderProps = new ShaderPropertyIDs() {
             _Color = Shader.PropertyToID("_Color"),
-            _Dissolve = Shader.PropertyToID("_Dissolve")
+            _Dissolve = Shader.PropertyToID("_Dissolve"),
+
+            _GlowColor = Shader.PropertyToID("_GlowColor"),
+            _GlowPower = Shader.PropertyToID("_GlowPower"),
+            _GlowIntensity = Shader.PropertyToID("_GlowIntensity")
         };
 
 
@@ -88,7 +100,7 @@ public class ShaderController : MonoBehaviour
             UpdateSettings();
         }
 
-        if (updateSettingsFromSO)
+        if (updateSettingsFromSO || Input.GetKeyDown(KeyCode.W))
         {
             updateSettingsFromSO = false;
             UpdateSettingsFromSO();
@@ -99,6 +111,8 @@ public class ShaderController : MonoBehaviour
             dissolvePrevious = dissolve;
             UpdateDissolves();
         }
+
+        UpdateGlow();
 
 
     }
@@ -118,6 +132,29 @@ public class ShaderController : MonoBehaviour
         foreach (var matHold in mats)
         {
             matHold.mat.SetFloat(shaderProps._Dissolve, dissolve);
+
+            inter++;
+        }
+    }
+
+    void UpdateGlowColor()
+    {
+        int inter = 0;
+        foreach (var matHold in mats)
+        {
+            matHold.mat.SetColor(shaderProps._GlowColor, matHold.glowColor);
+
+            inter++;
+        }
+    }
+
+    void UpdateGlow()
+    {
+        int inter = 0;
+        foreach (var matHold in mats)
+        {
+            matHold.mat.SetFloat(shaderProps._GlowPower, glowPower);
+            matHold.mat.SetFloat(shaderProps._GlowIntensity, glowIntensity);
 
             inter++;
         }
