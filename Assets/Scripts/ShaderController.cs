@@ -19,10 +19,14 @@ public class ShaderController : MonoBehaviour
 {
     public bool autoUpdateSettings = false;
     public bool updateSettings = false;
-    public SkinnedMeshRenderer rendererz;
-    //private Material mat;
-    public float health;
-    public Color color;
+
+    public bool updateSettingsFromSO = false;
+
+    public ColorShaderSettings colorSettings;
+    
+    
+
+
 
     [SerializeField]
     public List<MaterialHolder> mats = new List<MaterialHolder>();
@@ -73,6 +77,13 @@ public class ShaderController : MonoBehaviour
             updateSettings = false;
             UpdateSettings();
         }
+
+        if (updateSettingsFromSO)
+        {
+            updateSettingsFromSO = false;
+            UpdateSettingsFromSO();
+        }
+
     }
     void UpdateSettings()
     {
@@ -82,5 +93,27 @@ public class ShaderController : MonoBehaviour
             matHold.mat.SetColor("_Color", matHold.color);
         }
             
+    }
+
+    void UpdateSettingsFromSO(ColorShaderSettings settings = null)
+    {
+        if (settings == null)
+            settings = colorSettings;
+        if (settings == null)
+        {
+            Debug.LogWarning("No color shader settings for UpdateSettingsFromSO()!");
+            return;
+        }
+
+        int inter = 0;
+        foreach (var matHold in mats)
+        {
+            matHold.mat.SetFloat("Dissolve", matHold.health);
+            matHold.mat.SetColor("_Color", settings.colors[inter]);
+
+            inter++;
+        }
+
+
     }
 }
