@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: OmniShader_Mat
-  m_Shader: {fileID: -6465566751694194690, guid: 6109b78cfeddd9e40a0ba98317de9dfc,
+  m_Shader: {fileID: -6465566751694194690, guid: b5d643c5c4940944eae99499a8fe4d7b,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,6 +20,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Albedo:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Metallic:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Normal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -33,6 +45,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - Dissolve: 0
+    - EdgeWidth: 0.1
+    - MeshPower: -0.01
+    - NoiseIntensity: 50
+    - ObjectBottom: 0
+    - ObjectTop: 1.15
+    m_Colors:
+    - EdgeColor: {r: 0, g: 16, b: 15.37255, a: 0}
+    - _Color: {r: 0.14117648, g: 0.03137255, b: 0.03137255, a: 0}
   m_BuildTextureStacks: []
