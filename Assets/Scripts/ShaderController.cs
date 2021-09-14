@@ -24,24 +24,12 @@ public class ShaderController : MonoBehaviour
 
     public ColorShaderSettings colorSettings;
 
-    float dissolve = 0;
+    public float dissolve = 0;
     float dissolvePrevious = 0;
     
 
-    
-
-
-
-
-
-
-
-
     [SerializeField]
     public List<MaterialHolder> mats = new List<MaterialHolder>();
-
-
-
 
     private struct ShaderPropertyIDs
     {
@@ -106,6 +94,13 @@ public class ShaderController : MonoBehaviour
             UpdateSettingsFromSO();
         }
 
+        if(dissolvePrevious != dissolve)
+        {
+            dissolvePrevious = dissolve;
+            UpdateDissolves();
+        }
+
+
     }
     void UpdateSettings()
     {
@@ -115,6 +110,17 @@ public class ShaderController : MonoBehaviour
             matHold.mat.SetColor(shaderProps._Color, matHold.color);
         }
             
+    }
+
+    void UpdateDissolves()
+    {
+        int inter = 0;
+        foreach (var matHold in mats)
+        {
+            matHold.mat.SetFloat(shaderProps._Dissolve, dissolve);
+
+            inter++;
+        }
     }
 
     void UpdateSettingsFromSO(ColorShaderSettings settings = null)
@@ -130,8 +136,8 @@ public class ShaderController : MonoBehaviour
         int inter = 0;
         foreach (var matHold in mats)
         {
-            matHold.mat.SetFloat("Dissolve", matHold.health);
-            matHold.mat.SetColor("_Color", settings.colors[inter]);
+            matHold.mat.SetFloat(shaderProps._Dissolve, matHold.health);
+            matHold.mat.SetColor(shaderProps._Color, settings.colors[inter]);
 
             inter++;
         }
