@@ -23,19 +23,41 @@ public class ShaderController : MonoBehaviour
     public bool updateSettingsFromSO = false;
 
     public ColorShaderSettings colorSettings;
+
+    float dissolve = 0;
+    float dissolvePrevious = 0;
     
+
     
+
+
+
+
+
 
 
 
     [SerializeField]
     public List<MaterialHolder> mats = new List<MaterialHolder>();
 
- 
 
+
+
+    private struct ShaderPropertyIDs
+    {
+        public int _Color;
+        public int _Dissolve;
+
+    }
+    private ShaderPropertyIDs shaderProps;
     // Start is called before the first frame update
     void Start()
     {
+        shaderProps = new ShaderPropertyIDs() {
+            _Color = Shader.PropertyToID("_Color"),
+            _Dissolve = Shader.PropertyToID("_Dissolve")
+        };
+
 
         SkinnedMeshRenderer[] skins = GetComponentsInChildren<SkinnedMeshRenderer>();
         foreach (var skin in skins)
@@ -89,8 +111,8 @@ public class ShaderController : MonoBehaviour
     {
         foreach (var matHold in mats)
         {
-            matHold.mat.SetFloat("Dissolve", matHold.health);
-            matHold.mat.SetColor("_Color", matHold.color);
+            matHold.mat.SetFloat(shaderProps._Dissolve, matHold.health);
+            matHold.mat.SetColor(shaderProps._Color, matHold.color);
         }
             
     }
