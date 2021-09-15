@@ -5,6 +5,7 @@ using UnityEngine;
 public class ThirdPersonMovement : MonoBehaviour
 {
     public bool hyperSpeed;
+    public float hyperSpeedMulti = 3;
     public CharacterController controller;
     public Transform cam;
     AnimationScript animationController;
@@ -39,7 +40,8 @@ public class ThirdPersonMovement : MonoBehaviour
 
     float timeOffGround = 0f;
 
-    public Vector3 Why;
+    public float speedMagnitude;
+    float speedMagnitudePrevious;
 
 
 
@@ -249,27 +251,43 @@ public class ThirdPersonMovement : MonoBehaviour
             if(speed <= GetSprintSpeed())
                 speed = Mathf.Lerp(speed, GetSprintSpeed(), Time.deltaTime);
 
-            if(speed >= GetSprintSpeed() * 0.95)
-            {
-                particleTrails.Play();
-                speed = GetSprintSpeed() * 3;
-                GetComponent<AnimationScript>().speed = 4;
+            if (flySpeed <= GetFlySprintSpeed())
+                flySpeed = Mathf.Lerp(flySpeed, GetFlySprintSpeed(), Time.deltaTime);
 
-                if(!wentSuperSonic)
+            // Hyperspeed Power: Making sonic boom and turning on particles when we go fast.
+            if(hyperSpeed && (speedMagnitude > defaultSpeed || speedMagnitude > defaultFlySpeed))
+            {
+                bool sonicBoomTime = false;
+                if (speed >= GetSprintSpeed() * 0.95)
+                {
+                    speed = GetSprintSpeed() * hyperSpeedMulti;
+                    sonicBoomTime = true;
+                }
+
+                if (flySpeed >= GetFlySprintSpeed() * 0.95)
+                {
+                    flySpeed = GetFlySprintSpeed() * hyperSpeedMulti;
+                    sonicBoomTime = true;
+                }
+
+                if(sonicBoomTime && !wentSuperSonic)
                 {
                     wentSuperSonic = true;
+                    particleTrails.Play();
                     SoundManager.PlaySound(SoundManager.Sound.SoftSonicBoom);
                 }
             }
 
-            if (flySpeed <= GetFlySprintSpeed())
-                flySpeed = Mathf.Lerp(flySpeed, GetFlySprintSpeed(), Time.deltaTime);
-
-            if (flySpeed >= GetFlySprintSpeed() * 0.95)
+            // Disabling our particles temporarily when we're not going super fast.
+            if(hyperSpeed)
             {
-                flySpeed = GetFlySprintSpeed() * 3;
+                if (isFlying && speedMagnitude <= GetFlySprintSpeed())
+                    particleTrails.Stop();
+                else if (!isFlying && speedMagnitude <= GetSprintSpeed())
+                    particleTrails.Stop();
+                else if (wentSuperSonic)
+                    particleTrails.Play();
             }
-
         }
         else
         {
@@ -279,20 +297,20 @@ public class ThirdPersonMovement : MonoBehaviour
                 speed = GetSprintSpeed();
                 wentSuperSonic = false;
             }
-                
             speed = Mathf.Lerp(speed, defaultSpeed, Time.deltaTime);
 
             if (flySpeed >= GetFlySprintSpeed())
             {
                 flySpeed = GetFlySprintSpeed();
+                wentSuperSonic = false;
             }
-
             flySpeed = Mathf.Lerp(flySpeed, defaultFlySpeed, Time.deltaTime);
         }
 
         // OriginalMove();
         Move();
-        
+        speedMagnitudePrevious = speedMagnitude;
+        speedMagnitude = controller.velocity.magnitude;
 
     }
 }

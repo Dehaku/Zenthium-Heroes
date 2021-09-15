@@ -261,7 +261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &35699114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5215,14 +5215,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446e81d1371461e48b053819aa83af47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hyperSpeed: 0
+  hyperSpeed: 1
+  hyperSpeedMulti: 3
   controller: {fileID: 861604078}
   cam: {fileID: 534669905}
   particleTrails: {fileID: 1305696627}
   trailLifeTime: {x: 0, y: 0}
   defaultSpeed: 6
-  defaultSprintSpeed: 10
+  defaultSprintMulti: 1.7
   speed: 6
+  defaultFlySpeed: 6
+  defaultFlySprintMulti: 1.7
   flySpeed: 12
   airDrag: 1
   jumpSpeed: 8
@@ -5232,6 +5235,7 @@ MonoBehaviour:
   isJumping: 0
   isFlying: 0
   Why: {x: 0, y: 0, z: 0}
+  speedMagnitude: 0
 --- !u!143 &861604078
 CharacterController:
   m_ObjectHideFlags: 0
