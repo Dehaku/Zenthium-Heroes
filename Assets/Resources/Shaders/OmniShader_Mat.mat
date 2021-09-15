@@ -36,6 +36,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DitherAlbedo:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SaberGlowSubgraph_cbb671ab8771425a87e65623e48cc651_Occlusion_577680295:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -65,10 +69,13 @@ Material:
     - ObjectTop: 1.15
     - Smoothness: 0
     - _Dissolve: 0
-    - _DissolveEdgeWidth: 0.1
+    - _DissolveEdgeWidth: 0.02
     - _DissolveNoiseIntensity: 50
     - _DissolveObjectBottom: 0
-    - _DissolveObjectTop: 1.15
+    - _DissolveObjectTop: 1
+    - _DitherEmission: 0
+    - _DitherOpacity: 1
+    - _DitherSize: 1
     - _EdgeWidth: 0.1
     - _GlowIntensity: -1.5
     - _GlowPower: 1
@@ -80,6 +87,7 @@ Material:
     - EdgeColor: {r: 0, g: 16, b: 15.37255, a: 0}
     - _Color: {r: 0.14117648, g: 0.03137255, b: 0.03137255, a: 0}
     - _DissolveEdgeColor: {r: 0, g: 16, b: 15.37255, a: 0}
+    - _DitherAlbedoColor: {r: 0, g: 0, b: 0, a: 0}
     - _EdgeColor: {r: 0, g: 16, b: 15.37255, a: 0}
     - _GlowColor: {r: 542.34814, g: 289.63095, b: 0, a: 0}
   m_BuildTextureStacks: []
