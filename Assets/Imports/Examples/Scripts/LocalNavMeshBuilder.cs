@@ -67,8 +67,17 @@ public class LocalNavMeshBuilder : MonoBehaviour
             return;
 
         NavMeshSourceTag.Collect(ref m_Sources);
-        var defaultBuildSettings = NavMesh.GetSettingsByID(0);
+        var defaultBuildSettings = NavMesh.GetSettingsByID(2);
         var bounds = QuantizedBounds();
+
+
+        if (m_NavMesh.rotation != transform.rotation)
+        {
+            m_NavMesh.rotation = transform.rotation; // I've added this line
+            m_Instance.Remove();
+            m_Instance = NavMesh.AddNavMeshData(m_NavMesh, m_NavMesh.position, m_NavMesh.rotation);
+        }
+
 
         if (asyncUpdate)
             m_Operation = NavMeshBuilder.UpdateNavMeshDataAsync(m_NavMesh, defaultBuildSettings, m_Sources, bounds);
@@ -90,6 +99,13 @@ public class LocalNavMeshBuilder : MonoBehaviour
     {
         // Quantize the bounds to update only when theres a 10% change in size
         var center = m_Tracked ? m_Tracked.position : transform.position;
+        
+        if (m_NavMesh)
+        {
+            var nmMatrix = Matrix4x4.TRS(m_NavMesh.position, m_NavMesh.rotation, Vector3.one);
+            center = nmMatrix.inverse.MultiplyPoint(center);   // from world to local space
+        }
+
         return new Bounds(Quantize(center, 0.1f * m_Size), m_Size);
     }
 
