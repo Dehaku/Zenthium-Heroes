@@ -13,8 +13,10 @@ public class ThirdPersonMovement : MonoBehaviour
     public Vector2 trailLifeTime;
 
     public float defaultSpeed = 6f;
-    public float defaultSprintSpeed = 10f;
+    public float defaultSprintMulti = 1.4f;
     public float speed;
+    public float defaultFlySpeed = 1;
+    public float defaultFlySprintMulti = 1.4f;
     public float flySpeed = 1;
     public float airDrag = 0.2f;
     public float jumpSpeed = 8;
@@ -33,13 +35,24 @@ public class ThirdPersonMovement : MonoBehaviour
     public bool isJumping = false;
 
     public bool isFlying = false;
-    
+
 
     float timeOffGround = 0f;
 
     public Vector3 Why;
 
 
+
+    public float GetSprintSpeed()
+    {
+        return defaultSpeed * defaultSprintMulti;
+    }
+
+    public float GetFlySprintSpeed()
+    {
+        return defaultFlySpeed * defaultFlySprintMulti;
+    }
+    
 
     // Start is called before the first frame update
     void Start()
@@ -179,31 +192,35 @@ public class ThirdPersonMovement : MonoBehaviour
         
 
         var lookPosition = controller.transform.position + Camera.main.transform.forward;
+
+        Vector3 flyDirection = new Vector3();
         if (Input.GetKey(KeyCode.W))
         {
             controller.transform.LookAt(lookPosition);
-            _movement += controller.transform.forward * (flySpeed * Time.deltaTime);
+            flyDirection += controller.transform.forward;
         }
         if (Input.GetKey(KeyCode.D))
         {
             controller.transform.LookAt(lookPosition);
-            _movement += controller.transform.right * (flySpeed * Time.deltaTime);
+            flyDirection += controller.transform.right;
         }
         if (Input.GetKey(KeyCode.S))
         {
             controller.transform.LookAt(lookPosition);
-            _movement += -controller.transform.forward * (flySpeed * Time.deltaTime);
+            flyDirection += -controller.transform.forward;
         }
         if (Input.GetKey(KeyCode.A))
         {
             controller.transform.LookAt(lookPosition);
-            _movement += -controller.transform.right * (flySpeed * Time.deltaTime);
+            flyDirection += -controller.transform.right;
         }
-
         if (Input.GetKey(KeyCode.Space))
-            _movement.y += (flySpeed * Time.deltaTime);
+            flyDirection.y += 1;
         if (Input.GetKey(KeyCode.LeftControl))
-            _movement.y -= (flySpeed * Time.deltaTime);
+            flyDirection.y -= 1;
+
+        flyDirection = flyDirection.normalized * (flySpeed * Time.deltaTime);
+        _movement += flyDirection;
     }
 
     // Update is called once per frame
@@ -229,13 +246,13 @@ public class ThirdPersonMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             
-            if(speed <= defaultSprintSpeed)
-                speed = Mathf.Lerp(speed, defaultSprintSpeed, Time.deltaTime);
+            if(speed <= GetSprintSpeed())
+                speed = Mathf.Lerp(speed, GetSprintSpeed(), Time.deltaTime);
 
-            if(speed >= defaultSprintSpeed * 0.95)
+            if(speed >= GetSprintSpeed() * 0.95)
             {
                 particleTrails.Play();
-                speed = defaultSprintSpeed * 3;
+                speed = GetSprintSpeed() * 3;
                 GetComponent<AnimationScript>().speed = 4;
 
                 if(!wentSuperSonic)
@@ -245,17 +262,32 @@ public class ThirdPersonMovement : MonoBehaviour
                 }
             }
 
+            if (flySpeed <= GetFlySprintSpeed())
+                flySpeed = Mathf.Lerp(flySpeed, GetFlySprintSpeed(), Time.deltaTime);
+
+            if (flySpeed >= GetFlySprintSpeed() * 0.95)
+            {
+                flySpeed = GetFlySprintSpeed() * 3;
+            }
+
         }
         else
         {
             particleTrails.Stop();
-            if (speed >= defaultSprintSpeed)
+            if (speed >= GetSprintSpeed())
             {
-                speed = defaultSprintSpeed;
+                speed = GetSprintSpeed();
                 wentSuperSonic = false;
             }
                 
             speed = Mathf.Lerp(speed, defaultSpeed, Time.deltaTime);
+
+            if (flySpeed >= GetFlySprintSpeed())
+            {
+                flySpeed = GetFlySprintSpeed();
+            }
+
+            flySpeed = Mathf.Lerp(flySpeed, defaultFlySpeed, Time.deltaTime);
         }
 
         // OriginalMove();
