@@ -1,0 +1,44 @@
+# Blender MTL File: 'Katana_BI.blend'
+# Material Count: 3
+
+newmtl Katana_grip
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.577255 0.505340 0.500458
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd Katana col.png
+map_Bump Katana nor.png
+map_Ks Katana col.png
+refl -s 0.200000 0.200000 1.000000 Ref.jpg
+
+newmtl katana_blade
+Ns 749.999996
+Ka 1.000000 1.000000 1.000000
+Kd 0.380897 0.425705 0.436108
+Ks 0.502173 0.547077 0.585009
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Katana col.png
+map_Bump Katana nor.png
+map_Ks Katana col.png
+refl -o 0.500000 0.500000 0.000000 Ref.jpg
+
+newmtl katana_handprotection
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.701296 0.715033 0.627758
+Ks 0.084967 0.075906 0.043533
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Katana col.png
+map_Bump Katana nor.png
+map_Ks Katana col.png
+refl -o 0.500000 0.500000 0.000000 Ref.jpg

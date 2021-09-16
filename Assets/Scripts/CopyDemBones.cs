@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class CopyDemBones : MonoBehaviour
 {
-    public GameObject Source;
-    public GameObject MyBoneRoot;
+    public Transform[] Source;
+    public Transform[] MyBoneRoot;
 
     Transform[] SourceBones;
     Transform[] MyBones;
@@ -14,7 +14,7 @@ public class CopyDemBones : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(Source && MyBoneRoot)
+        if(Source.Length != 0 && MyBoneRoot.Length != 0)
         {
             Initialize();
         }
@@ -27,12 +27,11 @@ public class CopyDemBones : MonoBehaviour
 
     public void Initialize()
     {
-        SourceBones = Source.GetComponentsInChildren<Transform>();
-        MyBones = MyBoneRoot.GetComponentsInChildren<Transform>();
+        SourceBones = Source;
+        MyBones = MyBoneRoot;
 
         Array.Sort(SourceBones, CompareName);
         Array.Sort(MyBones, CompareName);
-
     }
 
     public void CopyBones()
@@ -48,23 +47,7 @@ public class CopyDemBones : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            CopyBones();
-            Rigidbody[] bodies;
-            bodies = MyBoneRoot.GetComponentsInChildren<Rigidbody>();
-            foreach (var body in bodies)
-            {
-                body.isKinematic = true;
-            }
-
-            Collider[] col;
-            col = MyBoneRoot.GetComponentsInChildren<Collider>();
-            foreach (var body in col)
-            {
-                body.enabled = false;
-            }
-        }
+        
             
     }
 

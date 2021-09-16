@@ -55,6 +55,7 @@ public class RadialMenu : MonoBehaviour
         {
             RectTransform rect = Entries[i].GetComponent<RectTransform>();
             GameObject entry = Entries[i].gameObject;
+            Entries[i].SetBackerRaytraceTargetOnOff(false);
 
             rect.DOScale(Vector3.zero, .29f).SetEase(Ease.OutQuad);
             rect.DOAnchorPos(Vector3.zero, .3f).SetEase(Ease.OutQuad).onComplete = 

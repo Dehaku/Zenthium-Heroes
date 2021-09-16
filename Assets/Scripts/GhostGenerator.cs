@@ -17,7 +17,7 @@ public class GhostContainer
 
 public class GhostGenerator : MonoBehaviour
 {
-    public GameObject SourceBoneRoot;
+    public Transform[] SourceBones;
     public CopyDemBones GhostPrefab;
     public float GhostDistance = 10;
     public float GhostLife = 10;
@@ -108,12 +108,12 @@ public class GhostGenerator : MonoBehaviour
             if(ghost.Life < GhostFadeOutTime)
             {
                 float fade = Mathf.Clamp(1 - (ghost.Life / GhostFadeOutTime), 0f, 1f);
-                SetGhostMaterialVar("Fade", ghost.Ghost, fade);
+                //SetGhostMaterialVar("Fade", ghost.Ghost, fade);
             }
             else
             {
                 float fade = Mathf.Clamp(1 - ((GhostLife - ghost.Life) / GhostFadeInTime), 0f, 1f);
-                SetGhostMaterialVar("Fade", ghost.Ghost, fade);
+                //SetGhostMaterialVar("Fade", ghost.Ghost, fade);
             }
         }
 
@@ -131,7 +131,7 @@ public class GhostGenerator : MonoBehaviour
         if (GhostPool.Count > 0)
         {
             ghost = GhostPool.Dequeue();
-            SetGhostMaterialVar("VertexDistortionStrength", ghost, 0);
+            //SetGhostMaterialVar("VertexDistortionStrength", ghost, 0);
             ghost.transform.localScale = InitialScale;
             ghost.gameObject.SetActive(true);
         }
@@ -144,7 +144,7 @@ public class GhostGenerator : MonoBehaviour
         ghost.transform.localPosition = transform.localPosition;
         ghost.transform.localRotation = transform.localRotation;
 
-        ghost.Source = SourceBoneRoot;
+        ghost.Source = SourceBones;
         ghost.Initialize();
         ghost.CopyBones();
     }
