@@ -275,6 +275,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: b041cdf5219c7444f8052ca84f7b17a7, type: 3}
   - {fileID: 2800000, guid: e7994c086dce76c4db95ff323582c162, type: 3}
   - {fileID: 2800000, guid: c3fff68cdd8e2f84eb5eb59ccc85c03b, type: 3}
+  TargetIcon: {fileID: 1918790562}
 --- !u!1 &793872619
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +684,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 677824599}
         m_TargetAssemblyTypeName: RadialMenu, Assembly-CSharp
-        m_MethodName: Open
+        m_MethodName: Toggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

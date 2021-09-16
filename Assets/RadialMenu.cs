@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class RadialMenu : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class RadialMenu : MonoBehaviour
     [SerializeField]
     List<Texture> Icons;
 
+    [SerializeField]
+    RawImage TargetIcon;
     List<RadialMenuEntry> Entries;
 
 
@@ -22,13 +26,14 @@ public class RadialMenu : MonoBehaviour
         Entries = new List<RadialMenuEntry>();
     }
 
-    void AddEntry(string pLabel, Texture pIcon)
+    void AddEntry(string pLabel, Texture pIcon, RadialMenuEntry.RadialMenuEntryDelegate pCallback)
     {
         GameObject entry = Instantiate(EntryPrefab, transform);
 
         RadialMenuEntry rme = entry.GetComponent<RadialMenuEntry>();
         rme.SetLabel(pLabel);
         rme.SetIcon(pIcon);
+        rme.SetCallback(pCallback);
 
         Entries.Add(rme);
 
@@ -39,9 +44,38 @@ public class RadialMenu : MonoBehaviour
     {
         for(int i =0; i< 7; i++)
         {
-            AddEntry("Button" + i.ToString(), Icons[i]);
+            AddEntry("Button" + i.ToString(), Icons[i], SetTargetIcon);
         }
         Rearrange();
+    }
+
+    public void Close()
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            RectTransform rect = Entries[i].GetComponent<RectTransform>();
+            GameObject entry = Entries[i].gameObject;
+
+            rect.DOScale(Vector3.zero, .29f).SetEase(Ease.OutQuad);
+            rect.DOAnchorPos(Vector3.zero, .3f).SetEase(Ease.OutQuad).onComplete = 
+                delegate()
+                {
+                    Destroy(entry);
+                };
+        }
+        Entries.Clear();
+    }
+
+    public void Toggle()
+    {
+        if(Entries.Count == 0)
+        {
+            Open();
+        }
+        else
+        {
+            Close();
+        }
     }
 
     void Rearrange()
@@ -51,9 +85,17 @@ public class RadialMenu : MonoBehaviour
         {
             float x = Mathf.Sin(radiansOfSeperation * i) * Radius;
             float y = Mathf.Cos(radiansOfSeperation * i) * Radius;
+            RectTransform rect = Entries[i].GetComponent<RectTransform>();
 
-            Entries[i].GetComponent<RectTransform>().anchoredPosition = new Vector3(x, y, 0);
+            rect.localScale = Vector3.zero;
+            rect.DOScale(Vector3.one, .3f).SetEase(Ease.OutQuad).SetDelay(.05f * i);
+            rect.DOAnchorPos(new Vector3(x, y, 0), .3f).SetEase(Ease.OutQuad).SetDelay(.05f * i);
         }
+    }
+
+    void SetTargetIcon(RadialMenuEntry pEntry)
+    {
+        TargetIcon.texture = pEntry.GetIcon();
     }
 
 
