@@ -155,13 +155,13 @@ public class ThirdPersonMovement : MonoBehaviour
             animationController.isGroundedFunc(false);
         }
 
-        if (timeOffGround > 0.1 && Input.GetKeyDown(KeyCode.Space))
+        if (timeOffGround > 0.1 && Input.GetKeyDown(KeyCode.Space) && !isFlying)
         { // Time to fly!
             animationController.FlyingAnimation(true);
             //_movement.y = jumpSpeed*10;
             isFlying = true;
-            
         }
+        
 
         if(animationController.FlyingAnimation())
         { // Flying Animation Facing, needs lerping, not sure how currently.
