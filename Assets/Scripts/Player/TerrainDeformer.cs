@@ -246,7 +246,7 @@ namespace Eldemarkki.VoxelTerrain.Player
         /// <param name="addTerrain">Should terrain be added or removed</param>
         /// <param name="deformSpeed">How fast the terrain should be deformed</param>
         /// <param name="range">How far the deformation can reach</param>
-        private void EditTerrain(Vector3 point, bool addTerrain, float deformSpeed, float range)
+        public void EditTerrain(Vector3 point, bool addTerrain, float deformSpeed, float range)
         {
             int buildModifier = addTerrain ? 1 : -1;
 
@@ -394,6 +394,29 @@ namespace Eldemarkki.VoxelTerrain.Player
                 if (distance <= deformRange)
                 {
                     return paintColor;
+                }
+
+                return voxelData;
+            });
+        }
+
+        public void PaintColorSphere(Vector3 point, float range, Color32 paintCol)
+        {
+            int hitX = Mathf.RoundToInt(point.x);
+            int hitY = Mathf.RoundToInt(point.y);
+            int hitZ = Mathf.RoundToInt(point.z);
+            int3 hitPoint = new int3(hitX, hitY, hitZ);
+            int3 intRange = new int3(Mathf.CeilToInt(range));
+
+            BoundsInt queryBounds = new BoundsInt((hitPoint - intRange).ToVectorInt(), (intRange * 2).ToVectorInt());
+
+            voxelWorld.VoxelColorStore.SetVoxelDataCustom(queryBounds, (voxelDataWorldPosition, voxelData) =>
+            {
+                float distance = math.distance(voxelDataWorldPosition, point);
+
+                if (distance <= range)
+                {
+                    return paintCol;
                 }
 
                 return voxelData;
