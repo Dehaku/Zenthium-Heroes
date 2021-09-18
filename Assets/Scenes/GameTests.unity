@@ -1596,8 +1596,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223919205}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.24, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -6.8, z: 0}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_Children: []
   m_Father: {fileID: 656578838}
   m_RootOrder: 1
@@ -1620,10 +1620,10 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2147483647
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5bd0964603345db4caa641a9c378c96b, type: 2}
+  - {fileID: 2100000, guid: d90becc4adcdfa54fa416cf9dcabecb0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1657,13 +1657,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 2
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
+  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_VertexStreams: 00010304
+  m_VertexStreams: 0001040522
   m_Mesh: {fileID: -7387706064836869012, guid: 63aaad3917ade6640a6a6daf400d3f8a, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -5896,8 +5896,8 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   CustomDataModule:
-    enabled: 0
-    mode0: 0
+    enabled: 1
+    mode0: 1
     vectorComponentCount0: 4
     color0:
       serializedVersion: 2
@@ -5965,15 +5965,15 @@ ParticleSystem:
     colorLabel0: Color
     vector0_0:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 1
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 0
+          time: 0.7505289
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -5982,12 +5982,12 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
+          value: -1
+          inSlope: -20.568138
+          outSlope: -20.568138
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.25005025
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -6728,7 +6728,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8429003, y: 1}
+    m_SensorSize: {x: 2.5051546, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9072,7 +9072,7 @@ MonoBehaviour:
   speedForce: 1
   ClockSpeed: 1
   Day: 1
-  _timeOfDay: 720
+  _timeOfDay: 1720
 --- !u!114 &430806746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9626,8 +9626,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499666236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.24, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5159, y: 0.79350394, z: 1.6138}
   m_Children: []
   m_Father: {fileID: 656578838}
   m_RootOrder: 0
@@ -9650,10 +9650,10 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2147483647
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5bd0964603345db4caa641a9c378c96b, type: 2}
+  - {fileID: 2100000, guid: d90becc4adcdfa54fa416cf9dcabecb0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9687,13 +9687,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 2
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
+  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_VertexStreams: 00010304
+  m_VertexStreams: 0001040522
   m_Mesh: {fileID: 2534964839176971238, guid: 63aaad3917ade6640a6a6daf400d3f8a, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -13926,8 +13926,8 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   CustomDataModule:
-    enabled: 0
-    mode0: 0
+    enabled: 1
+    mode0: 1
     vectorComponentCount0: 4
     color0:
       serializedVersion: 2
@@ -13995,15 +13995,15 @@ ParticleSystem:
     colorLabel0: Color
     vector0_0:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 1
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 0
+          time: 0.7505289
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -14012,12 +14012,12 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
+          value: -1
+          inSlope: -20.568138
+          outSlope: -20.568138
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.25005025
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -23782,7 +23782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1509365239
 Transform:
   m_ObjectHideFlags: 0
@@ -26319,7 +26319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2103670508
 Transform:
   m_ObjectHideFlags: 0
@@ -42241,6 +42241,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Ghost
       objectReference: {fileID: 0}
+    - target: {fileID: 7345861346878340331, guid: 28335e77e43471d438ffcdb1a445cd4e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7345861346878340338, guid: 28335e77e43471d438ffcdb1a445cd4e,
         type: 3}
       propertyPath: aimReticle
@@ -42858,6 +42863,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player Ghost Beta
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650589110288594794, guid: c33abdbc6d524b840bf3e3d4dd7294a4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7650589110288594814, guid: c33abdbc6d524b840bf3e3d4dd7294a4,
         type: 3}
