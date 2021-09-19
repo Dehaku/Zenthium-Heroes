@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NukeShader_Mat
+  m_Name: NukeShaderTop_Mat
   m_Shader: {fileID: -6465566751694194690, guid: 42b6394247248c14481a877139678cfa,
     type: 3}
   m_ShaderKeywords: 
@@ -35,12 +35,12 @@ Material:
     m_Ints: []
     m_Floats:
     - ColorAmount: 6
-    - NoiseScale: 30
+    - NoiseScale: 200
     - TopBrightness: 4.24
     - VertexOffset: 0
     m_Colors:
-    - NoiseSpeed: {r: 0, g: -0.2, b: 0, a: 0}
-    - NoiseSpeed02: {r: 0, g: -0.2, b: 0, a: 0}
+    - NoiseSpeed: {r: 0, g: 0.08, b: 0, a: 0}
+    - NoiseSpeed02: {r: 0, g: 0.08, b: 0, a: 0}
     - _Color: {r: 205.51157, g: 43.039074, b: 0, a: 0}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

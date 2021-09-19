@@ -21,6 +21,9 @@ public class SimpleCameraShake : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (VirtualCamera == null)
+            VirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+
         // Get Virtual Camera Noise Profile
         if (VirtualCamera != null)
             virtualCameraNoise = VirtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
