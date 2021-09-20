@@ -8,7 +8,6 @@ public class ScaleOverTime : MonoBehaviour
     [SerializeField] Vector3 EndScale;
     [SerializeField] float duration;
     [SerializeField] float initialDelay = 0;
-    float delayTimer = 0;
 
 
     IEnumerator Effect()
