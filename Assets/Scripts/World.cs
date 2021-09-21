@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class World : MonoBehaviour {
 
@@ -14,17 +15,24 @@ public class World : MonoBehaviour {
 
     public int dayStartTime = 240; // 4am.
     public int dayEndTime = 1360; // 10pm - 22 * 60 = 1360
+    public int dayOverflow = 45;
     private int dayLength { get { return dayEndTime - dayStartTime; } }
     private float sunDayRotationPerMinute { get { return 180f / dayLength; } }
     private float sunNightRotationPerMinute { get { return 180f / (1440 - dayLength); } }
 
     public Transform sun;
+    public Light sunLight;
     public TextMeshProUGUI clock;
 
     public int HordeNightFrequency = 7;
 
     [Range(0,1)]
     public float speedForce = 1;
+
+
+    public Material skyboxDay;
+    public Material skyboxNight;
+
 
     // Check if the current day is divisible by the horde night frequency. If yes, return true.
     public bool IsHordeNight {
@@ -112,15 +120,62 @@ public class World : MonoBehaviour {
         }
 
 
+        // Gradually dim the sun as it goes down and brighten as it comes up.
+        if (TimeOfDay > dayEndTime)
+        {
+            sunLight.intensity -= 1 / ((float) dayOverflow/4);
+            if (sunLight.intensity < 0)
+            {
+                sunLight.intensity = 0;
+            }
+        }
+        else if (TimeOfDay > dayStartTime+dayOverflow)
+            
+        {
+            sunLight.intensity += 1 / ((float) dayOverflow/4);
+            if (sunLight.intensity > 1)
+            {
+                sunLight.intensity = 1;
+            }
+        }
 
-        if (TimeOfDay > (dayEndTime * 1.1) || TimeOfDay < (dayStartTime * 0.9) )
+        float skyboxBlend = skyboxNight.GetFloat("_Blend");
+
+        //Gradually fade in/out the Night Skybox
+        if(TimeOfDay == dayEndTime+dayOverflow)
+        {
+            float newBlend = Mathf.Min(1, skyboxBlend + 1 / ((float)dayOverflow / 4));
+            //skyboxNight.SetFloat("_Blend", newBlend);
+            skyboxNight.DOFloat(1, "_Blend", dayOverflow).SetEase(Ease.InQuad);
+        }
+        else if(TimeOfDay == dayStartTime-(dayOverflow*2))
+        {
+            float newBlend = Mathf.Max(0, skyboxBlend - 1 / ((float)dayOverflow / 4));
+            //skyboxNight.SetFloat("_Blend", newBlend);
+            skyboxNight.DOFloat(0, "_Blend", dayOverflow).SetEase(Ease.OutQuad);
+        }
+        
+
+
+
+        if (TimeOfDay > (dayEndTime + dayOverflow) || TimeOfDay < (dayStartTime - dayOverflow) )
+        {
+            RenderSettings.skybox = skyboxNight;
             sun.gameObject.SetActive(false);
+        }
         else
+        {
+            RenderSettings.skybox = skyboxDay;
             sun.gameObject.SetActive(true);
+        }
+            
 
 
         // Adding "D2" to the ToString() command ensures that there will always be two digits displayed.
         clock.text = string.Format("DAY: {0} TIME: {1}:{2} ENEMIES: {3}", dayText, hours.ToString("D2"), minutes.ToString("D2"), enemyCount);
+
+            
+        
 
     }
 
