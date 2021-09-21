@@ -34,6 +34,11 @@ public class PaintTheWorld : MonoBehaviour
     [SerializeField] private Color32 goldColor;
     [SerializeField] private Color32 zennyColor;
 
+    [SerializeField] private Vector3Int rangeBounds;
+    [SerializeField] private Vector3Int positionCoord;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -96,6 +101,28 @@ public class PaintTheWorld : MonoBehaviour
 
             Debug.Log(((Time.realtimeSinceStartup - startTime) * 1000f) + "ms");
         }
+
+        if (Input.GetKeyDown(KeyCode.End))
+        {
+
+            Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+
+            if (!Physics.Raycast(ray, out RaycastHit hit)) { return; }
+            Vector3 point = hit.point;
+
+            int hitX = Mathf.RoundToInt(point.x);
+            int hitY = Mathf.RoundToInt(point.y);
+            int hitZ = Mathf.RoundToInt(point.z);
+            int3 hitPoint = new int3(hitX, hitY, hitZ);
+
+            float startTime = Time.realtimeSinceStartup;
+
+            PaintAllLevelTerrain(hit.point);
+            
+                //new Vector3(hitX, hitY, hitZ)
+
+            Debug.Log(((Time.realtimeSinceStartup - startTime) * 1000f) + "ms");
+        }
     }
 
     public int CountGoldHit()
@@ -141,7 +168,7 @@ public class PaintTheWorld : MonoBehaviour
     }
 
     
-    private void PaintLevelTerrain(Vector3 coords)
+    private void PaintAllLevelTerrain(Vector3 coords)
     {
         Vector3 point = coords;
         point.x += 8;
@@ -156,13 +183,16 @@ public class PaintTheWorld : MonoBehaviour
         int3 hitPoint = new int3(hitX, hitY, hitZ);
         int3 intRange = new int3(Mathf.CeilToInt(chunkPaintRange));
 
-        BoundsInt queryBounds = new BoundsInt((hitPoint - intRange).ToVectorInt(), (intRange * 2).ToVectorInt());
+        BoundsInt queryBounds = new BoundsInt(positionCoord, rangeBounds);
+
+
+        Color32 paintColor = new Color32(0, 0, 0, 0);
 
         voxelWorld.VoxelColorStore.SetVoxelDataCustom(queryBounds, (voxelDataWorldPosition, voxelData) =>
         {
             float distance = math.distance(voxelDataWorldPosition, point);
 
-                Color32 paintColor = new Color32(0,0,0,0);
+                
 
                 if (Mathf.Clamp(voxelDataWorldPosition.y, snowRange.x, snowRange.y) == voxelDataWorldPosition.y)
                     paintColor = snowColor;
@@ -180,6 +210,49 @@ public class PaintTheWorld : MonoBehaviour
                         paintColor = zennyColor;
 
                 return paintColor;
+
+        });
+    }
+
+    private void PaintLevelTerrain(Vector3 coords)
+    {
+        Vector3 point = coords;
+        point.x += 8;
+        point.y += 8;
+        point.z += 8;
+        float chunkPaintRange = 1024;
+
+
+        int hitX = Mathf.RoundToInt(point.x);
+        int hitY = Mathf.RoundToInt(point.y);
+        int hitZ = Mathf.RoundToInt(point.z);
+        int3 hitPoint = new int3(hitX, hitY, hitZ);
+        int3 intRange = new int3(Mathf.CeilToInt(chunkPaintRange));
+
+        BoundsInt queryBounds = new BoundsInt((hitPoint - intRange).ToVectorInt(), (intRange * 2).ToVectorInt());
+
+        voxelWorld.VoxelColorStore.SetVoxelDataCustom(queryBounds, (voxelDataWorldPosition, voxelData) =>
+        {
+            float distance = math.distance(voxelDataWorldPosition, point);
+
+            Color32 paintColor = new Color32(0, 0, 0, 0);
+
+            if (Mathf.Clamp(voxelDataWorldPosition.y, snowRange.x, snowRange.y) == voxelDataWorldPosition.y)
+                paintColor = snowColor;
+            else if (Mathf.Clamp(voxelDataWorldPosition.y, grassRange.x, grassRange.y) == voxelDataWorldPosition.y)
+                paintColor = grassColor;
+            else if (Mathf.Clamp(voxelDataWorldPosition.y, dirtRange.x, dirtRange.y) == voxelDataWorldPosition.y)
+                paintColor = dirtColor;
+            else if (Mathf.Clamp(voxelDataWorldPosition.y, stoneRange.x, stoneRange.y) == voxelDataWorldPosition.y)
+                paintColor = stoneColor;
+            if (generateGold)
+                if (UnityEngine.Random.Range(0, 1000) < generateGoldChance)
+                    paintColor = goldColor;
+            if (generateZenny)
+                if (UnityEngine.Random.Range(0, 1000) < generateZennyChance)
+                    paintColor = zennyColor;
+
+            return paintColor;
 
         });
     }
