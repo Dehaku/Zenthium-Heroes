@@ -17,7 +17,6 @@ namespace Eldemarkki.VoxelTerrain.World.Chunks
         public MeshCollider MeshCollider { get; set; }
         public MeshRenderer MeshRenderer { get; set; }
 
-
         public int3 ChunkCoordinate { get; set; }
 
         /// <summary>
@@ -41,9 +40,6 @@ namespace Eldemarkki.VoxelTerrain.World.Chunks
 
             IsMeshGenerated = false;
             HasChanges = false;
-
-            
-
         }
 
         /// <summary>

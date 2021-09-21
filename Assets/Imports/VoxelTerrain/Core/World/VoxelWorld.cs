@@ -8,7 +8,6 @@ namespace Eldemarkki.VoxelTerrain.World
 {
     /// <summary>
     /// The main entry point for interacting with the voxel world
-    /// // https://github.com/Eldemarkki/Marching-Cubes-Terrain
     /// </summary>
     public class VoxelWorld : MonoBehaviour
     {
