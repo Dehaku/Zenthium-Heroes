@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef462ca49da6db4d89a0aaa43a026c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isolevel: 1
+  isolevel: 0.5
 --- !u!114 &35699123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1854,7 +1854,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.059322, y: 1}
+    m_SensorSize: {x: 1.2477876, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4253,8 +4253,8 @@ MonoBehaviour:
   zennyColor:
     serializedVersion: 2
     rgba: 16741632
-  rangeBounds: {x: 256, y: 64, z: 256}
-  positionCoord: {x: 512, y: 32, z: 512}
+  rangeBounds: {x: 512, y: 120, z: 512}
+  positionCoord: {x: 0, y: 0, z: 0}
 --- !u!114 &430806747
 MonoBehaviour:
   m_ObjectHideFlags: 0
