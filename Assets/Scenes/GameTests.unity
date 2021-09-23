@@ -1854,7 +1854,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4263262, y: 1}
+    m_SensorSize: {x: 1.9945055, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3515,6 +3515,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5617f09499355b14bb58fe8aeb052d7e, type: 3}
+--- !u!1 &343445031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 343445032}
+  m_Layer: 0
+  m_Name: SpawnPosition2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &343445032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343445031}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 219.25, y: 24.55, z: 382.93}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1917599577}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &346091000
 GameObject:
   m_ObjectHideFlags: 0
@@ -4158,6 +4188,7 @@ Transform:
   - {fileID: 456855135}
   - {fileID: 35699115}
   - {fileID: 465517556}
+  - {fileID: 1234834650}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4202,7 +4233,7 @@ MonoBehaviour:
   skyboxNight: {fileID: 2100000, guid: fe9b8919d1ec5e041b60634bc00ba6cd, type: 2}
   ClockSpeed: 1
   Day: 1
-  _timeOfDay: 1400
+  _timeOfDay: 720
 --- !u!114 &430806746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8438,6 +8469,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33c3528eaa9f7154fb8c8e40cb01884e, type: 3}
+--- !u!1 &1234834649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1234834650}
+  - component: {fileID: 1234834651}
+  m_Layer: 0
+  m_Name: NatureSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1234834650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234834649}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 430806743}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1234834651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234834649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505a4b7d65b14344080adc2cc3f78145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 8098365696138376269, guid: 575e814a3cf198f4ebc20c78875b37d7, type: 3}
+  - {fileID: 2586488412388171550, guid: 27f89efffc766e34092e9a40a026a95d, type: 3}
+  - {fileID: 2376951108746886590, guid: 28e2ea92d4ffcc24eb7e546e970e3544, type: 3}
+  - {fileID: 3417021925329228337, guid: 1a373859b8d4792498565d27dfb96be9, type: 3}
+  - {fileID: 1735636357947829522, guid: 7314b96702aff3545955f53d025f3911, type: 3}
+  spawnAmount: 100
+  centerPos: {x: 213, y: 500, z: 265}
+  spawnArea: {x: 100, y: 0, z: 100}
+  RandomScale: {x: 0.25, y: 0.25, z: 0.25}
+  spawnStuff: 0
 --- !u!1 &1253853987
 GameObject:
   m_ObjectHideFlags: 0
@@ -15967,9 +16052,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowSpawning: 0
   allowRespawning: 1
-  spawnCenter: {fileID: 358391732}
+  spawnCenter: {fileID: 343445032}
   spawnRadius: 20
-  maxEnemiesAtOnce: 20
+  maxEnemiesAtOnce: 1
   spawnDelay: 0
   enemyPrefab: {fileID: 3297220718808129810, guid: 2223d9c0c33d6f841a629d10480b2cf2,
     type: 3}
@@ -15985,6 +16070,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 358391732}
+  - {fileID: 343445032}
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
