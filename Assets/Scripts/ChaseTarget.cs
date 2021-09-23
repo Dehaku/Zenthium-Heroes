@@ -11,6 +11,9 @@ public class ChaseTarget : MonoBehaviour
     public float MinChaseDistance = 0;
     [Tooltip("Won't chase target if they're further than this, leave at 0 to ignore.")]
     public float MaxChaseDistance = 0;
+    [Tooltip("How many seconds inbetween destination updates.")]
+    public float UpdateFrequency = 0.1f;
+    float updateTracker = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,11 @@ public class ChaseTarget : MonoBehaviour
             target = FindObjectOfType<Player>().gameObject;
         if (target == null)
             return;
+        
+        updateTracker += Time.deltaTime;
+        if (updateTracker < UpdateFrequency)
+            return;
+        updateTracker = 0;
 
         bool tooClose = false, tooFar = false;
 

@@ -18,7 +18,7 @@ public class LocalNavMeshBuilder : MonoBehaviour
     AsyncOperation m_Operation;
     NavMeshDataInstance m_Instance;
     List<NavMeshBuildSource> m_Sources = new List<NavMeshBuildSource>();
-
+    
     public bool WorkIteration;
     public float WorkRate;
     public bool Work = false;
