@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class PlayerAimController : MonoBehaviour
 {
-    public CharacterController controller;
+    public GameObject controller;
 
     public GameObject aimCamera;
     public Transform aimLookAt;
@@ -97,18 +97,41 @@ public class PlayerAimController : MonoBehaviour
 
 
 
-
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButton(1))
         {
             //controller.transform.rotation = Quaternion.LookRotation(controller.transform.position, Camera.main.transform.up);
-            var lookPosition = controller.transform.position + Camera.main.transform.forward;
 
+
+            //var lookPosition = controller.transform.position + Camera.main.transform.forward;
+            //if (Input.GetKey(KeyCode.LeftShift))
+            //    lookPosition = Camera.main.transform.position + (Camera.main.transform.forward * 10);
             //controller.transform.LookAt(lookPosition);
 
-            
+
+
+
+
+
+            // RaycastHit m_HitInfo;
+            // var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            // if (Physics.Raycast(ray.origin, ray.direction, out m_HitInfo))
+            // {
+            //     if(Input.GetKey(KeyCode.LeftShift))
+            //     controller.transform.Rotate(m_HitInfo.point, Space.World);
+            //     else
+            //         controller.transform.Rotate(m_HitInfo.point, Space.Self);
+            // }
+
+
+            var rotation = Quaternion.LookRotation(controller.transform.position + Camera.main.transform.forward);
+            controller.transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {// Fix our camera when we're not over the shouldering.
+            controller.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
 
-        if (Input.GetMouseButton(1))
+            if (Input.GetMouseButton(1))
             ShoulderCam();
         else
             MainCam();
