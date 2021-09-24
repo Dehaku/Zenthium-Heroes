@@ -16,6 +16,10 @@ public class AgentLinkMover : MonoBehaviour
     public OffMeshLinkMoveMethod m_Method = OffMeshLinkMoveMethod.Parabola;
     public AnimationCurve m_Curve = new AnimationCurve();
 
+
+    
+
+
     IEnumerator Start()
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
@@ -24,7 +28,10 @@ public class AgentLinkMover : MonoBehaviour
         {
             if (agent.isOnOffMeshLink)
             {
-                if (m_Method == OffMeshLinkMoveMethod.NormalSpeed)
+                if (agent.currentOffMeshLinkData.offMeshLink.area == 10)
+                    yield return StartCoroutine(DelayTeleport(agent,1,2));//agent.CompleteOffMeshLink();
+
+                else if (m_Method == OffMeshLinkMoveMethod.NormalSpeed)
                     yield return StartCoroutine(NormalSpeed(agent));
                 else if (m_Method == OffMeshLinkMoveMethod.Parabola)
                     yield return StartCoroutine(Parabola(agent, 2.0f, 0.5f));
@@ -34,6 +41,19 @@ public class AgentLinkMover : MonoBehaviour
             }
             yield return null;
         }
+    }
+
+    IEnumerator DelayTeleport(NavMeshAgent agent, float startDelay = 0.5f, float endDelay = 0.5f)
+    {
+        yield return new WaitForSeconds(startDelay);
+
+        OffMeshLinkData data = agent.currentOffMeshLinkData;
+        Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
+        agent.transform.position = endPos;
+
+        yield return new WaitForSeconds(endDelay);
+
+        yield return null;
     }
 
     IEnumerator NormalSpeed(NavMeshAgent agent)

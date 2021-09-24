@@ -5,18 +5,18 @@ using UnityEngine.AI;
 
 public class NavLinkPortal : MonoBehaviour
 {
-    public NavMeshLink linkPrefab;
+    public OffMeshLink linkPrefab;
     public GameObject portalStartPrefab;
     GameObject portalStartObj;
     public GameObject portalEndPrefab;
     GameObject portalEndObj;
-    NavMeshLink link;
+    OffMeshLink link;
     public Vector3 portalStart;
     public Vector3 portalEnd;
     public float portalDuration = 5;
     float durationPassed = 0;
     bool portalActive = false;
-    public int portalCostModifier = -1;
+    public float portalCostModifier = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -46,9 +46,9 @@ public class NavLinkPortal : MonoBehaviour
         }
 
         link = Instantiate(linkPrefab);
-        link.startPoint = portalStart;
-        link.endPoint = portalEnd;
-        link.costModifier = portalCostModifier;
+        link.startTransform.position = portalStart;
+        link.endTransform.position = portalEnd;
+        link.costOverride = portalCostModifier;
         link.area = 10;
 
 

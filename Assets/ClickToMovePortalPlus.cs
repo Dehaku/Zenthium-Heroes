@@ -30,10 +30,13 @@ public class ClickToMovePortalPlus : MonoBehaviour
         m_Agent.SamplePathPosition(NavMesh.AllAreas, 0f, out navMeshHit);
         if (IndexFromMask(navMeshHit.mask) == 10)
         {
-            m_Agent.speed = 100;
+            //m_Agent.speed = 100;
         }
         else
-            m_Agent.speed = 9;
+        {
+            //m_Agent.speed = 9;
+        }
+
 
     }
 
@@ -45,22 +48,17 @@ public class ClickToMovePortalPlus : MonoBehaviour
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray.origin, ray.direction, out m_HitInfo))
                 m_Agent.destination = m_HitInfo.point;
-            Debug.Log("Normal move.");
         }
         else if(Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftShift))
         {
-            Debug.Log("Portal move!");
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray.origin, ray.direction, out m_HitInfo))
                 m_Agent.destination = m_HitInfo.point;
-            else
-                Debug.Log("???");
 
             NavMeshPath path = new NavMeshPath();
             m_Agent.CalculatePath(m_HitInfo.point, path);
             if(path.status == NavMeshPathStatus.PathPartial)
             {
-                Debug.Log("No path detected, portal time.");
                 portal.portalStart = transform.position;
                 portal.portalEnd = m_HitInfo.point;
                 portal.GeneratePortalLink();
