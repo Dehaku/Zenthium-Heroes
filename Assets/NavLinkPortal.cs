@@ -6,11 +6,12 @@ using UnityEngine.AI;
 public class NavLinkPortal : MonoBehaviour
 {
     public OffMeshLink linkPrefab;
+    OffMeshLink link;
     public GameObject portalStartPrefab;
     GameObject portalStartObj;
     public GameObject portalEndPrefab;
     GameObject portalEndObj;
-    OffMeshLink link;
+    
     public Vector3 portalStart;
     public Vector3 portalEnd;
     public float portalDuration = 5;
