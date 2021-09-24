@@ -729,12 +729,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1440, y: 900}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1854,7 +1854,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.1512415, y: 1}
+    m_SensorSize: {x: 1.6455982, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3733,7 +3733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 162.33}
+  m_AnchoredPosition: {x: 0, y: 404}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &399508594
@@ -6454,6 +6454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 861604076}
   - component: {fileID: 861604078}
+  - component: {fileID: 861604087}
   - component: {fileID: 861604077}
   - component: {fileID: 861604079}
   - component: {fileID: 861604080}
@@ -6463,7 +6464,6 @@ GameObject:
   - component: {fileID: 861604084}
   - component: {fileID: 861604085}
   - component: {fileID: 861604086}
-  - component: {fileID: 861604087}
   - component: {fileID: 861604075}
   - component: {fileID: 861604089}
   - component: {fileID: 861604088}
@@ -33552,17 +33552,17 @@ PrefabInstance:
     - target: {fileID: 7271486595917377466, guid: a3ad7f4436ba98b45b147cccb6ed8bf3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -154.1441
+      value: -529.1
       objectReference: {fileID: 0}
     - target: {fileID: 7271486595917377466, guid: a3ad7f4436ba98b45b147cccb6ed8bf3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -135.4039
+      value: 148.2
       objectReference: {fileID: 0}
     - target: {fileID: 7271486595917377466, guid: a3ad7f4436ba98b45b147cccb6ed8bf3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 256.98532
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7271486595917377466, guid: a3ad7f4436ba98b45b147cccb6ed8bf3,
         type: 3}
