@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Move the object forward at 1 unit/second.
+        // Move the object forward at speed, modified by time and time powers.
         transform.Translate(transform.forward * speed * World.Instance.speedForce * Time.deltaTime, Space.World);
     }
 }

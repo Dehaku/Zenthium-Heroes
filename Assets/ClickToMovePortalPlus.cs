@@ -16,7 +16,7 @@ public class ClickToMovePortalPlus : MonoBehaviour
     Vector3 desiredDestination;
 
     [SerializeField] float DistanceToPartialEnd = 0.25f;
-    [SerializeField] float maxSampleDistance = 5;
+    //[SerializeField] float maxSampleDistance = 5;
     [Tooltip("This is mostly to prevent link spam.")]
     [SerializeField] float delayExtraLinks = 0.1f;
     float delayTimer = 0;

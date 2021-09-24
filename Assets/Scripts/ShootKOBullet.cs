@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,9 @@ public class ShootKOBullet : MonoBehaviour
     public Transform spawnPos;
     public GameObject aimReticle;
 
+    public List<GameObject> vfx = new List<GameObject>();
+    GameObject effectToSpawn;
+
     public PlayerAimController playerCamera;
     public WeaponRecoil recoil;
 
@@ -21,6 +25,8 @@ public class ShootKOBullet : MonoBehaviour
         playerCamera = GetComponent<PlayerAimController>();
         recoil = GetComponent<WeaponRecoil>();
         recoil.playerCamera = playerCamera;
+
+        effectToSpawn = vfx[0];
     }
 
     // Start is called before the first frame update
@@ -40,12 +46,14 @@ public class ShootKOBullet : MonoBehaviour
         gunSound.pitch = World.Instance.speedForce;
 
 
-        if (Input.GetButton("Fire1") && _fireRateTrack >= fireRate)
+        if (Input.GetButton("Fire1") && Input.GetButton("Fire2") && _fireRateTrack >= fireRate)
         {
+            
             _fireRateTrack = 0;
             gunSound.Play();
             GameObject pew = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
-            
+            GameObject vfx = spawnVFX();
+            vfx.transform.SetParent(pew.transform);
 
             Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
             
@@ -57,5 +65,11 @@ public class ShootKOBullet : MonoBehaviour
         }
     }
 
-    
+    private GameObject spawnVFX()
+    {
+        GameObject vfx;
+        vfx = Instantiate(effectToSpawn, spawnPos.position, Quaternion.identity);
+        return vfx;
+
+    }
 }
