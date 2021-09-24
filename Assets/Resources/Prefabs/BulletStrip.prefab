@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570900341778744197}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -98,7 +98,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!114 &552265225071581064
@@ -113,7 +113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeb56d6dfc204c741b8d3a2cdfe961de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  muzzlePrefab: {fileID: 6120345066601668924, guid: bcb8e7252d0c18f40894cd8c6132855f,
+    type: 3}
+  hitPrefab: {fileID: 98131139715565700, guid: dd8c79bee25874044a91b01a8ed46559, type: 3}
   speed: 200
+  knockbackForce: 50
 --- !u!65 &5792049000494889629
 BoxCollider:
   m_ObjectHideFlags: 0
