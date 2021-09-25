@@ -6,6 +6,7 @@ using Cinemachine;
 public class PlayerAimController : MonoBehaviour
 {
     public GameObject controller;
+    public ThirdPersonMovement thirdPersonController;
 
     public GameObject aimCamera;
     public Transform aimLookAt;
@@ -99,36 +100,24 @@ public class PlayerAimController : MonoBehaviour
 
         if (Input.GetMouseButton(1))
         {
-            //controller.transform.rotation = Quaternion.LookRotation(controller.transform.position, Camera.main.transform.up);
+            //thirdPersonController.SetRotateOnMove(false);
 
+            Ray camRay = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
+            if (!Physics.Raycast(camRay, out RaycastHit camHit, Mathf.Infinity)) { }
 
-            //var lookPosition = controller.transform.position + Camera.main.transform.forward;
-            //if (Input.GetKey(KeyCode.LeftShift))
-            //    lookPosition = Camera.main.transform.position + (Camera.main.transform.forward * 10);
-            //controller.transform.LookAt(lookPosition);
+            Vector3 worldAimTarget = camHit.point;
+            worldAimTarget.y = controller.transform.position.y;
+            Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
 
-
-
-
-
-
-            // RaycastHit m_HitInfo;
-            // var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            // if (Physics.Raycast(ray.origin, ray.direction, out m_HitInfo))
-            // {
-            //     if(Input.GetKey(KeyCode.LeftShift))
-            //     controller.transform.Rotate(m_HitInfo.point, Space.World);
-            //     else
-            //         controller.transform.Rotate(m_HitInfo.point, Space.Self);
-            // }
-
-
-            var rotation = Quaternion.LookRotation(controller.transform.position + Camera.main.transform.forward);
-            controller.transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
+            //transform.forward = aimDirection; //Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
+            
+            //var rotation = Quaternion.LookRotation(controller.transform.position + Camera.main.transform.forward);
+            //controller.transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
         }
         else if (Input.GetMouseButtonUp(1))
         {// Fix our camera when we're not over the shouldering.
-            controller.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            //thirdPersonController.SetRotateOnMove(true);
+            //controller.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
 
             if (Input.GetMouseButton(1))

@@ -42,8 +42,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     public float speedMagnitude;
     float speedMagnitudePrevious;
-
-
+    private bool _rotateOnMove = true;
 
     public float GetSprintSpeed()
     {
@@ -108,7 +107,11 @@ public class ThirdPersonMovement : MonoBehaviour
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            if(_rotateOnMove)
+            {
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            }
+                
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
@@ -143,8 +146,8 @@ public class ThirdPersonMovement : MonoBehaviour
             isFlying = false;
             _movement.y = -0.3f;
             
-            if(controller.transform.rotation.x != 0)
-                controller.transform.rotation = Quaternion.Euler(0, controller.transform.rotation.y, controller.transform.rotation.z);
+            // if(controller.transform.rotation.x != 0)
+            //     controller.transform.rotation = Quaternion.Euler(0, controller.transform.rotation.y, controller.transform.rotation.z);
 
         }
         if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
@@ -185,6 +188,11 @@ public class ThirdPersonMovement : MonoBehaviour
 
         // if(!isFlying)
         controller.Move(_movement * Time.deltaTime);
+    }
+
+    public void SetRotateOnMove(bool newRotateOnMove)
+    {
+        _rotateOnMove = newRotateOnMove;
     }
 
     void Flying()
