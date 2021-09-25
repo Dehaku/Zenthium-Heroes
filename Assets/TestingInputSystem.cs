@@ -22,13 +22,13 @@ public class TestingInputSystem : MonoBehaviour
 
     public void Movement(InputAction.CallbackContext context)
     {
-        Debug.Log(context);
+        //Debug.Log(context);
         var inputValue = context.ReadValue<Vector2>();
         inputMovement = inputValue;
 
         if (context.performed)
         {
-            Debug.Log("Moving" + context.phase);
+            //Debug.Log("Moving" + context.phase);
             
         }
 
@@ -61,10 +61,10 @@ public class TestingInputSystem : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        Debug.Log(context);
+        //Debug.Log(context);
         if(context.performed)
         {
-            Debug.Log("Jump." + context.phase);
+            //Debug.Log("Jump." + context.phase);
             rb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
         }
         
@@ -72,10 +72,10 @@ public class TestingInputSystem : MonoBehaviour
 
     public void Handbreak(InputAction.CallbackContext context)
     {
-        Debug.Log(context);
+        //Debug.Log(context);
         if (context.performed)
         {
-            Debug.Log("Handbreak." + context.phase);
+            //Debug.Log("Handbreak." + context.phase);
             //rb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
         }
 

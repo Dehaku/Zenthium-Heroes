@@ -14,6 +14,30 @@ public class RebindingDisplay : MonoBehaviour
 
     InputActionRebindingExtensions.RebindingOperation rebindingOperation;
 
+    private const string RebindsKey = "rebinds";
+
+    private void Start()
+    {
+        string rebinds = PlayerPrefs.GetString(RebindsKey, string.Empty);
+        if(string.IsNullOrEmpty(rebinds)) { return; }
+
+        playerInput.actions.LoadBindingOverridesFromJson(rebinds);
+
+        int bindingIndex = jumpAction.action.GetBindingIndexForControl(jumpAction.action.controls[0]);
+
+        bindingDisplayNameText.text = InputControlPath.ToHumanReadableString(
+            jumpAction.action.bindings[0].effectivePath,
+            InputControlPath.HumanReadableStringOptions.OmitDevice);
+    }
+
+    public void Save()
+    {
+        string rebinds = playerInput.actions.SaveBindingOverridesAsJson();
+
+        PlayerPrefs.SetString(RebindsKey, rebinds);
+    }
+
+
     public void StartRebinding()
     {
         startRebindObject.SetActive(false);
@@ -26,28 +50,16 @@ public class RebindingDisplay : MonoBehaviour
             .OnMatchWaitForAnother(0.1f)
             .OnComplete(operation => RebindComplete())
             .Start();
-
-
-
-
-
-
-        /*
-        jumpAction.action.PerformInteractiveRebinding()
-            .WithControlsExcluding("Mouse")
-            .OnComplete(callback =>
-            {
-                Debug.Log(callback.action.bindings[0].overridePath);
-                callback.Dispose();
-                playerInput.SwitchCurrentActionMap("Player");
-            })
-            .Start();
-        */
-
     }
 
     void RebindComplete()
     {
+        int bindingIndex = jumpAction.action.GetBindingIndexForControl(jumpAction.action.controls[0]);
+
+        bindingDisplayNameText.text = InputControlPath.ToHumanReadableString(
+            jumpAction.action.bindings[0].effectivePath,
+            InputControlPath.HumanReadableStringOptions.OmitDevice);
+
         rebindingOperation.Dispose();
 
         startRebindObject.SetActive(true);
