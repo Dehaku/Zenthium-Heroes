@@ -115,11 +115,14 @@ public class ThirdPersonMovement : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             
-
             Vector3 moveTransition = new Vector3(moveDir.normalized.x * speed, _movement.y, moveDir.normalized.z * speed);
 
             if(isFlying)
                 moveTransition = new Vector3(moveDir.normalized.x * speed, moveDir.normalized.y * speed, moveDir.normalized.z * speed);
+
+            // We're walking backwards, so slow us down.
+            if(!_rotateOnMove && Input.GetKey(KeyCode.S))
+                moveTransition = new Vector3(moveDir.normalized.x * (speed / 2), _movement.y, moveDir.normalized.z * (speed/2) );
 
             _movement = moveTransition;
 

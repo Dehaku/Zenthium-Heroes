@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using DG.Tweening;
 
 public class AnimationScript : MonoBehaviour
 {
@@ -67,8 +68,7 @@ public class AnimationScript : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         if (cc != null)
         {
@@ -76,10 +76,23 @@ public class AnimationScript : MonoBehaviour
 
             Vector3 forward = cc.transform.TransformDirection(Vector3.forward);
             Vector3 right = cc.transform.TransformDirection(Vector3.right);
-            relativeMovement.y = Vector3.Dot(cc.velocity.normalized, forward);
-            relativeMovement.x = Vector3.Dot(cc.velocity.normalized, right);
+
+            relativeMovement.y = Mathf.Lerp(relativeMovement.y, Vector3.Dot(cc.velocity.normalized, forward), Time.deltaTime * 10);
+            relativeMovement.x = Mathf.Lerp(relativeMovement.x, Vector3.Dot(cc.velocity.normalized, right), Time.deltaTime * 10);
+            
+            //DOTween.To(relativeMovement, new Vector2(0,0),
+            //relativeMovement.DO
+            //Vector3
+            //relativeMovement.y = Vector3.Dot(cc.velocity.normalized, forward);
+            //relativeMovement.x = Vector3.Dot(cc.velocity.normalized, right);
+
             playerMovementAnimation(relativeMovement);
         }
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        
             
 
         
@@ -93,8 +106,8 @@ public class AnimationScript : MonoBehaviour
                 animator.SetFloat(animationSpeed, speed);
             else
                 animator.SetFloat(animationSpeed, 1);
-            if(Input.GetKey(KeyCode.S) && Input.GetMouseButton(1))
-                animator.SetFloat(moveSpeed, -1);
+            //if(Input.GetKey(KeyCode.S) && Input.GetMouseButton(1))
+            //    animator.SetFloat(moveSpeed, -1);
 
             
 
