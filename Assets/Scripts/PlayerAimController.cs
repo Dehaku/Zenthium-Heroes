@@ -10,6 +10,7 @@ public class PlayerAimController : MonoBehaviour
 
     public GameObject aimCamera;
     public Transform aimLookAt;
+    public Vector3 aimLookAtOffset;
     public GameObject aimReticle;
     public GameObject aimReticle2;
     public float sensitivity = 1;
@@ -85,7 +86,10 @@ public class PlayerAimController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        // Always had problems if the camera follow target was a child of the player, this is a work around.
+        aimLookAt.transform.position = transform.position + aimLookAtOffset;
+
         if(Cursor.lockState != CursorLockMode.Locked)
         { return;  }
         
@@ -95,6 +99,8 @@ public class PlayerAimController : MonoBehaviour
         aimLookAt.eulerAngles = new Vector3(yAxis.Value, xAxis.Value, 0);
 
         AimReticleAdjust();
+
+
 
 
 
@@ -109,7 +115,7 @@ public class PlayerAimController : MonoBehaviour
             worldAimTarget.y = controller.transform.position.y;
             Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
 
-            //transform.forward = aimDirection; //Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
+            transform.forward = aimDirection; // Vector3.Lerp(controller.transform.forward, aimDirection, Time.deltaTime * 20f);
             
             //var rotation = Quaternion.LookRotation(controller.transform.position + Camera.main.transform.forward);
             //controller.transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
@@ -120,7 +126,7 @@ public class PlayerAimController : MonoBehaviour
             //controller.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
 
-            if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1))
             ShoulderCam();
         else
             MainCam();

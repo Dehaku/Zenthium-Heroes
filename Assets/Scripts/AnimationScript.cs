@@ -78,8 +78,8 @@ public class AnimationScript : MonoBehaviour
                 animator.SetFloat(animationSpeed, speed);
             else
                 animator.SetFloat(animationSpeed, 1);
-            if (Input.GetKey(KeyCode.S) && Input.GetMouseButton(1))
-                animator.SetFloat(moveSpeed, -1);
+            //if (Input.GetKey(KeyCode.S) && Input.GetMouseButton(1))
+                //animator.SetFloat(moveSpeed, -1);
         }
             
 

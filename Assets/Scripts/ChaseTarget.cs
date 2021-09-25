@@ -27,7 +27,12 @@ public class ChaseTarget : MonoBehaviour
     void Update()
     {
         if(target == null)
-            target = FindObjectOfType<Player>().gameObject;
+        {
+            var player = FindObjectOfType<Player>();
+            if(player != null)
+                target = player.gameObject;
+        }
+            
         if (target == null)
             return;
         
