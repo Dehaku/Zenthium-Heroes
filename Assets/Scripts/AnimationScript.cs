@@ -21,8 +21,11 @@ public class AnimationScript : MonoBehaviour
 
 
 
+
     public float speed = 0f;
     public float divideBy = 0.5f;
+
+    Vector2 relativeMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -59,8 +62,8 @@ public class AnimationScript : MonoBehaviour
 
     public void playerMovementAnimation(Vector2 value)
     {
-        // animator.SetFloat(movex, value.x);
-        // animator.SetFloat(movey, value.y);
+        animator.SetFloat(movex, value.x);
+        animator.SetFloat(movey, value.y);
         
     }
 
@@ -68,7 +71,19 @@ public class AnimationScript : MonoBehaviour
     void Update()
     {
         if (cc != null)
+        {
             speed = Mathf.Lerp(speed, cc.velocity.magnitude, Time.deltaTime * 10);
+
+            Vector3 forward = cc.transform.TransformDirection(Vector3.forward);
+            Vector3 right = cc.transform.TransformDirection(Vector3.right);
+            relativeMovement.y = Vector3.Dot(cc.velocity.normalized, forward);
+            relativeMovement.x = Vector3.Dot(cc.velocity.normalized, right);
+            playerMovementAnimation(relativeMovement);
+        }
+            
+
+        
+
 
         if (animator != null && cc != null)
         {
@@ -78,8 +93,12 @@ public class AnimationScript : MonoBehaviour
                 animator.SetFloat(animationSpeed, speed);
             else
                 animator.SetFloat(animationSpeed, 1);
-            //if (Input.GetKey(KeyCode.S) && Input.GetMouseButton(1))
-                //animator.SetFloat(moveSpeed, -1);
+            if(Input.GetKey(KeyCode.S) && Input.GetMouseButton(1))
+                animator.SetFloat(moveSpeed, -1);
+
+            
+
+
         }
             
 

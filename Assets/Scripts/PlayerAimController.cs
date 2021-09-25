@@ -106,7 +106,7 @@ public class PlayerAimController : MonoBehaviour
 
         if (Input.GetMouseButton(1))
         {
-            //thirdPersonController.SetRotateOnMove(false);
+            thirdPersonController.SetRotateOnMove(false);
 
             Ray camRay = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
             if (!Physics.Raycast(camRay, out RaycastHit camHit, Mathf.Infinity)) { }
@@ -122,7 +122,7 @@ public class PlayerAimController : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(1))
         {// Fix our camera when we're not over the shouldering.
-            //thirdPersonController.SetRotateOnMove(true);
+            thirdPersonController.SetRotateOnMove(true);
             //controller.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
 

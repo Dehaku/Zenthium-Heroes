@@ -95,7 +95,6 @@ public class ThirdPersonMovement : MonoBehaviour
         }
 
 
-        animationController.playerMovementAnimation(new Vector2(direction.normalized.x, direction.normalized.z));
 
         if(isFlying)
         {
@@ -145,10 +144,6 @@ public class ThirdPersonMovement : MonoBehaviour
             isJumping = false;
             isFlying = false;
             _movement.y = -0.3f;
-            
-            // if(controller.transform.rotation.x != 0)
-            //     controller.transform.rotation = Quaternion.Euler(0, controller.transform.rotation.y, controller.transform.rotation.z);
-
         }
         if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
         { // Jumping
@@ -161,7 +156,6 @@ public class ThirdPersonMovement : MonoBehaviour
         if (timeOffGround > 0.1 && Input.GetKeyDown(KeyCode.Space) && !isFlying)
         { // Time to fly!
             animationController.FlyingAnimation(true);
-            //_movement.y = jumpSpeed*10;
             isFlying = true;
         }
         
