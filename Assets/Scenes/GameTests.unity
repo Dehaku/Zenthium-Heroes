@@ -5657,6 +5657,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dedca58b420154488c0c2b4e20d7265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpAction: {fileID: -6080859563181484645, guid: 9bdaa3a64fcd76e49a04fde13d8611e4,
+    type: 3}
+  playerInput: {fileID: 594167281}
+  bindingDisplayNameText: {fileID: 54012478}
+  startRebindObject: {fileID: 1716169353}
+  waitingForInputObject: {fileID: 91992301}
 --- !u!1 &581985222
 GameObject:
   m_ObjectHideFlags: 0
@@ -16690,7 +16696,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1716169356}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 568105600}
+        m_TargetAssemblyTypeName: RebindingDisplay, Assembly-CSharp
+        m_MethodName: StartRebinding
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1716169356
 MonoBehaviour:
   m_ObjectHideFlags: 0
