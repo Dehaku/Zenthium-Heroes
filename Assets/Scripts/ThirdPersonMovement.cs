@@ -154,6 +154,7 @@ public class ThirdPersonMovement : MonoBehaviour
             isJumping = true;
             animationController.JumpingAnimation(true);
             animationController.isGroundedFunc(false);
+            //animationController.animator.CrossFade("Jump", 0.05f);
         }
 
         if (timeOffGround > 0.1 && Input.GetKeyDown(KeyCode.Space) && !isFlying)

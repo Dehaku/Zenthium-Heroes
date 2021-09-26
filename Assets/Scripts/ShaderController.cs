@@ -173,8 +173,8 @@ public class ShaderController : MonoBehaviour
         int inter = 0;
         foreach (var matHold in mats)
         {
-            matHold.mat.SetFloat(shaderProps._Dissolve, matHold.health);
-            matHold.mat.SetColor(shaderProps._Color, settings.colors[inter]);
+            //matHold.mat.SetFloat(shaderProps._Dissolve, matHold.health);
+            //matHold.mat.SetColor(shaderProps._Color, settings.colors[inter]);
 
             inter++;
         }

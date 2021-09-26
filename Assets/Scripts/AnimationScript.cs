@@ -68,26 +68,38 @@ public class AnimationScript : MonoBehaviour
         
     }
 
+
     private void FixedUpdate()
     {
         if (cc != null)
         {
             speed = Mathf.Lerp(speed, cc.velocity.magnitude, Time.deltaTime * 10);
 
+            //LerpRelativeMovementToRelativeDirection(cc.velocity,cc.transform);
+
             Vector3 forward = cc.transform.TransformDirection(Vector3.forward);
             Vector3 right = cc.transform.TransformDirection(Vector3.right);
-
+            // 
             relativeMovement.y = Mathf.Lerp(relativeMovement.y, Vector3.Dot(cc.velocity.normalized, forward), Time.deltaTime * 10);
             relativeMovement.x = Mathf.Lerp(relativeMovement.x, Vector3.Dot(cc.velocity.normalized, right), Time.deltaTime * 10);
-            
-            //DOTween.To(relativeMovement, new Vector2(0,0),
-            //relativeMovement.DO
-            //Vector3
-            //relativeMovement.y = Vector3.Dot(cc.velocity.normalized, forward);
-            //relativeMovement.x = Vector3.Dot(cc.velocity.normalized, right);
 
+
+            //Debug.Log(relativeMovement + " : " + cc.velocity);
             playerMovementAnimation(relativeMovement);
         }
+        else if(navAgent != null)
+        {
+            Vector3 forward = navAgent.transform.TransformDirection(Vector3.forward);
+            Vector3 right = navAgent.transform.TransformDirection(Vector3.right);
+
+            relativeMovement.y = Mathf.Lerp(relativeMovement.y, Vector3.Dot(navAgent.velocity.normalized, forward), Time.deltaTime * 10);
+            relativeMovement.x = Mathf.Lerp(relativeMovement.x, Vector3.Dot(navAgent.velocity.normalized, right), Time.deltaTime * 10);
+            //relativeMovement.y = Vector3.Dot(navAgent.velocity.normalized, forward);
+            //relativeMovement.x = Vector3.Dot(navAgent.velocity.normalized, right);
+            //Debug.Log(relativeMovement +" : "+ navAgent.velocity);
+            playerMovementAnimation(relativeMovement);
+        }
+        
     }
     // Update is called once per frame
     void Update()
@@ -125,6 +137,11 @@ public class AnimationScript : MonoBehaviour
                 speed = vel;
 
                 animator.SetFloat(moveSpeed, vel);
+                {
+                    //relativeMovement.y = Mathf.Min(vel, 1);
+                    //playerMovementAnimation(relativeMovement);
+                }
+                    
             }
             
         }
