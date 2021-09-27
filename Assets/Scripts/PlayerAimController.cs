@@ -18,8 +18,12 @@ public class PlayerAimController : MonoBehaviour
     public Vector3 aimLookAtOffset;
     public GameObject aimReticle;
     public GameObject aimReticle2;
-    public float sensitivity = 1;
-    public float stickSensitivity = 1;
+    public float defaultSensitivity = 1;
+    public float defaultZoomedSensitivity = 1;
+    float sensitivity = 1;
+    public float defaultStickSensitivity = 1;
+    public float defaultStickZoomedSensitivity = 1;
+    float stickSensitivity = 1;
 
     public AxisState xAxis;
     public AxisState yAxis;
@@ -66,6 +70,9 @@ public class PlayerAimController : MonoBehaviour
             camMainDistance -= 3;
 
         camMainDistance = Mathf.Clamp(camMainDistance, camShoulderDistance, camMainMaxZoom);
+
+        sensitivity = defaultSensitivity;
+        stickSensitivity = defaultStickSensitivity;
     }
 
     void ShoulderCam()
@@ -86,6 +93,9 @@ public class PlayerAimController : MonoBehaviour
             camShoulderFOV -= 3;
 
         camShoulderFOV = Mathf.Clamp(camShoulderFOV, 10, camMainFOV);
+
+        sensitivity = defaultZoomedSensitivity;
+        stickSensitivity = defaultStickZoomedSensitivity;
     }
 
 
