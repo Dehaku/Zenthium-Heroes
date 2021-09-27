@@ -25,7 +25,6 @@ public class PauseGame : MonoBehaviour
 
     private void Start()
     {
-        //playerInput.actions["PauseGame"].performed += _ => Pause();
         pauseButton.performed += _ => Pause();
     }
 
