@@ -54,6 +54,20 @@ public class TestingInputSystem : MonoBehaviour
             Debug.Log("C!");
         }
 
+        
+
+
+
+        if (playerInputs.actions["PowerModify"].IsPressed())
+        {
+            //IsPressed() runs every frame.
+            if(playerInputs.actions["Jump"].WasPressedThisFrame())
+            {
+                // Runs once
+                Debug.Log("Jump Modified!");
+            }
+        }
+
 
         float speed = 5f;
         rb.AddForce(new Vector3(inputMovement.x, 0, inputMovement.y) * speed, ForceMode.Force);

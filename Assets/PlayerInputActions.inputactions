@@ -2,24 +2,44 @@
     "name": "PlayerInputActions",
     "maps": [
         {
-            "name": "Player",
+            "name": "Ground",
             "id": "3bfa88af-d069-4b8c-9304-80f64d39c237",
             "actions": [
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "e5a367a2-122e-4454-9faf-ea196e2b6d6e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
                 {
                     "name": "Movement",
                     "type": "Value",
                     "id": "cb505a8c-a324-4111-992a-fbff5dee6a06",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "e5a367a2-122e-4454-9faf-ea196e2b6d6e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Look",
+                    "type": "Button",
+                    "id": "eab43374-a87f-47a4-b61a-1537fd3c5553",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PowerModify",
+                    "type": "Button",
+                    "id": "d23658bf-270d-4208-9be8-dba8c4691142",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -42,6 +62,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fd57adc7-9839-4f1a-b6c1-512b0177d538",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -110,6 +141,28 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f3c24e38-9c29-4006-b79c-b34dcafce637",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PowerModify",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "25265729-6c41-498b-9efa-5b4cf42aa506",
+                    "path": "<HID::Logitech Logitech Dual Action>/button7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PowerModify",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -123,7 +176,8 @@
                     "id": "f8c9dbc2-177c-4693-94ca-4fdd9a2e0b16",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -161,7 +215,8 @@
                     "id": "681880fa-1908-40ee-a61a-45a62a994bfe",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -173,6 +228,45 @@
                     "processors": "",
                     "groups": "",
                     "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Pause",
+            "id": "004bc902-f62d-40c2-9dff-b249d7244981",
+            "actions": [
+                {
+                    "name": "PauseGame",
+                    "type": "Button",
+                    "id": "cfd1c86c-9df9-4a3f-93d3-d06ba68fce54",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7ea053a1-2185-4581-ac43-4c4b6e789cad",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "071c8e7b-116f-48cc-bd64-348e40c2f7a6",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
