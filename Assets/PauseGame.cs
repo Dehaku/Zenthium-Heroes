@@ -30,9 +30,12 @@ public class PauseGame : MonoBehaviour
 
     public void Pause()
     {
+
         paused = !paused;
         if(paused)
         {
+            MouseLock.ConfineMouse(true);
+
             // Store current settings for later
             storedUpdateMode = InputSystem.settings.updateMode;
             InputSystem.settings.updateMode = InputSettings.UpdateMode.ProcessEventsInDynamicUpdate;
@@ -49,6 +52,8 @@ public class PauseGame : MonoBehaviour
         }
         else
         {
+            MouseLock.LockMouse();
+
             // Restore settings from earlier
             InputSystem.settings.updateMode = storedUpdateMode;
             Time.timeScale = previousTimescale;

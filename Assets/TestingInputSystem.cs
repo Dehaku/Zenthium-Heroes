@@ -7,14 +7,14 @@ using UnityEngine.InputSystem;
 public class TestingInputSystem : MonoBehaviour
 {
     private Rigidbody rb;
-    private PlayerInput playerInputs;
+    [SerializeField] private PlayerInput playerInputs;
 
     Vector3 inputMovement;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        playerInputs = GetComponent<PlayerInput>();
+        //playerInputs = GetComponent<PlayerInput>();
         
         //playerInputs.actions.
 
@@ -64,13 +64,13 @@ public class TestingInputSystem : MonoBehaviour
             if(playerInputs.actions["Jump"].WasPressedThisFrame())
             {
                 // Runs once
-                Debug.Log("Jump Modified!");
+                //Debug.Log("Jump Modified!");
             }
         }
 
         if(playerInputs.actions["SuperJump"].WasPressedThisFrame())
         {
-            Debug.Log("!!Super Jump!!");
+            //Debug.Log("!!Super Jump!!");
         }
 
 

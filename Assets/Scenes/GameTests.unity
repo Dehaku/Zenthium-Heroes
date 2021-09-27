@@ -562,7 +562,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46883151}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -4283,8 +4283,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2462.5, y: 805.8}
+  m_AnchoredPosition: {x: 461, y: 251}
+  m_SizeDelta: {x: 2462.5, y: 461.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &370938013
 MonoBehaviour:
@@ -4313,7 +4313,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 100
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -5597,7 +5597,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1524260609}
-  - {fileID: 1313605121}
+  - {fileID: 1136902113}
   - {fileID: 1241588310}
   - {fileID: 1652118044}
   - {fileID: 599368507}
@@ -6053,7 +6053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpAction: {fileID: -6080859563181484645, guid: 9bdaa3a64fcd76e49a04fde13d8611e4,
     type: 3}
-  playerInput: {fileID: 594167281}
+  playerInput: {fileID: 0}
   bindingDisplayNameText: {fileID: 54012478}
   startRebindObject: {fileID: 1716169353}
   waitingForInputObject: {fileID: 91992301}
@@ -6119,103 +6119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58990f3cf6fc32e4e80b2dd102ba6187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &594167281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594167278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 9bdaa3a64fcd76e49a04fde13d8611e4,
-    type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 594167280}
-        m_TargetAssemblyTypeName: TestingInputSystem, Assembly-CSharp
-        m_MethodName: Jump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: e5a367a2-122e-4454-9faf-ea196e2b6d6e
-    m_ActionName: Player/Jump[/Keyboard/space,/Logitech Logitech Dual Action/button2]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 594167280}
-        m_TargetAssemblyTypeName: TestingInputSystem, Assembly-CSharp
-        m_MethodName: Movement
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: cb505a8c-a324-4111-992a-fbff5dee6a06
-    m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Logitech
-      Logitech Dual Action/stick]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 594167280}
-        m_TargetAssemblyTypeName: TestingInputSystem, Assembly-CSharp
-        m_MethodName: Handbreak
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: f8c9dbc2-177c-4693-94ca-4fdd9a2e0b16
-    m_ActionName: Driving/Handbreak[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 681880fa-1908-40ee-a61a-45a62a994bfe
-    m_ActionName: Menus/New action
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: eab43374-a87f-47a4-b61a-1537fd3c5553
-    m_ActionName: Player/Look
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d23658bf-270d-4208-9be8-dba8c4691142
-    m_ActionName: Player/PowerModify[/Keyboard/leftShift,/Logitech Logitech Dual
-      Action/button7]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cfd1c86c-9df9-4a3f-93d3-d06ba68fce54
-    m_ActionName: Pause/PauseGame[/Keyboard/escape]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard
-  m_DefaultActionMap: Ground
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  playerInputs: {fileID: 636724676}
 --- !u!54 &594167282
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6398,6 +6302,7 @@ GameObject:
   - component: {fileID: 636724673}
   - component: {fileID: 636724674}
   - component: {fileID: 636724675}
+  - component: {fileID: 636724676}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -6438,7 +6343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1c2b36be2267448b9a918a3b445793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 594167281}
+  playerInput: {fileID: 636724676}
   pauseButton:
     m_Name: Pause Button
     m_Type: 0
@@ -6450,6 +6355,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: fdce4a41-f594-449e-a541-82b643a6e2dc
       m_Path: <Keyboard>/escape
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause Button
+      m_Flags: 0
+    - m_Name: 
+      m_Id: c3db2885-3d22-464d-997c-a8e2ba60322d
+      m_Path: <Keyboard>/1
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -6484,6 +6397,111 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions: {fileID: -944628639613478452, guid: 9bdaa3a64fcd76e49a04fde13d8611e4, type: 3}
+--- !u!114 &636724676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636724671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 9bdaa3a64fcd76e49a04fde13d8611e4,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 594167280}
+        m_TargetAssemblyTypeName: TestingInputSystem, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e5a367a2-122e-4454-9faf-ea196e2b6d6e
+    m_ActionName: Player/Jump[/Keyboard/space,/Logitech Logitech Dual Action/button2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 594167280}
+        m_TargetAssemblyTypeName: TestingInputSystem, Assembly-CSharp
+        m_MethodName: Movement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: cb505a8c-a324-4111-992a-fbff5dee6a06
+    m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Logitech
+      Logitech Dual Action/stick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 594167280}
+        m_TargetAssemblyTypeName: TestingInputSystem, Assembly-CSharp
+        m_MethodName: Handbreak
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f8c9dbc2-177c-4693-94ca-4fdd9a2e0b16
+    m_ActionName: Driving/Handbreak[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 681880fa-1908-40ee-a61a-45a62a994bfe
+    m_ActionName: Menus/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eab43374-a87f-47a4-b61a-1537fd3c5553
+    m_ActionName: Player/Look
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d23658bf-270d-4208-9be8-dba8c4691142
+    m_ActionName: Player/PowerModify[/Keyboard/leftShift,/Logitech Logitech Dual
+      Action/button7]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cfd1c86c-9df9-4a3f-93d3-d06ba68fce54
+    m_ActionName: Pause/PauseGame[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 03dc7e62-1515-4f70-9bc6-233333584cef
+    m_ActionName: Ground/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a35fd537-cfe2-4859-998e-d3fdb42930f7
+    m_ActionName: Ground/SuperJump[/Keyboard/leftShift,/Keyboard/space]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard
+  m_DefaultActionMap: Ground
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &646148935
 GameObject:
   m_ObjectHideFlags: 0
@@ -7589,7 +7607,7 @@ PrefabInstance:
     - target: {fileID: 6680292650503350825, guid: f25dcd618d3acd64795bf8bb32edb6c9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6680292650503350825, guid: f25dcd618d3acd64795bf8bb32edb6c9,
         type: 3}
@@ -10394,7 +10412,7 @@ PrefabInstance:
     - target: {fileID: 6680292650503350825, guid: f25dcd618d3acd64795bf8bb32edb6c9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6680292650503350825, guid: f25dcd618d3acd64795bf8bb32edb6c9,
         type: 3}
@@ -10615,6 +10633,85 @@ Transform:
   m_Father: {fileID: 1724060225}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1136902112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1136902113}
+  - component: {fileID: 1136902115}
+  - component: {fileID: 1136902114}
+  m_Layer: 5
+  m_Name: DuplicateText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1136902113
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136902112}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 487467445}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -423, y: 279}
+  m_SizeDelta: {x: 1996.223, y: 334.881}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1136902114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136902112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 100
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 100
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1136902115
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136902112}
+  m_CullTransparentMesh: 1
 --- !u!1 &1147837363 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1224574634684750, guid: 2224b63330275e5478ef024b2913f937,
@@ -16185,18 +16282,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313605120}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 1}
   m_Children:
   - {fileID: 370938012}
-  m_Father: {fileID: 487467445}
+  m_Father: {fileID: 1474797107}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -371.75, y: -234}
-  m_SizeDelta: {x: 2877.1, y: 1452.6998}
+  m_AnchoredPosition: {x: -351.35, y: -195.67332}
+  m_SizeDelta: {x: 2817.1, y: 1522.6998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1313605122
 MonoBehaviour:
@@ -16211,7 +16308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.74509805}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.98039216}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16894,6 +16991,7 @@ RectTransform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 1337405211}
+  - {fileID: 1313605121}
   m_Father: {fileID: 46883152}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18380,7 +18478,7 @@ PrefabInstance:
     - target: {fileID: 6680292650503350825, guid: f25dcd618d3acd64795bf8bb32edb6c9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6680292650503350825, guid: f25dcd618d3acd64795bf8bb32edb6c9,
         type: 3}

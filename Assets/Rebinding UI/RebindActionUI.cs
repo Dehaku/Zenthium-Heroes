@@ -14,6 +14,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
     /// </summary>
     public class RebindActionUI : MonoBehaviour
     {
+
         /// <summary>
         /// Reference to the action that is to be rebound.
         /// </summary>
@@ -91,6 +92,17 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         }
 
         /// <summary>
+        /// Optional text component that receives a text prompt when a duplication is detected.
+        /// </summary>
+        /// <seealso cref="startRebindEvent"/>
+        /// <seealso cref="duplicatePrompt"/>
+        public Text duplicatePrompt
+        {
+            get => m_DuplicateText;
+            set => m_DuplicateText = value;
+        }
+
+        /// <summary>
         /// Optional UI that is activated when an interactive rebind is started and deactivated when the rebind
         /// is finished. This is normally used to display an overlay over the current UI while the system is
         /// waiting for a control to be actuated.
@@ -101,6 +113,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// </remarks>
         /// <seealso cref="startRebindEvent"/>
         /// <seealso cref="rebindPrompt"/>
+        /// <seealso cref="duplicatePrompt"/>
         public GameObject rebindOverlay
         {
             get => m_RebindOverlay;
@@ -408,8 +421,16 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 }
                 if(binding.effectivePath == newBinding.effectivePath)
                 {
-                    Debug.Log("Duplicatebinding found: " + newBinding.effectivePath);
-                    return true;
+                    
+
+                    if (m_DuplicateText != null)
+                    {
+                        string dupeString = "Warning: " + newBinding.effectivePath
+                            + " has a conflict! " + binding.action.ToString()
+                            + " with " + newBinding.action.ToString();
+
+                        m_DuplicateText.text = dupeString;
+                    }
                 }
             }
 
@@ -420,8 +441,14 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 {
                     if(action.bindings[i].effectivePath == newBinding.effectivePath)
                     {
-                        Debug.Log("Duplicatebinding found: " + newBinding.effectivePath);
-                        return true;
+                        if (m_DuplicateText != null)
+                        {
+                            string dupeString = "Warning: " + newBinding.effectivePath
+                                + " has a conflict! " + action.bindings[i].action.ToString()
+                                + " with " + newBinding.action.ToString();
+
+                            m_DuplicateText.text = dupeString;
+                        }
                     }
                 }
             }
@@ -504,6 +531,10 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         [Tooltip("Optional text label that will be updated with prompt for user input.")]
         [SerializeField]
         private Text m_RebindText;
+
+        [Tooltip("Optional text label that will be updated with duplicate conflicts.")]
+        [SerializeField]
+        public Text m_DuplicateText;
 
         [Tooltip("Event that is triggered when the way the binding is display should be updated. This allows displaying "
             + "bindings in custom ways, e.g. using images instead of text.")]

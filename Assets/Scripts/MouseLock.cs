@@ -4,28 +4,52 @@ using UnityEngine;
 
 public class MouseLock : MonoBehaviour
 {
-    bool CursorLockedVar;
+    private static MouseLock _instance;
+
+    public static MouseLock Instance { get { return _instance; } }
+
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = (false);
-        CursorLockedVar = (true);
+        Cursor.visible = false;
     }
 
-    void Update()
+    public static void LockMouse(bool MakeCursorVisible = false)
     {
-        if (Input.GetKeyDown("escape") && !CursorLockedVar)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = (false);
-            CursorLockedVar = (true);
-        }
-        else if (Input.GetKeyDown("escape") && CursorLockedVar)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = (true);
-            CursorLockedVar = (false);
-        }
+        Cursor.lockState = CursorLockMode.Locked;
+
+        if(MakeCursorVisible)
+            Cursor.visible = true;
+        else
+            Cursor.visible = false;
+    }
+
+    public static void ConfineMouse(bool MakeCursorVisible = false)
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+
+        if (MakeCursorVisible)
+            Cursor.visible = true;
+        else
+            Cursor.visible = false;
+    }
+
+    public static void UnlockMouse()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
