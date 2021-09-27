@@ -1911,6 +1911,7 @@ MonoBehaviour:
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
+  m_HideOffsetInInspector: 0
 --- !u!114 &171228670
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2292,6 +2293,8 @@ GameObject:
   - component: {fileID: 243158145}
   - component: {fileID: 243158146}
   - component: {fileID: 243158147}
+  - component: {fileID: 243158148}
+  - component: {fileID: 243158149}
   m_Layer: 0
   m_Name: Third Person Camera(Shoulder)
   m_TagString: Untagged
@@ -2386,6 +2389,40 @@ MonoBehaviour:
   m_ChannelMask: 1
   m_Gain: 0.1
   m_Use2DDistance: 0
+  m_UseCameraSpace: 0
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 0
+    m_FrequencyGain: 0
+    m_Duration: 0
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &243158148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243158143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerIndex: -1
+  XYAxis: {fileID: -1807398070007994235, guid: 9bdaa3a64fcd76e49a04fde13d8611e4, type: 3}
+  ZAxis: {fileID: 0}
+--- !u!114 &243158149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243158143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d49b5bb3e3ba7498ad3ff1a6da30dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &246058816
 Transform:
   m_ObjectHideFlags: 0
@@ -6453,6 +6490,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 861604077}
+        m_TargetAssemblyTypeName: ThirdPersonMovement, Assembly-CSharp
+        m_MethodName: Movement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: cb505a8c-a324-4111-992a-fbff5dee6a06
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Logitech
       Logitech Dual Action/stick]
@@ -6477,7 +6526,19 @@ MonoBehaviour:
     m_ActionId: 681880fa-1908-40ee-a61a-45a62a994bfe
     m_ActionName: Menus/New action
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 861604079}
+        m_TargetAssemblyTypeName: PlayerAimController, Assembly-CSharp
+        m_MethodName: Look
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: eab43374-a87f-47a4-b61a-1537fd3c5553
     m_ActionName: Player/Look
   - m_PersistentCalls:
@@ -6498,7 +6559,7 @@ MonoBehaviour:
     m_ActionId: a35fd537-cfe2-4859-998e-d3fdb42930f7
     m_ActionName: Ground/SuperJump[/Keyboard/leftShift,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Ground
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -6958,6 +7019,8 @@ MonoBehaviour:
     m_Bits: 25911
   IgnoreTag: 
   CameraRadius: 0.2
+  DampingIntoCollision: 0
+  DampingFromCollision: 0
 --- !u!114 &706551607
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -8332,6 +8395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446e81d1371461e48b053819aa83af47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   hyperSpeed: 1
   hyperSpeedMulti: 3
   controller: {fileID: 861604078}
@@ -8382,6 +8446,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a4d4c7000acc546915ab1644c79c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 636724676}
+  virtualCamera: {fileID: 0}
+  inputProvider: {fileID: 243158148}
   controller: {fileID: 861604074}
   thirdPersonController: {fileID: 861604077}
   aimCamera: {fileID: 243158143}
@@ -8389,7 +8456,8 @@ MonoBehaviour:
   aimLookAtOffset: {x: 0, y: 1.2, z: 0}
   aimReticle: {fileID: 1886168351}
   aimReticle2: {fileID: 428996536}
-  sensitivity: 1
+  sensitivity: 3
+  stickSensitivity: 3
   xAxis:
     Value: 0
     m_SpeedMode: 0
@@ -8426,6 +8494,7 @@ MonoBehaviour:
       m_RecenteringTime: 0
       m_LegacyHeadingDefinition: 0
       m_LegacyVelocityFilterStrength: 0
+  aimInput: {x: 0, y: 0}
   camMainMaxZoom: 20
   camMainDistance: 20
   camShoulderDistance: 4.5
@@ -8612,6 +8681,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ImpulseDefinition:
     m_ImpulseChannel: 1
+    m_ImpulseShape: 0
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 3
+    m_DissipationRate: 0
     m_RawSignal: {fileID: 11400000, guid: 0f699b397e90b0e43800c653c284f28a, type: 2}
     m_AmplitudeGain: 1
     m_FrequencyGain: 1
@@ -8640,6 +8719,7 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 1000
     m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!114 &861604085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21042,7 +21122,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4117647, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class PlayerAimController : MonoBehaviour
 {
+    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private CinemachineInputProvider inputProvider;
+
     public GameObject controller;
     public ThirdPersonMovement thirdPersonController;
 
@@ -14,9 +19,11 @@ public class PlayerAimController : MonoBehaviour
     public GameObject aimReticle;
     public GameObject aimReticle2;
     public float sensitivity = 1;
+    public float stickSensitivity = 1;
 
     public AxisState xAxis;
     public AxisState yAxis;
+    public Vector2 aimInput;
 
     public float camMainMaxZoom = 20;
 
@@ -81,28 +88,52 @@ public class PlayerAimController : MonoBehaviour
         camShoulderFOV = Mathf.Clamp(camShoulderFOV, 10, camMainFOV);
     }
 
-    
+
+    private void FixedUpdate()
+    {
+        // Getting the device to work around a mouse delta bug.
+        string Device = "";
+        if(playerInput.actions["Look"].activeControl != null)
+            if (playerInput.actions["Look"].activeControl.device != null)
+                Device = playerInput.actions["Look"].activeControl.device.displayName;
+        
+
+
+
+
+        Vector2 inputValue = new Vector2();
+        if (Device == "Mouse")
+        {
+            //I have no idea what's wrong with the mouse delta, I just use the old input for mouse down in Update().
+            
+        }
+        else
+            inputValue += playerInput.actions["Look"].ReadValue<Vector2>() * stickSensitivity;
+
+        aimInput += inputValue;
+        aimInput.y = Mathf.Clamp(aimInput.y, -88, 88);
+    }
 
     // Update is called once per frame
     void Update()
     {
-
         // Always had problems if the camera follow target was a child of the player, this is a work around.
         aimLookAt.transform.position = transform.position + aimLookAtOffset;
 
         if(Cursor.lockState != CursorLockMode.Locked)
         { return;  }
-        
+
         xAxis.Update(Time.deltaTime);
         yAxis.Update(Time.deltaTime);
 
-        aimLookAt.eulerAngles = new Vector3(yAxis.Value, xAxis.Value, 0);
+        aimInput.x += Input.GetAxisRaw("Mouse X") * sensitivity;
+        aimInput.y += -Input.GetAxisRaw("Mouse Y") * sensitivity;
+
+        //aimLookAt.eulerAngles = new Vector3(yAxis.Value, xAxis.Value, 0);
+        //aimLookAt.eulerAngles = new Vector3(aimInput.x, aimInput.y, 0);
+        aimLookAt.eulerAngles = new Vector3(aimInput.y, aimInput.x, 0);
 
         AimReticleAdjust();
-
-
-
-
 
         if (Input.GetMouseButton(1))
         {
@@ -143,5 +174,22 @@ public class PlayerAimController : MonoBehaviour
         if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, aimLayer)) { }
 
         aimReticle.transform.position = Camera.main.WorldToScreenPoint(hit.point);
+    }
+
+    public void Look(InputAction.CallbackContext context)
+    {
+        // var inputValue = context.ReadValue<Vector2>();
+        // inputValue.x = Mathf.Clamp(inputValue.x, -5, 5);
+        // inputValue.y = Mathf.Clamp(inputValue.y, -5, 5);
+        // 
+        // 
+        // Debug.Log("Map:" + context.action.actionMap);
+        // 
+        //     Debug.Log("context:" + context.ReadValue<Vector2>()
+        //     + ", aimInput: " + aimInput
+        //     );
+        // aimInput += inputValue;
+        // aimInput.x = Mathf.Clamp(aimInput.x, -180, 180);
+        // aimInput.y = Mathf.Clamp(aimInput.y, -180, 180);
     }
 }

@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ThirdPersonMovement : MonoBehaviour
 {
+    [SerializeField] private PlayerInput playerInput;
+
     public bool hyperSpeed;
     public float hyperSpeedMulti = 3;
     public CharacterController controller;
@@ -44,6 +47,8 @@ public class ThirdPersonMovement : MonoBehaviour
     float speedMagnitudePrevious;
     private bool _rotateOnMove = true;
 
+    Vector3 inputMovement;
+
     public float GetSprintSpeed()
     {
         return defaultSpeed * defaultSprintMulti;
@@ -83,9 +88,12 @@ public class ThirdPersonMovement : MonoBehaviour
 
     void Move()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        // float horizontal = Input.GetAxisRaw("Horizontal");
+        // float vertical = Input.GetAxisRaw("Vertical");
+
+
+        //Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        Vector3 direction = new Vector3(inputMovement.x, 0f, inputMovement.y);
         if(!isFlying)
         {
             _movement.x = 0;
@@ -229,6 +237,17 @@ public class ThirdPersonMovement : MonoBehaviour
 
         flyDirection = flyDirection.normalized * (flySpeed * Time.deltaTime);
         _movement += flyDirection;
+    }
+
+    public void Movement(InputAction.CallbackContext context)
+    {
+        var inputValue = context.ReadValue<Vector2>();
+        inputMovement = inputValue;
+    }
+
+    private void FixedUpdate()
+    {
+        //Movement();
     }
 
     // Update is called once per frame
