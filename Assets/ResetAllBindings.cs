@@ -12,5 +12,6 @@ public class ResetAllBindings : MonoBehaviour
         {
             map.RemoveAllBindingOverrides();
         }
+        PlayerPrefs.DeleteKey("rebinds");
     }
 }

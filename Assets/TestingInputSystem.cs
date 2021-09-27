@@ -68,6 +68,11 @@ public class TestingInputSystem : MonoBehaviour
             }
         }
 
+        if(playerInputs.actions["SuperJump"].WasPressedThisFrame())
+        {
+            Debug.Log("!!Super Jump!!");
+        }
+
 
         float speed = 5f;
         rb.AddForce(new Vector3(inputMovement.x, 0, inputMovement.y) * speed, ForceMode.Force);
