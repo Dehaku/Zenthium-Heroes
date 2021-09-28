@@ -2346,7 +2346,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.97733, y: 1}
+    m_SensorSize: {x: 3.4372294, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6551,7 +6551,19 @@ MonoBehaviour:
     m_ActionId: cfd1c86c-9df9-4a3f-93d3-d06ba68fce54
     m_ActionName: Pause/PauseGame[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 861604079}
+        m_TargetAssemblyTypeName: PlayerAimController, Assembly-CSharp
+        m_MethodName: Aim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 03dc7e62-1515-4f70-9bc6-233333584cef
     m_ActionName: Ground/New action
   - m_PersistentCalls:

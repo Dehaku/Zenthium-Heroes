@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Aim",
+                    "type": "Button",
+                    "id": "03dc7e62-1515-4f70-9bc6-233333584cef",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "PowerModify",
                     "type": "Button",
                     "id": "d23658bf-270d-4208-9be8-dba8c4691142",
@@ -42,18 +51,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "New action",
+                    "name": "SuperJump",
                     "type": "Button",
-                    "id": "03dc7e62-1515-4f70-9bc6-233333584cef",
+                    "id": "a35fd537-cfe2-4859-998e-d3fdb42930f7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SuperJump",
+                    "name": "CameraDistanceZoom",
                     "type": "Button",
-                    "id": "a35fd537-cfe2-4859-998e-d3fdb42930f7",
+                    "id": "e81557fa-b740-40c6-a678-883abb630983",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -194,50 +203,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Two Modifiers",
-                    "id": "a248363e-e9e9-471d-b1a6-c40b2096293e",
-                    "path": "TwoModifiers",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier1",
-                    "id": "fdd09051-0a4f-44b2-9bc9-f640ca8341c2",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "modifier2",
-                    "id": "251254d7-dea6-4333-9bac-15ea989f243f",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "4efc491b-4eff-46ef-92c9-f64f14c88755",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "One Modifier",
                     "id": "ca2e9ffd-d986-4688-a474-2732693fc2c6",
                     "path": "OneModifier",
@@ -269,6 +234,50 @@
                     "action": "SuperJump",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "8cc5a96e-f09d-4c6b-af72-9cdfa8d732bd",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c846abbe-f667-4b1a-8415-f351f9957e0c",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "75f1b35c-4d3c-4d37-aca4-5f9b558c7d8b",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "CameraDistanceZoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e853d62c-e7d7-4f00-b56b-8a6e39541eb4",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "CameraDistanceZoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

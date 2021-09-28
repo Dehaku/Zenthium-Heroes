@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class PlayerAimController : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class PlayerAimController : MonoBehaviour
     public float camMainFOV = 40;
     public float camShoulderFOV = 20;
 
+    bool isAiming = false;
+
     Cinemachine3rdPersonFollow aim;
     CinemachineVirtualCamera aimSettings;
 
@@ -56,46 +59,53 @@ public class PlayerAimController : MonoBehaviour
     {
         aimReticle.SetActive(false);
         aimReticle2.SetActive(false);
-        aim.CameraDistance = Mathf.Lerp(aim.CameraDistance, camMainDistance, Time.deltaTime * 4);
-        aim.ShoulderOffset = Vector3.Lerp(aim.ShoulderOffset, camMainOffset, Time.deltaTime * 4);
-        aimSettings.m_Lens.FieldOfView = Mathf.Lerp(aimSettings.m_Lens.FieldOfView, camMainFOV, Time.deltaTime * 4);
+        //aim.CameraDistance = Mathf.Lerp(aim.CameraDistance, camMainDistance, Time.deltaTime * 4);
+        //aim.ShoulderOffset = Vector3.Lerp(aim.ShoulderOffset, camMainOffset, Time.deltaTime * 4);
+        //aimSettings.m_Lens.FieldOfView = Mathf.Lerp(aimSettings.m_Lens.FieldOfView, camMainFOV, Time.deltaTime * 4);
+
+        DOTween.To(() => aim.CameraDistance, x => aim.CameraDistance = x, camMainDistance, 0.25f);
+        DOTween.To(() => aim.ShoulderOffset, x => aim.ShoulderOffset = x, camMainOffset, 0.25f);
+        DOTween.To(() => aimSettings.m_Lens.FieldOfView, x => aimSettings.m_Lens.FieldOfView = x, camMainFOV, 0.25f);
 
         xAxis.m_MaxSpeed = 500;
         yAxis.m_MaxSpeed = 300;
 
-        var mouseScroll = Input.GetAxis("Mouse ScrollWheel");
-        if (mouseScroll < 0)
-            camMainDistance += 3;
-        if (mouseScroll > 0)
-            camMainDistance -= 3;
+        
 
-        camMainDistance = Mathf.Clamp(camMainDistance, camShoulderDistance, camMainMaxZoom);
+        
 
         sensitivity = defaultSensitivity;
         stickSensitivity = defaultStickSensitivity;
+        isAiming = false;
     }
 
     void ShoulderCam()
     {
         aimReticle.SetActive(true);
         aimReticle2.SetActive(true);
-        aim.CameraDistance = Mathf.Lerp(aim.CameraDistance, camShoulderDistance, Time.deltaTime * 4);
-        aim.ShoulderOffset = Vector3.Lerp(aim.ShoulderOffset, camShoulderOffset, Time.deltaTime * 4);
-        aimSettings.m_Lens.FieldOfView = Mathf.Lerp(aimSettings.m_Lens.FieldOfView, camShoulderFOV, Time.deltaTime * 4);
+        // aim.CameraDistance = Mathf.Lerp(aim.CameraDistance, camShoulderDistance, Time.deltaTime * 4);
+        // aim.ShoulderOffset = Vector3.Lerp(aim.ShoulderOffset, camShoulderOffset, Time.deltaTime * 4);
+        // aimSettings.m_Lens.FieldOfView = Mathf.Lerp(aimSettings.m_Lens.FieldOfView, camShoulderFOV, Time.deltaTime * 4);
+
+        DOTween.To(() => aim.CameraDistance, x => aim.CameraDistance = x, camShoulderDistance, 0.25f);
+        DOTween.To(() => aim.ShoulderOffset, x => aim.ShoulderOffset = x, camShoulderOffset, 0.25f);
+        DOTween.To(() => aimSettings.m_Lens.FieldOfView, x => aimSettings.m_Lens.FieldOfView = x, camShoulderFOV, 0.25f);
+
+        //= Mathf.Lerp(aim.CameraDistance, camShoulderDistance, Time.deltaTime * 4);
+        //aim.ShoulderOffset = Vector3.Lerp(aim.ShoulderOffset, camShoulderOffset, Time.deltaTime * 4);
+        //aimSettings.m_Lens.FieldOfView = Mathf.Lerp(aimSettings.m_Lens.FieldOfView, camShoulderFOV, Time.deltaTime * 4);
+
 
         xAxis.m_MaxSpeed = 100;
         yAxis.m_MaxSpeed = 100;
 
-        var mouseScroll = Input.GetAxis("Mouse ScrollWheel");
-        if (mouseScroll < 0)
-            camShoulderFOV += 3;
-        if (mouseScroll > 0)
-            camShoulderFOV -= 3;
+        
 
-        camShoulderFOV = Mathf.Clamp(camShoulderFOV, 10, camMainFOV);
+        
 
         sensitivity = defaultZoomedSensitivity;
         stickSensitivity = defaultStickZoomedSensitivity;
+        isAiming = true;
     }
 
 
@@ -124,6 +134,56 @@ public class PlayerAimController : MonoBehaviour
         aimInput.y = Mathf.Clamp(aimInput.y, -88, 88);
     }
 
+    public void Aim(InputAction.CallbackContext context)
+    {
+        if(context.action.WasPressedThisFrame())
+        {
+            ShoulderCam();
+            thirdPersonController.SetRotateOnMove(false);
+        }
+        else if (context.action.WasReleasedThisFrame())
+        {
+            MainCam();
+            thirdPersonController.SetRotateOnMove(true);
+        }
+    }
+
+    void CycleCameraDistance()
+    {
+        var mouseScroll = Input.GetAxis("Mouse ScrollWheel");
+        if (mouseScroll < 0)
+            camShoulderFOV += 3;
+        if (mouseScroll > 0)
+            camShoulderFOV -= 3;
+        camShoulderFOV = Mathf.Clamp(camShoulderFOV, 10, camMainFOV);
+    }
+
+    void CycleCameraZoom()
+    {
+        var mouseScroll = Input.GetAxis("Mouse ScrollWheel");
+        if (mouseScroll < 0)
+            camMainDistance += 3;
+        if (mouseScroll > 0)
+            camMainDistance -= 3;
+
+        camMainDistance = Mathf.Clamp(camMainDistance, camShoulderDistance, camMainMaxZoom);
+    }
+
+    int distanceCycle = 0;
+
+    void CycleCameraDistanceAndZoom()
+    {
+        
+        if(isAiming)
+        {
+            CycleCameraDistance();
+        }
+        else
+        {
+            CycleCameraZoom();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -145,9 +205,13 @@ public class PlayerAimController : MonoBehaviour
 
         AimReticleAdjust();
 
-        if (Input.GetMouseButton(1))
+        
+
+        
+        
+        if (isAiming)
         {
-            thirdPersonController.SetRotateOnMove(false);
+            
 
             Ray camRay = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
             if (!Physics.Raycast(camRay, out RaycastHit camHit, Mathf.Infinity)) { }
@@ -156,21 +220,14 @@ public class PlayerAimController : MonoBehaviour
             worldAimTarget.y = controller.transform.position.y;
             Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
 
-            transform.forward = aimDirection; // Vector3.Lerp(controller.transform.forward, aimDirection, Time.deltaTime * 20f);
-            
-            //var rotation = Quaternion.LookRotation(controller.transform.position + Camera.main.transform.forward);
-            //controller.transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
-        }
-        else if (Input.GetMouseButtonUp(1))
-        {// Fix our camera when we're not over the shouldering.
-            thirdPersonController.SetRotateOnMove(true);
-            //controller.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            transform.forward = aimDirection;
         }
 
-        if (Input.GetMouseButton(1))
-            ShoulderCam();
-        else
-            MainCam();
+        CycleCameraDistanceAndZoom();
+        //if (Input.GetMouseButton(1))
+        //    ShoulderCam();
+        //else
+        //    MainCam();
         
     }
 
