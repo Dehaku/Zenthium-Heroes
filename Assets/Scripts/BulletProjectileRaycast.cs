@@ -67,7 +67,7 @@ public class BulletProjectileRaycast : MonoBehaviour
 
 
         //StartCoroutine(WaitToDelete(0.02f));
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     private void FixedUpdate()

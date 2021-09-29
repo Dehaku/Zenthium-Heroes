@@ -24613,8 +24613,8 @@ GameObject:
   - component: {fileID: 4610164283517850484}
   - component: {fileID: 4610164283517850475}
   - component: {fileID: 7180515615465898843}
-  - component: {fileID: 7180515615465898842}
   - component: {fileID: 2301615222608333561}
+  - component: {fileID: 4610164283517850483}
   m_Layer: 14
   m_Name: Sidekick
   m_TagString: Untagged
@@ -24622,6 +24622,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4610164283517850483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610164283517850482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2967dc601acb54641bb1f75aa6a125ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRagdolled: 0
 --- !u!114 &4610164283517850484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35425,7 +35438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ragdoll: {fileID: 7180515615465898842}
+  ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 7473423439752617252, guid: 9e1880c170c927c42a3b993d237c30eb,
     type: 3}
 --- !u!1 &6672946856116690238
@@ -35699,7 +35712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ragdoll: {fileID: 7180515615465898842}
+  ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 7473423439752617252, guid: 9e1880c170c927c42a3b993d237c30eb,
     type: 3}
 --- !u!1 &6672946856116690270
@@ -35731,7 +35744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ragdoll: {fileID: 7180515615465898842}
+  ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 7473423439752617252, guid: 9e1880c170c927c42a3b993d237c30eb,
     type: 3}
 --- !u!1 &6696680605356677589
@@ -36988,26 +37001,6 @@ CapsuleCollider:
   m_Height: 0.46
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.25}
---- !u!114 &7180515615465898842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4610164283517850482}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95bb8b9c1216693498c0430f265530bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCollider: {fileID: 0}
-  ThisGuysRig: {fileID: 7180515616008411451}
-  ThisGuysAnimator: {fileID: 0}
-  ThisGuysRigid: {fileID: 4610164283517850480}
-  FlickRagdollModeOn: 0
-  FlickRagdollModeOff: 0
-  ragdollCenterFemale: {fileID: 6672946856116690242}
-  ragdollCenterMale: {fileID: 4954710791973105749}
 --- !u!114 &7180515615465898843
 MonoBehaviour:
   m_ObjectHideFlags: 0
