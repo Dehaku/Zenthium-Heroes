@@ -15,9 +15,12 @@ public class CreatureHit : ShootableObject
 
     public override void OnHit(RaycastHit hit)
     {
-        Debug.Log("Creature hit on " + gameObject.name + ", " + hit.collider.name);
+        Debug.Log(transform.root.name + " hit on " + gameObject.name + ", " + hit.collider.name);
+        
+        
         // GameObject particles = Instantiate(particlesPrefab, hit.point + (hit.normal * 0.05f), Quaternion.LookRotation(hit.normal), transform.root.parent);
 
+        //Sticking the effect to the limb instead of worldspace
         GameObject particles = Instantiate(particlesPrefab, hit.point + (hit.normal * 0.05f), Quaternion.LookRotation(hit.normal), transform);
 
         //ParticleSystem particleSystem = particles.GetComponent<ParticleSystem>();

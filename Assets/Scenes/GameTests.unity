@@ -8696,8 +8696,8 @@ MonoBehaviour:
   spawnPos: {fileID: 524669567}
   aimReticle: {fileID: 1886168351}
   vfx:
-  - {fileID: 98131139715565700, guid: dd8c79bee25874044a91b01a8ed46559, type: 3}
   - {fileID: 98131139715565700, guid: 54669149c38e2934aa1e02b34f48992f, type: 3}
+  - {fileID: 98131139715565700, guid: dd8c79bee25874044a91b01a8ed46559, type: 3}
   playerCamera: {fileID: 0}
   recoil: {fileID: 0}
   bulletSpeed: 250
@@ -19554,6 +19554,12 @@ Transform:
   m_Father: {fileID: 347992233}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1836566715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3406603697428327637, guid: 30622eb4ec94db74b8d3709bfa97790a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1389138035}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1851796518
 GameObject:
   m_ObjectHideFlags: 0
@@ -21790,6 +21796,7 @@ GameObject:
   - component: {fileID: 7846889372608160368}
   - component: {fileID: 558275549076056078}
   - component: {fileID: 2249902555120313268}
+  - component: {fileID: 445824978175766724}
   m_Layer: 14
   m_Name: Horn (1)
   m_TagString: Untagged
@@ -21797,6 +21804,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &445824978175766724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445824978175766723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!4 &482326326866311070
 Transform:
   m_ObjectHideFlags: 0
@@ -23542,6 +23563,7 @@ GameObject:
   - component: {fileID: 2007240891992105945}
   - component: {fileID: 6752793162726503752}
   - component: {fileID: 5640139533064989681}
+  - component: {fileID: 2703442422324254678}
   m_Layer: 14
   m_Name: Horn (5)
   m_TagString: Untagged
@@ -23549,6 +23571,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2703442422324254678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2703442422324254677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &2756633696282801770
 GameObject:
   m_ObjectHideFlags: 0
@@ -34981,6 +35017,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519202}
+  - component: {fileID: 6672946856116690179}
   m_Layer: 14
   m_Name: LowManSpine2
   m_TagString: Untagged
@@ -34988,6 +35025,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690180
 GameObject:
   m_ObjectHideFlags: 0
@@ -35051,6 +35102,7 @@ GameObject:
   - component: {fileID: 7180515615414804436}
   - component: {fileID: 7180515615414804443}
   - component: {fileID: 7180515615414804437}
+  - component: {fileID: 6672946856116690193}
   m_Layer: 14
   m_Name: LowManRightLeg
   m_TagString: Untagged
@@ -35058,6 +35110,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690194
 GameObject:
   m_ObjectHideFlags: 0
@@ -35067,6 +35133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519218}
+  - component: {fileID: 6672946856116690195}
   m_Layer: 14
   m_Name: LowManRightHandThumb1_end
   m_TagString: Untagged
@@ -35074,6 +35141,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690196
 GameObject:
   m_ObjectHideFlags: 0
@@ -35083,6 +35164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519220}
+  - component: {fileID: 6672946856116690197}
   m_Layer: 14
   m_Name: LowManRightToeBase
   m_TagString: Untagged
@@ -35090,6 +35172,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690198
 GameObject:
   m_ObjectHideFlags: 0
@@ -35099,6 +35195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519222}
+  - component: {fileID: 6672946856116690199}
   m_Layer: 14
   m_Name: LowManRightShoulder
   m_TagString: Untagged
@@ -35106,6 +35203,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690200
 GameObject:
   m_ObjectHideFlags: 0
@@ -35118,6 +35229,7 @@ GameObject:
   - component: {fileID: 7180515617098175278}
   - component: {fileID: 7180515617098175276}
   - component: {fileID: 7180515617098175277}
+  - component: {fileID: 6672946856116690201}
   m_Layer: 14
   m_Name: LowManRightUpLeg
   m_TagString: Untagged
@@ -35125,6 +35237,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690202
 GameObject:
   m_ObjectHideFlags: 0
@@ -35134,6 +35260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519226}
+  - component: {fileID: 6672946856116690203}
   m_Layer: 14
   m_Name: LowManRightToeBase_end
   m_TagString: Untagged
@@ -35141,6 +35268,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690204
 GameObject:
   m_ObjectHideFlags: 0
@@ -35153,6 +35294,7 @@ GameObject:
   - component: {fileID: 7180515615679398473}
   - component: {fileID: 7180515615679398479}
   - component: {fileID: 7180515615679398472}
+  - component: {fileID: 6672946856116690205}
   m_Layer: 14
   m_Name: LowManSpine1
   m_TagString: Untagged
@@ -35160,6 +35302,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690206
 GameObject:
   m_ObjectHideFlags: 0
@@ -35169,6 +35325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519230}
+  - component: {fileID: 6672946856116690207}
   m_Layer: 14
   m_Name: LowManSpine
   m_TagString: Untagged
@@ -35176,6 +35333,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690208
 GameObject:
   m_ObjectHideFlags: 0
@@ -35185,6 +35356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519232}
+  - component: {fileID: 6672946856116690209}
   m_Layer: 14
   m_Name: LowManRightFoot
   m_TagString: Untagged
@@ -35192,6 +35364,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690210
 GameObject:
   m_ObjectHideFlags: 0
@@ -35204,6 +35390,7 @@ GameObject:
   - component: {fileID: 7180515615627668835}
   - component: {fileID: 7180515615627668833}
   - component: {fileID: 7180515615627668834}
+  - component: {fileID: 6672946856116690211}
   m_Layer: 14
   m_Name: LowManRightArm
   m_TagString: Untagged
@@ -35211,6 +35398,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690212
 GameObject:
   m_ObjectHideFlags: 0
@@ -35220,6 +35421,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519236}
+  - component: {fileID: 6672946856116690213}
   m_Layer: 14
   m_Name: LowManRightHand
   m_TagString: Untagged
@@ -35227,6 +35429,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690214
 GameObject:
   m_ObjectHideFlags: 0
@@ -35239,6 +35455,7 @@ GameObject:
   - component: {fileID: 7180515616035463162}
   - component: {fileID: 7180515616035463161}
   - component: {fileID: 7180515616035463163}
+  - component: {fileID: 6672946856116690215}
   m_Layer: 14
   m_Name: LowManRightForeArm
   m_TagString: Untagged
@@ -35246,6 +35463,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690216
 GameObject:
   m_ObjectHideFlags: 0
@@ -35255,6 +35486,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519240}
+  - component: {fileID: 6672946856116690217}
   m_Layer: 14
   m_Name: LowManRightHandMiddle2
   m_TagString: Untagged
@@ -35262,6 +35494,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690218
 GameObject:
   m_ObjectHideFlags: 0
@@ -35271,6 +35517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519242}
+  - component: {fileID: 6672946856116690219}
   m_Layer: 14
   m_Name: LowManRightHandMiddle1
   m_TagString: Untagged
@@ -35278,6 +35525,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690220
 GameObject:
   m_ObjectHideFlags: 0
@@ -35287,6 +35548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519244}
+  - component: {fileID: 6672946856116690221}
   m_Layer: 14
   m_Name: LowManRightHandThumb1
   m_TagString: Untagged
@@ -35294,6 +35556,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690222
 GameObject:
   m_ObjectHideFlags: 0
@@ -35303,6 +35579,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519246}
+  - component: {fileID: 6672946856116690223}
   m_Layer: 14
   m_Name: LowManRightHandMiddle2_end
   m_TagString: Untagged
@@ -35310,6 +35587,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690224
 GameObject:
   m_ObjectHideFlags: 0
@@ -35319,6 +35610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519248}
+  - component: {fileID: 6672946856116690225}
   m_Layer: 14
   m_Name: LowManLeftHandThumb1_end
   m_TagString: Untagged
@@ -35326,6 +35618,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690226
 GameObject:
   m_ObjectHideFlags: 0
@@ -35335,6 +35641,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519250}
+  - component: {fileID: 6672946856116690227}
   m_Layer: 14
   m_Name: LowManLeftHandThumb1
   m_TagString: Untagged
@@ -35342,6 +35649,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690228
 GameObject:
   m_ObjectHideFlags: 0
@@ -35351,6 +35672,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519252}
+  - component: {fileID: 6672946856116690229}
   m_Layer: 14
   m_Name: LowManLeftShoulder
   m_TagString: Untagged
@@ -35358,6 +35680,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690230
 GameObject:
   m_ObjectHideFlags: 0
@@ -35370,6 +35706,7 @@ GameObject:
   - component: {fileID: 7180515616119975108}
   - component: {fileID: 7180515616119975115}
   - component: {fileID: 7180515616119975109}
+  - component: {fileID: 6672946856116690231}
   m_Layer: 14
   m_Name: LowManLeftLeg
   m_TagString: Untagged
@@ -35377,6 +35714,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690232
 GameObject:
   m_ObjectHideFlags: 0
@@ -35386,6 +35737,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519256}
+  - component: {fileID: 6672946856116690233}
   m_Layer: 14
   m_Name: LowManLeftToeBase_end
   m_TagString: Untagged
@@ -35393,6 +35745,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690234
 GameObject:
   m_ObjectHideFlags: 0
@@ -35402,6 +35768,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519258}
+  - component: {fileID: 6672946856116690235}
   m_Layer: 14
   m_Name: LowManLeftToeBase
   m_TagString: Untagged
@@ -35409,6 +35776,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690236
 GameObject:
   m_ObjectHideFlags: 0
@@ -35419,6 +35800,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6672946856116519260}
   - component: {fileID: 6672946856116690237}
+  - component: {fileID: 6672946856116690239}
   m_Layer: 14
   m_Name: LowManNeck
   m_TagString: Untagged
@@ -35439,8 +35821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
-  particlesPrefab: {fileID: 7473423439752617252, guid: 9e1880c170c927c42a3b993d237c30eb,
-    type: 3}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690238
 GameObject:
   m_ObjectHideFlags: 0
@@ -35453,6 +35834,7 @@ GameObject:
   - component: {fileID: 7180515616982940681}
   - component: {fileID: 7180515616982940687}
   - component: {fileID: 7180515616982940680}
+  - component: {fileID: 6672946856116690257}
   m_Layer: 14
   m_Name: LowManLeftUpLeg
   m_TagString: Untagged
@@ -35460,6 +35842,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 0}
 --- !u!1 &6672946856116690240
 GameObject:
   m_ObjectHideFlags: 0
@@ -35472,6 +35868,7 @@ GameObject:
   - component: {fileID: 7180515617112045698}
   - component: {fileID: 7180515617112045696}
   - component: {fileID: 7180515617112045697}
+  - component: {fileID: 6672946856116690241}
   m_Layer: 14
   m_Name: LowManLeftArm
   m_TagString: Untagged
@@ -35479,6 +35876,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690242
 GameObject:
   m_ObjectHideFlags: 0
@@ -35490,6 +35901,7 @@ GameObject:
   - component: {fileID: 6672946856116519266}
   - component: {fileID: 7180515615909369240}
   - component: {fileID: 7180515615909369247}
+  - component: {fileID: 6672946856116690243}
   m_Layer: 14
   m_Name: LowManHips
   m_TagString: Untagged
@@ -35497,6 +35909,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690244
 GameObject:
   m_ObjectHideFlags: 0
@@ -35509,6 +35935,7 @@ GameObject:
   - component: {fileID: 7180515616290840424}
   - component: {fileID: 7180515616290840431}
   - component: {fileID: 7180515616290840425}
+  - component: {fileID: 6672946856116690245}
   m_Layer: 14
   m_Name: LowManLeftForeArm
   m_TagString: Untagged
@@ -35516,6 +35943,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690246
 GameObject:
   m_ObjectHideFlags: 0
@@ -35525,6 +35966,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519270}
+  - component: {fileID: 6672946856116690247}
   m_Layer: 14
   m_Name: LowManLeftFoot
   m_TagString: Untagged
@@ -35532,6 +35974,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690248
 GameObject:
   m_ObjectHideFlags: 0
@@ -35541,6 +35997,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519272}
+  - component: {fileID: 6672946856116690249}
   m_Layer: 14
   m_Name: LowManLeftHandMiddle1
   m_TagString: Untagged
@@ -35548,6 +36005,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690250
 GameObject:
   m_ObjectHideFlags: 0
@@ -35557,6 +36028,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519274}
+  - component: {fileID: 6672946856116690251}
   m_Layer: 14
   m_Name: LowManLeftHand
   m_TagString: Untagged
@@ -35564,6 +36036,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690252
 GameObject:
   m_ObjectHideFlags: 0
@@ -35573,6 +36059,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519276}
+  - component: {fileID: 6672946856116690253}
   m_Layer: 14
   m_Name: LowManLeftHandMiddle2_end
   m_TagString: Untagged
@@ -35580,6 +36067,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690254
 GameObject:
   m_ObjectHideFlags: 0
@@ -35589,6 +36090,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672946856116519278}
+  - component: {fileID: 6672946856116690255}
   m_Layer: 14
   m_Name: LowManLeftHandMiddle2
   m_TagString: Untagged
@@ -35596,6 +36098,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690256
 GameObject:
   m_ObjectHideFlags: 0
@@ -35612,6 +36128,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6672946856116690257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690260
 GameObject:
   m_ObjectHideFlags: 0
@@ -35693,6 +36223,7 @@ GameObject:
   - component: {fileID: 7180515615523436665}
   - component: {fileID: 7180515615523436667}
   - component: {fileID: 6672946856116690269}
+  - component: {fileID: 6672946856116690272}
   m_Layer: 14
   m_Name: LowManHead_end
   m_TagString: Untagged
@@ -35713,8 +36244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
-  particlesPrefab: {fileID: 7473423439752617252, guid: 9e1880c170c927c42a3b993d237c30eb,
-    type: 3}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &6672946856116690270
 GameObject:
   m_ObjectHideFlags: 0
@@ -35725,6 +36255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6672946856116519294}
   - component: {fileID: 6672946856116690271}
+  - component: {fileID: 6672946856116690273}
   m_Layer: 14
   m_Name: LowManHead
   m_TagString: Untagged
@@ -35745,8 +36276,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
-  particlesPrefab: {fileID: 7473423439752617252, guid: 9e1880c170c927c42a3b993d237c30eb,
-    type: 3}
+  particlesPrefab: {fileID: 1836566715}
+--- !u!114 &6672946856116690272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 0}
+--- !u!114 &6672946856116690273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672946856116690270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 0}
 --- !u!1 &6696680605356677589
 GameObject:
   m_ObjectHideFlags: 0
@@ -38049,6 +38607,7 @@ GameObject:
   - component: {fileID: 1507146166339639942}
   - component: {fileID: 2664540093986575124}
   - component: {fileID: 7545574822654339293}
+  - component: {fileID: 7399961252644611045}
   m_Layer: 14
   m_Name: Horn
   m_TagString: Untagged
@@ -38056,6 +38615,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7399961252644611045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399961252644611044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!4 &7420419003035039956
 Transform:
   m_ObjectHideFlags: 0
@@ -38305,6 +38878,7 @@ GameObject:
   - component: {fileID: 7117945850064902074}
   - component: {fileID: 4891976210633287114}
   - component: {fileID: 8879843936823882327}
+  - component: {fileID: 7848966389993389831}
   m_Layer: 14
   m_Name: Horn (4)
   m_TagString: Untagged
@@ -38312,6 +38886,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7848966389993389831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848966389993389830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 1836566715}
 --- !u!1 &7906425878193760910
 GameObject:
   m_ObjectHideFlags: 0

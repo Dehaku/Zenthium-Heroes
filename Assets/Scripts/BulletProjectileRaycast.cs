@@ -72,6 +72,7 @@ public class BulletProjectileRaycast : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         if (!isInitialized) return;
         if (startTime < 0) startTime = Time.time;
 
@@ -82,6 +83,7 @@ public class BulletProjectileRaycast : MonoBehaviour
         float nextTime = currentTime + Time.fixedDeltaTime;
 
         Vector3 currentPoint = FindPointOnParabola(currentTime);
+        
         Vector3 nextPoint = FindPointOnParabola(nextTime);
 
         if (previousTime > 0)
@@ -104,7 +106,8 @@ public class BulletProjectileRaycast : MonoBehaviour
     private void Update()
     {
         if (!isInitialized) return;
-        
+        if (startTime < 0) return;
+
         float currentTime = Time.time - startTime;
         Vector3 currentPoint = FindPointOnParabola(currentTime);
 
@@ -143,45 +146,6 @@ public class BulletProjectileRaycast : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        /*
-        ContactPoint contact = collision.contacts[0];
-        Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
-        Vector3 pos = contact.point;
-
-        if (hitPrefab != null)
-        {
-            
-            var hitVFX = Instantiate(muzzlePrefab, pos, rot);
-            hitVFX.transform.forward = gameObject.transform.forward;
-            var psHit = hitVFX.GetComponent<ParticleSystem>();
-            if (psHit != null)
-                Destroy(hitVFX, psHit.main.duration);
-            else
-            {
-                var psChild = hitVFX.transform.GetChild(0).GetComponent<ParticleSystem>();
-                Destroy(hitVFX, psChild.main.duration);
-            }
-        }
-
-        var myRigid = GetComponent<Rigidbody>();
-
-        var hit = collision.gameObject;
-
-        Rigidbody[] rigidbodies;
-        rigidbodies = hit.GetComponentsInChildren<Rigidbody>();
-        foreach (var rigid in rigidbodies)
-        {
-            rigid.velocity += transform.forward * (knockbackForce / rigid.mass);   //new Vector3(0, speed, 0);
-        }
-
-        StartCoroutine(WaitToDelete(0.02f));
-        //speed = 0;
-        //transform.SetParent(collision.gameObject.transform);
-
-        */
-    }
 
     
 }

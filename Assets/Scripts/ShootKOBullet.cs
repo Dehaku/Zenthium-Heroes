@@ -59,8 +59,7 @@ public class ShootKOBullet : MonoBehaviour
             gunSound.Play();
             GameObject pew = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
             
-            GameObject vfx = spawnVFX();
-            vfx.transform.SetParent(pew.transform);
+            
 
             Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
             
@@ -74,16 +73,19 @@ public class ShootKOBullet : MonoBehaviour
                 bulletScript.Initialize(pew.transform, bulletSpeed, bulletGravity);
             }
             Destroy(pew, bulletLifeTime);
-            
+
+            GameObject vfx = spawnVFX(pew.transform);
+            vfx.transform.SetParent(pew.transform);
+
 
             recoil.GenerateRecoil();
         }
     }
 
-    private GameObject spawnVFX()
+    private GameObject spawnVFX(Transform spawnInfo)
     {
         GameObject vfx;
-        vfx = Instantiate(effectToSpawn, spawnPos.position, Quaternion.identity);
+        vfx = Instantiate(effectToSpawn, spawnInfo.position, spawnInfo.rotation);
         return vfx;
 
     }
