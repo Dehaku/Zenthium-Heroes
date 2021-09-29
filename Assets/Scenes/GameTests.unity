@@ -2346,7 +2346,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 3.4372294, y: 1}
+    m_SensorSize: {x: 1.9653466, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -8473,9 +8473,9 @@ MonoBehaviour:
   defaultStickSensitivity: 3
   defaultStickZoomedSensitivity: 1
   xAxis:
-    Value: 0
+    Value: 18.078913
     m_SpeedMode: 0
-    m_MaxSpeed: 300
+    m_MaxSpeed: 500
     m_AccelTime: 0.02
     m_DecelTime: 0.02
     m_InputAxisName: Mouse X
@@ -8491,7 +8491,7 @@ MonoBehaviour:
       m_LegacyHeadingDefinition: 0
       m_LegacyVelocityFilterStrength: 0
   yAxis:
-    Value: 0
+    Value: -56.31433
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.02
@@ -8508,14 +8508,14 @@ MonoBehaviour:
       m_RecenteringTime: 0
       m_LegacyHeadingDefinition: 0
       m_LegacyVelocityFilterStrength: 0
-  aimInput: {x: 0, y: 0}
+  aimInput: {x: -417.04987, y: -0.35001135}
   camMainMaxZoom: 20
-  camMainDistance: 20
-  camShoulderDistance: 4.5
+  camMainDistance: 5
+  camShoulderDistance: 3
   camMainOffset: {x: 0, y: 0, z: 0}
   camShoulderOffset: {x: 0.75, y: 0, z: 0}
   camMainFOV: 40
-  camShoulderFOV: 30
+  camShoulderFOV: 25
   aimLayer:
     serializedVersion: 2
     m_Bits: 25911

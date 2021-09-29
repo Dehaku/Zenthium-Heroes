@@ -53,6 +53,9 @@ public class PlayerAimController : MonoBehaviour
     {
         aimSettings = aimCamera.GetComponent<CinemachineVirtualCamera>();
         aim = aimSettings.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+
+        // Starting with the main cam.
+        MainCam();
     }
 
     void MainCam()
@@ -176,11 +179,11 @@ public class PlayerAimController : MonoBehaviour
         
         if(isAiming)
         {
-            CycleCameraDistance();
+            // CycleCameraDistance();
         }
         else
         {
-            CycleCameraZoom();
+            // CycleCameraZoom();
         }
     }
 
