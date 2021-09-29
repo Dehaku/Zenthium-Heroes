@@ -20,6 +20,12 @@ public class ShootKOBullet : MonoBehaviour
     public PlayerAimController playerCamera;
     public WeaponRecoil recoil;
 
+    [Space]
+    public float bulletSpeed = 50;
+    public float bulletGravity = 1;
+    public float bulletForce = 50;
+    public float bulletLifeTime = 50;
+
     private void Awake()
     {
         playerCamera = GetComponent<PlayerAimController>();
@@ -52,6 +58,7 @@ public class ShootKOBullet : MonoBehaviour
             _fireRateTrack = 0;
             gunSound.Play();
             GameObject pew = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
+            
             GameObject vfx = spawnVFX();
             vfx.transform.SetParent(pew.transform);
 
@@ -60,6 +67,14 @@ public class ShootKOBullet : MonoBehaviour
 
             if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) { pew.transform.forward = Camera.main.transform.forward;  }
             else { pew.transform.LookAt(hit.point); }
+
+            BulletProjectileRaycast bulletScript = pew.GetComponent<BulletProjectileRaycast>();
+            if(bulletScript)
+            {
+                bulletScript.Initialize(pew.transform, bulletSpeed, bulletGravity);
+            }
+            Destroy(pew, bulletLifeTime);
+            
 
             recoil.GenerateRecoil();
         }

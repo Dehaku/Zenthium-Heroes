@@ -53,7 +53,7 @@ public class RagdollOnOff : MonoBehaviour
         limbsRigidbodies = ThisGuysRig.GetComponentsInChildren<Rigidbody>();
     }
 
-    void RagdollModeOn()
+    public void RagdollModeOn()
     {
         ThisGuysAnimator.enabled = false;
 
@@ -74,7 +74,7 @@ public class RagdollOnOff : MonoBehaviour
             enemy.Unconscious();
     }
 
-    void RagdollModeOff(bool FixPosition = true)
+    public void RagdollModeOff(bool FixPosition = true)
     {
         if(FixPosition)
         {
