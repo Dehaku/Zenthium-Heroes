@@ -9,13 +9,16 @@ public class CreatureHit : ShootableObject
 
     public override void OnHit(RaycastHit hit)
     {
+        Debug.Log("Creature hit on " + gameObject.name + ", " + hit.collider.name);
         GameObject particles = Instantiate(particlesPrefab, hit.point + (hit.normal * 0.05f), Quaternion.LookRotation(hit.normal), transform.root.parent);
         //ParticleSystem particleSystem = particles.GetComponent<ParticleSystem>();
         //if(particleSystem)
         //{
         //    particleSystem.main.startColor = Color.red;
         //}
-        ragdoll.RagdollModeOn();
+        
+        
+        //ragdoll.RagdollModeOn();
         Destroy(particles, 2f);
     }
 }
