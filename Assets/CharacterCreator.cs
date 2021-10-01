@@ -4,6 +4,28 @@ using UnityEngine;
 
 public class CharacterCreator : MonoBehaviour
 {
+    [Range(0, 100)]
+    public float Slimness = 0;
+
+    public bool prevHair = false;
+    public bool nextHair = false;
+    public int currentHair = 0;
+
+    public bool prevHead = false;
+    public bool nextHead = false;
+    public int currentHead = 0;
+
+    bool changeTorso = false;
+    bool thickTorso = true;
+
+    public bool leftFootBoot = false;
+    public bool rightFootBoot = false;
+
+    public bool changeLeftFoot = false;
+    public bool changeRightFoot = false;
+
+
+    [Space]
     public GameObject[] hairs;
     public GameObject[] heads;
     [Space]
@@ -16,21 +38,22 @@ public class CharacterCreator : MonoBehaviour
     public GameObject TorsoThickCollar;
     public GameObject TorsoThickArmLeft;
     public GameObject TorsoThickArmRight;
+    [Space]
+    public GameObject Legs;
+    public GameObject ShinUpperLeft;
+    public GameObject ShinUpperRight;
+    [Space]
+    public GameObject BootLeft;
+    public GameObject ShoeLeft;
+    public GameObject ShinLowerLeft;
+    [Space]
+    public GameObject BootRight;
+    public GameObject ShoeRight;
+    public GameObject ShinLowerRight;
 
-    [Range(0,100)]
-    public float Slimness = 0;
 
-    public bool prevHair = false;
-    public bool nextHair = false;
-    public int currentHair = 0;
 
-    public bool prevHead = false;
-    public bool nextHead = false;
-    public int currentHead = 0;
 
-    public bool changeTorso = false;
-    public bool thickTorso = true;
-    
 
     // Start is called before the first frame update
     void Start()
@@ -39,12 +62,50 @@ public class CharacterCreator : MonoBehaviour
         ChangeHead(1);
 
         ChangeTorso();
+
+        ChangeLeftFoot();
+        ChangeRightFoot();
+    }
+
+    void ChangeLeftFoot()
+    {
+        changeLeftFoot = false;
+
+        if(leftFootBoot)
+        {
+            BootLeft.SetActive(false);
+            ShoeLeft.SetActive(true);
+            ShinLowerLeft.SetActive(true);
+        }
+        else
+        {
+            BootLeft.SetActive(true);
+            ShoeLeft.SetActive(false);
+            ShinLowerLeft.SetActive(false);
+        }
+    }
+
+    void ChangeRightFoot()
+    {
+        changeRightFoot = false;
+
+        if (rightFootBoot)
+        {
+            BootRight.SetActive(false);
+            ShoeRight.SetActive(true);
+            ShinLowerRight.SetActive(true);
+        }
+        else
+        {
+            BootRight.SetActive(true);
+            ShoeRight.SetActive(false);
+            ShinLowerRight.SetActive(false);
+        }
     }
 
     void ChangeTorso()
     {
-        if (changeTorso)
-            changeTorso = false;
+        changeTorso = false;
 
         TorsoThick.SetActive(false);
         TorsoThickCollar.SetActive(false);
@@ -56,7 +117,7 @@ public class CharacterCreator : MonoBehaviour
         TorsoSlimArmLeft.SetActive(false);
         TorsoSlimArmRight.SetActive(false);
 
-        thickTorso = !thickTorso;
+        
 
         if (thickTorso)
         {
@@ -118,6 +179,8 @@ public class CharacterCreator : MonoBehaviour
 
     void ChangeHead(int direction)
     {
+        thickTorso = !thickTorso;
+
         nextHead = false;
         prevHead = false;
 
@@ -167,7 +230,24 @@ public class CharacterCreator : MonoBehaviour
         }
             
         if (changeTorso)
+        {
+            thickTorso = !thickTorso;
             ChangeTorso();
+        }
+            
+
+        if (changeLeftFoot)
+        {
+            leftFootBoot = !leftFootBoot;
+            ChangeLeftFoot();
+        }
+            
+        if (changeRightFoot)
+        {
+            rightFootBoot = !rightFootBoot;
+            ChangeRightFoot();
+        }
+            
 
     }
 }
