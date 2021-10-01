@@ -2294,7 +2294,6 @@ GameObject:
   - component: {fileID: 243158146}
   - component: {fileID: 243158147}
   - component: {fileID: 243158148}
-  - component: {fileID: 243158149}
   m_Layer: 0
   m_Name: Third Person Camera(Shoulder)
   m_TagString: Untagged
@@ -2411,18 +2410,6 @@ MonoBehaviour:
   PlayerIndex: -1
   XYAxis: {fileID: -1807398070007994235, guid: 9bdaa3a64fcd76e49a04fde13d8611e4, type: 3}
   ZAxis: {fileID: 0}
---- !u!114 &243158149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 243158143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d49b5bb3e3ba7498ad3ff1a6da30dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &246058816
 Transform:
   m_ObjectHideFlags: 0
@@ -3363,7 +3350,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 252268173}
-  - component: {fileID: 252268174}
   m_Layer: 11
   m_Name: Helmet
   m_TagString: Untagged
@@ -3387,22 +3373,6 @@ Transform:
   m_Father: {fileID: 1393185351}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &252268174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 252268172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a30e870f45ce2f14dbee5ea87fbf08e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 4907846221125600962}
-  setPosition: 1
-  setRotation: 1
-  setScale: 1
 --- !u!1 &256183509
 GameObject:
   m_ObjectHideFlags: 0
