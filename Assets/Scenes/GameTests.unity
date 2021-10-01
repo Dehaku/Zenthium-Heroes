@@ -8975,7 +8975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 008a8c249d4cbca409ca71ff4cad2a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slimness: 0
+  chestBulk: 50
   prevHair: 0
   nextHair: 0
   currentHair: 2
@@ -11529,6 +11529,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BlendShapeWeights.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8646506548147929547, guid: 28b8156e5e9b44e498544a962cb26d91,
+        type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8646506548147929547, guid: 28b8156e5e9b44e498544a962cb26d91,
+        type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[1]
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8646506548147929547, guid: 28b8156e5e9b44e498544a962cb26d91,
         type: 3}

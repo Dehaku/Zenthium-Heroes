@@ -5,7 +5,10 @@ using UnityEngine;
 public class CharacterCreator : MonoBehaviour
 {
     [Range(0, 100)]
-    public float Slimness = 0;
+    public float chestBulk = 50;
+    float prevChestBulk = 100;
+    [Range(0, 100)]
+    float Slimness = 0;
 
     public bool prevHair = false;
     public bool nextHair = false;
@@ -13,7 +16,7 @@ public class CharacterCreator : MonoBehaviour
 
     public bool prevHead = false;
     public bool nextHead = false;
-    public int currentHead = 0;
+    public int currentHead = 1;
 
     bool changeTorso = false;
     bool thickTorso = true;
@@ -209,6 +212,42 @@ public class CharacterCreator : MonoBehaviour
             heads[currentHead].GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, Slimness);
     }
 
+    void SetChestBulk(float chestBulk)
+    {
+        if (thickTorso)
+            return;
+        var chestRend = TorsoSlim.GetComponent<SkinnedMeshRenderer>();
+        var cleavageRend = TorsoSlimCleavage.GetComponent<SkinnedMeshRenderer>();
+        
+        if (chestRend == null || cleavageRend == null)
+            return;
+        if (chestRend.sharedMesh.blendShapeCount < 2 || cleavageRend.sharedMesh.blendShapeCount < 2)
+            return;
+
+
+        float chestMax = 0;
+        float chestMin = 0;
+        
+        if(chestBulk > 50)
+        {
+            chestMax = (chestBulk - 50)*2;
+        }
+        if(chestBulk < 50)
+        {
+            chestMin = (-chestBulk + 50) * 2;
+        }
+            
+
+        chestRend.SetBlendShapeWeight(0, chestMax);
+        chestRend.SetBlendShapeWeight(1, chestMin);
+
+        cleavageRend.SetBlendShapeWeight(0, chestMax);
+        cleavageRend.SetBlendShapeWeight(1, chestMin);
+
+        //ChestMax
+        //ChestMin
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -248,6 +287,10 @@ public class CharacterCreator : MonoBehaviour
             ChangeRightFoot();
         }
             
-
+        if(chestBulk != prevChestBulk)
+        {
+            prevChestBulk = chestBulk;
+            SetChestBulk(chestBulk);
+        }
     }
 }
