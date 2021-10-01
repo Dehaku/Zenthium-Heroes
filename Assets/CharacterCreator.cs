@@ -6,6 +6,16 @@ public class CharacterCreator : MonoBehaviour
 {
     public GameObject[] hairs;
     public GameObject[] heads;
+    [Space]
+    public GameObject TorsoSlim;
+    public GameObject TorsoSlimCleavage;
+    public GameObject TorsoSlimArmLeft;
+    public GameObject TorsoSlimArmRight;
+    [Space]
+    public GameObject TorsoThick;
+    public GameObject TorsoThickCollar;
+    public GameObject TorsoThickArmLeft;
+    public GameObject TorsoThickArmRight;
 
     [Range(0,100)]
     public float Slimness = 0;
@@ -18,11 +28,51 @@ public class CharacterCreator : MonoBehaviour
     public bool nextHead = false;
     public int currentHead = 0;
 
+    public bool changeTorso = false;
+    public bool thickTorso = true;
+    
+
     // Start is called before the first frame update
     void Start()
     {
         ChangeHair(1);
         ChangeHead(1);
+
+        ChangeTorso();
+    }
+
+    void ChangeTorso()
+    {
+        if (changeTorso)
+            changeTorso = false;
+
+        TorsoThick.SetActive(false);
+        TorsoThickCollar.SetActive(false);
+        TorsoThickArmLeft.SetActive(false);
+        TorsoThickArmRight.SetActive(false);
+
+        TorsoSlim.SetActive(false);
+        TorsoSlimCleavage.SetActive(false);
+        TorsoSlimArmLeft.SetActive(false);
+        TorsoSlimArmRight.SetActive(false);
+
+        thickTorso = !thickTorso;
+
+        if (thickTorso)
+        {
+            TorsoThick.SetActive(true);
+            TorsoThickCollar.SetActive(true);
+            TorsoThickArmLeft.SetActive(true);
+            TorsoThickArmRight.SetActive(true);
+        }
+        else
+        {
+            TorsoSlim.SetActive(true);
+            TorsoSlimCleavage.SetActive(true);
+            TorsoSlimArmLeft.SetActive(true);
+            TorsoSlimArmRight.SetActive(true);
+        }
+
     }
 
     void ChangeHair(int direction)
@@ -48,7 +98,7 @@ public class CharacterCreator : MonoBehaviour
         hairs[oldHair].SetActive(false);
         hairs[currentHair].SetActive(true);
 
-        // Current hardwire method for handling head types and the bald hair matching method.
+        // Current hardcode method for handling head types and the bald hair matching method.
         // Head needs to be blended instead of seperate models.
         if (heads[currentHead].GetComponent<TagSlim>())
         {
@@ -105,9 +155,19 @@ public class CharacterCreator : MonoBehaviour
         if (nextHair)
             ChangeHair(1);
         if (prevHead)
+        {
             ChangeHead(-1);
+            ChangeTorso();
+        }
+            
         if (nextHead)
+        {
             ChangeHead(1);
+            ChangeTorso();
+        }
+            
+        if (changeTorso)
+            ChangeTorso();
 
     }
 }
