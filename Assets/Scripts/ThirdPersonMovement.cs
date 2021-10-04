@@ -206,26 +206,28 @@ public class ThirdPersonMovement : MonoBehaviour
         var lookPosition = controller.transform.position + Camera.main.transform.forward;
 
         Vector3 flyDirection = new Vector3();
-        if (Input.GetKey(KeyCode.W))
+        var input = playerInput.actions["Movement"].ReadValue<Vector2>();
+
+        controller.transform.LookAt(lookPosition);
+
+        if (input.y > 0)
         {
-            controller.transform.LookAt(lookPosition);
-            flyDirection += controller.transform.forward;
+            
+            flyDirection += controller.transform.forward * input.y;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (input.x > 0)
         {
-            controller.transform.LookAt(lookPosition);
-            flyDirection += controller.transform.right;
+            flyDirection += controller.transform.right * input.x;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (input.y < 0)
         {
-            controller.transform.LookAt(lookPosition);
-            flyDirection += -controller.transform.forward;
+            flyDirection += -controller.transform.forward * -input.y;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (input.x < 0)
         {
-            controller.transform.LookAt(lookPosition);
-            flyDirection += -controller.transform.right;
+            flyDirection += -controller.transform.right * -input.x;
         }
+
         if (playerInput.actions["Jump"].WasPressedThisFrame())
             flyDirection.y += 1;
         if (Input.GetKey(KeyCode.LeftControl))
@@ -245,22 +247,14 @@ public class ThirdPersonMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
-        speedMagnitudePrevious = speedMagnitude;
-        speedMagnitude = controller.velocity.magnitude;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(controller != null)
+        if (controller != null)
         {
             if (controller.isGrounded)
             {
                 timeOffGround = 0;
                 animationController.FlyingAnimation(false);
             }
-                
+
             else
                 timeOffGround += Time.deltaTime;
 
@@ -272,15 +266,15 @@ public class ThirdPersonMovement : MonoBehaviour
         // Sprint
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            
-            if(speed <= GetSprintSpeed())
+
+            if (speed <= GetSprintSpeed())
                 speed = Mathf.Lerp(speed, GetSprintSpeed(), Time.deltaTime);
 
             if (flySpeed <= GetFlySprintSpeed())
                 flySpeed = Mathf.Lerp(flySpeed, GetFlySprintSpeed(), Time.deltaTime);
 
             // Hyperspeed Power: Making sonic boom and turning on particles when we go fast.
-            if(hyperSpeed && (speedMagnitude > defaultSpeed || speedMagnitude > defaultFlySpeed))
+            if (hyperSpeed && (speedMagnitude > defaultSpeed || speedMagnitude > defaultFlySpeed))
             {
                 bool sonicBoomTime = false;
                 if (speed >= GetSprintSpeed() * 0.95)
@@ -295,7 +289,7 @@ public class ThirdPersonMovement : MonoBehaviour
                     sonicBoomTime = true;
                 }
 
-                if(sonicBoomTime && !wentSuperSonic)
+                if (sonicBoomTime && !wentSuperSonic)
                 {
                     wentSuperSonic = true;
                     particleTrails.Play();
@@ -304,7 +298,7 @@ public class ThirdPersonMovement : MonoBehaviour
             }
 
             // Disabling our particles temporarily when we're not going super fast.
-            if(hyperSpeed)
+            if (hyperSpeed)
             {
                 if (isFlying && speedMagnitude <= GetFlySprintSpeed())
                     particleTrails.Stop();
@@ -331,6 +325,17 @@ public class ThirdPersonMovement : MonoBehaviour
             }
             flySpeed = Mathf.Lerp(flySpeed, defaultFlySpeed, Time.deltaTime);
         }
+
+
+        Move();
+        speedMagnitudePrevious = speedMagnitude;
+        speedMagnitude = controller.velocity.magnitude;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
 
         // OriginalMove();
         
