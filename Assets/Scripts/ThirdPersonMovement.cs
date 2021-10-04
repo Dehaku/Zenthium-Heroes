@@ -88,9 +88,6 @@ public class ThirdPersonMovement : MonoBehaviour
 
     void Move()
     {
-        // float horizontal = Input.GetAxisRaw("Horizontal");
-        // float vertical = Input.GetAxisRaw("Vertical");
-
 
         //Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         Vector3 direction = new Vector3(inputMovement.x, 0f, inputMovement.y);
@@ -98,18 +95,13 @@ public class ThirdPersonMovement : MonoBehaviour
         {
             _movement.x = 0;
             _movement.z = 0;
-            //_movement.x = Mathf.Lerp(_movement.x, 0, Time.deltaTime*5);
-            //_movement.z = Mathf.Lerp(_movement.z, 0, Time.deltaTime*5);
         }
 
 
-
         if(isFlying)
-        {
-            
-                
-        }    
-        
+        { // This is needed to prevent movement weirdness when flying
+
+        }
         else if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
@@ -152,31 +144,22 @@ public class ThirdPersonMovement : MonoBehaviour
         if (controller.isGrounded)
         { // Landed
             animationController.isGroundedFunc(true);
+            animationController.JumpingAnimation(false);
             isJumping = false;
             isFlying = false;
             _movement.y = -0.3f;
         }
-        if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
-        { // Jumping
-            _movement.y = jumpSpeed;
-            isJumping = true;
-            animationController.JumpingAnimation(true);
-            animationController.isGroundedFunc(false);
-            //animationController.animator.CrossFade("Jump", 0.05f);
-        }
 
-        if (timeOffGround > 0.1 && Input.GetKeyDown(KeyCode.Space) && !isFlying)
-        { // Time to fly!
-            animationController.FlyingAnimation(true);
-            isFlying = true;
-        }
-        
+        if (controller.isGrounded && playerInput.actions["Jump"].WasPressedThisFrame())
+            CharacterJump();
 
-        if(animationController.FlyingAnimation())
+        if (timeOffGround > 0.1 && playerInput.actions["Jump"].WasPressedThisFrame() && !isFlying)
+            CharacterFly();
+
+
+        if (animationController.FlyingAnimation())
         { // Flying Animation Facing, needs lerping, not sure how currently.
-            //controller.transform.rotation = Quaternion.LookRotation(controller.transform.position, Camera.main.transform.up);
             var lookPosition = controller.transform.position + controller.velocity.normalized;
-
             
             // Make it look smooth as it aims towards velocity.
             if(controller.velocity.magnitude > 1)
@@ -188,12 +171,25 @@ public class ThirdPersonMovement : MonoBehaviour
         }
 
 
-
         if (gravity && !controller.isGrounded && !isFlying)
             _movement.y -= _gravity * Time.deltaTime;
 
         // if(!isFlying)
         controller.Move(_movement * Time.deltaTime);
+    }
+
+    public void CharacterJump()
+    {
+        _movement.y = jumpSpeed;
+        isJumping = true;
+        animationController.JumpingAnimation(true);
+        animationController.isGroundedFunc(false);
+    }
+
+    public void CharacterFly()
+    {
+        animationController.FlyingAnimation(true);
+        isFlying = true;
     }
 
     public void SetRotateOnMove(bool newRotateOnMove)
@@ -205,8 +201,8 @@ public class ThirdPersonMovement : MonoBehaviour
     {
         // Air Drag
         _movement = Vector3.Lerp(_movement, new Vector3(0, 0, 0), Time.deltaTime * airDrag);
-        
 
+        var oldLook = controller.transform.rotation;
         var lookPosition = controller.transform.position + Camera.main.transform.forward;
 
         Vector3 flyDirection = new Vector3();
@@ -230,13 +226,15 @@ public class ThirdPersonMovement : MonoBehaviour
             controller.transform.LookAt(lookPosition);
             flyDirection += -controller.transform.right;
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (playerInput.actions["Jump"].WasPressedThisFrame())
             flyDirection.y += 1;
         if (Input.GetKey(KeyCode.LeftControl))
             flyDirection.y -= 1;
 
         flyDirection = flyDirection.normalized * (flySpeed * Time.deltaTime);
         _movement += flyDirection;
+
+        controller.transform.rotation = oldLook;
     }
 
     public void Movement(InputAction.CallbackContext context)
@@ -247,7 +245,9 @@ public class ThirdPersonMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Movement();
+        Move();
+        speedMagnitudePrevious = speedMagnitude;
+        speedMagnitude = controller.velocity.magnitude;
     }
 
     // Update is called once per frame
@@ -333,9 +333,7 @@ public class ThirdPersonMovement : MonoBehaviour
         }
 
         // OriginalMove();
-        Move();
-        speedMagnitudePrevious = speedMagnitude;
-        speedMagnitude = controller.velocity.magnitude;
+        
 
     }
 }
