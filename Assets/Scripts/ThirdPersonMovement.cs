@@ -230,7 +230,7 @@ public class ThirdPersonMovement : MonoBehaviour
             flyDirection += -controller.transform.right * -input.x;
         }
 
-        if (playerInput.actions["Jump"].WasPressedThisFrame())
+        if (playerInput.actions["Jump"].IsPressed())
             flyDirection.y += 1;
         if (Input.GetKey(KeyCode.LeftControl))
             flyDirection.y -= 1;
@@ -256,8 +256,6 @@ public class ThirdPersonMovement : MonoBehaviour
 
         if (inputMovement.magnitude == 0)
             isSprinting = false;
-
-        Debug.Log(inputMovement.magnitude + ":" + isSprinting);
 
     }
 
@@ -358,10 +356,6 @@ public class ThirdPersonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-        // OriginalMove();
-        
 
     }
 }

@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class PlayerAimController : MonoBehaviour
 {
-    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private PlayerInput playerInput; 
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private CinemachineInputProvider inputProvider;
 
@@ -172,7 +172,6 @@ public class PlayerAimController : MonoBehaviour
         camMainDistance = Mathf.Clamp(camMainDistance, camShoulderDistance, camMainMaxZoom);
     }
 
-    int distanceCycle = 0;
 
     void CycleCameraDistanceAndZoom()
     {
