@@ -257,15 +257,15 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 if (binding.effectivePath == newBinding.path)
                 {
 
-                    Debug.Log("Duplicate binding found for reset to default: " + newBinding.effectivePath);
+                    // Debug.Log("Duplicate binding found for reset to default: " + newBinding.effectivePath);
 
                     // Swap the two actions.
 
-                    action.actionMap.FindAction(binding.action).ApplyBindingOverride(i, newBinding.overridePath);
+                    // action.actionMap.FindAction(binding.action).ApplyBindingOverride(i, newBinding.overridePath);
 
-                    action.RemoveBindingOverride(bindingIndex);
+                    // action.RemoveBindingOverride(bindingIndex);
 
-                    return true;
+                    // return true;
 
                 }
 
