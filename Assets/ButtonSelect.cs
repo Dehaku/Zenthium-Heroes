@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ButtonSelect : MonoBehaviour
@@ -10,7 +11,7 @@ public class ButtonSelect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        primaryButton.Select();
+
     }
 
     // Update is called once per frame
@@ -19,8 +20,17 @@ public class ButtonSelect : MonoBehaviour
         
     }
 
+    IEnumerator SelectContinueButtonLater()
+    {
+        yield return null;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(primaryButton.gameObject);
+    }
+
     private void OnEnable()
     {
-        primaryButton.Select();
+        //primaryButton.Select();
+        StartCoroutine(SelectContinueButtonLater());
     }
+
 }

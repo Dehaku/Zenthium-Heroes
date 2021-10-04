@@ -6518,8 +6518,20 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Pause Button
       m_Flags: 0
+    - m_Name: 
+      m_Id: ad699d84-0da1-412d-ae2c-f78a93929b16
+      m_Path: <Gamepad>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause Button
+      m_Flags: 0
     m_Flags: 0
   defaultMenu: {fileID: 2063061599387890383}
+  menus:
+  - {fileID: 1648946357}
+  - {fileID: 161372921}
+  - {fileID: 2063061599387890383}
 --- !u!114 &636724674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19259,6 +19271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1648946358}
+  - component: {fileID: 1648946359}
   m_Layer: 5
   m_Name: RebindMenu
   m_TagString: Untagged
@@ -19288,6 +19301,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1648946359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648946357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1e412592e58fa4d937e0cffc2863bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryButton: {fileID: 470928645}
 --- !u!224 &1652118044 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6680292650503350825, guid: f25dcd618d3acd64795bf8bb32edb6c9,

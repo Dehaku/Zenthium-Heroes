@@ -9,6 +9,8 @@ public class PauseGame : MonoBehaviour
     [SerializeField] PlayerInput playerInput;
     [SerializeField] InputAction pauseButton;
     [SerializeField] GameObject defaultMenu;
+    [Tooltip("Disables all menus when hitting the pauseButton, so you can exit from any screen.")]
+    [SerializeField] GameObject[] menus;
     InputSettings.UpdateMode storedUpdateMode;
 
     bool paused = false;
@@ -53,6 +55,10 @@ public class PauseGame : MonoBehaviour
         else
         {
             MouseLock.LockMouse();
+
+            // Disabling all menus
+            foreach (var menu in menus)
+                menu.SetActive(false);
 
             // Restore settings from earlier
             InputSystem.settings.updateMode = storedUpdateMode;
