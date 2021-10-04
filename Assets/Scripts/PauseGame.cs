@@ -8,7 +8,7 @@ public class PauseGame : MonoBehaviour
     //[SerializeField] InputSystem inputSystem;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] InputAction pauseButton;
-    [SerializeField] Canvas canvas;
+    [SerializeField] GameObject defaultMenu;
     InputSettings.UpdateMode storedUpdateMode;
 
     bool paused = false;
@@ -20,7 +20,7 @@ public class PauseGame : MonoBehaviour
     }
     private void OnDisable()
     {
-        pauseButton.Disable();
+        //pauseButton.Disable();
     }
 
     private void Start()
@@ -42,13 +42,13 @@ public class PauseGame : MonoBehaviour
 
             previousTimescale = Time.timeScale;
             Time.timeScale = 0f;
-            
+
             //Rebinding stuff
-            canvas.enabled = true;
+            
             playerInput.currentActionMap.Disable();
 
 
-
+            defaultMenu.SetActive(true);
         }
         else
         {
@@ -59,8 +59,10 @@ public class PauseGame : MonoBehaviour
             Time.timeScale = previousTimescale;
 
             //Rebinding stuff
-            canvas.enabled = false;
+            
             playerInput.currentActionMap.Enable();
+
+            defaultMenu.SetActive(false);
         }
     }
 }
