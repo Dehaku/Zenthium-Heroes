@@ -40,6 +40,8 @@ public class ThirdPersonMovement : MonoBehaviour
 
     public bool isFlying = false;
 
+    public bool isSprinting = false;
+
 
     float timeOffGround = 0f;
 
@@ -245,26 +247,23 @@ public class ThirdPersonMovement : MonoBehaviour
         inputMovement = inputValue;
     }
 
-    private void FixedUpdate()
+    public void InputSprintLogic()
     {
-        if (controller != null)
-        {
-            if (controller.isGrounded)
-            {
-                timeOffGround = 0;
-                animationController.FlyingAnimation(false);
-            }
+        if (playerInput.actions["Sprint"].WasPressedThisFrame())
+            isSprinting = true;
 
-            else
-                timeOffGround += Time.deltaTime;
+        
 
-        }
+        if (inputMovement.magnitude == 0)
+            isSprinting = false;
 
-        if (isFlying)
-            Flying();
+        Debug.Log(inputMovement.magnitude + ":" + isSprinting);
 
-        // Sprint
-        if (Input.GetKey(KeyCode.LeftShift))
+    }
+
+    public void CharacterSprint(bool sprinting)
+    {
+        if(sprinting)
         {
 
             if (speed <= GetSprintSpeed())
@@ -325,6 +324,30 @@ public class ThirdPersonMovement : MonoBehaviour
             }
             flySpeed = Mathf.Lerp(flySpeed, defaultFlySpeed, Time.deltaTime);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (controller != null)
+        {
+            if (controller.isGrounded)
+            {
+                timeOffGround = 0;
+                animationController.FlyingAnimation(false);
+            }
+
+            else
+                timeOffGround += Time.deltaTime;
+
+        }
+
+        if (isFlying)
+            Flying();
+
+        // Sprint
+        InputSprintLogic();
+        CharacterSprint(isSprinting);
+
 
 
         Move();
