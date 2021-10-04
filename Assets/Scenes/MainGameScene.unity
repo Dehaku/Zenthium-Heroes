@@ -7984,6 +7984,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: e81557fa-b740-40c6-a678-883abb630983
     m_ActionName: Ground/CameraDistanceZoom[/Mouse/middleButton,/LogitechDualAction/rightStickPress]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 861604082}
+        m_TargetAssemblyTypeName: ShootKOBullet, Assembly-CSharp
+        m_MethodName: ShootInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2c7ec9ab-bfb0-4457-b008-ae6358bb7eca
+    m_ActionName: Ground/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 04378b60-c03c-4f39-abf2-5a2189937c7f
+    m_ActionName: Ground/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Ground
@@ -10920,6 +10940,7 @@ MonoBehaviour:
   walkSoundTimer: 0.5
   isJumping: 0
   isFlying: 0
+  isSprinting: 0
   speedMagnitude: 0
 --- !u!143 &861604078
 CharacterController:
@@ -11132,6 +11153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6977be66ac65a549849821e1f2187a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 636724676}
   fireRate: 0.25
   gunSound: {fileID: 861604081}
   bulletPrefab: {fileID: 570900341778744197, guid: 4bdc4eacc812bbc4db51c78ed7945c7c,

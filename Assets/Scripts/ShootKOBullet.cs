@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ShootKOBullet : MonoBehaviour
 {
+    [SerializeField] private PlayerInput playerInput;
+
     [Range(0.1f,2f)]
     public float fireRate = 1;
     float _fireRateTrack = 0;
@@ -41,6 +44,48 @@ public class ShootKOBullet : MonoBehaviour
 
     }
 
+    bool _isShooting = false;
+
+    public void ShootInput(InputAction.CallbackContext context)
+    {
+        if(playerInput.actions["Aim"].IsPressed())
+
+        if (context.performed)
+            _isShooting = true;
+
+        if (context.canceled)
+            _isShooting = false;
+
+    }
+
+    public void Shoot()
+    {
+        _fireRateTrack = 0;
+        gunSound.Play();
+        GameObject pew = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
+
+
+
+        Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
+
+
+        if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) { pew.transform.forward = Camera.main.transform.forward; }
+        else { pew.transform.LookAt(hit.point); }
+
+        BulletProjectileRaycast bulletScript = pew.GetComponent<BulletProjectileRaycast>();
+        if (bulletScript)
+        {
+            bulletScript.Initialize(pew.transform, bulletSpeed, bulletGravity);
+        }
+        Destroy(pew, bulletLifeTime);
+
+        GameObject vfx = spawnVFX(pew.transform);
+        vfx.transform.SetParent(pew.transform);
+
+
+        recoil.GenerateRecoil();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -52,34 +97,8 @@ public class ShootKOBullet : MonoBehaviour
         gunSound.pitch = World.Instance.speedForce;
 
 
-        if (Input.GetButton("Fire1") && Input.GetButton("Fire2") && _fireRateTrack >= fireRate)
-        {
-            
-            _fireRateTrack = 0;
-            gunSound.Play();
-            GameObject pew = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
-            
-            
-
-            Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
-            
-
-            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) { pew.transform.forward = Camera.main.transform.forward;  }
-            else { pew.transform.LookAt(hit.point); }
-
-            BulletProjectileRaycast bulletScript = pew.GetComponent<BulletProjectileRaycast>();
-            if(bulletScript)
-            {
-                bulletScript.Initialize(pew.transform, bulletSpeed, bulletGravity);
-            }
-            Destroy(pew, bulletLifeTime);
-
-            GameObject vfx = spawnVFX(pew.transform);
-            vfx.transform.SetParent(pew.transform);
-
-
-            recoil.GenerateRecoil();
-        }
+        if (_isShooting && _fireRateTrack >= fireRate)
+            Shoot();
     }
 
     private GameObject spawnVFX(Transform spawnInfo)
