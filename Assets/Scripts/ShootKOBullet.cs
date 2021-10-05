@@ -31,6 +31,17 @@ public class ShootKOBullet : MonoBehaviour
     public float bulletForce = 50;
     public float bulletLifeTime = 50;
 
+    [Space]
+    public bool predictionLine = true;
+    public bool predictionTarget = true;
+    public float predictionTime = 1f;
+    public float predictionTimeStep = 0.05f;
+    public Material predictionMaterial;
+
+    GameObject _predictionGO;
+    BulletProjectileRaycast _prediction;
+
+
     private void Awake()
     {
         playerCamera = GetComponent<PlayerAimController>();
@@ -105,6 +116,41 @@ public class ShootKOBullet : MonoBehaviour
 
         if (_isShooting && _fireRateTrack >= fireRate)
             Shoot();
+
+
+        if (predictionLine && playerInput.actions["Aim"].IsPressed())
+        {
+            PredictionLine();
+        }
+        else if (_prediction)
+            _prediction.SetLineActive(false);
+    }
+
+    
+
+    void PredictionLine()
+    {
+        if(!_predictionGO)
+        {
+            _predictionGO = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
+            _prediction = _predictionGO.GetComponent<BulletProjectileRaycast>();
+            _prediction.predictionMaterial = predictionMaterial;
+        }
+        if (!_prediction)
+            return;
+
+        _predictionGO.transform.position = spawnPos.position;
+
+        Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
+
+        if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) { _predictionGO.transform.forward = Camera.main.transform.forward; }
+        else { _predictionGO.transform.LookAt(hit.point); }
+
+        
+
+        _prediction.PredictTrajectory(_predictionGO.transform, bulletSpeed, bulletGravity, predictionTime, predictionTimeStep);
+            
+
     }
 
     private GameObject spawnVFX(Transform spawnInfo)

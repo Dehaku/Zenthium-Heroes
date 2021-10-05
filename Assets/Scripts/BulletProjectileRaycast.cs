@@ -14,6 +14,9 @@ public class BulletProjectileRaycast : MonoBehaviour
     Vector3 startForward;
     bool isInitialized = false;
     float startTime = -1;
+    bool isPrediction = false;
+    public Material predictionMaterial;
+
 
     public void Initialize(Transform startPoint, float speed, float gravity)
     {
@@ -24,7 +27,7 @@ public class BulletProjectileRaycast : MonoBehaviour
         isInitialized = true;
     }
 
-    Vector3 FindPointOnParabola(float time)
+    public Vector3 FindPointOnParabola(float time)
     {
         Vector3 point = startPosition + (startForward * speed * time);
         Vector3 gravityVec = Vector3.down * gravity * time * time;
@@ -70,9 +73,67 @@ public class BulletProjectileRaycast : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void SetLineActive(bool active)
+    {
+        if (!active)
+            Destroy(_line);
+    }
+
+    LineRenderer _line;
+    public void PredictTrajectory(Transform startPoint, float speed, float gravity, float futureTime, float timeStep = 0.05f)
+    {
+        
+        Initialize(startPoint, speed, gravity);
+        isPrediction = true;
+        
+
+        float currentTime = 0;
+        Vector3 currentPoint = FindPointOnParabola(currentTime);
+        float timeTracker = currentTime;
+        Vector3 previousPoint = currentPoint;
+
+
+        if(!_line)
+        {
+            _line = gameObject.AddComponent<LineRenderer>(); //new LineRenderer();
+            if (predictionMaterial != null)
+                _line.material = predictionMaterial;
+        }
+            
+
+        _line.startColor = Color.red;
+        _line.endColor = Color.blue;
+        
+        _line.startWidth = 0.2f;
+        _line.endWidth = 0.2f;
+        _line.positionCount = (int) ((futureTime / timeStep) + 2);
+        Debug.Log("Positions: " + _line.positionCount + ":" + ((futureTime / timeStep) + 1));
+
+        int increm = 0;
+        _line.SetPosition(increm, currentPoint);
+
+        while (timeTracker < futureTime)
+        {
+            //Debug.Log(timeTracker);
+
+            timeTracker += timeStep;
+
+            previousPoint = currentPoint;
+            currentPoint = FindPointOnParabola(timeTracker);
+
+
+            
+            increm++;
+            Debug.Log(increm);
+            _line.SetPosition(increm, currentPoint);
+
+            Debug.DrawLine(previousPoint, currentPoint, Color.red);
+        }
+    }
+
     private void FixedUpdate()
     {
-
+        if (isPrediction) return;
         if (!isInitialized) return;
         if (startTime < 0) startTime = Time.time;
 
@@ -105,6 +166,7 @@ public class BulletProjectileRaycast : MonoBehaviour
 
     private void Update()
     {
+        if (isPrediction) return;
         if (!isInitialized) return;
         if (startTime < 0) return;
 
@@ -122,7 +184,9 @@ public class BulletProjectileRaycast : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(muzzlePrefab != null)
+        if (isPrediction) return;
+
+        if (muzzlePrefab != null)
         {
             var muzzleVFX = Instantiate(muzzlePrefab, transform.position, Quaternion.identity);
             muzzleVFX.transform.forward = gameObject.transform.forward;
