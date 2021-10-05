@@ -15,21 +15,15 @@ public class AcquireTargets : MonoBehaviour
         
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
-        // transform.Rotate(Vector3.up * 150f * Time.deltaTime);
-        target = AcquireNearestTarget();
-         
-
-        if (target == null)
-            return;
-        transform.LookAt(target.transform.position);
-
-        Debug.DrawLine(transform.position, target.transform.position);
+        
     }
 
-    GameObject AcquireNearestTarget()
+    public GameObject AcquireNearestTarget()
     {
         var pawns = FindObjectsOfType<Faction>();
         GameObject closestGO = null;
