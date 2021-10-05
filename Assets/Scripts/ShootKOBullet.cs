@@ -7,32 +7,40 @@ using UnityEngine.InputSystem;
 
 public class ShootKOBullet : MonoBehaviour
 {
+    [Header("Player Only")]
     [SerializeField] public bool isPlayer = false;
     [SerializeField] private PlayerInput playerInput;
+    public GameObject aimReticle;
+    public PlayerAimController playerCamera;
+    public WeaponRecoil recoil;
 
+
+    [Header("Gun")]
     [Range(0.1f,2f)]
     public float fireRate = 1;
     float _fireRateTrack = 0;
     
     public AudioClip gunSound;
     private int gunSoundID;
-    public GameObject bulletPrefab;
+    
     public Transform spawnPos;
-    public GameObject aimReticle;
+    
 
     public List<GameObject> vfx = new List<GameObject>();
     GameObject effectToSpawn;
 
-    public PlayerAimController playerCamera;
-    public WeaponRecoil recoil;
+    
 
     [Space]
+    [Header("Bullet")]
+    public GameObject bulletPrefab;
     public float bulletSpeed = 50;
     public float bulletGravity = 1;
     public float bulletForce = 50;
     public float bulletLifeTime = 50;
 
     [Space]
+    [Header("Prediction")]
     public bool predictionLine = true;
     public bool predictionTarget = true;
     public float predictionTime = 1f;
@@ -103,6 +111,11 @@ public class ShootKOBullet : MonoBehaviour
 
 
         recoil.GenerateRecoil();
+    }
+
+    public void Fire(bool toFire = true)
+    {
+        _isShooting = toFire;
     }
 
     // Update is called once per frame
