@@ -1,3 +1,4 @@
+using Hellmade.Sound;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ public class ShootKOBullet : MonoBehaviour
     public float fireRate = 1;
     float _fireRateTrack = 0;
     
-    public AudioSource gunSound;
+    public AudioClip gunSound;
+    private int gunSoundID;
     public GameObject bulletPrefab;
     public Transform spawnPos;
     public GameObject aimReticle;
@@ -61,7 +63,9 @@ public class ShootKOBullet : MonoBehaviour
     public void Shoot()
     {
         _fireRateTrack = 0;
-        gunSound.Play();
+        //gunSound.Play();
+        int audioID = EazySoundManager.PlaySound(gunSound, 1, false, transform);
+        
         GameObject pew = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
 
 
@@ -94,7 +98,9 @@ public class ShootKOBullet : MonoBehaviour
 
 
         _fireRateTrack += World.Instance.speedForce * Time.deltaTime;
-        gunSound.pitch = World.Instance.speedForce;
+        //gunSound.pitch = World.Instance.speedForce;
+        if(EazySoundManager.GetAudio(gunSoundID) != null)
+            EazySoundManager.GetAudio(gunSoundID).Pitch = World.Instance.speedForce;
 
 
         if (_isShooting && _fireRateTrack >= fireRate)
