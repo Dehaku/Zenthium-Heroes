@@ -18,8 +18,12 @@ public class AcquireTargets : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up * 150f * Time.deltaTime);
+        // transform.Rotate(Vector3.up * 150f * Time.deltaTime);
         GameObject tar = AcquireNearestTarget();
+
+        if (tar == null)
+            return;
+        transform.LookAt(tar.transform.position);
 
         Debug.DrawLine(transform.position, tar.transform.position);
     }

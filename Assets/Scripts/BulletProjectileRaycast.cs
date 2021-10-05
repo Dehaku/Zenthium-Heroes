@@ -108,7 +108,7 @@ public class BulletProjectileRaycast : MonoBehaviour
         _line.startWidth = 0.2f;
         _line.endWidth = 0.2f;
         _line.positionCount = (int) ((futureTime / timeStep) + 2);
-        Debug.Log("Positions: " + _line.positionCount + ":" + ((futureTime / timeStep) + 1));
+        //Debug.Log("Positions: " + _line.positionCount + ":" + ((futureTime / timeStep) + 1));
 
         int increm = 0;
         _line.SetPosition(increm, currentPoint);
