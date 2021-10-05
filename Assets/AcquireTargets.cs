@@ -19,13 +19,14 @@ public class AcquireTargets : MonoBehaviour
     void Update()
     {
         // transform.Rotate(Vector3.up * 150f * Time.deltaTime);
-        GameObject tar = AcquireNearestTarget();
+        target = AcquireNearestTarget();
+         
 
-        if (tar == null)
+        if (target == null)
             return;
-        transform.LookAt(tar.transform.position);
+        transform.LookAt(target.transform.position);
 
-        Debug.DrawLine(transform.position, tar.transform.position);
+        Debug.DrawLine(transform.position, target.transform.position);
     }
 
     GameObject AcquireNearestTarget()
@@ -52,8 +53,6 @@ public class AcquireTargets : MonoBehaviour
                 }
             }
         }
-
-
 
         return closestGO;
     }

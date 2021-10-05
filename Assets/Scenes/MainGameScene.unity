@@ -12380,17 +12380,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 1
   playerInput: {fileID: 636724676}
+  aimReticle: {fileID: 1886168351}
+  playerCamera: {fileID: 0}
+  recoil: {fileID: 0}
   fireRate: 0.25
   gunSound: {fileID: 8300000, guid: 1f3c0eab072a21d4c8b9e2a0cb0f6659, type: 3}
-  bulletPrefab: {fileID: 570900341778744197, guid: 4bdc4eacc812bbc4db51c78ed7945c7c,
-    type: 3}
   spawnPos: {fileID: 524669567}
-  aimReticle: {fileID: 1886168351}
   vfx:
   - {fileID: 98131139715565700, guid: 54669149c38e2934aa1e02b34f48992f, type: 3}
   - {fileID: 98131139715565700, guid: dd8c79bee25874044a91b01a8ed46559, type: 3}
-  playerCamera: {fileID: 0}
-  recoil: {fileID: 0}
+  bulletPrefab: {fileID: 570900341778744197, guid: 4bdc4eacc812bbc4db51c78ed7945c7c,
+    type: 3}
   bulletSpeed: 250
   bulletGravity: 9.8
   bulletForce: 50
@@ -28430,17 +28430,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 0
   playerInput: {fileID: 0}
+  aimReticle: {fileID: 0}
+  playerCamera: {fileID: 0}
+  recoil: {fileID: 0}
   fireRate: 0.25
   gunSound: {fileID: 8300000, guid: 1f3c0eab072a21d4c8b9e2a0cb0f6659, type: 3}
-  bulletPrefab: {fileID: 570900341778744197, guid: 4bdc4eacc812bbc4db51c78ed7945c7c,
-    type: 3}
   spawnPos: {fileID: 1099489231}
-  aimReticle: {fileID: 0}
   vfx:
   - {fileID: 98131139715565700, guid: 54669149c38e2934aa1e02b34f48992f, type: 3}
   - {fileID: 98131139715565700, guid: dd8c79bee25874044a91b01a8ed46559, type: 3}
-  playerCamera: {fileID: 0}
-  recoil: {fileID: 0}
+  bulletPrefab: {fileID: 570900341778744197, guid: 4bdc4eacc812bbc4db51c78ed7945c7c,
+    type: 3}
   bulletSpeed: 250
   bulletGravity: 9.8
   bulletForce: 50
@@ -28492,7 +28492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acquireTargets: {fileID: 1971742933}
   weaponScript: {fileID: 1971742931}
-  AllowedToShoot: 0
+  AllowedToShoot: 1
 --- !u!1 &1976627704
 GameObject:
   m_ObjectHideFlags: 0
@@ -37334,8 +37334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ca9f57a3427094f89a256c2bcbebda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentFactionID: 1
-  TrueFactionID: 1
+  CurrentFactionID: 0
+  TrueFactionID: 0
 --- !u!4 &4616068715566333818
 Transform:
   m_ObjectHideFlags: 0

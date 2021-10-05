@@ -89,15 +89,25 @@ public class ShootKOBullet : MonoBehaviour
         //gunSound.Play();
         int audioID = EazySoundManager.PlaySound(gunSound, 1, false, transform);
         
+        if(!bulletPrefab)
+        {
+            Debug.LogWarning("Prefab not found in ShootKOBullet");
+            return;
+        }
+
         GameObject pew = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
 
 
 
         Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
 
-
-        if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) { pew.transform.forward = Camera.main.transform.forward; }
-        else { pew.transform.LookAt(hit.point); }
+        if (isPlayer)
+        {
+            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) { pew.transform.forward = Camera.main.transform.forward; }
+            else { pew.transform.LookAt(hit.point); }
+        }
+        else
+            pew.transform.forward = transform.forward;
 
         BulletProjectileRaycast bulletScript = pew.GetComponent<BulletProjectileRaycast>();
         if (bulletScript)
@@ -106,11 +116,17 @@ public class ShootKOBullet : MonoBehaviour
         }
         Destroy(pew, bulletLifeTime);
 
-        GameObject vfx = spawnVFX(pew.transform);
-        vfx.transform.SetParent(pew.transform);
+        if(effectToSpawn)
+        {
+            GameObject vfx = spawnVFX(pew.transform);
+            if (vfx)
+                vfx.transform.SetParent(pew.transform);
+        }
+        
 
 
-        recoil.GenerateRecoil();
+        if(isPlayer)
+            recoil.GenerateRecoil();
     }
 
     public void Fire(bool toFire = true)
@@ -169,6 +185,12 @@ public class ShootKOBullet : MonoBehaviour
     {
         if(!_predictionGO)
         {
+            if (!bulletPrefab)
+            {
+                Debug.LogWarning("Prefab not found in ShootKOBullet");
+                return;
+            }
+
             _predictionGO = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
             _prediction = _predictionGO.GetComponent<BulletProjectileRaycast>();
             _prediction.predictionMaterial = predictionMaterial;
@@ -178,10 +200,17 @@ public class ShootKOBullet : MonoBehaviour
 
         _predictionGO.transform.position = spawnPos.position;
 
-        Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
-
-        if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) { _predictionGO.transform.forward = Camera.main.transform.forward; }
-        else { _predictionGO.transform.LookAt(hit.point); }
+        if(isPlayer)
+        {
+            Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
+            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) { _predictionGO.transform.forward = Camera.main.transform.forward; }
+            else { _predictionGO.transform.LookAt(hit.point); }
+        }
+        else
+        {
+            _predictionGO.transform.forward = transform.forward;
+        }
+        
 
         
 
@@ -203,6 +232,12 @@ public class ShootKOBullet : MonoBehaviour
 
     private GameObject spawnVFX(Transform spawnInfo)
     {
+        if (!effectToSpawn)
+        {
+            Debug.LogWarning("VFXPrefab not found in ShootKOBullet");
+            return null;
+        }
+
         GameObject vfx;
         vfx = Instantiate(effectToSpawn, spawnInfo.position, spawnInfo.rotation);
         return vfx;

@@ -23,10 +23,12 @@ public class Turret : MonoBehaviour
             weaponScript.Fire(false);
             return;
         }
-            
 
         if (acquireTargets.target)
+        {
             weaponScript.Fire();
+            
+        }
         else
             weaponScript.Fire(false);
     }
