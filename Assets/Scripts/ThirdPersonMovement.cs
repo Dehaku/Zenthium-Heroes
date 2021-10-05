@@ -1,3 +1,4 @@
+using Hellmade.Sound;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,6 +51,7 @@ public class ThirdPersonMovement : MonoBehaviour
     private bool _rotateOnMove = true;
 
     Vector3 inputMovement;
+    public AudioClip sonicBoomClip;
 
     public float GetSprintSpeed()
     {
@@ -294,9 +296,8 @@ public class ThirdPersonMovement : MonoBehaviour
                 {
                     wentSuperSonic = true;
                     particleTrails.Play();
-                    Debug.Log("Play sonic boom here");
-                    //SoundManager.PlaySound
-                    //SoundManager.PlaySound(SoundManager.Sound.SoftSonicBoom);
+                    int audioID = EazySoundManager.PlaySound(sonicBoomClip, 10, false, transform);
+                    EazySoundManager.GetAudio(audioID).Min3DDistance = 10;
                 }
             }
 
