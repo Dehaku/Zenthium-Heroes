@@ -16,6 +16,7 @@ public class BulletProjectileRaycast : MonoBehaviour
     float startTime = -1;
     bool isPrediction = false;
     public Material predictionMaterial;
+    public RaycastHit predictHit;
 
 
     public void Initialize(Transform startPoint, float speed, float gravity)
@@ -80,7 +81,7 @@ public class BulletProjectileRaycast : MonoBehaviour
     }
 
     LineRenderer _line;
-    public void PredictTrajectory(Transform startPoint, float speed, float gravity, float futureTime, float timeStep = 0.05f)
+    public bool PredictTrajectory(Transform startPoint, float speed, float gravity, float futureTime, float timeStep = 0.05f)
     {
         
         Initialize(startPoint, speed, gravity);
@@ -111,7 +112,8 @@ public class BulletProjectileRaycast : MonoBehaviour
 
         int increm = 0;
         _line.SetPosition(increm, currentPoint);
-
+        
+        
         while (timeTracker < futureTime)
         {
             //Debug.Log(timeTracker);
@@ -124,11 +126,19 @@ public class BulletProjectileRaycast : MonoBehaviour
 
             
             increm++;
-            Debug.Log(increm);
             _line.SetPosition(increm, currentPoint);
 
-            Debug.DrawLine(previousPoint, currentPoint, Color.red);
+            if (Physics.Linecast(previousPoint, currentPoint, out predictHit))
+            {
+                //Hit
+                _line.positionCount = increm+1;
+                _line.SetPosition(increm, predictHit.point);
+                return true;
+            }
+
+
         }
+        return false;
     }
 
     private void FixedUpdate()

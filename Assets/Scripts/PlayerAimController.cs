@@ -245,6 +245,11 @@ public class PlayerAimController : MonoBehaviour
         aimReticle.transform.position = Camera.main.WorldToScreenPoint(hit.point);
     }
 
+    public void AimReticleAdjust(Vector3 pos)
+    {
+        aimReticle.transform.position = Camera.main.WorldToScreenPoint(pos);
+    }
+
     public void Look(InputAction.CallbackContext context)
     {
         //var inputValue = context.ReadValue<Vector2>();

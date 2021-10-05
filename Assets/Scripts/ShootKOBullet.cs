@@ -117,8 +117,15 @@ public class ShootKOBullet : MonoBehaviour
         if (_isShooting && _fireRateTrack >= fireRate)
             Shoot();
 
+        
 
-        if (predictionLine && playerInput.actions["Aim"].IsPressed())
+        
+    }
+
+    private void LateUpdate()
+    {
+        bool aimMode = playerInput.actions["Aim"].IsPressed();
+        if (predictionLine && aimMode)
         {
             PredictionLine();
         }
@@ -126,7 +133,7 @@ public class ShootKOBullet : MonoBehaviour
             _prediction.SetLineActive(false);
     }
 
-    
+
 
     void PredictionLine()
     {
@@ -148,7 +155,18 @@ public class ShootKOBullet : MonoBehaviour
 
         
 
-        _prediction.PredictTrajectory(_predictionGO.transform, bulletSpeed, bulletGravity, predictionTime, predictionTimeStep);
+        if(_prediction.PredictTrajectory(_predictionGO.transform, bulletSpeed, bulletGravity, predictionTime, predictionTimeStep))
+        {
+            //spawnVFX(_prediction.predictHit.transform);
+
+            if (predictionTarget)
+            {
+                var aimCon = FindObjectOfType<PlayerAimController>();
+                if (aimCon)
+                    aimCon.AimReticleAdjust(_prediction.predictHit.point);
+        }
+
+        }
             
 
     }
