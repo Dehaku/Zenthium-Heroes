@@ -247,6 +247,7 @@ public class PlayerAimController : MonoBehaviour
 
     public void Look(InputAction.CallbackContext context)
     {
+        //var inputValue = context.ReadValue<Vector2>();
         // inputValue.x = Mathf.Clamp(inputValue.x, -5, 5);
         // inputValue.y = Mathf.Clamp(inputValue.y, -5, 5);
         // 

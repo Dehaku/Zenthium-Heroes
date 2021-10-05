@@ -137,8 +137,12 @@ public class ThirdPersonMovement : MonoBehaviour
                 walkSoundTimerTrack = 0;
             }
             
+            /*
+            //
             if(controller.isGrounded)
                 SoundManager.PlaySound(SoundManager.Sound.PlayerMove);
+            //
+            */
         }
 
 
@@ -290,7 +294,9 @@ public class ThirdPersonMovement : MonoBehaviour
                 {
                     wentSuperSonic = true;
                     particleTrails.Play();
-                    SoundManager.PlaySound(SoundManager.Sound.SoftSonicBoom);
+                    Debug.Log("Play sonic boom here");
+                    //SoundManager.PlaySound
+                    //SoundManager.PlaySound(SoundManager.Sound.SoftSonicBoom);
                 }
             }
 
