@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class ShootKOBullet : MonoBehaviour
 {
+    [SerializeField] public bool isPlayer = false;
     [SerializeField] private PlayerInput playerInput;
 
     [Range(0.1f,2f)]
@@ -44,6 +45,9 @@ public class ShootKOBullet : MonoBehaviour
 
     private void Awake()
     {
+        if (!isPlayer)
+            return;
+
         playerCamera = GetComponent<PlayerAimController>();
         recoil = GetComponent<WeaponRecoil>();
         recoil.playerCamera = playerCamera;
@@ -124,13 +128,26 @@ public class ShootKOBullet : MonoBehaviour
 
     private void LateUpdate()
     {
-        bool aimMode = playerInput.actions["Aim"].IsPressed();
-        if (predictionLine && aimMode)
+        if(playerInput)
         {
-            PredictionLine();
+            bool aimMode = playerInput.actions["Aim"].IsPressed();
+            if (predictionLine && aimMode)
+            {
+                PredictionLine();
+            }
+            else if (_prediction)
+                _prediction.SetLineActive(false);
         }
-        else if (_prediction)
-            _prediction.SetLineActive(false);
+        else
+        {
+            if (predictionLine)
+            {
+                PredictionLine();
+            }
+            else if (_prediction)
+                _prediction.SetLineActive(false);
+        }
+        
     }
 
 
