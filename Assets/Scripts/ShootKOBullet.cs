@@ -53,7 +53,8 @@ public class ShootKOBullet : MonoBehaviour
 
     private void Awake()
     {
-        effectToSpawn = vfx[0];
+        if(vfx[0])
+            effectToSpawn = vfx[0];
 
         if (!isPlayer)
             return;
