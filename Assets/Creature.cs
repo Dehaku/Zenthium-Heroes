@@ -42,6 +42,8 @@ public class Creature : MonoBehaviour
             {
                 foreach (var dR in resists)
                 {
+                    
+
                     if (dR.percentage)
                         healthChange *= 1 - ((dR.resistAmount) * 0.01f);
                     else
@@ -56,16 +58,9 @@ public class Creature : MonoBehaviour
     public bool ChangeHealth(DamageInfo dI)
     {
         var change = dI.damage;
-        
-        
 
-
-        
-        Debug.Log("Change In:" + change);
         // Reduce incoming amount by applicable damage resists
         change = ApplyDamageResists(change, dI);
-        Debug.Log("Change Out:" + change);
-
 
         // If it's a type that deals damage, negate it so it does harm.
         if (dI.damageType >= 0)

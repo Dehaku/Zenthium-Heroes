@@ -107,6 +107,8 @@ public class ShootKOBullet : MonoBehaviour
         DamageInfo damageInfo;
         damageInfo.attacker = this.gameObject;
         damageInfo.damageType = 1;
+        if (Input.GetKey(KeyCode.D))
+            damageInfo.damageType = -2;
         damageInfo.damage = damage;
 
         for (int i = 0; i < bulletCount; i++)

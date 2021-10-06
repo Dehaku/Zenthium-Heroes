@@ -10,6 +10,41 @@ public struct DamageResist
     public bool percentage;
 }
 
+public struct Damage
+{
+    public enum damageType
+    {
+        BioHeal = -3,
+        MagicHeal = -2,
+        TechHeal = -1,
+        Pure = 0,
+        Pierce = 1,
+        Blunt = 2,
+        Fire = 10,
+        Cold = 11,
+        Electric = 12
+    }
+
+    public static string GetName(int value)
+    {
+        return System.Enum.GetName(typeof(Damage.damageType), value);
+
+        
+    }
+
+    public static int GetType(string damageType)
+    {
+        Damage.damageType type;
+        bool success = System.Enum.TryParse(damageType, out type);
+        if(success)
+            return (int)type;
+
+        return int.MinValue;
+    }
+
+    
+}
+
 public class DamageResists : MonoBehaviour
 {
     public List<DamageResist> resists;
