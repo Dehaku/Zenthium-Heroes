@@ -26,22 +26,22 @@ public class Turret : MonoBehaviour
         acquireTargets.target = acquireTargets.AcquireNearestTarget();
         if(acquireTargets.target)
         {
-            transform.LookAt(acquireTargets.target.transform.position);
+            transform.LookAt(acquireTargets.target.transform.position + new Vector3(0,1,0));
         }
 
         //Vector3 solve1 = new Vector3();
         //Vector3 solve2 = new Vector3();
         //int solveIndex = fts.solve_ballistic_arc(weaponScript.spawnPos.position, weaponScript.bulletSpeed+speedOffset,
         //    acquireTargets.target.transform.position, weaponScript.bulletGravity+gravityOffset, out solve1, out solve2);
-        float solve1;
-        float solve2;
-        int solveIndex = fts.solve_ballistic_arc_ang(weaponScript.spawnPos.position, weaponScript.bulletSpeed + speedOffset,
-            acquireTargets.target.transform.position, weaponScript.bulletGravity+gravityOffset, out solve1, out solve2);
-
-        solve1 = solve1 * weaponScript.bulletSpeed + solve1 * weaponScript.bulletSpeed;
-        solve2 *= weaponScript.bulletSpeed;
-
-        Debug.Log(solveIndex + "    :   " + solve1 + "   :   " + solve1 * weaponScript.bulletGravity);
+        //float solve1;
+        //float solve2;
+        //int solveIndex = fts.solve_ballistic_arc_ang(weaponScript.spawnPos.position, weaponScript.bulletSpeed + speedOffset,
+        //    acquireTargets.target.transform.position, weaponScript.bulletGravity+gravityOffset, out solve1, out solve2);
+        //
+        //solve1 = solve1 * weaponScript.bulletSpeed + solve1 * weaponScript.bulletSpeed;
+        //solve2 *= weaponScript.bulletSpeed;
+        //
+        //Debug.Log(solveIndex + "    :   " + solve1 + "   :   " + solve1 * weaponScript.bulletGravity);
 
 
 
@@ -54,7 +54,7 @@ public class Turret : MonoBehaviour
         }
         if(alter)
         {
-            transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x + (-solve1 ),
+            transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x + Offset.x,
                 transform.rotation.eulerAngles.y + Offset.y,
                 transform.rotation.eulerAngles.z + Offset.z);
         }
