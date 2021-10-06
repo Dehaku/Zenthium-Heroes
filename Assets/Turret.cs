@@ -11,6 +11,7 @@ public class Turret : MonoBehaviour
     
     [Header("Functions")]
     public bool AllowedToShoot = false;
+    public float rotationSpeed = 1;
     public float minRange = 3f;
     public float maxRange = 25f;
 
@@ -25,6 +26,7 @@ public class Turret : MonoBehaviour
     [Header("Turret Parts")]
     public bool rotateParts = true;
     public Transform rotationHelper;
+    public GameObject lerpHelper;
     public Transform rotSpin;
     public Transform rotVert;
     public Transform rotRotary;
@@ -90,12 +92,21 @@ public class Turret : MonoBehaviour
         {
             if(rotateParts)
             {
-                rotationHelper.transform.LookAt(acquireTargets.target.transform.position + new Vector3(0, 1, 0));
                 
+                lerpHelper.transform.position = rotationHelper.transform.position;
+                lerpHelper.transform.rotation = rotationHelper.transform.rotation;
+
+                //rotationHelper.transform.LookAt(acquireTargets.target.transform.position + new Vector3(0, 1, 0));
+                lerpHelper.transform.LookAt(acquireTargets.target.transform.position + new Vector3(0, 1, 0));
+                rotationHelper.transform.rotation = Quaternion.Lerp(rotationHelper.rotation, lerpHelper.transform.rotation, rotationSpeed * Time.deltaTime);
+
+
+
                 rotSpin.localEulerAngles = new Vector3(0, 0, rotationHelper.localEulerAngles.y);
                 rotVert.localEulerAngles = new Vector3(0, 90, 90+ (-rotationHelper.localEulerAngles.x));
                 
-                firePoint.transform.rotation = rotationHelper.rotation;
+                firePoint.transform.rotation = Quaternion.Lerp(firePoint.transform.rotation, rotationHelper.rotation, rotationSpeed * Time.deltaTime);
+                
             }
             else
                 transform.LookAt(acquireTargets.target.transform.position + new Vector3(0, 1, 0));
