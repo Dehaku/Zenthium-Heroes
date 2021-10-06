@@ -110,7 +110,7 @@ public class ShootKOBullet : MonoBehaviour
             else { pew.transform.LookAt(hit.point); }
         }
         else
-            pew.transform.forward = transform.forward;
+            pew.transform.forward = spawnPos.transform.forward;
 
         BulletProjectileRaycast bulletScript = pew.GetComponent<BulletProjectileRaycast>();
         if (bulletScript)
@@ -211,7 +211,7 @@ public class ShootKOBullet : MonoBehaviour
         }
         else
         {
-            _predictionGO.transform.forward = transform.forward;
+            _predictionGO.transform.forward = spawnPos.transform.forward;
         }
         
 

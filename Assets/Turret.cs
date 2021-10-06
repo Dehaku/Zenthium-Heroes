@@ -6,11 +6,20 @@ public class Turret : MonoBehaviour
 {
     public AcquireTargets acquireTargets;
     public ShootKOBullet weaponScript;
+    public GameObject firePoint;
     public bool AllowedToShoot = false;
     public Vector3 Offset;
 
     public float gravityOffset = 0;
     public float speedOffset = 0;
+
+    public bool rotateParts = true;
+    public Transform rotationHelper;
+    public Transform rotSpin;
+    public Transform rotVert;
+    public Transform rotRotary;
+    public Vector3 offset;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +35,20 @@ public class Turret : MonoBehaviour
         acquireTargets.target = acquireTargets.AcquireNearestTarget();
         if(acquireTargets.target)
         {
-            transform.LookAt(acquireTargets.target.transform.position + new Vector3(0,1,0));
+            if(rotateParts)
+            {
+                rotationHelper.transform.LookAt(acquireTargets.target.transform.position + new Vector3(0, 1, 0));
+                
+                rotSpin.localEulerAngles = new Vector3(0, 0, rotationHelper.localEulerAngles.y);
+                rotVert.localEulerAngles = new Vector3(0+offset.x, 90+offset.y, 90+ (-rotationHelper.localEulerAngles.x)+offset.z);
+                
+                firePoint.transform.rotation = rotationHelper.rotation;
+            }
+            else
+                transform.LookAt(acquireTargets.target.transform.position + new Vector3(0, 1, 0));
+            
+
+            
         }
 
         //Vector3 solve1 = new Vector3();
