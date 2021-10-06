@@ -53,6 +53,8 @@ public class ShootKOBullet : MonoBehaviour
 
     private void Awake()
     {
+        effectToSpawn = vfx[0];
+
         if (!isPlayer)
             return;
 
@@ -60,7 +62,7 @@ public class ShootKOBullet : MonoBehaviour
         recoil = GetComponent<WeaponRecoil>();
         recoil.playerCamera = playerCamera;
 
-        effectToSpawn = vfx[0];
+        
     }
 
     // Start is called before the first frame update
