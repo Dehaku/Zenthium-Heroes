@@ -116,7 +116,6 @@ public class Turret : MonoBehaviour
                 lerpHelper.transform.position = rotationHelper.transform.position;
                 lerpHelper.transform.rotation = rotationHelper.transform.rotation;
 
-                //rotationHelper.transform.LookAt(acquireTargets.target.transform.position + new Vector3(0, 1, 0));
                 lerpHelper.transform.LookAt(acquireTargets.target.transform.position + new Vector3(0, 1, 0));
                 rotationHelper.transform.rotation = Quaternion.Lerp(rotationHelper.rotation, lerpHelper.transform.rotation, rotationSpeed * Time.deltaTime);
 
@@ -128,10 +127,9 @@ public class Turret : MonoBehaviour
                 firePoint.transform.rotation = Quaternion.Lerp(firePoint.transform.rotation, rotationHelper.rotation, rotationSpeed * Time.deltaTime);
 
                 var fireSway = firePoint.transform.eulerAngles;
-                //Debug.Log("Cos:" + Mathf.Cos(Time.time) + " : " + aimSway.x* Mathf.Cos(Time.time));
 
                 
-                {
+                
                     if (aimSwayNoise)
                     {
                         float noiseX = Mathf.PerlinNoise(Time.time, Time.time * 2);
@@ -152,7 +150,7 @@ public class Turret : MonoBehaviour
                             fireSway.y += aimSway.x * Mathf.Sin((Time.time));
                         }
                     }
-                }
+                
 
                 
 

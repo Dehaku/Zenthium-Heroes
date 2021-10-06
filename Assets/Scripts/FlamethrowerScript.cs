@@ -12,7 +12,9 @@ public class FlamethrowerScript : MonoBehaviour
     public bool stopGun = false;
 
 
-    
+
+    public float colliderRate = 0.2f;
+    float _colliderTimer = 0;
     public float colliderSpeed = 1;
     public float colliderDuration = 5;
 
@@ -70,13 +72,17 @@ public class FlamethrowerScript : MonoBehaviour
         if(fireGun)
         {
             StartFiring();
-            fireGun = false;
+            //fireGun = false;
+        }
+        else
+        {
+            StopFiring();
         }
         if(stopGun)
         {
             StopFiring();
             stopGun = false;
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
 
         foreach (var col in colliders)
@@ -102,9 +108,16 @@ public class FlamethrowerScript : MonoBehaviour
     public void StartFiring()
     {
         vfx.Play();
-        GenerateCollider(transform.position,transform.rotation);
+        _colliderTimer -= Time.deltaTime;
+
+
 
         // start collision spawner
+        if (_colliderTimer < 0)
+        {
+            _colliderTimer = colliderRate;
+            GenerateCollider(transform.position, transform.rotation);
+        }
     }
 
     public void StopFiring()
@@ -144,12 +157,14 @@ public class FlamethrowerScript : MonoBehaviour
     {
         for (int i = colliders.Count-1; i >= 0; i--)
         {
-            Destroy(colliders[i].gameObject);
+            if(colliders[i])
+                Destroy(colliders[i].gameObject);
         }
 
         foreach (var item in colliderPool)
         {
-            Destroy(item.gameObject);
+            if(item)
+                Destroy(item.gameObject);
         }
     }
 
