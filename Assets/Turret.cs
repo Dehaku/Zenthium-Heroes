@@ -11,6 +11,7 @@ public class Turret : MonoBehaviour
     
     [Header("Functions")]
     public bool AllowedToShoot = false;
+    public float fireConeAngle = 30;
     public float rotationSpeed = 1;
     public float minRange = 3f;
     public float maxRange = 25f;
@@ -69,7 +70,18 @@ public class Turret : MonoBehaviour
         return false;
     }
 
-    
+    bool TargetWithinFireCone()
+    {
+        if (!acquireTargets.target)
+            return false;
+
+
+        Vector3 directionToTarget = (acquireTargets.target.transform.position - firePoint.transform.position).normalized;
+        if (Vector3.Angle(firePoint.transform.forward, directionToTarget) < fireConeAngle / 2)
+            return true;
+        
+        return false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -162,8 +174,11 @@ public class Turret : MonoBehaviour
 
         if (acquireTargets.target)
         {
-            weaponScript.Fire();
-            
+            if(TargetWithinFireCone())
+                weaponScript.Fire();
+            else
+                weaponScript.Fire(false);
+
         }
         else
             weaponScript.Fire(false);
