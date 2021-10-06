@@ -18,6 +18,7 @@ public class Turret : MonoBehaviour
     public Vector2 aimSway;
     Vector2 _aimSway;
     public bool aimSwayCross;
+    public bool aimSwayNoise;
 
     [Header("Detection")]
     public AudioClip TargetDetectedClip;
@@ -89,8 +90,12 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //acquireTargets.target = acquireTargets.AcquireNearestEnemyTarget();
-        acquireTargets.target = acquireTargets.AcquireNearestEnemyTargetWithinRange(minRange,maxRange);
+        if (!(Time.timeScale > 0))
+            return;
+
+
+            //acquireTargets.target = acquireTargets.AcquireNearestEnemyTarget();
+            acquireTargets.target = acquireTargets.AcquireNearestEnemyTargetWithinRange(minRange,maxRange);
 
         
         // Play enemy detected sound.
@@ -124,17 +129,32 @@ public class Turret : MonoBehaviour
 
                 var fireSway = firePoint.transform.eulerAngles;
                 //Debug.Log("Cos:" + Mathf.Cos(Time.time) + " : " + aimSway.x* Mathf.Cos(Time.time));
+
                 
-                if(aimSwayCross)
-                { // U pattern
-                    fireSway.x += aimSway.y * Mathf.Cos(Time.time);
-                    fireSway.y += aimSway.x * Mathf.Sin((Time.time * 2));
+                {
+                    if (aimSwayNoise)
+                    {
+                        float noiseX = Mathf.PerlinNoise(Time.time, Time.time * 2);
+                        float noiseY = Mathf.PerlinNoise(Time.time * 2, Time.time);
+                        fireSway.x += -0.5f + noiseX;
+                        fireSway.y += -0.5f + noiseY;
+                    }
+                    else
+                    {
+                        if (aimSwayCross)
+                        { // U pattern
+                            fireSway.x += aimSway.y * Mathf.Cos(Time.time);
+                            fireSway.y += aimSway.x * Mathf.Sin((Time.time * 2));
+                        }
+                        else
+                        { // 8 pattern
+                            fireSway.x += aimSway.y * Mathf.Cos(Time.time * 2);
+                            fireSway.y += aimSway.x * Mathf.Sin((Time.time));
+                        }
+                    }
                 }
-                else
-                { // 8 pattern
-                    fireSway.x += aimSway.y * Mathf.Cos(Time.time * 2);
-                    fireSway.y += aimSway.x * Mathf.Sin((Time.time));
-                }
+
+                
 
                 firePoint.transform.eulerAngles = fireSway;
 

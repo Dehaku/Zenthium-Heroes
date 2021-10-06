@@ -3059,7 +3059,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1101322, y: 1}
+    m_SensorSize: {x: 1.8044554, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -28591,8 +28591,9 @@ MonoBehaviour:
   rotationSpeed: 4
   minRange: 3
   maxRange: 15
-  aimSway: {x: 0.1, y: 0.1}
-  aimSwayCross: 1
+  aimSway: {x: 0, y: 0}
+  aimSwayCross: 0
+  aimSwayNoise: 0
   TargetDetectedClip: {fileID: 8300000, guid: 7302a46a710251d4f95b05538f108ea6, type: 3}
   rotateParts: 1
   rotationHelper: {fileID: 360808337}
