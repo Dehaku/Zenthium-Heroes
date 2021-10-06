@@ -1,3 +1,4 @@
+using Hellmade.Sound;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,10 @@ public class Turret : MonoBehaviour
     public bool AllowedToShoot = false;
     public float minRange = 3f;
     public float maxRange = 25f;
+
+    [Header("Detection")]
+    public AudioClip TargetDetectedClip;
+    bool enemyDetected = false;
 
     
     //public float gravityOffset = 0;
@@ -70,6 +75,15 @@ public class Turret : MonoBehaviour
         //acquireTargets.target = acquireTargets.AcquireNearestEnemyTarget();
         acquireTargets.target = acquireTargets.AcquireNearestEnemyTargetWithinRange(minRange,maxRange);
 
+        
+        // Play enemy detected sound.
+        if (acquireTargets.target && !enemyDetected)
+        {
+            enemyDetected = true;
+            EazySoundManager.PlaySound(TargetDetectedClip, 1, false, transform);
+        }
+        else if (!acquireTargets.target)
+            enemyDetected = false;
 
 
         if (acquireTargets.target)
