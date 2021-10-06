@@ -21,6 +21,7 @@ public class ShootKOBullet : MonoBehaviour
     [Range(0.1f,2f)]
     public float fireRate = 1;
     float _fireRateTrack = 0;
+    public float damage = 10;
     
     
     public AudioClip gunSound;
@@ -103,10 +104,15 @@ public class ShootKOBullet : MonoBehaviour
             return;
         }
 
+        DamageInfo damageInfo;
+        damageInfo.attacker = this.gameObject;
+        damageInfo.damageType = 1;
+        damageInfo.damage = damage;
+
         for (int i = 0; i < bulletCount; i++)
         {
             GameObject pew = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
-
+            
 
 
             Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
@@ -131,6 +137,7 @@ public class ShootKOBullet : MonoBehaviour
             if (bulletScript)
             {
                 bulletScript.Initialize(pew.transform, bulletSpeed, bulletGravity);
+                bulletScript.damageInfo = damageInfo;
             }
             Destroy(pew, bulletLifeTime);
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Linq;
 
 public class Creature : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Creature : MonoBehaviour
     public float health = 100;
     public bool isAlive = true;
     public bool isConscious = true;
+    DamageResists _damageResists;
 
 
     /// <summary>
@@ -27,6 +29,53 @@ public class Creature : MonoBehaviour
         if (health <= 0)
             return true;
 
+        return false;
+    }
+
+    public float ApplyDamageResists(float healthChange, DamageInfo dI)
+    {
+        if (_damageResists)
+        {
+            var resists = _damageResists.GetResistencesOfDamageType(dI.damageType);
+            resists = resists.OrderByDescending(w => w.percentage).ToList();
+            if (resists.Count > 0)
+            {
+                foreach (var dR in resists)
+                {
+                    if (dR.percentage)
+                        healthChange *= 1 - ((dR.resistAmount) * 0.01f);
+                    else
+                        healthChange -= dR.resistAmount;
+                }
+            }
+        }
+        // We don't want our damage healing the target, or healing damaging the target.
+        return Mathf.Max(healthChange,0);
+    }
+
+    public bool ChangeHealth(DamageInfo dI)
+    {
+        var change = dI.damage;
+        
+        
+
+
+        
+        Debug.Log("Change In:" + change);
+        // Reduce incoming amount by applicable damage resists
+        change = ApplyDamageResists(change, dI);
+        Debug.Log("Change Out:" + change);
+
+
+        // If it's a type that deals damage, negate it so it does harm.
+        if (dI.damageType >= 0)
+            change = -change;
+
+        health += change;
+        health = Mathf.Min(health, healthMax);
+
+        if (health <= 0)
+            return true;
 
         return false;
     }
@@ -47,7 +96,9 @@ public class Creature : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!_damageResists)
+            _damageResists = GetComponent<DamageResists>();
+
     }
 
     // Update is called once per frame

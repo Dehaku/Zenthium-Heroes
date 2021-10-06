@@ -16,10 +16,14 @@ public class CreatureHit : ShootableObject
             creature = GetComponentInParent<Creature>();
     }
 
-    public override void OnHit(RaycastHit hit)
+    public override void OnHit(RaycastHit hit, DamageInfo dI)
     {
         Debug.Log(transform.root.name + " hit on " + gameObject.name + ", " + hit.collider.name);
-        
+        Debug.Log("dI: " + dI
+            + ", Atkr: " + dI.attacker
+            + " damType: " + dI.damageType
+            + " damage: " + dI.damage
+            );
         
         // GameObject particles = Instantiate(particlesPrefab, hit.point + (hit.normal * 0.05f), Quaternion.LookRotation(hit.normal), transform.root.parent);
 
@@ -32,7 +36,7 @@ public class CreatureHit : ShootableObject
 
         if(creature)
         {
-            bool unconscious = creature.ChangeHealth(-10);
+            bool unconscious = creature.ChangeHealth(dI);
             if(unconscious)
                 if (ragdoll)
                     if (!ragdoll.isRagdolled)

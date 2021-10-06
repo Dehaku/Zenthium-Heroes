@@ -6,6 +6,7 @@ public class BulletProjectileRaycast : MonoBehaviour
 {
     public GameObject muzzlePrefab;
     public GameObject hitPrefab;
+    public DamageInfo damageInfo;
     public float speed = 50;
     public float gravity = 1;
     public float knockbackForce = 50;
@@ -55,7 +56,8 @@ public class BulletProjectileRaycast : MonoBehaviour
         ShootableObject shootableObject = hit.transform.GetComponent<ShootableObject>();
         if (shootableObject)
         {
-            shootableObject.OnHit(hit);
+            
+            shootableObject.OnHit(hit, damageInfo);
         }
 
         // var myRigid = GetComponent<Rigidbody>();

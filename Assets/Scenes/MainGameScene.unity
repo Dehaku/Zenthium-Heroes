@@ -12365,6 +12365,7 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   recoil: {fileID: 0}
   fireRate: 0.25
+  damage: 7
   gunSound: {fileID: 8300000, guid: 1f3c0eab072a21d4c8b9e2a0cb0f6659, type: 3}
   spawnPos: {fileID: 524669567}
   vfx:
@@ -30016,6 +30017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!4 &482326326866311070
 Transform:
   m_ObjectHideFlags: 0
@@ -33742,6 +33744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &2756633694932225833
 GameObject:
   m_ObjectHideFlags: 0
@@ -35675,6 +35678,7 @@ GameObject:
   - component: {fileID: 4610164283517850483}
   - component: {fileID: 4610164283517850488}
   - component: {fileID: 4610164283517850489}
+  - component: {fileID: 4610164283517850490}
   m_Layer: 14
   m_Name: Sidekick
   m_TagString: Untagged
@@ -35803,6 +35807,34 @@ MonoBehaviour:
   health: 100
   isAlive: 1
   isConscious: 1
+--- !u!114 &4610164283517850490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610164283517850482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bc97a187e6576f4fa3f66da76fd0746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resists:
+  - damageType: 0
+    resistAmount: 10
+    percentage: 0
+  - damageType: 1
+    resistAmount: 2
+    percentage: 0
+  - damageType: 1
+    resistAmount: 50
+    percentage: 1
+  - damageType: 1
+    resistAmount: 1
+    percentage: 0
+  - damageType: 1
+    resistAmount: 25
+    percentage: 1
 --- !u!4 &4616068715566333818
 Transform:
   m_ObjectHideFlags: 0
@@ -42030,6 +42062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690180
 GameObject:
   m_ObjectHideFlags: 0
@@ -42115,6 +42148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690194
 GameObject:
   m_ObjectHideFlags: 0
@@ -42146,6 +42180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690196
 GameObject:
   m_ObjectHideFlags: 0
@@ -42177,6 +42212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690198
 GameObject:
   m_ObjectHideFlags: 0
@@ -42208,6 +42244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690200
 GameObject:
   m_ObjectHideFlags: 0
@@ -42242,6 +42279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690202
 GameObject:
   m_ObjectHideFlags: 0
@@ -42273,6 +42311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690204
 GameObject:
   m_ObjectHideFlags: 0
@@ -42307,6 +42346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690206
 GameObject:
   m_ObjectHideFlags: 0
@@ -42338,6 +42378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690208
 GameObject:
   m_ObjectHideFlags: 0
@@ -42369,6 +42410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690210
 GameObject:
   m_ObjectHideFlags: 0
@@ -42403,6 +42445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690212
 GameObject:
   m_ObjectHideFlags: 0
@@ -42434,6 +42477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690214
 GameObject:
   m_ObjectHideFlags: 0
@@ -42468,6 +42512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690216
 GameObject:
   m_ObjectHideFlags: 0
@@ -42499,6 +42544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690218
 GameObject:
   m_ObjectHideFlags: 0
@@ -42530,6 +42576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690220
 GameObject:
   m_ObjectHideFlags: 0
@@ -42561,6 +42608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690222
 GameObject:
   m_ObjectHideFlags: 0
@@ -42592,6 +42640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690224
 GameObject:
   m_ObjectHideFlags: 0
@@ -42623,6 +42672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690226
 GameObject:
   m_ObjectHideFlags: 0
@@ -42654,6 +42704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690228
 GameObject:
   m_ObjectHideFlags: 0
@@ -42685,6 +42736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690230
 GameObject:
   m_ObjectHideFlags: 0
@@ -42719,6 +42771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690232
 GameObject:
   m_ObjectHideFlags: 0
@@ -42750,6 +42803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690234
 GameObject:
   m_ObjectHideFlags: 0
@@ -42781,6 +42835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690236
 GameObject:
   m_ObjectHideFlags: 0
@@ -42813,6 +42868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690238
 GameObject:
   m_ObjectHideFlags: 0
@@ -42847,6 +42903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 0}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690240
 GameObject:
   m_ObjectHideFlags: 0
@@ -42881,6 +42938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690242
 GameObject:
   m_ObjectHideFlags: 0
@@ -42914,6 +42972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690244
 GameObject:
   m_ObjectHideFlags: 0
@@ -42948,6 +43007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690246
 GameObject:
   m_ObjectHideFlags: 0
@@ -42979,6 +43039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690248
 GameObject:
   m_ObjectHideFlags: 0
@@ -43010,6 +43071,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690250
 GameObject:
   m_ObjectHideFlags: 0
@@ -43041,6 +43103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690252
 GameObject:
   m_ObjectHideFlags: 0
@@ -43072,6 +43135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690254
 GameObject:
   m_ObjectHideFlags: 0
@@ -43103,6 +43167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690256
 GameObject:
   m_ObjectHideFlags: 0
@@ -43133,6 +43198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690260
 GameObject:
   m_ObjectHideFlags: 0
@@ -43236,6 +43302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &6672946856116690270
 GameObject:
   m_ObjectHideFlags: 0
@@ -43268,6 +43335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!114 &6672946856116690272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43282,6 +43350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 0}
+  creature: {fileID: 0}
 --- !u!114 &6672946856116690273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43296,6 +43365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 0}
+  creature: {fileID: 0}
 --- !u!1 &6696680605356677589
 GameObject:
   m_ObjectHideFlags: 0
@@ -45127,6 +45197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!4 &7420419003035039956
 Transform:
   m_ObjectHideFlags: 0
@@ -45436,6 +45507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 1836566715}
+  creature: {fileID: 0}
 --- !u!1 &7906425878193760910
 GameObject:
   m_ObjectHideFlags: 0
