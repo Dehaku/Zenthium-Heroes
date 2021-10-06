@@ -221,7 +221,7 @@ public class ShootKOBullet : MonoBehaviour
         {
             //spawnVFX(_prediction.predictHit.transform);
 
-            if (predictionTarget)
+            if (predictionTarget && isPlayer)
             {
                 var aimCon = FindObjectOfType<PlayerAimController>();
                 if (aimCon)
