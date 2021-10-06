@@ -175,7 +175,11 @@ public class Turret : MonoBehaviour
         if (acquireTargets.target)
         {
             if(TargetWithinFireCone())
+            {
+                rotRotary.transform.eulerAngles = new Vector3(rotRotary.transform.eulerAngles.x, rotRotary.transform.eulerAngles.y, rotRotary.transform.eulerAngles.z+10);
                 weaponScript.Fire();
+            }
+                
             else
                 weaponScript.Fire(false);
 
