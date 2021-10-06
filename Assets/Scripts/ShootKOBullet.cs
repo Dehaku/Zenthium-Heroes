@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
+
 
 public class ShootKOBullet : MonoBehaviour
 {
@@ -20,6 +22,7 @@ public class ShootKOBullet : MonoBehaviour
     public float fireRate = 1;
     float _fireRateTrack = 0;
     
+    
     public AudioClip gunSound;
     private int gunSoundID;
     
@@ -34,6 +37,8 @@ public class ShootKOBullet : MonoBehaviour
     [Space]
     [Header("Bullet")]
     public GameObject bulletPrefab;
+    public float bulletCount = 1;
+    public Vector2 bulletSpread;
     public float bulletSpeed = 50;
     public float bulletGravity = 1;
     public float bulletForce = 50;
@@ -98,33 +103,46 @@ public class ShootKOBullet : MonoBehaviour
             return;
         }
 
-        GameObject pew = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
-
-
-
-        Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
-
-        if (isPlayer)
+        for (int i = 0; i < bulletCount; i++)
         {
-            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) { pew.transform.forward = Camera.main.transform.forward; }
-            else { pew.transform.LookAt(hit.point); }
-        }
-        else
-            pew.transform.forward = spawnPos.transform.forward;
+            GameObject pew = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
 
-        BulletProjectileRaycast bulletScript = pew.GetComponent<BulletProjectileRaycast>();
-        if (bulletScript)
-        {
-            bulletScript.Initialize(pew.transform, bulletSpeed, bulletGravity);
-        }
-        Destroy(pew, bulletLifeTime);
 
-        if(effectToSpawn)
-        {
-            GameObject vfx = spawnVFX(pew.transform);
-            if (vfx)
-                vfx.transform.SetParent(pew.transform);
+
+            Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
+
+            if (isPlayer)
+            {
+                if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) { pew.transform.forward = Camera.main.transform.forward; }
+                else { pew.transform.LookAt(hit.point); }
+            }
+            else
+                pew.transform.forward = spawnPos.transform.forward;
+
+            if(bulletSpread != Vector2.zero)
+            {
+                var baseAngles = pew.transform.eulerAngles;
+                baseAngles.x += Random.Range(-bulletSpread.y,bulletSpread.y);
+                baseAngles.y += Random.Range(-bulletSpread.x, bulletSpread.x);
+                pew.transform.eulerAngles = baseAngles;
+            }
+
+            BulletProjectileRaycast bulletScript = pew.GetComponent<BulletProjectileRaycast>();
+            if (bulletScript)
+            {
+                bulletScript.Initialize(pew.transform, bulletSpeed, bulletGravity);
+            }
+            Destroy(pew, bulletLifeTime);
+
+            if (effectToSpawn)
+            {
+                GameObject vfx = spawnVFX(pew.transform);
+                if (vfx)
+                    vfx.transform.SetParent(pew.transform);
+            }
         }
+
+        
         
 
 

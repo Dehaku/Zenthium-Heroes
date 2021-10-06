@@ -3059,7 +3059,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8044554, y: 1}
+    m_SensorSize: {x: 2.1101322, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12434,6 +12434,8 @@ MonoBehaviour:
   - {fileID: 98131139715565700, guid: dd8c79bee25874044a91b01a8ed46559, type: 3}
   bulletPrefab: {fileID: 570900341778744197, guid: 4bdc4eacc812bbc4db51c78ed7945c7c,
     type: 3}
+  bulletCount: 5
+  bulletSpread: {x: 2, y: 2}
   bulletSpeed: 250
   bulletGravity: 9.8
   bulletForce: 50
@@ -28529,6 +28531,8 @@ MonoBehaviour:
   - {fileID: 98131139715565700, guid: dd8c79bee25874044a91b01a8ed46559, type: 3}
   bulletPrefab: {fileID: 570900341778744197, guid: 4bdc4eacc812bbc4db51c78ed7945c7c,
     type: 3}
+  bulletCount: 1
+  bulletSpread: {x: 1, y: 1}
   bulletSpeed: 250
   bulletGravity: 0
   bulletForce: 50
