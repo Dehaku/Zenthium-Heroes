@@ -15,6 +15,9 @@ public class Turret : MonoBehaviour
     public float rotationSpeed = 1;
     public float minRange = 3f;
     public float maxRange = 25f;
+    public Vector2 aimSway;
+    Vector2 _aimSway;
+    public bool aimSwayCross;
 
     [Header("Detection")]
     public AudioClip TargetDetectedClip;
@@ -118,7 +121,23 @@ public class Turret : MonoBehaviour
                 rotVert.localEulerAngles = new Vector3(0, 90, 90+ (-rotationHelper.localEulerAngles.x));
                 
                 firePoint.transform.rotation = Quaternion.Lerp(firePoint.transform.rotation, rotationHelper.rotation, rotationSpeed * Time.deltaTime);
+
+                var fireSway = firePoint.transform.eulerAngles;
+                //Debug.Log("Cos:" + Mathf.Cos(Time.time) + " : " + aimSway.x* Mathf.Cos(Time.time));
                 
+                if(aimSwayCross)
+                { // U pattern
+                    fireSway.x += aimSway.y * Mathf.Cos(Time.time);
+                    fireSway.y += aimSway.x * Mathf.Sin((Time.time * 2));
+                }
+                else
+                { // 8 pattern
+                    fireSway.x += aimSway.y * Mathf.Cos(Time.time * 2);
+                    fireSway.y += aimSway.x * Mathf.Sin((Time.time));
+                }
+
+                firePoint.transform.eulerAngles = fireSway;
+
             }
             else
                 transform.LookAt(acquireTargets.target.transform.position + new Vector3(0, 1, 0));
