@@ -12026,6 +12026,7 @@ GameObject:
   - component: {fileID: 861604090}
   - component: {fileID: 861604091}
   - component: {fileID: 861604092}
+  - component: {fileID: 861604093}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -12635,6 +12636,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentFactionID: 1
   TrueFactionID: 1
+--- !u!114 &861604093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861604074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312e2c1780aab2c4d9c60d0b892006bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 100
+  health: 100
+  isAlive: 1
+  isConscious: 1
 --- !u!1001 &864892413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35657,6 +35674,7 @@ GameObject:
   - component: {fileID: 2301615222608333561}
   - component: {fileID: 4610164283517850483}
   - component: {fileID: 4610164283517850488}
+  - component: {fileID: 4610164283517850489}
   m_Layer: 14
   m_Name: Sidekick
   m_TagString: Untagged
@@ -35769,6 +35787,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentFactionID: 1
   TrueFactionID: 1
+--- !u!114 &4610164283517850489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610164283517850482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312e2c1780aab2c4d9c60d0b892006bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 100
+  health: 100
+  isAlive: 1
+  isConscious: 1
 --- !u!4 &4616068715566333818
 Transform:
   m_ObjectHideFlags: 0
