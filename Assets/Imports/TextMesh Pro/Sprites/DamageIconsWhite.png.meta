@@ -1,100 +1,52 @@
 fileFormatVersion: 2
-guid: dffef66376be4fa480fb02b19edbe903
+guid: 55f15c1c6b465c7409d475a7425c817a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 21300000
-    second: EmojiOne_0
+      213: 5333881818650849185
+    second: DamageIconsWhite_0
   - first:
-      213: 21300002
-    second: EmojiOne_1
+      213: -8454244940975299443
+    second: DamageIconsWhite_1
   - first:
-      213: 21300004
-    second: EmojiOne_2
+      213: 4375088333546020949
+    second: DamageIconsWhite_2
   - first:
-      213: 21300006
-    second: EmojiOne_3
+      213: -8123017089884232695
+    second: DamageIconsWhite_3
   - first:
-      213: 21300008
-    second: EmojiOne_4
+      213: 4834575859187596638
+    second: DamageIconsWhite_4
   - first:
-      213: 21300010
-    second: EmojiOne_6
+      213: -7827813867564925637
+    second: DamageIconsWhite_5
   - first:
-      213: 21300012
-    second: EmojiOne_7
+      213: -3300921025645810494
+    second: DamageIconsWhite_6
   - first:
-      213: 21300014
-    second: EmojiOne_8
+      213: 1928660073562725476
+    second: DamageIconsWhite_7
   - first:
-      213: 21300016
-    second: EmojiOne_9
+      213: 1785843665534503569
+    second: DamageIconsWhite_8
   - first:
-      213: 21300018
-    second: EmojiOne_10
+      213: -1256349615692201514
+    second: DamageIconsWhite_9
   - first:
-      213: 21300020
-    second: EmojiOne_11
+      213: -4238635263595402813
+    second: DamageIconsWhite_10
   - first:
-      213: 21300022
-    second: EmojiOne_12
+      213: 5182491974846563578
+    second: DamageIconsWhite_11
   - first:
-      213: 21300024
-    second: EmojiOne_13
+      213: -4198091814235026875
+    second: DamageIconsWhite_12
   - first:
-      213: 21300026
-    second: EmojiOne_5
+      213: 7492670117634642098
+    second: DamageIconsWhite_13
   - first:
-      213: 21300028
-    second: EmojiOne_14
-  - first:
-      213: -5808494448098210720
-    second: EmojiOne_0
-  - first:
-      213: 5809591606527854514
-    second: EmojiOne_1
-  - first:
-      213: 7835686581805841452
-    second: EmojiOne_2
-  - first:
-      213: -2632011386569831178
-    second: EmojiOne_3
-  - first:
-      213: -820337123816873145
-    second: EmojiOne_4
-  - first:
-      213: -1693817957857621958
-    second: EmojiOne_5
-  - first:
-      213: 3410751109949786290
-    second: EmojiOne_6
-  - first:
-      213: -3799401067550073031
-    second: EmojiOne_7
-  - first:
-      213: -3115430251934431812
-    second: EmojiOne_8
-  - first:
-      213: 8812233978909280060
-    second: EmojiOne_9
-  - first:
-      213: 2364779998980427918
-    second: EmojiOne_10
-  - first:
-      213: 7512734304020417274
-    second: EmojiOne_11
-  - first:
-      213: -3895366958653414396
-    second: EmojiOne_12
-  - first:
-      213: -7174898199296445581
-    second: EmojiOne_13
-  - first:
-      213: 6820766471845492667
-    second: EmojiOne_14
-  - first:
-      213: 6857870083248498349
-    second: EmojiOne_15
+      213: 1174646548613061718
+    second: DamageIconsWhite_14
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -121,7 +73,7 @@ TextureImporter:
   generateCubemap: 6
   cubemapConvolution: 0
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
@@ -130,7 +82,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -154,11 +106,11 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -170,7 +122,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -181,32 +133,8 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 512
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 512
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -215,342 +143,321 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EmojiOne_0
+      name: DamageIconsWhite_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 384
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        y: 1550
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06c074df215146fa0800000000000000
-      internalID: -5808494448098210720
+      spriteID: 1af29920141c50a40800000000000000
+      internalID: 5333881818650849185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmojiOne_1
+      name: DamageIconsWhite_1
       rect:
         serializedVersion: 2
-        x: 128
-        y: 384
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 516
+        y: 1550
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b70f2d19c0df9050800000000000000
-      internalID: 5809591606527854514
+      spriteID: d842609c40d7caa80800000000000000
+      internalID: -8454244940975299443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmojiOne_2
+      name: DamageIconsWhite_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 384
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 1032
+        y: 1550
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2cf4df4e63fdbc60800000000000000
-      internalID: 7835686581805841452
+      spriteID: 55067fdb8af67bc30800000000000000
+      internalID: 4375088333546020949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmojiOne_3
+      name: DamageIconsWhite_3
       rect:
         serializedVersion: 2
-        x: 384
-        y: 384
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 1548
+        y: 1550
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fcc8b2c697397bd0800000000000000
-      internalID: -2632011386569831178
+      spriteID: 904e50d8efe354f80800000000000000
+      internalID: -8123017089884232695
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmojiOne_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 256
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 74364d27bb39d94f0800000000000000
-      internalID: -820337123816873145
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EmojiOne_5
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 256
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a3808b3aa895e78e0800000000000000
-      internalID: -1693817957857621958
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EmojiOne_6
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 256
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2b883d5401c655f20800000000000000
-      internalID: 3410751109949786290
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EmojiOne_7
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 256
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 93f1071fbd0d54bc0800000000000000
-      internalID: -3799401067550073031
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EmojiOne_8
+      name: DamageIconsWhite_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        y: 1034
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb541fe21b4c3c4d0800000000000000
-      internalID: -3115430251934431812
+      spriteID: e5d3e86112dd71340800000000000000
+      internalID: 4834575859187596638
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmojiOne_9
+      name: DamageIconsWhite_5
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 516
+        y: 1034
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c37c3865d185b4a70800000000000000
-      internalID: 8812233978909280060
+      spriteID: b3d7aefc2c40e5390800000000000000
+      internalID: -7827813867564925637
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmojiOne_10
+      name: DamageIconsWhite_6
       rect:
         serializedVersion: 2
-        x: 256
-        y: 128
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 1032
+        y: 1034
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e805d2341e261d020800000000000000
-      internalID: 2364779998980427918
+      spriteID: 2cc63c2f0d5c032d0800000000000000
+      internalID: -3300921025645810494
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmojiOne_11
+      name: DamageIconsWhite_7
       rect:
         serializedVersion: 2
-        x: 384
-        y: 128
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 1548
+        y: 1034
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afa470b9b08924860800000000000000
-      internalID: 7512734304020417274
+      spriteID: 46c5f215e1af3ca10800000000000000
+      internalID: 1928660073562725476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmojiOne_12
+      name: DamageIconsWhite_8
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        y: 518
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4046bafb360e0f9c0800000000000000
-      internalID: -3895366958653414396
+      spriteID: 19ac09c1a5798c810800000000000000
+      internalID: 1785843665534503569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmojiOne_13
+      name: DamageIconsWhite_9
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 516
+        y: 518
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 373785b1a14ad6c90800000000000000
-      internalID: -7174898199296445581
+      spriteID: 6d1c7f25eac809ee0800000000000000
+      internalID: -1256349615692201514
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmojiOne_14
+      name: DamageIconsWhite_10
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 1032
+        y: 518
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb7be3ad7fa38ae50800000000000000
-      internalID: 6820766471845492667
+      spriteID: 3c9a3fc5fa75d25c0800000000000000
+      internalID: -4238635263595402813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmojiOne_15
+      name: DamageIconsWhite_11
       rect:
         serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 128
-      alignment: 1
-      pivot: {x: 0, y: 1}
+        x: 1548
+        y: 518
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da62ec3918c0c2f50800000000000000
-      internalID: 6857870083248498349
+      spriteID: af4ca0c3ef8ebe740800000000000000
+      internalID: 5182491974846563578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DamageIconsWhite_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54acb06ccb16db5c0800000000000000
+      internalID: -4198091814235026875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DamageIconsWhite_13
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 2
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b01ccc26cf4bf760800000000000000
+      internalID: 7492670117634642098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DamageIconsWhite_14
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 2
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65c58baffce2d4010800000000000000
+      internalID: 1174646548613061718
       vertices: []
       indices: 
       edges: []
@@ -558,7 +465,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3e32d8f5477abfc43b19066e8ad5032e
+    spriteID: 78262c86722cd7d4790f40242ce941a0
     internalID: 0
     vertices: []
     indices: 

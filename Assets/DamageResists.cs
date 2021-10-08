@@ -14,15 +14,23 @@ public struct Damage
 {
     public enum damageType
     {
-        BioHeal = -3,
+        TechHeal = -3,
         MagicHeal = -2,
-        TechHeal = -1,
+        BioHeal = -1,
         Pure = 0,
         Pierce = 1,
         Blunt = 2,
+        Tech = 5,
         Fire = 10,
         Cold = 11,
-        Electric = 12
+        Shock = 12,
+        Toxic = 21,
+        Radiation = 22,
+        Magic = 31,
+        Mental = 32,
+        Credit = 51
+
+
     }
 
     public static string GetName(int value)

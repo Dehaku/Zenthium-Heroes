@@ -31,6 +31,7 @@ public class DamagePopup : MonoBehaviour
     float disappearTimer;
     Color textColor;
     Vector3 moveVector;
+    bool displayDamageTypeImage;
 
 
     private void Awake()
@@ -40,7 +41,18 @@ public class DamagePopup : MonoBehaviour
 
     public void Setup(float damageAmount, int damageType, bool isCriticalHit)
     {
-        textMesh.SetText(damageAmount.ToString());
+        displayDamageTypeImage = true;
+
+        string damageString = "";
+        if(displayDamageTypeImage)
+        {
+            damageString += "<color=#000000> <sprite name=\"DamageIconsWhite_" + Damage.GetName(damageType) + "\" tint=1> </color>";
+        }
+            
+        damageString += damageAmount.ToString();
+        Debug.Log(damageString);
+
+        textMesh.SetText(damageString);
         disappearTimer = DISAPPEAR_TIMER_MAX;
 
         if(isCriticalHit)
@@ -59,6 +71,8 @@ public class DamagePopup : MonoBehaviour
         sortingOrder++;
         textMesh.sortingOrder = sortingOrder;
         moveVector = new Vector3(.7f, 1) * 6f;
+
+        
 
 
     }
