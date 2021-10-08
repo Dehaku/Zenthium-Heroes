@@ -68,6 +68,12 @@ public class Creature : MonoBehaviour
 
         health += change;
         health = Mathf.Min(health, healthMax);
+        bool isCritical;
+        if (Random.Range(0, 100) < 30)
+            isCritical = true;
+        else
+            isCritical = false;
+        DamagePopup.Create(transform.position, change, dI.damageType, isCritical);
 
         if (health <= 0)
             return true;
