@@ -55,6 +55,8 @@ public class Creature : MonoBehaviour
         return Mathf.Max(healthChange,0);
     }
 
+    DamagePopup damagePopup;
+
     public bool ChangeHealth(DamageInfo dI)
     {
         var change = dI.damage;
@@ -73,12 +75,37 @@ public class Creature : MonoBehaviour
             isCritical = true;
         else
             isCritical = false;
-        DamagePopup.Create(transform.position, change, dI.damageType, isCritical);
+
+        HandleDamagePopup(transform.position, change, dI.damageType, isCritical);
+        
 
         if (health <= 0)
             return true;
 
         return false;
+    }
+
+    private void HandleDamagePopup(Vector3 position, float change, int damageType, bool isCritical)
+    {
+        // If we're not currently tracking a popup, make a new one.
+        if(!damagePopup)
+        {
+            damagePopup = DamagePopup.Create(transform.position, change, damageType, isCritical);
+            return;
+        }
+        // If tracked damagetype isn't the same as the newest source of damage's type, make and track a new one
+        if(damageType != damagePopup.damageType)
+        {
+            damagePopup = DamagePopup.Create(transform.position, change, damageType, isCritical);
+            return;
+        }
+        else // If same damagetype, add the new damage to the old one on display
+        {
+            damagePopup.AddDamage(change);
+        }
+            
+
+
     }
 
     public void Unconscious()

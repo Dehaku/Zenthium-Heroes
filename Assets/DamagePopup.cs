@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -27,7 +28,9 @@ public class DamagePopup : MonoBehaviour
 
     const float DISAPPEAR_TIMER_MAX = 1f;
     
-    TextMeshPro textMesh;
+    public TextMeshPro textMesh;
+    public float damage;
+    public int damageType;
     float disappearTimer;
     Color textColor;
     Vector3 moveVector;
@@ -42,6 +45,9 @@ public class DamagePopup : MonoBehaviour
     public void Setup(float damageAmount, int damageType, bool isCriticalHit)
     {
         displayDamageTypeImage = true;
+
+        damage = damageAmount;
+        this.damageType = damageType;
 
         string damageString = "";
         if(displayDamageTypeImage)
@@ -118,6 +124,19 @@ public class DamagePopup : MonoBehaviour
 
     }
 
+    public void AddDamage(float damageAmount)
+    {
+        damage += damageAmount;
+        string damageString = "";
+        if (displayDamageTypeImage)
+        {
+            damageString += "<color=#000000> <sprite name=\"DamageIconsWhite_" + Damage.GetName(damageType) + "\" tint=1> </color>";
+        }
+
+        damageString += damage.ToString();
+
+        textMesh.SetText(damageString);
+    }
 
     public static float Round(float value, int digits)
     {

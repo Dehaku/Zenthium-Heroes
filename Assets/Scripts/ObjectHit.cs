@@ -16,4 +16,9 @@ public class ObjectHit : ShootableObject
         //}
         Destroy(particles, 2f);
     }
+
+    public override void OnHit(DamageInfo dI)
+    {
+
+    }
 }

@@ -18,12 +18,12 @@ public class CreatureHit : ShootableObject
 
     public override void OnHit(RaycastHit hit, DamageInfo dI)
     {
-        Debug.Log(transform.root.name + " hit on " + gameObject.name + ", " + hit.collider.name);
-        Debug.Log("dI: " + dI
-            + ", Atkr: " + dI.attacker
-            + " damType: " + dI.damageType
-            + " damage: " + dI.damage
-            );
+        //Debug.Log(transform.root.name + " hit on " + gameObject.name + ", " + hit.collider.name);
+        //Debug.Log("dI: " + dI
+        //    + ", Atkr: " + dI.attacker
+        //    + " damType: " + dI.damageType
+        //    + " damage: " + dI.damage
+        //    );
         
         // GameObject particles = Instantiate(particlesPrefab, hit.point + (hit.normal * 0.05f), Quaternion.LookRotation(hit.normal), transform.root.parent);
 
@@ -33,11 +33,6 @@ public class CreatureHit : ShootableObject
             GameObject particles = Instantiate(particlesPrefab, hit.point + (hit.normal * 0.05f), Quaternion.LookRotation(hit.normal), transform);
             Destroy(particles, 2f);
         }
-            
-
-        
-
-        
 
         if(creature)
         {
@@ -51,9 +46,22 @@ public class CreatureHit : ShootableObject
             if (ragdoll)
                 if (!ragdoll.isRagdolled)
                     ragdoll.EnableRagdoll();
-
-
-
         
+    }
+
+    public override void OnHit(DamageInfo dI)
+    {
+        if (creature)
+        {
+            bool unconscious = creature.ChangeHealth(dI);
+            if (unconscious)
+                if (ragdoll)
+                    if (!ragdoll.isRagdolled)
+                        ragdoll.EnableRagdoll();
+        }
+        else
+            if (ragdoll)
+            if (!ragdoll.isRagdolled)
+                ragdoll.EnableRagdoll();
     }
 }

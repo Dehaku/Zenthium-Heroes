@@ -3059,7 +3059,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4207921, y: 1}
+    m_SensorSize: {x: 1.4034654, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12085,6 +12085,7 @@ GameObject:
   - component: {fileID: 861604092}
   - component: {fileID: 861604093}
   - component: {fileID: 861604094}
+  - component: {fileID: 861604095}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -12216,13 +12217,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.81
-  m_Radius: 0.12
+  m_Height: 1.6
+  m_Radius: 0.13
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.88, z: 0}
 --- !u!114 &861604079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12724,6 +12725,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRagdolled: 0
+--- !u!114 &861604095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861604074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 0}
+  creature: {fileID: 0}
 --- !u!1001 &864892413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22331,12 +22347,12 @@ PrefabInstance:
     - target: {fileID: 5068741271274442040, guid: 30622eb4ec94db74b8d3709bfa97790a,
         type: 3}
       propertyPath: fireGun
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5068741271274442040, guid: 30622eb4ec94db74b8d3709bfa97790a,
         type: 3}
       propertyPath: colliderRate
-      value: 0.05
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5068741271274442040, guid: 30622eb4ec94db74b8d3709bfa97790a,
         type: 3}
@@ -28968,6 +28984,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 55017f1a01259744a8e40a41b5c5920d, type: 2}
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
+        type: 3}
       propertyPath: shoreFade
       value: 1
       objectReference: {fileID: 0}
@@ -29004,7 +29025,7 @@ PrefabInstance:
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
       propertyPath: deepColor.g
-      value: 0.2860768
+      value: 0.2859901
       objectReference: {fileID: 0}
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
@@ -29039,7 +29060,7 @@ PrefabInstance:
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
       propertyPath: shoreColor.b
-      value: 0.30176312
+      value: 0.30167636
       objectReference: {fileID: 0}
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
@@ -29069,7 +29090,7 @@ PrefabInstance:
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
       propertyPath: horizonColor.g
-      value: 0.42108983
+      value: 0.42100307
       objectReference: {fileID: 0}
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
@@ -29164,12 +29185,12 @@ PrefabInstance:
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
       propertyPath: underwaterColor.g
-      value: 0.30960622
+      value: 0.30951947
       objectReference: {fileID: 0}
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}
       propertyPath: underwaterColor.r
-      value: 0.20373422
+      value: 0.203652
       objectReference: {fileID: 0}
     - target: {fileID: 3571767707691462230, guid: b1b6a4a4712a0364bbffc21e45491ba2,
         type: 3}

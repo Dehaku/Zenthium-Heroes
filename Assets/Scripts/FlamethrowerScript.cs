@@ -11,12 +11,15 @@ public class FlamethrowerScript : MonoBehaviour
     public bool fireGun = false;
     public bool stopGun = false;
 
-
-
+    public int damageType = Damage.GetType("Fire");
+    public float damage = 1f;
+    
+    [Header("Flame Collision")]
     public float colliderRate = 0.2f;
     float _colliderTimer = 0;
     public float colliderSpeed = 1;
     public float colliderDuration = 5;
+    public float colliderGrowth = 1.3f;
 
     public FlamethrowerColliderScript colliderPrefab;
     public Queue<FlamethrowerColliderScript> colliderPool;
@@ -59,8 +62,10 @@ public class FlamethrowerScript : MonoBehaviour
         col.parentScript = this;
         col.transform.position = spawnPos;
         col.transform.rotation = spawnRot;
+        col.transform.localScale = new Vector3(1,1,1);
         col.durationMax = colliderDuration;
         col.transform.DOMove((col.transform.forward * colliderSpeed) + col.transform.position, colliderDuration);
+        col.transform.DOScale(col.transform.localScale * colliderGrowth, colliderDuration);
         colliders.Add(col);
 
     }
@@ -128,7 +133,7 @@ public class FlamethrowerScript : MonoBehaviour
 
     public void ChildCollisionEnter(FlamethrowerColliderScript collider, Collider other)
     {
-        Debug.Log(collider.name + " collided with " + other.name);
+        // Debug.Log(collider.name + " collided with " + other.name);
 
         Knockback kb = other.GetComponent<Knockback>();
         if (kb != null)
@@ -138,6 +143,19 @@ public class FlamethrowerScript : MonoBehaviour
             Vector3 dist = (collider.transform.position - other.gameObject.transform.position);
 
             kb.ApplyKnockback(dir, 100 * dist.magnitude);
+        }
+
+        ShootableObject shootable = other.GetComponent<ShootableObject>();
+        if(shootable)
+        {
+            DamageInfo damageInfo;
+            damageInfo.attacker = this.gameObject;
+            damageInfo.damageType = damageType;
+            if (Input.GetKey(KeyCode.D))
+                damageInfo.damageType = -2;
+            damageInfo.damage = damage;
+
+            shootable.OnHit(damageInfo);
         }
     }
 
