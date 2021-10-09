@@ -100,12 +100,30 @@ public class GuiMeterScript : MonoBehaviour
     {
         float returnValue = value;
 
-        returnValue = segments*(value / maxValue);
-        //float maxVar = segments * maxValue;
-
-
+        returnValue = segments*(-(value-maxValue) / maxValue);
         
         return returnValue;
+    }
+
+    float SegmentsPerLayerFromMaxValue(float maxValue, int layer)
+    {
+        if(layer == 0)
+            return Mathf.Clamp(maxValue / 10,0,10);
+        
+
+        float baseValue = 1;
+        for (int i = 0; i < layer; i++)
+            baseValue *= 10;
+
+
+        Debug.Log("Headhurts: " + maxValue + " : " + layer + " : " + baseValue + " : " + maxValue / (baseValue * 10) );
+
+        if(maxValue < baseValue)
+            return 0f;
+        if (maxValue > baseValue * 100)
+            return 10f;
+        
+        return Mathf.Clamp(maxValue / (baseValue * 10), 0,10);
     }
 
     void UpdateAllMeterValues()
@@ -138,8 +156,8 @@ public class GuiMeterScript : MonoBehaviour
                 meter.SetColor(shaderProps._Color, layerColors[overflow]);
             }
             meter.SetFloat(shaderProps._Rotation, rotation);
-            meter.SetFloat(shaderProps._RemovedSegments, 0 + (value / maxValue));
-            meter.SetFloat(shaderProps._SegmentCount, segments);
+            //meter.SetFloat(shaderProps._RemovedSegments, 0 + (value / maxValue));
+            meter.SetFloat(shaderProps._SegmentCount, SegmentsPerLayerFromMaxValue(maxValue,increm));
             meter.SetFloat(shaderProps._SegmentSpacing, segmentSpacing);
 
             increm++;
