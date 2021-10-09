@@ -50,7 +50,6 @@ public class DamagePopup : MonoBehaviour
         }
             
         damageString += damageAmount.ToString();
-        Debug.Log(damageString);
 
         textMesh.SetText(damageString);
         disappearTimer = DISAPPEAR_TIMER_MAX;

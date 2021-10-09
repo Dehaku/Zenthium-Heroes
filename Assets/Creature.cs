@@ -88,7 +88,8 @@ public class Creature : MonoBehaviour
             nMA.enabled = false;
 
         var ragdoll = GetComponent<Ragdoll>();
-        ragdoll.EnableRagdoll();
+        if(ragdoll)
+            ragdoll.EnableRagdoll();
 
 
         isConscious = false;

@@ -28,7 +28,12 @@ public class CreatureHit : ShootableObject
         // GameObject particles = Instantiate(particlesPrefab, hit.point + (hit.normal * 0.05f), Quaternion.LookRotation(hit.normal), transform.root.parent);
 
         //Sticking the effect to the limb instead of worldspace
-        GameObject particles = Instantiate(particlesPrefab, hit.point + (hit.normal * 0.05f), Quaternion.LookRotation(hit.normal), transform);
+        if(particlesPrefab)
+        {
+            GameObject particles = Instantiate(particlesPrefab, hit.point + (hit.normal * 0.05f), Quaternion.LookRotation(hit.normal), transform);
+            Destroy(particles, 2f);
+        }
+            
 
         
 
@@ -49,6 +54,6 @@ public class CreatureHit : ShootableObject
 
 
 
-        Destroy(particles, 2f);
+        
     }
 }
