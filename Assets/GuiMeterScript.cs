@@ -74,6 +74,7 @@ public class GuiMeterScript : MonoBehaviour
         {
 
             GameObject layer = Instantiate(pfCircleMeter,this.transform);
+            layer.transform.position += Vector3.right * (50*i) ;
             Material layerMat;
             
             layerMat = Instantiate(baseMaterial);
@@ -105,6 +106,71 @@ public class GuiMeterScript : MonoBehaviour
         return returnValue;
     }
 
+    float ValueToSegment(float value, int layer, float layerSegments)
+    {
+        float returnValue = value;
+        //if(layer == 0)
+        //    returnValue = segments * (-(value - maxValue) / maxValue);
+        //else
+        {
+
+            // Value 0, results as a 1, value == maxValue results as a 0
+            var zeroToOne = Mathf.Clamp(-(value - maxValue) / maxValue, 0f, 1f);
+            //Debug.Log("Zero to one: " + zeroToOne);
+
+
+           // if(maxHealth within layerHealth/10 =/= layerHealth)
+           //     floor = layerHealth/10
+           //     ceiling = layerHealth
+           //     percent between floor and maxHealth = zeroToOne range of health
+           //
+           // MaxHealth = 1000;
+           // CurrentHealth = 500;
+           // CurrentHealth / MaxHealth == 0.5;
+           //
+           // LayerHealth = 10000;
+           // CurrentHealth = 500;
+           // CurrentHealth / LayerHealth == 0.05;
+           //
+           // LayerHealth = 10000;
+           // MaxHealth = 7500;
+           // LayerHealth/MaxHealth = 0.25
+           // CurrentHealth = 500;
+           // CurrentHealth / LayerHealth == 0.05;
+           //
+
+
+            float baseValue = 100;
+            
+
+            for (int i = 0; i < layer; i++)
+                baseValue *= 10;
+
+            float floor = baseValue / 10;
+            float ceiling = maxValue;
+            if (layer == 0)
+                floor = 0;
+
+            if (maxValue > baseValue)
+                ceiling = baseValue;
+
+            
+            float zeroToOneAlso = -(value - floor) / (ceiling - floor);
+            zeroToOneAlso = 1+zeroToOneAlso;
+
+            Debug.Log("Static: " + layer + " : " + baseValue + " : " + floor);
+            Debug.Log("Dynamic: " + " : " + (value - floor) + " : " + (ceiling - floor) );
+            Debug.Log("Zero to one also: " + zeroToOneAlso + " : " + Mathf.Clamp(zeroToOneAlso, 0f, 1f));
+
+
+
+            returnValue = layerSegments * (zeroToOneAlso);
+
+        }
+
+        return returnValue;
+    }
+
     float SegmentsPerLayerFromMaxValue(float maxValue, int layer)
     {
         if(layer == 0)
@@ -116,13 +182,8 @@ public class GuiMeterScript : MonoBehaviour
             baseValue *= 10;
 
 
-        Debug.Log("Headhurts: " + maxValue + " : " + layer + " : " + baseValue + " : " + maxValue / (baseValue * 10) );
+        //Debug.Log("Headhurts: " + maxValue + " : " + layer + " : " + baseValue + " : " + maxValue / (baseValue * 10) );
 
-        if(maxValue < baseValue)
-            return 0f;
-        if (maxValue > baseValue * 100)
-            return 10f;
-        
         return Mathf.Clamp(maxValue / (baseValue * 10), 0,10);
     }
 
@@ -166,9 +227,11 @@ public class GuiMeterScript : MonoBehaviour
 
     void UpdateMeterValue()
     {
+        int increm = 0;
         foreach (var meter in meters)
         {
-            meter.SetFloat(shaderProps._RemovedSegments, ValueToSegment(value));
+            meter.SetFloat(shaderProps._RemovedSegments, ValueToSegment(value, increm, meter.GetFloat(shaderProps._SegmentCount)));
+            increm++;
         }
     }
 
