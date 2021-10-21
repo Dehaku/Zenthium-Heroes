@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletProjectileRaycast : MonoBehaviour
 {
     public GameObject muzzlePrefab;
+    public GameObject attachObject;
     public GameObject hitPrefab;
     public DamageInfo damageInfo;
     public float speed = 50;
@@ -38,6 +39,13 @@ public class BulletProjectileRaycast : MonoBehaviour
 
     void OnHit(RaycastHit hit)
     {
+        if(attachObject)
+        {
+            attachObject.transform.position = hit.point;
+            attachObject.transform.SetParent(hit.transform);
+            Destroy(attachObject, 15f);
+        }
+
         if (hitPrefab != null)
         {
 
@@ -196,7 +204,12 @@ public class BulletProjectileRaycast : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (isPrediction) return;
+        if (isPrediction)
+        {
+            if (attachObject)
+                attachObject.SetActive(false);
+            return;
+        }
 
         if (muzzlePrefab != null)
         {

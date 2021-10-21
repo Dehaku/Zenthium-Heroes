@@ -34,6 +34,7 @@ public class PaintTheWorld : MonoBehaviour
     [SerializeField] private Color32 goldColor;
     [SerializeField] private Color32 zennyColor;
 
+    [SerializeField] int maxYPaint;
     [SerializeField] private Vector3Int rangeBounds;
     [SerializeField] private Vector3Int positionCoord;
 
@@ -54,7 +55,11 @@ public class PaintTheWorld : MonoBehaviour
     {
         if (paintTerrainOverTime)
         {
-            if (_paintOverTime == false)
+
+            paintStartTime = Time.realtimeSinceStartup;
+            _paintOverTime = true;
+
+            if (_paintOverTime == false && true == false)
             {
                 paintStartTime = Time.realtimeSinceStartup;
                 _paintOverTime = true;
@@ -77,6 +82,20 @@ public class PaintTheWorld : MonoBehaviour
     {
         if (Input.GetMouseButton(2))
             CountGoldHit();
+
+        if(_paintOverTime)
+        {
+            float startTime = Time.realtimeSinceStartup;
+            if (PaintAllLevelTerrainByYCoord(maxYPaint))
+            {
+                _paintOverTime = false;
+                Debug.Log("Long Paint:" + ((Time.realtimeSinceStartup - paintStartTime) * 1000f) + "ms");
+            }
+                
+
+            Debug.Log(((Time.realtimeSinceStartup - startTime) * 1000f) + "ms");
+        }
+
 
         if (_paintOverTime && chunkIterator >= chunks.Length)
         {
@@ -118,6 +137,7 @@ public class PaintTheWorld : MonoBehaviour
             float startTime = Time.realtimeSinceStartup;
 
             PaintAllLevelTerrain(hit.point);
+            //StartCoroutine(PaintAllLevelTerrainEnum(hit.point));
             
                 //new Vector3(hitX, hitY, hitZ)
 
@@ -167,7 +187,53 @@ public class PaintTheWorld : MonoBehaviour
         return goldFound;
     }
 
-    
+    int _yLevel = 0;
+
+    bool PaintAllLevelTerrainByYCoord(int finalYLevel)
+    {
+        Debug.Log("yLevel: " + _yLevel + ":" + finalYLevel);
+        if (_yLevel >= finalYLevel)
+        {
+            Debug.Log("Done." + _yLevel + ":" + finalYLevel);
+            _yLevel = 0;
+            
+            return true;
+        }
+        
+            
+        rangeBounds.y = _yLevel;
+        _yLevel++;
+
+
+        BoundsInt queryBounds = new BoundsInt(positionCoord, rangeBounds);
+        Color32 paintColor = new Color32(0, 0, 0, 0);
+
+        voxelWorld.VoxelColorStore.SetVoxelDataCustom(queryBounds, (voxelDataWorldPosition, voxelData) =>
+        {
+
+            if (Mathf.Clamp(voxelDataWorldPosition.y, snowRange.x, snowRange.y) == voxelDataWorldPosition.y)
+                paintColor = snowColor;
+            else if (Mathf.Clamp(voxelDataWorldPosition.y, grassRange.x, grassRange.y) == voxelDataWorldPosition.y)
+                paintColor = grassColor;
+            else if (Mathf.Clamp(voxelDataWorldPosition.y, dirtRange.x, dirtRange.y) == voxelDataWorldPosition.y)
+                paintColor = dirtColor;
+            else if (Mathf.Clamp(voxelDataWorldPosition.y, stoneRange.x, stoneRange.y) == voxelDataWorldPosition.y)
+                paintColor = stoneColor;
+            if (generateGold)
+                if (UnityEngine.Random.Range(0, 1000) < generateGoldChance)
+                    paintColor = goldColor;
+            if (generateZenny)
+                if (UnityEngine.Random.Range(0, 1000) < generateZennyChance)
+                    paintColor = zennyColor;
+
+            return paintColor;
+
+        });
+
+        return false;
+    }
+
+
     private void PaintAllLevelTerrain(Vector3 coords)
     {
         Vector3 point = coords;

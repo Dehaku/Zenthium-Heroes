@@ -11,9 +11,7 @@ public class DamagePopup : MonoBehaviour
      //Create a Damage Popup
      public static DamagePopup Create(Vector3 position, float damageAmount, int damageType, bool isCriticalHit)
      {
-        Debug.Log("Pre: " + GameAssets.i.pfDamagePopup);
          Transform damagePopupTransform = Instantiate(GameAssets.i.pfDamagePopup, position, Quaternion.identity);
-        Debug.Log("Post: " + damagePopupTransform);
         DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
 
         float rounded = (int)(damageAmount * 1000.0f) / 1000.0f;

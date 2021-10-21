@@ -146,20 +146,31 @@ public class GuiMeterScript : MonoBehaviour
             for (int i = 0; i < layer; i++)
                 baseValue *= 10;
 
+
             float floor = baseValue / 10;
             float ceiling = maxValue;
             if (layer == 0)
                 floor = 0;
+            if (value < floor)
+                value -= floor;
 
             if (maxValue > baseValue)
                 ceiling = baseValue;
 
-            
-            float zeroToOneAlso = -(value - floor) / (ceiling - floor);
-            zeroToOneAlso = 1+zeroToOneAlso;
+            //value = Mathf.Clamp(value, floor, ceiling);
 
-            Debug.Log("Static: " + layer + " : " + baseValue + " : " + floor);
-            Debug.Log("Dynamic: " + " : " + (value - floor) + " : " + (ceiling - floor) );
+
+            // Previous percentaging, has weird inbetween values, but start and ends correctly.
+            //float zeroToOneAlso = -(value - floor) / (ceiling - floor);
+            //zeroToOneAlso = 1 + zeroToOneAlso;
+
+            float zeroToOneAlso = (value - ceiling) / (ceiling);
+            zeroToOneAlso = (-zeroToOneAlso);
+
+
+
+            Debug.Log("Static: " + layer + " : " + baseValue + " : " + maxValue 
+                + "Dynamic: " + floor + " : " + value + " : " + ceiling);
             Debug.Log("Zero to one also: " + zeroToOneAlso + " : " + Mathf.Clamp(zeroToOneAlso, 0f, 1f));
 
 
