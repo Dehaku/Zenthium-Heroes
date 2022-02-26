@@ -104,11 +104,23 @@ public class SquadScript : MonoBehaviour
                 
 
             var navAgent = squadUnits[i].GetComponent<NavMeshAgent>();
-            // Make the navAgent actually stop them in formation. The formation stuff can handle noise if we need it.
-            navAgent.stoppingDistance = 0;
 
-            Vector3 pos = _points[i] + squadPos;
-            navAgent.SetDestination(pos);
+            
+            // I tried making smoother checks for this and it just didn't work, so this block is a lil ugly.
+            if(navAgent)
+            {
+                if(navAgent.enabled && navAgent.isActiveAndEnabled)
+                {
+
+                    // Make the navAgent actually stop them in formation. The formation stuff can handle noise if we need it.
+                    navAgent.stoppingDistance = 0;
+
+                    Vector3 pos = _points[i] + squadPos;
+                    navAgent.SetDestination(pos);
+
+                }
+            }
+            
         }
     }
 
