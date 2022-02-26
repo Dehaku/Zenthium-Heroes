@@ -19,12 +19,13 @@ public class SquadSpawner : MonoBehaviour
     float _timeToSpawn;
 
     public GameObject enemyPrefab;
+    public GameObject squadPrefab;
     //[HideInInspector]
     public Queue<GameObject> enemyContainer = new Queue<GameObject>();
-    public List<SquadDefSO> squadSOContainer = new List<SquadDefSO>();
+    public List<SquadScript> squadSOContainer = new List<SquadScript>();
 
 
-
+    public bool chaseTarget = false;
     
 
 
@@ -61,8 +62,19 @@ public class SquadSpawner : MonoBehaviour
 
     void Spawn()
     {
-        SquadDefSO squad;
-        squad = (SquadDefSO)ScriptableObject.CreateInstance(typeof(SquadDefSO));
+        //SquadDefSO squad;
+        //squad = (SquadDefSO)ScriptableObject.CreateInstance(typeof(SquadDefSO));
+
+        //GameObject squadGO = new GameObject("Squad Parent");
+        GameObject squadGO = Instantiate(squadPrefab, Vector3.zero, Quaternion.identity, transform);
+        Transform squadT = squadGO.transform;
+        //SquadScript squad = squadGO.AddComponent<SquadScript>();
+        SquadScript squad = squadGO.GetComponent<SquadScript>();
+
+        squad.squadPosition = spawnCenter.position;
+
+
+
 
         squad.RandomSize();
         squadSOContainer.Add(squad);
@@ -70,17 +82,31 @@ public class SquadSpawner : MonoBehaviour
         for(int i = 0; i < squadSize; i++)
         {
             Vector3 spawnPos = spawnCenter.position + new Vector3(Random.Range(-spawnRadius, spawnRadius), 0, Random.Range(-spawnRadius, spawnRadius));
-            GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, transform);
-            squad.units.Add(enemy);
+            GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, squadT);
+            squad.squadUnits.Add(enemy);
             enemy.transform.localScale = Vector3.one * squad.scaleSize;
             enemyContainer.Enqueue(enemy);
+
+            
         }
 
+    }
+
+    void ChaseTarget(bool DoChase)
+    {
+        foreach (var enemy in enemyContainer)
+        {
+            if(DoChase)
+                enemy.GetComponent<ChaseTarget>().enabled = true;
+            else
+                enemy.GetComponent<ChaseTarget>().enabled = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         _timeToSpawn += Time.deltaTime;
         if (isSpawnTime(World.Instance.TimeOfDay))
         {
@@ -100,6 +126,8 @@ public class SquadSpawner : MonoBehaviour
 
         }
 
+        if (Random.Range(1, 10) == 1)
+            ChaseTarget(chaseTarget);
 
         if (Input.GetKeyDown(KeyCode.H))
         {
@@ -114,4 +142,10 @@ public class SquadSpawner : MonoBehaviour
             }
         }
     }
+
+    
+
+   
+
+
 }

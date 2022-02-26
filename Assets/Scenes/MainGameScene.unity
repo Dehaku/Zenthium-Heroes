@@ -24261,19 +24261,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35aa5f09030319d4ba65b52ce75fe38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnHour: 12
-  spawnMinute: 15
-  squadSize: 5
+  spawnHour: 10
+  spawnMinute: 0
+  squadSize: 20
   allowSpawning: 0
   allowRespawning: 1
   spawnCenter: {fileID: 343445032}
-  spawnRadius: 0
+  spawnRadius: 5
   maxEnemiesAtOnce: 0
-  spawnDelay: 1
+  spawnDelay: 2
   enemyPrefab: {fileID: 3297220718808129810, guid: 2223d9c0c33d6f841a629d10480b2cf2,
     type: 3}
-  squadContainer: []
+  squadPrefab: {fileID: 4597131876903645582, guid: a04d2eb70c317064a939cb68bee084cc,
+    type: 3}
   squadSOContainer: []
+  chaseTarget: 0
 --- !u!4 &1472467272
 Transform:
   m_ObjectHideFlags: 0
