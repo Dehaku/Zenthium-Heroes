@@ -66,12 +66,14 @@ public class SquadSpawner : MonoBehaviour
         //squad = (SquadDefSO)ScriptableObject.CreateInstance(typeof(SquadDefSO));
 
         //GameObject squadGO = new GameObject("Squad Parent");
-        GameObject squadGO = Instantiate(squadPrefab, Vector3.zero, Quaternion.identity, transform);
+        Transform squadParent = new GameObject("Squad Parent").transform;
+        squadParent.parent = transform;
+        GameObject squadGO = Instantiate(squadPrefab, Vector3.zero, Quaternion.identity, squadParent);
         Transform squadT = squadGO.transform;
         //SquadScript squad = squadGO.AddComponent<SquadScript>();
         SquadScript squad = squadGO.GetComponent<SquadScript>();
 
-        squad.squadPosition = spawnCenter.position;
+        squad.transform.position = spawnCenter.position;
 
 
 
@@ -82,7 +84,7 @@ public class SquadSpawner : MonoBehaviour
         for(int i = 0; i < squadSize; i++)
         {
             Vector3 spawnPos = spawnCenter.position + new Vector3(Random.Range(-spawnRadius, spawnRadius), 0, Random.Range(-spawnRadius, spawnRadius));
-            GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, squadT);
+            GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, squadParent);
             squad.squadUnits.Add(enemy);
             enemy.transform.localScale = Vector3.one * squad.scaleSize;
             enemyContainer.Enqueue(enemy);
