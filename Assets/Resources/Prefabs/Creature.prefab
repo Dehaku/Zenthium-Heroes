@@ -195,7 +195,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: -0.3
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &-7735671919675866538
@@ -207,7 +207,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 3297220718808129810}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.32
   m_Height: 2.5
   m_Direction: 1
@@ -3379,6 +3379,7 @@ GameObject:
   - component: {fileID: 6267365870180385326}
   - component: {fileID: 6267365870180385320}
   - component: {fileID: 6267365870180385322}
+  - component: {fileID: 4863819342856601544}
   m_Layer: 0
   m_Name: LowManLeftForeArm
   m_TagString: Untagged
@@ -3477,6 +3478,21 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &4863819342856601544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6267365870180385323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 0}
+  creature: {fileID: 0}
 --- !u!1 &6267365870180385325
 GameObject:
   m_ObjectHideFlags: 0
@@ -3552,6 +3568,7 @@ GameObject:
   - component: {fileID: 6267365870180385336}
   - component: {fileID: 6267365870180385334}
   - component: {fileID: 6267365870180385328}
+  - component: {fileID: 2962955161874179344}
   m_Layer: 0
   m_Name: LowManHead
   m_TagString: Untagged
@@ -3649,6 +3666,21 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &2962955161874179344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6267365870180385329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 0}
+  creature: {fileID: 0}
 --- !u!1 &6267365870180385331
 GameObject:
   m_ObjectHideFlags: 0
@@ -3771,6 +3803,7 @@ GameObject:
   - component: {fileID: 6267365870180385346}
   - component: {fileID: 6267365870180385342}
   - component: {fileID: 6267365870180385340}
+  - component: {fileID: 1004247756313757715}
   m_Layer: 0
   m_Name: LowManLeftArm
   m_TagString: Untagged
@@ -3869,6 +3902,21 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1004247756313757715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6267365870180385335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 0}
+  creature: {fileID: 0}
 --- !u!1 &6267365870180385337
 GameObject:
   m_ObjectHideFlags: 0
@@ -4423,6 +4471,7 @@ GameObject:
   - component: {fileID: 6267365870180385354}
   - component: {fileID: 6267365870180385348}
   - component: {fileID: 6267365870180385350}
+  - component: {fileID: 5404772424069200717}
   m_Layer: 0
   m_Name: LowManRightLeg
   m_TagString: Untagged
@@ -4521,6 +4570,21 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &5404772424069200717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6267365870180385351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 0}
+  creature: {fileID: 0}
 --- !u!1 &6267365870180385353
 GameObject:
   m_ObjectHideFlags: 0
@@ -4533,6 +4597,7 @@ GameObject:
   - component: {fileID: 6267365870180385356}
   - component: {fileID: 6267365870180385358}
   - component: {fileID: 6267365870180385352}
+  - component: {fileID: 504323712487692433}
   m_Layer: 0
   m_Name: LowManRightForeArm
   m_TagString: Untagged
@@ -4631,6 +4696,21 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &504323712487692433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6267365870180385353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 0}
+  creature: {fileID: 0}
 --- !u!1 &6267365870180385355
 GameObject:
   m_ObjectHideFlags: 0
@@ -4894,6 +4974,7 @@ GameObject:
   - component: {fileID: 6267365870180385368}
   - component: {fileID: 6267365870180385364}
   - component: {fileID: 6267365870180385370}
+  - component: {fileID: 5211544887223959540}
   m_Layer: 0
   m_Name: LowManRightArm
   m_TagString: Untagged
@@ -4992,6 +5073,21 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &5211544887223959540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6267365870180385365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 0}
+  creature: {fileID: 0}
 --- !u!1 &6267365870180385367
 GameObject:
   m_ObjectHideFlags: 0
@@ -5768,6 +5864,7 @@ GameObject:
   - component: {fileID: 6267365870180385398}
   - component: {fileID: 6267365870180385394}
   - component: {fileID: 6267365870180385392}
+  - component: {fileID: 8316904466586534761}
   m_Layer: 0
   m_Name: LowManSpine1
   m_TagString: Untagged
@@ -5865,6 +5962,21 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &8316904466586534761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6267365870180385395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 0}
+  creature: {fileID: 0}
 --- !u!1 &6267365870180385397
 GameObject:
   m_ObjectHideFlags: 0
@@ -6061,6 +6173,7 @@ GameObject:
   - component: {fileID: 6267365870180385155}
   - component: {fileID: 6267365870180385406}
   - component: {fileID: 6267365870180385404}
+  - component: {fileID: 478337076435955841}
   m_Layer: 0
   m_Name: LowManRightUpLeg
   m_TagString: Untagged
@@ -6159,6 +6272,21 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &478337076435955841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6267365870180385407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 0}
+  creature: {fileID: 0}
 --- !u!1 &8187214079648607067
 GameObject:
   m_ObjectHideFlags: 0

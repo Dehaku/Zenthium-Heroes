@@ -4286,7 +4286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275699573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 219.25, y: 24.33, z: 370.05}
+  m_LocalPosition: {x: 219.25, y: 24.79, z: 370.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1472467272}
@@ -12488,7 +12488,7 @@ MonoBehaviour:
   aimReticle: {fileID: 1886168351}
   playerCamera: {fileID: 0}
   recoil: {fileID: 0}
-  fireRate: 0.25
+  fireRate: 0.18
   damage: 35
   gunSound: {fileID: 8300000, guid: 1f3c0eab072a21d4c8b9e2a0cb0f6659, type: 3}
   spawnPos: {fileID: 524669567}
@@ -12498,7 +12498,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 570900341778744197, guid: 896819b8da0d65b4b80fb9b4ebc7f8b8,
     type: 3}
   bulletCount: 1
-  bulletSpread: {x: 2, y: 2}
+  bulletSpread: {x: 0, y: 0}
   bulletSpeed: 250
   bulletGravity: 9.8
   bulletForce: 50
