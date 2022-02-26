@@ -57,9 +57,9 @@ public class Creature : MonoBehaviour
 
     DamagePopup damagePopup;
 
-    public bool ChangeHealth(DamageInfo dI)
+    public bool ChangeHealth(DamageInfo dI, float damageMultiplier = 1)
     {
-        var change = dI.damage;
+        var change = dI.damage * damageMultiplier;
 
         // Reduce incoming amount by applicable damage resists
         change = ApplyDamageResists(change, dI);

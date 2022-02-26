@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CreatureHit : ShootableObject
 {
+    public float damageMulti = 1;
     public Ragdoll ragdoll;
     public GameObject particlesPrefab;
     public Creature creature;
@@ -36,7 +37,7 @@ public class CreatureHit : ShootableObject
 
         if(creature)
         {
-            bool unconscious = creature.ChangeHealth(dI);
+            bool unconscious = creature.ChangeHealth(dI, damageMulti);
             if(unconscious)
                 if (ragdoll)
                     if (!ragdoll.isRagdolled)
@@ -53,7 +54,7 @@ public class CreatureHit : ShootableObject
     {
         if (creature)
         {
-            bool unconscious = creature.ChangeHealth(dI);
+            bool unconscious = creature.ChangeHealth(dI, damageMulti);
             if (unconscious)
                 if (ragdoll)
                     if (!ragdoll.isRagdolled)

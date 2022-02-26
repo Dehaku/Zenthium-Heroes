@@ -288,12 +288,13 @@ MonoBehaviour:
   vfx: {fileID: 3406603697428327638}
   fireGun: 0
   stopGun: 0
+  damageType: 10
+  damage: 1
+  colliderRate: 0.2
+  colliderSpeed: 1
+  colliderDuration: 5
+  colliderGrowth: 1.3
   colliderPrefab: {fileID: 0}
-  pools:
-  - tag: Collider
-    prefab: {fileID: 3946199203306614418, guid: b0f7949e834f22f4cbe756312d00b2c1,
-      type: 3}
-    size: 5
   colliders: []
 --- !u!54 &1988536670397305444
 Rigidbody:
