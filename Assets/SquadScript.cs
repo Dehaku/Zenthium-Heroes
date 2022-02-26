@@ -8,6 +8,7 @@ public class SquadScript : MonoBehaviour
 {
 
     public List<GameObject> squadUnits = new List<GameObject>();
+    public List<NavMeshAgent> squadNavs = new List<NavMeshAgent>();
     public int squadSize = 5;
     public float scaleSize = 1;
     public int difficulty = 1;
@@ -87,13 +88,24 @@ public class SquadScript : MonoBehaviour
         }
     }
 
+    void CacheNavAgents()
+    {
+        for (var i = 0; i < squadUnits.Count; i++)
+            squadNavs.Add(squadUnits[i].GetComponent<NavMeshAgent>());
+    }
+
     private void SetFormation()
     {
+        if (squadNavs.Count == 0)
+            if (squadUnits.Count > 0)
+                CacheNavAgents();
+
+
         _points = Formation.EvaluatePoints().ToList();
 
         var squadPos = transform.position;
 
-        for (var i = 0; i < squadUnits.Count; i++)
+        for (var i = 0; i < squadNavs.Count; i++)
         {
             // Safety measure, since some settings don't seem like they'd cause issues, but do.
             if (i >= _points.Count)
@@ -101,27 +113,20 @@ public class SquadScript : MonoBehaviour
                 Debug.Log("Bad formation settings, not enough points.");
                 break;
             }
-                
 
-            var navAgent = squadUnits[i].GetComponent<NavMeshAgent>();
-
-            
             // I tried making smoother checks for this and it just didn't work, so this block is a lil ugly.
-            if(navAgent)
+            if(squadNavs[i])
             {
-                if(navAgent.enabled && navAgent.isActiveAndEnabled)
+                if(squadNavs[i].enabled && squadNavs[i].isActiveAndEnabled)
                 {
 
                     // Make the navAgent actually stop them in formation. The formation stuff can handle noise if we need it.
-                    navAgent.stoppingDistance = 0;
+                    squadNavs[i].stoppingDistance = 0;
 
                     Vector3 pos = _points[i] + squadPos;
-                    navAgent.SetDestination(pos);
-
+                    squadNavs[i].SetDestination(pos);
                 }
             }
-            
         }
     }
-
 }
