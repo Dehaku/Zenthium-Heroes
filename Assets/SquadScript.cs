@@ -62,17 +62,20 @@ public class SquadScript : MonoBehaviour
 
         for (var i = 0; i < squadUnits.Count; i++)
         {
+            // Safety measure, since some settings don't seem like they'd cause issues, but do.
             if (i >= _points.Count)
+            {
+                Debug.Log("Bad formation settings, not enough points.");
                 break;
+            }
+                
+
             var navAgent = squadUnits[i].GetComponent<NavMeshAgent>();
+            // Make the navAgent actually stop them in formation. The formation stuff can handle noise if we need it.
             navAgent.stoppingDistance = 0;
 
             Vector3 pos = _points[i] + squadPosition;
             navAgent.SetDestination(pos);
-            
-
-            Debug.DrawLine(pos, pos + (Vector3.up * 5));
-            //squadUnits[i].transform.position = Vector3.MoveTowards(squadUnits[i].transform.position, transform.position + _points[i], _unitSpeed * Time.deltaTime);
         }
     }
 
