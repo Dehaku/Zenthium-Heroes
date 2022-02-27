@@ -20,6 +20,7 @@ public class MeleeColliderScript : MonoBehaviour
         ShootableObject shootableObject = other.GetComponent<ShootableObject>();
         if (shootableObject)
         {
+            
             // Make sure we haven't already hit this creature this frame.
             if (creaturesHitThisFrame.Contains(shootableObject.GetComponentInParent<Creature>()))
             {
@@ -55,14 +56,6 @@ public class MeleeColliderScript : MonoBehaviour
             {
                 shootableObject.OnHit(damageInfo);
             }
-            
-
-            
         }
-
-        
-        
-
     }
-
 }
