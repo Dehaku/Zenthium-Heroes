@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 [RequireComponent(typeof(Creature))]
 public class Destructable : MonoBehaviour
@@ -9,6 +10,9 @@ public class Destructable : MonoBehaviour
     public float fallSpeed = 0.5f;
     public float shakeIntensity = 0.05f;
     public float timeBeforeDisable = 5;
+    public GameObject particlesPrefab;
+    GameObject _particles;
+    bool effectActive = false;
 
 
 
@@ -24,14 +28,27 @@ public class Destructable : MonoBehaviour
        transform.position += new Vector3(Random.Range(-shakeIntensity, shakeIntensity),
            (-fallSpeed * Time.deltaTime),
            Random.Range(-shakeIntensity, shakeIntensity));
-        //transform.position = shakePos;
         
         yield return new WaitForSeconds(timeBeforeDisable);
+        effectActive = false;
+        if (_particles)
+        {
+            _particles.GetComponent<VisualEffect>().Stop();
+            _particles.transform.parent = null;
+        }
         this.gameObject.SetActive(false);
+        
     }
 
     void Destruction()
     {
+        if (!effectActive &&  particlesPrefab)
+        {
+            effectActive = true;
+            _particles = Instantiate(particlesPrefab, transform.position, Quaternion.identity, transform);
+            Destroy(_particles, timeBeforeDisable+10);
+        }
+
         StartCoroutine(FallNShake());
     }
 
