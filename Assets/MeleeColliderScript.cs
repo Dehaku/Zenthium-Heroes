@@ -5,12 +5,30 @@ using UnityEngine;
 public class MeleeColliderScript : MonoBehaviour
 {
     public DamageInfo damageInfo;
+    List<Creature> creaturesHitThisFrame = new List<Creature>();
+
+
+    
+
+    private void OnEnable()
+    {
+        creaturesHitThisFrame.Clear();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         ShootableObject shootableObject = other.GetComponent<ShootableObject>();
         if (shootableObject)
         {
+            // Make sure we haven't already hit this creature this frame.
+            if (creaturesHitThisFrame.Contains(shootableObject.GetComponentInParent<Creature>()))
+            {
+                return;
+            }
+                
+                
+
+
             var targetFaction = other.GetComponent<Faction>();
             if(!targetFaction)
                 targetFaction = other.GetComponentInParent<Faction>();
@@ -30,6 +48,7 @@ public class MeleeColliderScript : MonoBehaviour
                 if (targetFaction.CurrentFactionID != attackerFaction.CurrentFactionID)
                 {
                     shootableObject.OnHit(damageInfo);
+                    creaturesHitThisFrame.Add(other.GetComponentInParent<Creature>());
                 }
             }
             else // If faction is missing, it's probably terrain being hit, pass it through.

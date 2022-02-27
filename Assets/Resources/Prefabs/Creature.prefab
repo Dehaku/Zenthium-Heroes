@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: -3540326936323313423}
   - component: {fileID: 6464605401783632971}
   - component: {fileID: 678933269824108132}
+  - component: {fileID: -4434644074536402233}
   m_Layer: 0
   m_Name: Creature
   m_TagString: Untagged
@@ -281,6 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f63fefebe847eb478e3274b80ba89f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handsOnGun: {fileID: 0}
   speed: 0
   divideBy: 0.5
 --- !u!114 &993177733580732569
@@ -346,6 +348,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRagdolled: 0
+--- !u!114 &-4434644074536402233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3297220718808129810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ca9f57a3427094f89a256c2bcbebda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentFactionID: 3
+  TrueFactionID: 3
 --- !u!1 &4016100034528437685
 GameObject:
   m_ObjectHideFlags: 0
