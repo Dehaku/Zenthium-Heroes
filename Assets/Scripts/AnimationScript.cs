@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
+using UnityEngine.Animations.Rigging;
 
 public class AnimationScript : MonoBehaviour
 {
     public Animator animator { get; private set; }
+    public Rig handsOnGun;
     Rigidbody rigid;
     NavMeshAgent navAgent;
     CharacterController cc;
@@ -19,6 +21,9 @@ public class AnimationScript : MonoBehaviour
 
     int moveSpeed = Animator.StringToHash("Speed");
     int animationSpeed = Animator.StringToHash("AnimationSpeed");
+
+    int punch = Animator.StringToHash("Punch");
+    int wholePunch = Animator.StringToHash("WholePunch");
 
 
 
@@ -35,6 +40,7 @@ public class AnimationScript : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         navAgent = GetComponent<NavMeshAgent>();
         cc = GetComponent<CharacterController>();
+        handsOnGun = GetComponentInChildren<Rig>();
     }
 
 
@@ -66,6 +72,14 @@ public class AnimationScript : MonoBehaviour
         animator.SetFloat(movex, value.x);
         animator.SetFloat(movey, value.y);
         
+    }
+
+    public void PunchAnimation(bool value)
+    {
+        if(Random.Range(0,2) == 1)
+            animator.Play(punch);
+        else
+            animator.Play(wholePunch);
     }
 
 
@@ -112,6 +126,17 @@ public class AnimationScript : MonoBehaviour
 
         if (animator != null && cc != null)
         {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                //Punch.play();
+                animator.Play(punch);
+                //animator.CrossFade(Punch, 0.25f);
+            }
+            if (Input.GetKeyDown(KeyCode.G))
+                DOTween.To(() => handsOnGun.weight, x => handsOnGun.weight = x, 1, 0.25f);
+            if (Input.GetKeyDown(KeyCode.J))
+                DOTween.To(() => handsOnGun.weight, x => handsOnGun.weight = x, 0, 0.25f);
+
             animator.SetFloat(moveSpeed, speed);
             
             if (speed > 50)
