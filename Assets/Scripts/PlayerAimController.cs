@@ -190,9 +190,13 @@ public class PlayerAimController : MonoBehaviour
     void Update()
     {
         // Always had problems if the camera follow target was a child of the player, this is a work around.
-        aimLookAt.transform.position = transform.position + aimLookAtOffset;
+        Vector3 aimOffset = transform.position;
+        aimOffset.y += aimLookAtOffset.y;
+        aimOffset += transform.forward * aimLookAtOffset.z; // This is to put it slightly behind the player, so rubbing against walls doesn't freak it out as easily.
+        aimLookAt.transform.position = aimOffset;
+        //aimLookAt.transform.position = transform.position + aimLookAtOffset;
 
-        if(Cursor.lockState != CursorLockMode.Locked)
+        if (Cursor.lockState != CursorLockMode.Locked)
         { return;  }
 
         xAxis.Update(Time.deltaTime);

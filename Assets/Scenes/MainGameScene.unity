@@ -3198,7 +3198,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9013333, y: 1}
+    m_SensorSize: {x: 1.9066666, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9413,6 +9413,9 @@ GameObject:
   - component: {fileID: 646148938}
   - component: {fileID: 646148937}
   - component: {fileID: 646148936}
+  - component: {fileID: 646148943}
+  - component: {fileID: 646148940}
+  - component: {fileID: 646148942}
   m_Layer: 0
   m_Name: Cube (5)
   m_TagString: Untagged
@@ -9497,6 +9500,52 @@ Transform:
   m_Father: {fileID: 836364623}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &646148940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646148935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d2e9d220946844badd48bcd3b1b193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMulti: 1
+  ragdoll: {fileID: 0}
+  particlesPrefab: {fileID: 0}
+  creature: {fileID: 0}
+--- !u!114 &646148942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646148935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ca9f57a3427094f89a256c2bcbebda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentFactionID: 3
+  TrueFactionID: 3
+--- !u!114 &646148943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646148935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312e2c1780aab2c4d9c60d0b892006bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 100
+  health: 100
+  isAlive: 1
+  isConscious: 1
 --- !u!4 &651969353 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4665886090133042, guid: 5617f09499355b14bb58fe8aeb052d7e,
@@ -10537,7 +10586,7 @@ MonoBehaviour:
   IgnoreTag: 
   CameraRadius: 0.2
   DampingIntoCollision: 0
-  DampingFromCollision: 0
+  DampingFromCollision: 0.5
 --- !u!114 &706551607
 MonoBehaviour:
   m_ObjectHideFlags: 3

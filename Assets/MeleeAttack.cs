@@ -17,6 +17,7 @@ public class MeleeAttack : MonoBehaviour
     public float fireRate = 1;
     float _fireRateTrack = 0;
     public float damage = 10;
+    public int damageType = 2;
     public float colliderTime = 0.25f;
 
     public AudioClip attackSound;
@@ -65,7 +66,7 @@ public class MeleeAttack : MonoBehaviour
 
         DamageInfo damageInfo;
         damageInfo.attacker = this.gameObject;
-        damageInfo.damageType = 1;
+        damageInfo.damageType = damageType;
         damageInfo.damage = damage;
 
         meleeColliderScript.damageInfo = damageInfo;
