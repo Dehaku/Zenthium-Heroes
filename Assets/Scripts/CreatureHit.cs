@@ -1,3 +1,4 @@
+using Hellmade.Sound;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class CreatureHit : ShootableObject
     public float damageMulti = 1;
     public Ragdoll ragdoll;
     public GameObject particlesPrefab;
+    public AudioClip impactSound;
     public Creature creature;
 
     private void Start()
@@ -33,6 +35,10 @@ public class CreatureHit : ShootableObject
         {
             GameObject particles = Instantiate(particlesPrefab, hit.point + (hit.normal * 0.05f), Quaternion.LookRotation(hit.normal), transform);
             Destroy(particles, 2f);
+        }
+        if(impactSound)
+        {
+            int audioID = EazySoundManager.PlaySound(impactSound, 1, false, transform);
         }
 
         if(creature)

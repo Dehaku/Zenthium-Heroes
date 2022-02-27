@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 6464605401783632971}
   - component: {fileID: 678933269824108132}
   - component: {fileID: -4434644074536402233}
+  - component: {fileID: 7022319271380431142}
   m_Layer: 0
   m_Name: Creature
   m_TagString: Untagged
@@ -334,6 +335,7 @@ MonoBehaviour:
   damageMulti: 1
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
   creature: {fileID: 0}
 --- !u!114 &678933269824108132
 MonoBehaviour:
@@ -362,6 +364,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentFactionID: 3
   TrueFactionID: 3
+--- !u!114 &7022319271380431142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3297220718808129810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 747020bbbb9df1049a5be27147a574cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactSound: {fileID: 8300000, guid: 9746633d1f3ad134e966042c285dfab7, type: 3}
 --- !u!1 &4016100034528437685
 GameObject:
   m_ObjectHideFlags: 0
@@ -3510,6 +3525,7 @@ MonoBehaviour:
   damageMulti: 1
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
   creature: {fileID: 0}
 --- !u!1 &6267365870180385325
 GameObject:
@@ -3700,6 +3716,7 @@ MonoBehaviour:
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 5952517819883340529, guid: 600e74d4c007daf47a9eb9ac69903d12,
     type: 3}
+  impactSound: {fileID: 8300000, guid: 11eb4ef3fdc2598459d26f034091b59e, type: 3}
   creature: {fileID: 0}
 --- !u!1 &6267365870180385331
 GameObject:
@@ -3811,6 +3828,7 @@ MonoBehaviour:
   damageMulti: 1
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
   creature: {fileID: 0}
 --- !u!1 &6267365870180385335
 GameObject:
@@ -3938,6 +3956,7 @@ MonoBehaviour:
   damageMulti: 1
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
   creature: {fileID: 0}
 --- !u!1 &6267365870180385337
 GameObject:
@@ -4607,6 +4626,7 @@ MonoBehaviour:
   damageMulti: 1
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
   creature: {fileID: 0}
 --- !u!1 &6267365870180385353
 GameObject:
@@ -4734,6 +4754,7 @@ MonoBehaviour:
   damageMulti: 1
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
   creature: {fileID: 0}
 --- !u!1 &6267365870180385355
 GameObject:
@@ -4955,6 +4976,7 @@ MonoBehaviour:
   damageMulti: 1
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
   creature: {fileID: 0}
 --- !u!1 &6267365870180385363
 GameObject:
@@ -5113,6 +5135,7 @@ MonoBehaviour:
   damageMulti: 1
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
   creature: {fileID: 0}
 --- !u!1 &6267365870180385367
 GameObject:
@@ -5271,6 +5294,7 @@ MonoBehaviour:
   damageMulti: 1
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
   creature: {fileID: 0}
 --- !u!1 &6267365870180385371
 GameObject:
@@ -6004,6 +6028,7 @@ MonoBehaviour:
   damageMulti: 1
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
   creature: {fileID: 0}
 --- !u!1 &6267365870180385397
 GameObject:
@@ -6315,6 +6340,7 @@ MonoBehaviour:
   damageMulti: 1
   ragdoll: {fileID: 0}
   particlesPrefab: {fileID: 0}
+  impactSound: {fileID: 0}
   creature: {fileID: 0}
 --- !u!1 &8187214079648607067
 GameObject:

@@ -17,6 +17,7 @@ public class MeleeColliderScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         ShootableObject shootableObject = other.GetComponent<ShootableObject>();
         if (shootableObject)
         {
@@ -26,8 +27,14 @@ public class MeleeColliderScript : MonoBehaviour
             {
                 return;
             }
-                
-                
+
+            var impactSound = other.GetComponent<ImpactSoundScript>();
+            if(!impactSound)
+                impactSound = other.GetComponentInParent<ImpactSoundScript>();
+            if (impactSound)
+                impactSound.PlayImpactSound();
+
+
 
 
             var targetFaction = other.GetComponent<Faction>();

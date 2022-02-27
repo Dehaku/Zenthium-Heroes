@@ -61,6 +61,12 @@ public class BulletProjectileRaycast : MonoBehaviour
             }
         }
 
+        var impactSound = hit.transform.GetComponent<ImpactSoundScript>();
+        if (!impactSound)
+            impactSound = hit.transform.GetComponentInParent<ImpactSoundScript>();
+        if (impactSound)
+            impactSound.PlayImpactSound();
+
         ShootableObject shootableObject = hit.transform.GetComponent<ShootableObject>();
         if (shootableObject)
         {
