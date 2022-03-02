@@ -33,6 +33,9 @@ public class MeleeSeekAttack : MonoBehaviour
     public float zipRange = 100f;
     public float zipTime = 0.25f;
     public float zipApproachOffsetDistance = 2f;
+    
+    [Range(1, 10)]
+    public float cameraAngleTargetDistanceWeight = 10;
 
     Transform _zipTarget;
     float _zippingTime = 0;
@@ -90,9 +93,15 @@ public class MeleeSeekAttack : MonoBehaviour
 
 
 
+            var tarPos = tarFaction.transform.position;
+            float distance = Vector3.Distance(myPosition, tarPos);
 
-            float distance = Vector3.Distance(myPosition, tarFaction.transform.position);
-            if(distance < potentialTargetDistance)
+            Vector3 targetDir = tarPos - transform.position;
+            distance += (Vector3.Angle(targetDir, Camera.main.transform.forward) / cameraAngleTargetDistanceWeight);
+            //Debug.Log("CamForward is " + Vector3.Angle(targetDir, Camera.main.transform.forward));
+
+
+            if (distance < potentialTargetDistance)
             {
                 // Perform Line of Sight check, to make sure we don't zip through a wall.
                 if (!LineOfSight())
