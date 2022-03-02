@@ -32,6 +32,7 @@ public class MeleeSeekAttack : MonoBehaviour
     [Header("Melee Reach")]
     public float zipRange = 100f;
     public float zipTime = 0.25f;
+    public float zipApproachOffsetDistance = 2f;
 
     Transform _zipTarget;
     float _zippingTime = 0;
@@ -83,6 +84,9 @@ public class MeleeSeekAttack : MonoBehaviour
                 continue;
             if (tarFaction.CurrentFactionID == _myFaction.CurrentFactionID)
                 continue;
+            // Should probably have a reference to faction from creature. It'd cut down on get component calls.
+            if (!tarFaction.GetComponent<Creature>().isConscious)
+                continue;
 
 
 
@@ -109,6 +113,15 @@ public class MeleeSeekAttack : MonoBehaviour
         return true;
     }
 
+    Vector3 TargetOffset(Vector3 initialPos)
+    {
+        Vector3 returnPos = initialPos;
+        // zipApproachOffsetDistance
+
+
+        return returnPos;
+    }
+
     public void Attack()
     {
         Transform target = FindNearestValidTarget();
@@ -120,23 +133,10 @@ public class MeleeSeekAttack : MonoBehaviour
         animScript.PunchAnimation(true);
 
         
-        //if(Input.GetKey(KeyCode.W))
-        //    transform.DOLookAt(target.transform.position, .2f, AxisConstraint.W);
-        //if (Input.GetKey(KeyCode.A))
-        //    transform.DOLookAt(target.transform.position, .2f, AxisConstraint.X);
-        //if (Input.GetKey(KeyCode.S))
-            transform.DOLookAt(target.transform.position, .2f, AxisConstraint.Y);
-        //if (Input.GetKey(KeyCode.D))
-        //    transform.DOLookAt(target.transform.position, .2f, AxisConstraint.Z);
-
+        // AxisConstraint.Y seems to be the right one to prevent the character from facing weird directions.
+        transform.DOLookAt(target.transform.position, .2f, AxisConstraint.Y);
         transform.DOMove(target.position, zipTime);
         StartCoroutine(HitTarget(target, zipTime));
-
-        
-
-        //meleeColliderScript.damageInfo = damageInfo;
-
-        
     }
 
     IEnumerator HitTarget(Transform target, float delay)
