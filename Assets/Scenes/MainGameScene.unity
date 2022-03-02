@@ -3198,7 +3198,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.5226667, y: 1}
+    m_SensorSize: {x: 1.9013333, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10576,7 +10576,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8508551553214781, guid: b5160d6f3afc565429d8d625fe1eeaab, type: 3}
       propertyPath: AllowedToShoot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508551553214782, guid: b5160d6f3afc565429d8d625fe1eeaab, type: 3}
+      propertyPath: TargetFactions.Array.data[0]
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508551553214783, guid: b5160d6f3afc565429d8d625fe1eeaab, type: 3}
+      propertyPath: TrueFactionID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508551553214783, guid: b5160d6f3afc565429d8d625fe1eeaab, type: 3}
+      propertyPath: CurrentFactionID
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5160d6f3afc565429d8d625fe1eeaab, type: 3}
