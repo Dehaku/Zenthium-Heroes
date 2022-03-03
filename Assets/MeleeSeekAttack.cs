@@ -2,6 +2,7 @@ using DG.Tweening;
 using Hellmade.Sound;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -78,13 +79,22 @@ public class MeleeSeekAttack : MonoBehaviour
         Transform potentialTarget = null;
         float potentialTargetDistance = float.MaxValue;
 
+        // Grabbing all colliders in range.
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, zipRange/2);
+
+        // Getting the important faction component from their parents and reducing it to one entry per.
+        List<Faction> factions = new List<Faction>();
         foreach (var hitCollider in hitColliders)
         {
-            
             var tarFaction = hitCollider.GetComponentInParent<Faction>();
-            if (!tarFaction)
-                continue;
+            if (tarFaction)
+                factions.Add(tarFaction);
+        }
+        factions = new List<Faction>(factions.Distinct());
+        
+
+        foreach (var tarFaction in factions)
+        {
             if (tarFaction.CurrentFactionID == _myFaction.CurrentFactionID)
                 continue;
             // Should probably have a reference to faction from creature. It'd cut down on get component calls.
@@ -98,28 +108,38 @@ public class MeleeSeekAttack : MonoBehaviour
 
             Vector3 targetDir = tarPos - transform.position;
             distance += (Vector3.Angle(targetDir, Camera.main.transform.forward) / cameraAngleTargetDistanceWeight);
-            //Debug.Log("CamForward is " + Vector3.Angle(targetDir, Camera.main.transform.forward));
 
 
             if (distance < potentialTargetDistance)
             {
-                // Perform Line of Sight check, to make sure we don't zip through a wall.
-                if (!LineOfSight())
-                    continue;
-
+                // Perform Line of Sight check, to make sure we don't zip through a wall. Doesn't seem to work with my creatures currently, only blocks.
+                //if (!LineOfSight(tarFaction.gameObject))
+                //    continue;
                 potentialTargetDistance = distance;
                 potentialTarget = tarFaction.transform;
             }
 
         }
-
         return potentialTarget;
     }
 
-    bool LineOfSight()
-    {
-        Debug.Log("Not Implimented yet.");
-        return true;
+    bool LineOfSight(GameObject target)
+    { // Doesn't seem to work for enemies, not sure why yet.
+        var transPos = transform.position;
+        RaycastHit hit;
+        bool gotHit = false;
+        gotHit = Physics.Raycast(transPos, target.transform.position - transPos, out hit);
+        Debug.Log(hit.transform.name);
+        if (hit.transform == target.transform)
+        {
+            
+            Debug.Log("Target Hit");
+            return true;
+        }
+            
+        Debug.Log("Nothing Hit!");
+        return false;
+
     }
 
     Vector3 TargetOffset(Vector3 initialPos)
