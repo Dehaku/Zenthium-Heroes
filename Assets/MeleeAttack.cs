@@ -61,7 +61,7 @@ public class MeleeAttack : MonoBehaviour
         _fireRateTrack = 0;
         //gunSound.Play();
         int audioID = EazySoundManager.PlaySound(attackSound, 1, false, transform);
-        animScript.PunchAnimation(true);
+        animScript.PunchAnimation(false);
 
 
         DamageInfo damageInfo;

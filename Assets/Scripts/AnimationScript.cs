@@ -76,10 +76,13 @@ public class AnimationScript : MonoBehaviour
 
     public void PunchAnimation(bool value)
     {
-        if(Random.Range(0,2) == 1)
-            animator.Play(punch);
-        else
+        if(value)
+        {
             animator.Play(wholePunch);
+            return;
+        }
+        else
+            animator.Play(punch);
     }
 
 

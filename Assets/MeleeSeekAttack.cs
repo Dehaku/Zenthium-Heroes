@@ -144,11 +144,7 @@ public class MeleeSeekAttack : MonoBehaviour
 
     Vector3 TargetOffset(Vector3 initialPos)
     {
-        Vector3 returnPos = initialPos;
-        // zipApproachOffsetDistance
-
-
-        return returnPos;
+        return Vector3.MoveTowards(initialPos, transform.position, .95f);
     }
 
     public void Attack()
@@ -164,7 +160,7 @@ public class MeleeSeekAttack : MonoBehaviour
         
         // AxisConstraint.Y seems to be the right one to prevent the character from facing weird directions.
         transform.DOLookAt(target.transform.position, .2f, AxisConstraint.Y);
-        transform.DOMove(target.position, zipTime);
+        transform.DOMove(TargetOffset(target.position), zipTime);
         StartCoroutine(HitTarget(target, zipTime));
     }
 
