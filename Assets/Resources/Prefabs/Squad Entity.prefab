@@ -46,11 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   squadUnits: []
+  squadNavs: []
   squadSize: 20
   scaleSize: 1
   difficulty: 1
   squadPosition: {x: 0, y: 0, z: 0}
   squadDestination: {x: 0, y: 0, z: 0}
+  enemyCheckRate: 1
   enemySpotted: 0
 --- !u!114 &4597131876903645583
 MonoBehaviour:

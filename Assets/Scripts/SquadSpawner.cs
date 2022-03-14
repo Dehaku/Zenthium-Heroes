@@ -62,15 +62,10 @@ public class SquadSpawner : MonoBehaviour
 
     void Spawn()
     {
-        //SquadDefSO squad;
-        //squad = (SquadDefSO)ScriptableObject.CreateInstance(typeof(SquadDefSO));
-
-        //GameObject squadGO = new GameObject("Squad Parent");
         Transform squadParent = new GameObject("Squad Parent").transform;
         squadParent.parent = transform;
-        GameObject squadGO = Instantiate(squadPrefab, Vector3.zero, Quaternion.identity, squadParent);
+        GameObject squadGO = Instantiate(squadPrefab, spawnCenter.position, Quaternion.identity, squadParent);
         Transform squadT = squadGO.transform;
-        //SquadScript squad = squadGO.AddComponent<SquadScript>();
         SquadScript squad = squadGO.GetComponent<SquadScript>();
 
         squad.transform.position = spawnCenter.position;
@@ -112,8 +107,9 @@ public class SquadSpawner : MonoBehaviour
     {
 
         _timeToSpawn += Time.deltaTime;
-        if (isSpawnTime(World.Instance.TimeOfDay))
+        if (_timeToSpawn >= spawnDelay && isSpawnTime(World.Instance.TimeOfDay))
         {
+            _timeToSpawn = 0;
             allowSpawning = true;
         }
 
@@ -121,9 +117,9 @@ public class SquadSpawner : MonoBehaviour
             RespawnDeadEnemies(true);
 
 
-        if (allowSpawning && _timeToSpawn >= spawnDelay)
+        if (allowSpawning)
         {
-            _timeToSpawn = 0;
+            
             Spawn();
             
             allowSpawning = false;
