@@ -129,18 +129,7 @@ public class SquadSpawner : MonoBehaviour
         //if (Random.Range(1, 10) == 1)
         //    ChaseTarget(chaseTarget);
 
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Debug.Log("EnemyContainer: " + enemyContainer.Count);
-
-            foreach (var enemy in enemyContainer)
-            {
-
-
-                if (Random.Range(0, 2) == 1)
-                    enemy.SetActive(false);
-            }
-        }
+        
     }
 
     

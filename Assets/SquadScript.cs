@@ -96,7 +96,7 @@ public class SquadScript : MonoBehaviour
     }
 
 
-    void SetSquadDestination(Vector3 destination)
+    public void SetSquadDestination(Vector3 destination)
     {
         if (squadUnits.Count < 1)
         {
