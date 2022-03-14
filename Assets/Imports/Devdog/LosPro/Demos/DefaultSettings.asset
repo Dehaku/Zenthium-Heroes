@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928c71f75c583bc4abcfdad62d9093c9, type: 3}
+  m_Name: DefaultSettings
+  m_EditorClassIdentifier: 
+  targetCategories:
+  - name: HostileToAll
+    bitFlagID: 1
+  - name: Neutral
+    bitFlagID: 2
+  - name: PlayerTeam
+    bitFlagID: 4
+  - name: CityResidents
+    bitFlagID: 8
+  - name: Villians1
+    bitFlagID: 16
+  - name: Villians2
+    bitFlagID: 32
+  - name: Villians3
+    bitFlagID: 64
+  - name: Villians4
+    bitFlagID: 128
+  - name: Villians5
+    bitFlagID: 256
+  speedOfSoundUnitsPerSecond: 343
+  sightLayerID: 20
+  hearingLayerID: 21

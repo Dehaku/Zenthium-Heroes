@@ -16,6 +16,8 @@ public class SquadScript : MonoBehaviour
     public Vector3 squadPosition;
     public Vector3 squadDestination;
 
+    public float enemyCheckRate = 1f;
+    float _enemyCheckRateCounter = 0;
     public bool enemySpotted = false;
 
 
@@ -25,8 +27,25 @@ public class SquadScript : MonoBehaviour
     }
 
 
+    void CheckForEnemies()
+    {
+        _enemyCheckRateCounter += Time.deltaTime;
+        if (_enemyCheckRateCounter < enemyCheckRate)
+            return;
+        
+        _enemyCheckRateCounter = 0;
+        foreach (var squaddie in squadUnits)
+        {
+
+        }
+
+
+    }
+
     private void Update()
     {
+        CheckForEnemies();
+
         if (!enemySpotted)
             SetFormation();
 
