@@ -31,8 +31,6 @@ namespace Devdog.LosPro.Demo
 
         public void OnDetectedTarget(SightTargetInfo info)
         {
-            //var squad = GetComponentInParent<SquadScript>();
-            Debug.Log("Squad: " + GetSquad());
             if(GetSquad())
             {
                 GetSquad().TargetFound(info.target.gameObject);

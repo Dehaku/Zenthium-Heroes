@@ -39,8 +39,8 @@ public class MeleeSeekAttack : MonoBehaviour
     public float cameraAngleTargetDistanceWeight = 10;
 
     Transform _zipTarget;
-    float _zippingTime = 0;
-    bool _isZipping = false;
+    //float _zippingTime = 0;
+    //bool _isZipping = false;
 
 
     Faction _myFaction;

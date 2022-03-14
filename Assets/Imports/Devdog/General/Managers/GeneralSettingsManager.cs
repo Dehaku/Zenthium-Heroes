@@ -16,7 +16,9 @@ namespace Devdog.General
             base.Awake();
 
             settings.defaultCursor.Enable();
+#pragma warning disable CS0618 // Type or member is obsolete
             Assert.raiseExceptions = settings.useExceptionsForAssertions;
+#pragma warning restore CS0618 // Type or member is obsolete
             DevdogLogger.minimaLog = settings.minimalLogType;
         }
     }
