@@ -38,19 +38,8 @@ public class SquadTargetAssigner : MonoBehaviour
         foreach (var squad in squadContainer)
         {
             var squadPos = squad.transform.position;
-
-            // Rigidbody hitRigidbody = _ragdollRigidbodies.OrderBy(rigidbody => Vector3.Distance(rigidbody.position, hitPoint)).First();
-            foreach (var tar in villainTargets)
-            {
-                Debug.Log("1:" + tar.transform.position);
-            }
+            // TODO: This... might be wrong? I don't understand the command very well. It might be using the this scripts's rigidbody, instead of the squad's body.
             var tarPos = villainTargets.OrderBy(rigidbody => Vector3.Distance(rigidbody.transform.position, squadPos)).First();
-            Debug.Log("!" + tarPos.transform.position);
-            foreach (var tar in villainTargets)
-            {
-                Debug.Log("2:" + tar.transform.position);
-            }
-
             squad.SetSquadDestination(tarPos.transform.position);
         }
     }
