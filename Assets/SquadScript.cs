@@ -20,7 +20,7 @@ public class SquadScript : MonoBehaviour
     float _enemyCheckRateCounter = 0;
     public bool enemySpotted = false;
 
-
+    
     public void RandomSize()
     {
         scaleSize = Random.Range(0.5f, 1.5f);
@@ -40,6 +40,23 @@ public class SquadScript : MonoBehaviour
         }
 
 
+    }
+
+    public void TargetFound(GameObject target)
+    {
+        if (enemySpotted)
+            return;
+
+        enemySpotted = true;
+
+        foreach (var squaddie in squadUnits)
+        {
+            var chaseT = squaddie.GetComponent<ChaseTarget>();
+            if (!chaseT)
+                continue;
+            chaseT.enabled = true;
+            chaseT.target = target;
+        }
     }
 
     private void Update()

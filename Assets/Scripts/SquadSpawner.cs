@@ -89,6 +89,8 @@ public class SquadSpawner : MonoBehaviour
             enemy.transform.localScale = Vector3.one * squad.scaleSize;
             enemyContainer.Enqueue(enemy);
 
+            enemy.GetComponent<SquadRef>().squad = squad;
+
             
         }
 
@@ -128,8 +130,8 @@ public class SquadSpawner : MonoBehaviour
 
         }
 
-        if (Random.Range(1, 10) == 1)
-            ChaseTarget(chaseTarget);
+        //if (Random.Range(1, 10) == 1)
+        //    ChaseTarget(chaseTarget);
 
         if (Input.GetKeyDown(KeyCode.H))
         {
