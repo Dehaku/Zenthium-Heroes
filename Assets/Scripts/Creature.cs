@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Linq;
+using UnityEngine.Events;
 
 public class Creature : MonoBehaviour
 {
+    [SerializeField] private UnityEvent OnUnconscious = new UnityEvent();
+
     public float healthMax = 100;
     public float health = 100;
     public bool isAlive = true;
@@ -120,6 +123,9 @@ public class Creature : MonoBehaviour
 
 
         isConscious = false;
+
+        OnUnconscious?.Invoke();
+
     }
 
     // Start is called before the first frame update
