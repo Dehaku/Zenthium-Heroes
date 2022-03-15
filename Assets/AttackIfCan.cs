@@ -29,6 +29,8 @@ public class AttackIfCan : MonoBehaviour
         // No target? No attacking.
         if (!target)
             return;
+        if (!target.target)
+            return;
         var distFromTarget = Vector3.Distance(transform.position, target.target.transform.position);
         bool withinMeleeRange = (distFromTarget < meleeRange);
         bool withinShootRange = (distFromTarget < shootRange);

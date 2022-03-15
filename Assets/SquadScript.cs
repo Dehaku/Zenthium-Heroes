@@ -44,8 +44,8 @@ public class SquadScript : MonoBehaviour
 
     public void TargetFound(GameObject target)
     {
-        if (enemySpotted)
-            return;
+        //if (enemySpotted)
+        //    return;
 
         enemySpotted = true;
 

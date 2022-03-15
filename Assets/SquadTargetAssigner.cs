@@ -27,7 +27,7 @@ public class SquadTargetAssigner : MonoBehaviour
         var targets = FindObjectsOfType<VillainTarget>();
         foreach (var tar in targets)
         {
-            if(tar.IsValidTarget())
+            if (tar.IsValidTarget())
                 villainTargets.Add(tar.gameObject);
         }
 
@@ -35,6 +35,9 @@ public class SquadTargetAssigner : MonoBehaviour
     }
     void AssignSquadTargets()
     {
+        if (villainTargets.Count == 0)
+            return;
+
         foreach (var squad in squadContainer)
         {
             var squadPos = squad.transform.position;

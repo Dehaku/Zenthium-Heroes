@@ -28,9 +28,9 @@ public class ChaseTarget : MonoBehaviour
     {
         if(target == null)
         {
-            var player = FindObjectOfType<Player>();
-            if(player != null)
-                target = player.gameObject;
+            // var player = FindObjectOfType<Player>();
+            // if(player != null)
+            //     target = player.gameObject;
         }
             
         if (target == null)

@@ -31,6 +31,13 @@ namespace Devdog.LosPro.Demo
 
         public void OnDetectedTarget(SightTargetInfo info)
         {
+            var target = info.target.gameObject.GetComponent<Creature>();
+            if (!target.isConscious)
+            {
+                return;
+            }
+                
+
             if(GetSquad())
             {
                 GetSquad().TargetFound(info.target.gameObject);
