@@ -36,13 +36,19 @@ namespace Devdog.LosPro.Demo
             {
                 return;
             }
-                
 
+            // If Squad, and stay in formation, then squad hunt. Else chase by yourself.
+            bool seekSolo = true;
             if(GetSquad())
             {
-                GetSquad().TargetFound(info.target.gameObject);
+                seekSolo = false;
+                if (GetSquad().breakFormation)
+                    seekSolo = true;
+                else
+                    GetSquad().TargetFound(info.target.gameObject);
             }
-            else
+            
+            if(seekSolo)
             {
                 _chaseT.enabled = true;
                 _chaseT.target = info.target.gameObject;

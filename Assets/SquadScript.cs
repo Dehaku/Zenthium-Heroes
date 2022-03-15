@@ -19,6 +19,7 @@ public class SquadScript : MonoBehaviour
     public float enemyCheckRate = 1f;
     float _enemyCheckRateCounter = 0;
     public bool enemySpotted = false;
+    public bool breakFormation = false;
 
     
     public void RandomSize()
@@ -46,8 +47,12 @@ public class SquadScript : MonoBehaviour
     {
         //if (enemySpotted)
         //    return;
-
         enemySpotted = true;
+        
+        
+        // Random chance(for now) that units go solo.
+        if(Random.Range(0,4) == 0)
+            breakFormation = true;
 
         foreach (var squaddie in squadUnits)
         {
@@ -57,6 +62,7 @@ public class SquadScript : MonoBehaviour
             chaseT.enabled = true;
             chaseT.target = target;
         }
+        
     }
 
     private void Update()
