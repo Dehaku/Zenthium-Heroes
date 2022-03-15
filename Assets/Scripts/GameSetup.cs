@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class GameSetup : MonoBehaviour
     void Start()
     {
         //SoundManager.Initialize();
+        DOTween.SetTweensCapacity(1000,500);
     }
 
     // Update is called once per frame
