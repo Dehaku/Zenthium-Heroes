@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         _timeToSpawn += Time.deltaTime;
-        if (isSpawnTime(World.Instance.TimeOfDay))
+        if (isSpawnTime(World.Instance.TimeOfDayInt))
         {
             allowSpawning = true;
         }

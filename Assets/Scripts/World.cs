@@ -44,14 +44,18 @@ public class World : MonoBehaviour {
         }
     }
 
-    [Range(4f, 0f)] // The higher this number, the slower the game clock. So reverse the slider order.
+    [Range(0f, 100f)] // Higher is faster
     public float ClockSpeed = 1f;
 
     public int Day = 1;
 
+    public int TimeOfDayInt{
+        get { return Mathf.FloorToInt(_timeOfDay); }
+    }
+
     // The current time in minutes. We can't call it "Time" because that would conflict with Unity's built in Time function.
-    [SerializeField] private int _timeOfDay; // Serialize so we can see in Inspector.
-    public int TimeOfDay {
+    [SerializeField] private float _timeOfDay; // Serialize so we can see in Inspector.
+    public float TimeOfDay {
 
         get { return _timeOfDay; }
         set {
@@ -101,8 +105,9 @@ public class World : MonoBehaviour {
 
     private void UpdateClock () {
 
-        int hours = TimeOfDay / 60;
-        int minutes = TimeOfDay - (hours * 60);
+        int TimeOfDayInt = Mathf.FloorToInt(TimeOfDay);
+        int hours = TimeOfDayInt / 60;
+        int minutes = TimeOfDayInt - (hours * 60);
 
         string dayText;
         if (IsHordeNight)
@@ -121,7 +126,7 @@ public class World : MonoBehaviour {
 
 
         // Gradually dim the sun as it goes down and brighten as it comes up.
-        if (TimeOfDay > dayEndTime)
+        if (TimeOfDayInt > dayEndTime)
         {
             sunLight.intensity -= 1 / ((float) dayOverflow/4);
             if (sunLight.intensity < 0)
@@ -129,7 +134,7 @@ public class World : MonoBehaviour {
                 sunLight.intensity = 0;
             }
         }
-        else if (TimeOfDay > dayStartTime+dayOverflow)
+        else if (TimeOfDayInt > dayStartTime+dayOverflow)
             
         {
             sunLight.intensity += 1 / ((float) dayOverflow/4);
@@ -142,13 +147,13 @@ public class World : MonoBehaviour {
         float skyboxBlend = skyboxNight.GetFloat("_Blend");
 
         //Gradually fade in/out the Night Skybox
-        if(TimeOfDay == dayEndTime+dayOverflow)
+        if(TimeOfDayInt == dayEndTime+dayOverflow)
         {
             float newBlend = Mathf.Min(1, skyboxBlend + 1 / ((float)dayOverflow / 4));
             //skyboxNight.SetFloat("_Blend", newBlend);
             skyboxNight.DOFloat(1, "_Blend", dayOverflow).SetEase(Ease.InQuad);
         }
-        else if(TimeOfDay == dayStartTime-(dayOverflow*2))
+        else if(TimeOfDayInt == dayStartTime-(dayOverflow*2))
         {
             float newBlend = Mathf.Max(0, skyboxBlend - 1 / ((float)dayOverflow / 4));
             //skyboxNight.SetFloat("_Blend", newBlend);
@@ -158,7 +163,7 @@ public class World : MonoBehaviour {
 
 
 
-        if (TimeOfDay > (dayEndTime + dayOverflow) || TimeOfDay < (dayStartTime - dayOverflow) )
+        if (TimeOfDayInt > (dayEndTime + dayOverflow) || TimeOfDayInt < (dayStartTime - dayOverflow) )
         {
             RenderSettings.skybox = skyboxNight;
             sun.gameObject.SetActive(false);
@@ -168,11 +173,13 @@ public class World : MonoBehaviour {
             RenderSettings.skybox = skyboxDay;
             sun.gameObject.SetActive(true);
         }
-            
 
 
-        // Adding "D2" to the ToString() command ensures that there will always be two digits displayed.
-        clock.text = string.Format("DAY: {0} TIME: {1}:{2} ENEMIES: {3}", dayText, hours.ToString("D2"), minutes.ToString("D2"), enemyCount);
+
+        // Adding "D2" to the ToString() command ensures that there will always be two digits displayed. D2 == Ints, 00 = Floats/Doubles
+        int hourInt = Mathf.FloorToInt(hours);
+        int minuteInt = Mathf.FloorToInt(minutes);
+        clock.text = string.Format("DAY: {0} TIME: {1}:{2} ENEMIES: {3}", dayText, hourInt.ToString("D2"), minuteInt.ToString("D2"), enemyCount);
 
             
         
@@ -208,9 +215,10 @@ public class World : MonoBehaviour {
 
         // Increment TimeOfDay every second. Change 1f to speed up/slow down time. (2f would make days twice as long, 0.5f half as long).
         secondCounter += Time.deltaTime;
+        TimeOfDay += Time.deltaTime*ClockSpeed;
         if (secondCounter > ClockSpeed) {
-            TimeOfDay++;
-            secondCounter = 0;
+            //TimeOfDay++;
+            //secondCounter = 0;
         }
 
     }

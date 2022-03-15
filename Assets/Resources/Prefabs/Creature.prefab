@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &15069630745834355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3089245144472834964}
+  m_Layer: 0
+  m_Name: VisionPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3089245144472834964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15069630745834355}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.532, z: 0.58}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8187214079648607066}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1447731701432320675
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +444,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 312e2c1780aab2c4d9c60d0b892006bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnUnconscious:
+    m_PersistentCalls:
+      m_Calls: []
   healthMax: 100
   health: 100
   isAlive: 1
@@ -507,7 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef877e096bc2dc4aadfc4c2f9fd70fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eyes: {fileID: 3297220718808129813}
+  _eyes: {fileID: 3089245144472834964}
   _config:
     sightTargetCategoriesMask: -498
     raycastLayer:
@@ -517,7 +550,7 @@ MonoBehaviour:
     fieldOfViewDotValue: 0.2
     viewingDistance: 40
     sampleCount: 10
-    minVisibleFactor: 0.2
+    minVisibleFactor: 0.21
     instantlyDetectWhenTargetIsFullyVisible: 1
     extrapolatePath: 1
     extrapolateSampleCount: 10
@@ -582,6 +615,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfafd64637cfd334b93982cc4f946425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meleeRange: 2
+  shootRange: 20
 --- !u!1 &4016100034528437685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1466,7 +1501,7 @@ Transform:
   - {fileID: 5666534336358855492}
   - {fileID: 5666534336358855498}
   m_Father: {fileID: 8187214079648607066}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5666534336366632178
 Animator:
@@ -6489,7 +6524,7 @@ Transform:
   - {fileID: 6267365870180621903}
   - {fileID: 6267365870180621889}
   m_Father: {fileID: 8187214079648607066}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6267365870173106681
 Animator:
@@ -6757,6 +6792,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 3089245144472834964}
   - {fileID: 6267365870180621911}
   - {fileID: 5666534336358855440}
   m_Father: {fileID: 3297220718808129813}

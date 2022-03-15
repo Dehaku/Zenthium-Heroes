@@ -107,7 +107,7 @@ public class SquadSpawner : MonoBehaviour
     {
 
         _timeToSpawn += Time.deltaTime;
-        if (_timeToSpawn >= spawnDelay && isSpawnTime(World.Instance.TimeOfDay))
+        if (_timeToSpawn >= spawnDelay && isSpawnTime(World.Instance.TimeOfDayInt))
         {
             _timeToSpawn = 0;
             allowSpawning = true;
