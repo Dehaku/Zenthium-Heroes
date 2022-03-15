@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ public class SquadScript : MonoBehaviour
     float _enemyCheckRateCounter = 0;
     public bool enemySpotted = false;
     public bool breakFormation = false;
+    public bool faceInsteadOfChase = true;
 
     
     public void RandomSize()
@@ -51,16 +53,26 @@ public class SquadScript : MonoBehaviour
         
         
         // Random chance(for now) that units go solo.
-        if(Random.Range(0,4) == 0)
-            breakFormation = true;
+        
+        
+        //breakFormation = true;
 
         foreach (var squaddie in squadUnits)
         {
-            var chaseT = squaddie.GetComponent<ChaseTarget>();
-            if (!chaseT)
-                continue;
-            chaseT.enabled = true;
-            chaseT.target = target;
+
+            if (faceInsteadOfChase)
+            {
+                squaddie.transform.DOLookAt(target.transform.position, 1f, AxisConstraint.Y);
+            }
+            else
+            {
+                var chaseT = squaddie.GetComponent<ChaseTarget>();
+                if (!chaseT)
+                    continue;
+                chaseT.enabled = true;
+                chaseT.target = target;
+            }
+            
         }
         
     }
@@ -69,7 +81,7 @@ public class SquadScript : MonoBehaviour
     {
         CheckForEnemies();
 
-        if (!enemySpotted)
+        if (!breakFormation)
             SetFormation();
 
         if(Input.GetKeyDown(KeyCode.Space))
