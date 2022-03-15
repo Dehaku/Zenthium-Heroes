@@ -25,7 +25,6 @@ public class MeleeAttack : MonoBehaviour
 
     
     [Header("Melee Reach")]
-    public Transform spawnPos;
     public GameObject meleeCollider;
     MeleeColliderScript meleeColliderScript;
 
@@ -59,7 +58,6 @@ public class MeleeAttack : MonoBehaviour
     public void Attack()
     {
         _fireRateTrack = 0;
-        //gunSound.Play();
         int audioID = EazySoundManager.PlaySound(attackSound, 1, false, transform);
         animScript.PunchAnimation(false);
 
@@ -121,12 +119,5 @@ public class MeleeAttack : MonoBehaviour
 
         if (_isFiring && _fireRateTrack >= fireRate)
             Attack();
-
-
-
-
-        //if (playerInput.actions["Fire"].WasPressedThisFrame())
-        //    if(!playerInput.actions["Aim"].IsPressed())
-        //        animScript.PunchAnimation(true);
     }
 }
