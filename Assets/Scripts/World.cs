@@ -144,20 +144,29 @@ public class World : MonoBehaviour {
             }
         }
 
-        float skyboxBlend = skyboxNight.GetFloat("_Blend");
+        // Rotate the night skybox
+        float skyboxRotate = skyboxNight.GetFloat("_RotationY");
+        float dayPercent =  TimeOfDay / 1440;
+        float dayRot = 360-(360 * dayPercent);
+        skyboxNight.SetFloat("_RotationY", dayRot);
+
+
+
+
+        float skyboxBlend = skyboxNight.GetFloat("_SkyBlend");
 
         //Gradually fade in/out the Night Skybox
         if(TimeOfDayInt == dayEndTime+dayOverflow)
         {
             float newBlend = Mathf.Min(1, skyboxBlend + 1 / ((float)dayOverflow / 4));
             //skyboxNight.SetFloat("_Blend", newBlend);
-            skyboxNight.DOFloat(1, "_Blend", dayOverflow).SetEase(Ease.InQuad);
+            skyboxNight.DOFloat(1, "_SkyBlend", dayOverflow).SetEase(Ease.InQuad);
         }
         else if(TimeOfDayInt == dayStartTime-(dayOverflow*2))
         {
             float newBlend = Mathf.Max(0, skyboxBlend - 1 / ((float)dayOverflow / 4));
             //skyboxNight.SetFloat("_Blend", newBlend);
-            skyboxNight.DOFloat(0, "_Blend", dayOverflow).SetEase(Ease.OutQuad);
+            skyboxNight.DOFloat(0, "_SkyBlend", dayOverflow).SetEase(Ease.OutQuad);
         }
         
 
@@ -202,7 +211,9 @@ public class World : MonoBehaviour {
 
         PopulateTextureArray();
 
-        
+        skyboxNight.SetFloat("_RotationY", 0);
+        skyboxNight.SetFloat("_SkyBlend", 0);
+
 
 
     }

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Skybox_Blended
-  m_Shader: {fileID: 4800000, guid: d014cbb5301368745bf89d3301563dae, type: 3}
+  m_Name: Skybox_BlendedAdv
+  m_Shader: {fileID: 4800000, guid: a7e2523567b144142b3ba59b253affe3, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -27,11 +27,27 @@ Material:
         m_Texture: {fileID: 2800000, guid: 968c95c521a144942bcb53ab0dba230e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BackTex_01:
+        m_Texture: {fileID: 2800000, guid: f5843e264db7cd143bd979a425d47bf4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BackTex_02:
+        m_Texture: {fileID: 2800000, guid: 968c95c521a144942bcb53ab0dba230e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DownTex:
         m_Texture: {fileID: 2800000, guid: f5843e264db7cd143bd979a425d47bf4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DownTex2:
+        m_Texture: {fileID: 2800000, guid: 8fa9128ee1c5bf84bbe093c7f8a0523a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DownTex_01:
+        m_Texture: {fileID: 2800000, guid: f5843e264db7cd143bd979a425d47bf4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DownTex_02:
         m_Texture: {fileID: 2800000, guid: 8fa9128ee1c5bf84bbe093c7f8a0523a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -43,11 +59,27 @@ Material:
         m_Texture: {fileID: 2800000, guid: 05a43da33c7eccf46bfece6a05db470f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FrontTex_01:
+        m_Texture: {fileID: 2800000, guid: f5843e264db7cd143bd979a425d47bf4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrontTex_02:
+        m_Texture: {fileID: 2800000, guid: 05a43da33c7eccf46bfece6a05db470f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _LeftTex:
         m_Texture: {fileID: 2800000, guid: f5843e264db7cd143bd979a425d47bf4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LeftTex2:
+        m_Texture: {fileID: 2800000, guid: b3e3bb55f10dc644daa8a354dc0030ed, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LeftTex_01:
+        m_Texture: {fileID: 2800000, guid: f5843e264db7cd143bd979a425d47bf4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LeftTex_02:
         m_Texture: {fileID: 2800000, guid: b3e3bb55f10dc644daa8a354dc0030ed, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -59,6 +91,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: 7cc04e6ef3221c043afaef956af7b86f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _RightTex_01:
+        m_Texture: {fileID: 2800000, guid: f5843e264db7cd143bd979a425d47bf4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RightTex_02:
+        m_Texture: {fileID: 2800000, guid: 7cc04e6ef3221c043afaef956af7b86f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _UpTex:
         m_Texture: {fileID: 2800000, guid: f5843e264db7cd143bd979a425d47bf4, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -67,9 +107,24 @@ Material:
         m_Texture: {fileID: 2800000, guid: 376b86c8806901b4990daf9dc1615895, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _UpTex_01:
+        m_Texture: {fileID: 2800000, guid: f5843e264db7cd143bd979a425d47bf4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _UpTex_02:
+        m_Texture: {fileID: 2800000, guid: 376b86c8806901b4990daf9dc1615895, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Blend: 0.078088395
+    - _Blend: 1
+    - _Exposure: 1
+    - _Rotation: 0
+    - _RotationX: 259.4
+    - _RotationY: 994.6284
+    - _SkyBlend: 0.6554471
+    - _XX: 0
+    - _YY: 0
     m_Colors:
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []
