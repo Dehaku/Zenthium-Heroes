@@ -252,4 +252,10 @@ public class World : MonoBehaviour {
 
     }
 
+    private void OnDestroy()
+    {
+        skyboxNight.SetFloat("_RotationY", 0);
+        skyboxNight.SetFloat("_SkyBlend", 0);
+    }
+
 }
