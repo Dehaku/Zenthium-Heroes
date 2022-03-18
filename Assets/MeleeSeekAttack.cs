@@ -27,7 +27,7 @@ public class MeleeSeekAttack : MonoBehaviour
 
     public AudioClip attackSound;
     public AudioClip hitSound;
-    private int attackSoundID;
+    private int attackSoundID = 0;
 
 
     [Header("Melee Reach")]

@@ -21,7 +21,7 @@ public class MeleeAttack : MonoBehaviour
     public float colliderTime = 0.25f;
 
     public AudioClip attackSound;
-    private int attackSoundID;
+    private int attackSoundID = 0;
 
     
     [Header("Melee Reach")]

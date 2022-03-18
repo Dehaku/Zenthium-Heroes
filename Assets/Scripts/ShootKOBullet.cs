@@ -25,7 +25,7 @@ public class ShootKOBullet : MonoBehaviour
     
     
     public AudioClip gunSound;
-    private int gunSoundID;
+    private int gunSoundID = 0;
     
     public Transform spawnPos;
     

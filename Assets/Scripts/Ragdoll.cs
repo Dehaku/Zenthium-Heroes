@@ -26,6 +26,7 @@ public class Ragdoll : MonoBehaviour
         foreach (Rigidbody rig in rigids)
         {
             rig.useGravity = true;
+            rig.isKinematic = false;
         }
 
         var enemy = GetComponent<Enemy>();
@@ -43,6 +44,7 @@ public class Ragdoll : MonoBehaviour
         foreach (Rigidbody rig in rigids)
         {
             rig.useGravity = false;
+            rig.isKinematic = true;
         }
     }
 }
