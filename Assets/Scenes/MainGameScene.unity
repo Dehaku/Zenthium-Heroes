@@ -7867,7 +7867,7 @@ MonoBehaviour:
   speedForce: 1
   skyboxDay: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   skyboxNight: {fileID: 2100000, guid: a5cec6fd1d2f8984a968808f47f8b067, type: 2}
-  ClockSpeed: 40
+  ClockSpeed: 1
   Day: 1
   _timeOfDay: 723
 --- !u!114 &430806746
@@ -8036,6 +8036,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FragilePOI (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1708941322922872475, guid: a2f797685b1c95e479405a584dc53030,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2f797685b1c95e479405a584dc53030, type: 3}
@@ -9412,6 +9417,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FragilePOI (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1708941322922872475, guid: a2f797685b1c95e479405a584dc53030,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2f797685b1c95e479405a584dc53030, type: 3}
@@ -13187,7 +13197,7 @@ MonoBehaviour:
   camShoulderFOV: 25
   aimLayer:
     serializedVersion: 2
-    m_Bits: 25911
+    m_Bits: 25601
 --- !u!114 &861604080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13334,6 +13344,9 @@ MonoBehaviour:
   predictionTime: 1
   predictionTimeStep: 0.05
   predictionMaterial: {fileID: 2100000, guid: 064af0308de8bbc4eb3c92b6b8611b90, type: 2}
+  rayMask:
+    serializedVersion: 2
+    m_Bits: 31745
 --- !u!114 &861604083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14448,6 +14461,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FragilePOI (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 1708941322922872475, guid: a2f797685b1c95e479405a584dc53030,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2f797685b1c95e479405a584dc53030, type: 3}
 --- !u!4 &945800232 stripped
@@ -15315,6 +15333,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FragilePOI (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1708941322922872475, guid: a2f797685b1c95e479405a584dc53030,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2f797685b1c95e479405a584dc53030, type: 3}
@@ -17642,6 +17665,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FragilePOI (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1708941322922872475, guid: a2f797685b1c95e479405a584dc53030,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2f797685b1c95e479405a584dc53030, type: 3}
@@ -24569,6 +24597,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FragilePOI (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 1708941322922872475, guid: a2f797685b1c95e479405a584dc53030,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2f797685b1c95e479405a584dc53030, type: 3}
 --- !u!1001 &1415516864
@@ -27470,6 +27503,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FragilePOI (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1708941322922872475, guid: a2f797685b1c95e479405a584dc53030,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2f797685b1c95e479405a584dc53030, type: 3}
 --- !u!1 &1647638875
@@ -29574,6 +29612,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FragilePOI (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 1708941322922872475, guid: a2f797685b1c95e479405a584dc53030,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2f797685b1c95e479405a584dc53030, type: 3}
 --- !u!1 &1824599187
@@ -29864,6 +29907,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FragilePOI (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1708941322922872475, guid: a2f797685b1c95e479405a584dc53030,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2f797685b1c95e479405a584dc53030, type: 3}
@@ -30965,6 +31013,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FragilePOI (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1708941322922872475, guid: a2f797685b1c95e479405a584dc53030,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2f797685b1c95e479405a584dc53030, type: 3}
@@ -36139,6 +36192,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FragilePOI (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1708941322922872475, guid: a2f797685b1c95e479405a584dc53030,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2f797685b1c95e479405a584dc53030, type: 3}

@@ -52,6 +52,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -96,7 +97,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzlePrefab: {fileID: 6120345066601668924, guid: bcb8e7252d0c18f40894cd8c6132855f,
     type: 3}
+  attachObject: {fileID: 0}
   hitPrefab: {fileID: 98131139715565700, guid: dd8c79bee25874044a91b01a8ed46559, type: 3}
   speed: 200
   gravity: 1
   knockbackForce: 50
+  predictionMaterial: {fileID: 0}
+  rayMask:
+    serializedVersion: 2
+    m_Bits: 31745

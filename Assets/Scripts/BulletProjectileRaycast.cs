@@ -20,6 +20,8 @@ public class BulletProjectileRaycast : MonoBehaviour
     public Material predictionMaterial;
     public RaycastHit predictHit;
 
+    public LayerMask rayMask;
+
 
     public void Initialize(Transform startPoint, float speed, float gravity)
     {
@@ -143,8 +145,12 @@ public class BulletProjectileRaycast : MonoBehaviour
             
             increm++;
             _line.SetPosition(increm, currentPoint);
+            
+            
 
-            if (Physics.Linecast(previousPoint, currentPoint, out predictHit))
+
+
+            if (Physics.Linecast(previousPoint, currentPoint, out predictHit, rayMask, QueryTriggerInteraction.Ignore))
             {
                 //Hit
                 _line.positionCount = increm+1;
@@ -173,17 +179,21 @@ public class BulletProjectileRaycast : MonoBehaviour
         
         Vector3 nextPoint = FindPointOnParabola(nextTime);
 
+        
+
         if (previousTime > 0)
         {
+            
+
             Vector3 prevPoint = FindPointOnParabola(previousTime);
-            if (Physics.Linecast(prevPoint, currentPoint, out hit))
+            if (Physics.Linecast(prevPoint, currentPoint, out hit, rayMask, QueryTriggerInteraction.Ignore))
             {
                 //Hit
                 OnHit(hit);
             }
         }
 
-        if(Physics.Linecast(currentPoint, nextPoint, out hit))
+        if(Physics.Linecast(currentPoint, nextPoint, out hit, rayMask, QueryTriggerInteraction.Ignore))
         {
             //Hit
             OnHit(hit);

@@ -56,6 +56,8 @@ public class ShootKOBullet : MonoBehaviour
     GameObject _predictionGO;
     BulletProjectileRaycast _prediction;
 
+    public LayerMask rayMask;
+
 
     private void Awake()
     {
@@ -121,7 +123,7 @@ public class ShootKOBullet : MonoBehaviour
 
             if (isPlayer)
             {
-                if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) { pew.transform.forward = Camera.main.transform.forward; }
+                if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, rayMask, QueryTriggerInteraction.Ignore)) { pew.transform.forward = Camera.main.transform.forward; }
                 else { pew.transform.LookAt(hit.point); }
             }
             else
@@ -233,7 +235,7 @@ public class ShootKOBullet : MonoBehaviour
         if(isPlayer)
         {
             Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
-            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) { _predictionGO.transform.forward = Camera.main.transform.forward; }
+            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, rayMask, QueryTriggerInteraction.Ignore)) { _predictionGO.transform.forward = Camera.main.transform.forward; }
             else { _predictionGO.transform.LookAt(hit.point); }
         }
         else

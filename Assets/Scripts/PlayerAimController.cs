@@ -220,7 +220,8 @@ public class PlayerAimController : MonoBehaviour
             
 
             Ray camRay = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
-            if (!Physics.Raycast(camRay, out RaycastHit camHit, Mathf.Infinity)) { }
+
+            if (!Physics.Raycast(camRay, out RaycastHit camHit, Mathf.Infinity, aimLayer, QueryTriggerInteraction.Ignore)) { }
 
             Vector3 worldAimTarget = camHit.point;
             worldAimTarget.y = controller.transform.position.y;
@@ -239,12 +240,15 @@ public class PlayerAimController : MonoBehaviour
 
     private void AimReticleAdjust()
     {
+        
+
+
         Vector3 center = aimLookAt.transform.position;
         Ray camRay = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
-        if (!Physics.Raycast(camRay, out RaycastHit camHit, Mathf.Infinity)) { }
+        if (!Physics.Raycast(camRay, out RaycastHit camHit, Mathf.Infinity, aimLayer, QueryTriggerInteraction.Ignore)) { }
 
         Ray ray = new Ray(center, (camHit.point - center).normalized * 100);
-        if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, aimLayer)) { }
+        if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, aimLayer,QueryTriggerInteraction.Ignore)) { }
 
         aimReticle.transform.position = Camera.main.WorldToScreenPoint(hit.point);
     }
