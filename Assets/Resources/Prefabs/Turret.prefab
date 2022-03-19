@@ -55,6 +55,7 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   recoil: {fileID: 0}
   fireRate: 0.25
+  damage: 10
   gunSound: {fileID: 8300000, guid: 1f3c0eab072a21d4c8b9e2a0cb0f6659, type: 3}
   spawnPos: {fileID: 8508552426511908}
   vfx:
@@ -73,6 +74,9 @@ MonoBehaviour:
   predictionTime: 1
   predictionTimeStep: 0.05
   predictionMaterial: {fileID: 2100000, guid: 064af0308de8bbc4eb3c92b6b8611b90, type: 2}
+  rayMask:
+    serializedVersion: 2
+    m_Bits: 31745
 --- !u!114 &8508551553214782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec554174317ad3249b83bd91de6fb8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetFactions: 0100000002000000030000000400000005000000060000000700000008000000
+  TargetFactions: 0000000002000000030000000400000005000000060000000700000008000000
   target: {fileID: 0}
   targets: []
 --- !u!114 &8508551553214783
@@ -100,8 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ca9f57a3427094f89a256c2bcbebda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentFactionID: 0
-  TrueFactionID: 0
+  CurrentFactionID: 1
+  TrueFactionID: 1
 --- !u!114 &8508551553214781
 MonoBehaviour:
   m_ObjectHideFlags: 0

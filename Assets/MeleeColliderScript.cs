@@ -6,13 +6,26 @@ public class MeleeColliderScript : MonoBehaviour
 {
     public DamageInfo damageInfo;
     List<Creature> creaturesHitThisFrame = new List<Creature>();
+    public Animator anim;
+    public float animSpeed = 1;
+    int forwardThrust = Animator.StringToHash("ForwardThrust");
+    int uppercut = Animator.StringToHash("Uppercut");
+    public bool animForwardThrust = false;
+    public bool animUppercut = false;
 
 
-    
 
     private void OnEnable()
     {
         creaturesHitThisFrame.Clear();
+        if(anim)
+        {
+            anim.speed = animSpeed;
+            if(animForwardThrust) 
+                anim.Play(forwardThrust);
+            else if(animUppercut)
+                anim.Play(uppercut);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

@@ -63,6 +63,11 @@ public class SquadScript : MonoBehaviour
             if (faceInsteadOfChase)
             {
                 squaddie.transform.DOLookAt(target.transform.position, 1f, AxisConstraint.Y);
+
+                // Vector3 direction = (target.transform.position - squaddie.transform.position).normalized;
+                // Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+                // squaddie.transform.rotation = Quaternion.Slerp(squaddie.transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+
             }
             else
             {
