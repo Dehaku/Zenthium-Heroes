@@ -1,12 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Devdog.LosPro.Demo
-{
     [RequireComponent(typeof(ChaseTarget))]
-    public class ChaseObserveTarget : MonoBehaviour, IObserverCallbacks
+    public class ChaseObserveTarget : MonoBehaviour
     {
         ChaseTarget _chaseT;
         SquadScript squad;
@@ -49,6 +48,32 @@ namespace Devdog.LosPro.Demo
                 Gizmos.DrawWireSphere(transform.position, scanMaxRange);
         }
 
+        void MakeTarget(GameObject target)
+        {
+            var targetCreature = target.GetComponent<Creature>();
+            if (!targetCreature.isConscious)
+            {
+                return;
+            }
+
+            // If Squad, and stay in formation, then squad hunt. Else chase by yourself.
+            bool seekSolo = true;
+            if (GetSquad())
+            {
+                seekSolo = false;
+                if (GetSquad().breakFormation)
+                    seekSolo = true;
+                else
+                    GetSquad().TargetFound(target);
+            }
+
+            if (seekSolo)
+            {
+                _chaseT.enabled = true;
+                _chaseT.target = target;
+            }
+        }
+
         void Scan()
         {
             //var enemy = acquire.AcquireNearestVisibleEnemyWithinRange(SightPos.position, 0, 100);
@@ -59,9 +84,9 @@ namespace Devdog.LosPro.Demo
                 enemy = acquire.AcquireNearestVisibleEnemyWithinRange(scanMinRange, scanMaxRange);
 
             if (enemy)
-                Debug.Log("I can see: " + enemy.name);
-            else
-                Debug.Log("I don't see anyone.");
+            {
+                MakeTarget(enemy);
+            }
         }
 
         void Update()
@@ -69,7 +94,7 @@ namespace Devdog.LosPro.Demo
             _scanTimer -= Time.deltaTime;
             if(_scanTimer < 0)
             {
-                _scanTimer = scanFrequency + Random.Range(0f, scanRandomness);
+                _scanTimer = scanFrequency + UnityEngine.Random.Range(0f, scanRandomness);
                 Scan();
             }
         }
@@ -83,60 +108,4 @@ namespace Devdog.LosPro.Demo
             squad = GetComponent<SquadRef>().squad;
             return squad;
         }
-
-        public void OnDetectedTarget(SightTargetInfo info)
-        {
-            var target = info.target.gameObject.GetComponent<Creature>();
-            if (!target.isConscious)
-            {
-                return;
-            }
-
-            // If Squad, and stay in formation, then squad hunt. Else chase by yourself.
-            bool seekSolo = true;
-            if(GetSquad())
-            {
-                seekSolo = false;
-                if (GetSquad().breakFormation)
-                    seekSolo = true;
-                else
-                    GetSquad().TargetFound(info.target.gameObject);
-            }
-            
-            if(seekSolo)
-            {
-                _chaseT.enabled = true;
-                _chaseT.target = info.target.gameObject;
-            }
-        }
-
-        public void OnDetectingTarget(SightTargetInfo info)
-        {
-        }
-
-        public void OnStopDetectingTarget(SightTargetInfo info)
-        {
-        }
-
-        public void OnTargetCameIntoRange(SightTargetInfo info)
-        {
-        }
-
-        public void OnTargetDestroyed(SightTargetInfo info)
-        {
-        }
-
-        public void OnTargetWentOutOfRange(SightTargetInfo info)
-        {
-        }
-
-        public void OnTryingToDetectTarget(SightTargetInfo info)
-        {
-        }
-
-        public void OnUnDetectedTarget(SightTargetInfo info)
-        {
-        }
-
     }
-}

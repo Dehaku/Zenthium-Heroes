@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 1708941322922872468}
   - component: {fileID: 1708941322922872469}
   - component: {fileID: 1708941322922872474}
-  - component: {fileID: 1708941322922872463}
   m_Layer: 0
   m_Name: FragilePOI
   m_TagString: Untagged
@@ -225,25 +224,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isValidTarget: 1
---- !u!114 &1708941322922872463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708941322922872475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95b78093df9d70f48a6002b8a2374b7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _config:
-    category: 8
-    detectionTime: 0.5
-    minVisibilityMultiplier: 1
-    visibilityMultiplier: 1
-    canInstantlyBeDetected: 1
-    debug: 0
-  _indexingConfig:
-    indexingType: 0
-    _raycastPoints: []

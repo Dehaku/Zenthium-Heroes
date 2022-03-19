@@ -23,7 +23,11 @@ public class SquadScript : MonoBehaviour
     public bool breakFormation = false;
     public bool faceInsteadOfChase = true;
 
-    
+    private void Start()
+    {
+        
+    }
+
     public void RandomSize()
     {
         scaleSize = Random.Range(0.5f, 1.5f);
@@ -59,10 +63,10 @@ public class SquadScript : MonoBehaviour
 
         foreach (var squaddie in squadUnits)
         {
-
+            squaddie.transform.DOLookAt(target.transform.position, 1f, AxisConstraint.Y);
             if (faceInsteadOfChase)
             {
-                squaddie.transform.DOLookAt(target.transform.position, 1f, AxisConstraint.Y);
+                
 
                 // Vector3 direction = (target.transform.position - squaddie.transform.position).normalized;
                 // Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
