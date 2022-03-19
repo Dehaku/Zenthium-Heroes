@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AcquireTargets : MonoBehaviour
 {
+    public Transform SightPos;
+    public float rayTraceHeightOffset = 1f;
+
     public List<int> TargetFactions;
     
     [HideInInspector] public GameObject target;
@@ -94,6 +97,65 @@ public class AcquireTargets : MonoBehaviour
                 }
 
                 if (Vector3.Distance(transform.position, pawn.transform.position) < closestDist && WithinRange(pawn.gameObject, minRange, maxRange))
+                {
+                    closestGO = pawn.gameObject;
+                    closestDist = Vector3.Distance(transform.position, closestGO.transform.position);
+                }
+            }
+        }
+
+        return closestGO;
+    }
+
+    bool LineOfSightCheck(GameObject enemy)
+    {
+        var enemyPos = enemy.transform.position;
+        enemyPos.y += rayTraceHeightOffset * enemy.transform.lossyScale.y;
+
+        RaycastHit rayInfo;
+        Vector3 rayDir = (enemyPos - SightPos.position).normalized;
+        if (Physics.Raycast(SightPos.position, rayDir, out rayInfo))
+        {
+            var creature = rayInfo.collider.GetComponentInParent<Creature>();
+            if (creature)
+            {
+                //Debug.DrawLine(SightPos.position, rayInfo.point, Color.green);
+                //Debug.Log("Sight: " + rayInfo.collider.name + ":" + creature.name);
+                return true;
+            }
+            else
+            {
+                //Debug.DrawLine(SightPos.position, rayInfo.point, Color.red);
+            }
+
+            //else
+            //    Debug.Log("Sight: " + rayInfo.collider.name );
+        }
+
+        return false;
+    }
+
+    public GameObject AcquireNearestVisibleEnemyWithinRange(Vector3 searchPoint, float minRange, float maxRange)
+    {
+        var enemies = AcquireAllEnemyTargets();
+        GameObject closestGO = null;
+        float closestDist = float.PositiveInfinity;
+
+        foreach (var pawn in enemies)
+        {
+            if (!closestGO && WithinRange(pawn.gameObject, minRange, maxRange))
+            {
+                if(LineOfSightCheck(pawn))
+                {
+                    closestGO = pawn.gameObject;
+                    closestDist = Vector3.Distance(transform.position, closestGO.transform.position);
+                }
+                continue;
+            }
+
+            if (Vector3.Distance(transform.position, pawn.transform.position) < closestDist && WithinRange(pawn.gameObject, minRange, maxRange))
+            {
+                if (LineOfSightCheck(pawn))
                 {
                     closestGO = pawn.gameObject;
                     closestDist = Vector3.Distance(transform.position, closestGO.transform.position);
