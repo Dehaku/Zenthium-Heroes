@@ -10,6 +10,15 @@ namespace Devdog.LosPro.Demo
     {
         ChaseTarget _chaseT;
         SquadScript squad;
+        AcquireTargets acquire;
+        public float scanMinRange = 0f;
+        public float scanMaxRange = 50f;
+        public float scanFrequency = 1.5f;
+        [Header("ScanRandom: No Less Than Freq")]
+        public float scanRandomness = 0.25f;
+        float _scanTimer = 1.5f;
+        public Transform sightPos;
+
         private void Awake()
         {
             _chaseT = GetComponent<ChaseTarget>();
@@ -18,7 +27,53 @@ namespace Devdog.LosPro.Demo
         void Start()
         {
             squad = GetComponent<SquadRef>().squad;
+            acquire = GetComponent<AcquireTargets>();
         }
+
+        void OnDrawGizmosSelected()
+        {
+            // Draw a yellow sphere at the transform's position
+            
+            if(scanMinRange > 0)
+            {
+                Gizmos.color = new Color(0,0,1,1);
+                if (sightPos)
+                    Gizmos.DrawWireSphere(sightPos.position, scanMinRange);
+                else
+                    Gizmos.DrawWireSphere(transform.position, scanMinRange);
+            }
+            Gizmos.color = new Color(1, 0.92f, 0.016f,1); 
+            if (sightPos)
+                Gizmos.DrawWireSphere(sightPos.position, scanMaxRange);
+            else
+                Gizmos.DrawWireSphere(transform.position, scanMaxRange);
+        }
+
+        void Scan()
+        {
+            //var enemy = acquire.AcquireNearestVisibleEnemyWithinRange(SightPos.position, 0, 100);
+            GameObject enemy;
+            if(sightPos)
+                enemy = acquire.AcquireNearestVisibleEnemyWithinRange(sightPos.position, scanMinRange, scanMaxRange);
+            else
+                enemy = acquire.AcquireNearestVisibleEnemyWithinRange(scanMinRange, scanMaxRange);
+
+            if (enemy)
+                Debug.Log("I can see: " + enemy.name);
+            else
+                Debug.Log("I don't see anyone.");
+        }
+
+        void Update()
+        {
+            _scanTimer -= Time.deltaTime;
+            if(_scanTimer < 0)
+            {
+                _scanTimer = scanFrequency + Random.Range(0f, scanRandomness);
+                Scan();
+            }
+        }
+
 
         SquadScript GetSquad()
         {

@@ -22,7 +22,7 @@ public class CanSeeEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(Random.Range(0,100) == 0)
+        if(Random.Range(0,1000000) == 0)
         {
             //var enemy = FindNearestEnemyBySight();
             var enemy = myTargets.AcquireNearestVisibleEnemyWithinRange(SightPos.position,0,100);

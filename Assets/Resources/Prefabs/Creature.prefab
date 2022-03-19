@@ -225,7 +225,6 @@ GameObject:
   - component: {fileID: -4434644074536402233}
   - component: {fileID: 7022319271380431142}
   - component: {fileID: 4154606662498963472}
-  - component: {fileID: 5495524178416582798}
   - component: {fileID: 4141584564351989137}
   - component: {fileID: 5131774766431124997}
   - component: {fileID: -3983522948103820069}
@@ -253,7 +252,6 @@ Transform:
   - {fileID: 8187214079648607066}
   - {fileID: 7328817999082906130}
   - {fileID: 595730338238618301}
-  - {fileID: 4791506976171028932}
   - {fileID: 4505374646620439510}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -530,34 +528,6 @@ MonoBehaviour:
     type: 3}
   _sightRenderer: {fileID: 661239977941034660}
   _hearingRenderer: {fileID: 6597701108814249996}
---- !u!114 &5495524178416582798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3297220718808129810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ef877e096bc2dc4aadfc4c2f9fd70fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _eyes: {fileID: 3089245144472834964}
-  _config:
-    sightTargetCategoriesMask: -498
-    raycastLayer:
-      serializedVersion: 2
-      m_Bits: 30721
-    updateInterval: 0.2
-    fieldOfViewDotValue: 0.2
-    viewingDistance: 40
-    sampleCount: 10
-    minVisibleFactor: 0.21
-    instantlyDetectWhenTargetIsFullyVisible: 1
-    extrapolatePath: 1
-    extrapolateSampleCount: 10
-    onlyWithTag: 
-    debug: 1
 --- !u!114 &4141584564351989137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,6 +540,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fc5fd7e3e35344a9ea2a5bba840835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scanFrequency: 1.5
+  scanRandomness: 0.25
+  sightPos: {fileID: 3089245144472834964}
 --- !u!114 &5131774766431124997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,80 +705,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &4391581379216168216
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4791506976171028932}
-  - component: {fileID: 8726790168214343109}
-  - component: {fileID: 5895858682018947860}
-  - component: {fileID: 8418275101624869984}
-  m_Layer: 20
-  m_Name: _Col
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4791506976171028932
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4391581379216168216}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3297220718808129813}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &8726790168214343109
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4391581379216168216}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 40
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &5895858682018947860
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4391581379216168216}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &8418275101624869984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4391581379216168216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11cf2c8504c52dd43ad63fc3c619d8b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5666534336359214880
 GameObject:
   m_ObjectHideFlags: 0
@@ -6979,7 +6878,7 @@ PrefabInstance:
     - target: {fileID: 2977757239784356170, guid: d946134929783d145bbbe92a661a76bb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2977757239784356170, guid: d946134929783d145bbbe92a661a76bb,
         type: 3}
