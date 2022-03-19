@@ -540,6 +540,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fc5fd7e3e35344a9ea2a5bba840835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scanMinRange: 0
+  scanMaxRange: 50
   scanFrequency: 1.5
   scanRandomness: 0.25
   sightPos: {fileID: 3089245144472834964}
@@ -575,7 +577,7 @@ MonoBehaviour:
   fireRate: 1
   damage: 35
   damageType: 2
-  colliderTime: 0.125
+  colliderTime: 0.25
   attackSound: {fileID: 8300000, guid: 2ece1329b0f325c4f93c1272d0dae817, type: 3}
   meleeCollider: {fileID: 4505374646620439505}
 --- !u!114 &3781358260801288654
@@ -6888,7 +6890,7 @@ PrefabInstance:
     - target: {fileID: 2977757239784356170, guid: d946134929783d145bbbe92a661a76bb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.56
+      value: 1.91
       objectReference: {fileID: 0}
     - target: {fileID: 2977757239784356170, guid: d946134929783d145bbbe92a661a76bb,
         type: 3}

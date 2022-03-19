@@ -50,6 +50,9 @@ using UnityEngine;
 
         void MakeTarget(GameObject target)
         {
+            if (!target)
+            return;
+
             var targetCreature = target.GetComponent<Creature>();
             if (!targetCreature.isConscious)
             {
@@ -60,8 +63,12 @@ using UnityEngine;
             bool seekSolo = true;
             if (GetSquad())
             {
-                seekSolo = false;
-                if (GetSquad().breakFormation)
+                
+                //Setting target so melee units in formation will attack if enemies approach.
+                _chaseT.target = target;
+
+            seekSolo = false;
+            if (GetSquad().breakFormation)
                     seekSolo = true;
                 else
                     GetSquad().TargetFound(target);

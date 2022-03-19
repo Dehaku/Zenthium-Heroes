@@ -63,7 +63,7 @@ public class SquadScript : MonoBehaviour
 
         foreach (var squaddie in squadUnits)
         {
-            squaddie.transform.DOLookAt(target.transform.position, 1f, AxisConstraint.Y);
+            //squaddie.transform.DOLookAt(target.transform.position, 1f, AxisConstraint.Y);
             if (faceInsteadOfChase)
             {
                 
@@ -86,9 +86,34 @@ public class SquadScript : MonoBehaviour
         
     }
 
+    void SquaddiesFaceOwnTargets()
+    {
+        foreach (var squaddie in squadUnits)
+        {
+            var squaddieTarget = squaddie.GetComponent<ChaseTarget>().target;
+            if(squaddieTarget)
+                squaddie.transform.DOLookAt(squaddieTarget.transform.position, 1f, AxisConstraint.Y);
+        }
+    }
+
+    float faceTimer = 0f;
+    void FaceTimer(float timer)
+    {
+        faceTimer += Time.deltaTime;
+        if(faceTimer >= timer)
+        {
+            faceTimer = faceTimer % timer;
+            SquaddiesFaceOwnTargets();
+        }
+    }
+
+
+    
     private void Update()
     {
         CheckForEnemies();
+        FaceTimer(1f);
+        
 
         if (!breakFormation)
             SetFormation();
