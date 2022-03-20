@@ -10,15 +10,15 @@ public class SquadScript : MonoBehaviour
 
     public List<GameObject> squadUnits = new List<GameObject>();
     public List<NavMeshAgent> squadNavs = new List<NavMeshAgent>();
+    List<Creature> squadCreatures = new List<Creature>();
     public int squadSize = 5;
     public float scaleSize = 1;
     public int difficulty = 1;
+    public float percentDownToBreakFormation = 0.2f;
 
     public Vector3 squadPosition;
     public Vector3 squadDestination;
 
-    public float enemyCheckRate = 1f;
-    float _enemyCheckRateCounter = 0;
     public bool enemySpotted = false;
     public bool breakFormation = false;
     public bool faceInsteadOfChase = true;
@@ -34,50 +34,22 @@ public class SquadScript : MonoBehaviour
 
     public void RandomSize()
     {
-        //scaleSize = Random.Range(0.5f, 1.5f);
-        scaleSize = 1;
-
+        scaleSize = Random.Range(0.5f, 1.5f);
     }
 
-
-    void CheckForEnemies()
-    {
-        _enemyCheckRateCounter += Time.deltaTime;
-        if (_enemyCheckRateCounter < enemyCheckRate)
-            return;
-        
-        _enemyCheckRateCounter = 0;
-        foreach (var squaddie in squadUnits)
-        {
-
-        }
-
-
-    }
+    
 
     public void TargetFound(GameObject target)
     {
-        //if (enemySpotted)
-        //    return;
         enemySpotted = true;
-        
-        
-        // Random chance(for now) that units go solo.
-        
-        
-        //breakFormation = true;
 
         foreach (var squaddie in squadUnits)
         {
-            //squaddie.transform.DOLookAt(target.transform.position, 1f, AxisConstraint.Y);
             if (faceInsteadOfChase)
             {
-                
-
                 // Vector3 direction = (target.transform.position - squaddie.transform.position).normalized;
                 // Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
                 // squaddie.transform.rotation = Quaternion.Slerp(squaddie.transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
-
             }
             else
             {
@@ -87,9 +59,7 @@ public class SquadScript : MonoBehaviour
                 chaseT.enabled = true;
                 chaseT.target = target;
             }
-            
         }
-        
     }
 
     void SquaddiesFaceOwnTargets()
@@ -106,24 +76,66 @@ public class SquadScript : MonoBehaviour
         }
     }
 
-    float faceTimer = 0f;
-    void FaceTimer(float timer)
+    
+    void CacheSquadCreatures()
     {
-        faceTimer += Time.deltaTime;
-        if(faceTimer >= timer)
+        squadCreatures.Clear();
+        foreach (var squaddie in squadUnits)
         {
-            faceTimer = faceTimer % timer;
-            SquaddiesFaceOwnTargets();
+            var crea = squaddie.GetComponent<Creature>();
+            if (crea)
+                squadCreatures.Add(crea);
+            else
+                Debug.LogWarning("Uh... A squad unit didn't have the Creature/Health system for some reason.");
+        }
+    }
+    void ShouldBreakFormation(float breakPercent)
+    {
+        // Caching our creature scripts.
+        if (squadCreatures.Count != squadUnits.Count)
+            CacheSquadCreatures();
+
+        int squadSize = squadUnits.Count;
+        int squaddiesConscious = 0;
+
+        foreach (var squaddie in squadCreatures)
+        {
+            if (squaddie.isConscious)
+                squaddiesConscious++;
+        }
+
+        int squadBreakpoint = squadSize - (int)(squadSize * percentDownToBreakFormation);
+
+        if(squaddiesConscious < squadBreakpoint)
+        {
+            breakFormation = true;
+        }
+        else
+        {
+            if(breakFormation == true)
+                Debug.Log("Reforming formation!");
+            breakFormation = false;
+            
         }
     }
 
+    float secondTimer = 0f;
+    void SecondTimer(float timer)
+    {
+        secondTimer += Time.deltaTime;
+        if (secondTimer >= timer)
+        {
+            secondTimer = secondTimer % timer;
+            SquaddiesFaceOwnTargets();
+            ShouldBreakFormation(percentDownToBreakFormation);
+        }
+    }
 
-    
     private void Update()
     {
-        CheckForEnemies();
-        FaceTimer(1f);
+        SecondTimer(1f); // Functions that we only want to run once a second, instead of every frame.
         
+
 
         if (!breakFormation)
             SetFormation();
@@ -135,9 +147,8 @@ public class SquadScript : MonoBehaviour
     }
 
     // Tarodev's ExampleArmy modified
-
+    private List<Vector3> _points = new List<Vector3>();
     private FormationBase _formation;
-
     public FormationBase Formation
     {
         get
@@ -147,15 +158,8 @@ public class SquadScript : MonoBehaviour
         }
         set => _formation = value;
     }
+    
 
-
-
-    private List<Vector3> _points = new List<Vector3>();
-
-    private void Awake()
-    {
-
-    }
 
 
     public void SetSquadDestination(Vector3 destination)
@@ -188,13 +192,14 @@ public class SquadScript : MonoBehaviour
 
     void CacheNavAgents()
     {
+        squadNavs.Clear();
         for (var i = 0; i < squadUnits.Count; i++)
             squadNavs.Add(squadUnits[i].GetComponent<NavMeshAgent>());
     }
 
     private void SetFormation()
     {
-        if (squadNavs.Count == 0)
+        if (squadNavs.Count != squadUnits.Count)
             if (squadUnits.Count > 0)
                 CacheNavAgents();
 

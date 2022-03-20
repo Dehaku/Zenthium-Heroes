@@ -83,7 +83,6 @@ using UnityEngine;
 
         void Scan()
         {
-            //var enemy = acquire.AcquireNearestVisibleEnemyWithinRange(SightPos.position, 0, 100);
             GameObject enemy;
             if(sightPos)
                 enemy = acquire.AcquireNearestVisibleEnemyWithinRange(sightPos.position, scanMinRange, scanMaxRange);

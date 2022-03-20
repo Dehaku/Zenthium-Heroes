@@ -229,7 +229,6 @@ GameObject:
   - component: {fileID: 5131774766431124997}
   - component: {fileID: -3983522948103820069}
   - component: {fileID: 3781358260801288654}
-  - component: {fileID: 3126416930814395328}
   - component: {fileID: 7824485991221639213}
   m_Layer: 0
   m_Name: Creature
@@ -594,20 +593,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meleeRange: 2
   shootRange: 20
---- !u!114 &3126416930814395328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3297220718808129810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5575ec7535177348a1e9ba2c3e0fa75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SightPos: {fileID: 3089245144472834964}
-  rayTraceHeightOffset: 1
 --- !u!114 &7824485991221639213
 MonoBehaviour:
   m_ObjectHideFlags: 0

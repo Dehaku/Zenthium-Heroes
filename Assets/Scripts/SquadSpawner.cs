@@ -73,7 +73,7 @@ public class SquadSpawner : MonoBehaviour
 
 
 
-        squad.RandomSize();
+        // squad.RandomSize();
         squadSOContainer.Add(squad);
 
         for(int i = 0; i < squadSize; i++)
