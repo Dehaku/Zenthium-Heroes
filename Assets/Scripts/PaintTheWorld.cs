@@ -107,7 +107,8 @@ public class PaintTheWorld : MonoBehaviour
             Debug.Log(((Time.realtimeSinceStartup - startTime) * 1000f) + "ms");
         }
 
-
+        if (!chunksCached)
+            CacheChunks();
         if (_paintOverTime && chunkIterator >= chunks.Length)
         {
             Debug.Log("Long Paint:" + ((Time.realtimeSinceStartup - paintStartTime) * 1000f) + "ms");
