@@ -23,14 +23,20 @@ public class SquadScript : MonoBehaviour
     public bool breakFormation = false;
     public bool faceInsteadOfChase = true;
 
+    BoxFormation boxFormation;
+    RadialFormation radialFormation;
+
     private void Start()
     {
-        
+        boxFormation = GetComponent<BoxFormation>();
+        radialFormation = GetComponent<RadialFormation>();
     }
 
     public void RandomSize()
     {
-        scaleSize = Random.Range(0.5f, 1.5f);
+        //scaleSize = Random.Range(0.5f, 1.5f);
+        scaleSize = 1;
+
     }
 
 
@@ -90,6 +96,10 @@ public class SquadScript : MonoBehaviour
     {
         foreach (var squaddie in squadUnits)
         {
+            if (!squaddie.GetComponent<Creature>().isConscious)
+                continue;
+
+
             var squaddieTarget = squaddie.GetComponent<ChaseTarget>().target;
             if(squaddieTarget)
                 squaddie.transform.DOLookAt(squaddieTarget.transform.position, 1f, AxisConstraint.Y);
@@ -188,6 +198,7 @@ public class SquadScript : MonoBehaviour
             if (squadUnits.Count > 0)
                 CacheNavAgents();
 
+        
 
         _points = Formation.EvaluatePoints().ToList();
 
