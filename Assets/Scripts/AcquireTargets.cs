@@ -29,7 +29,17 @@ public class AcquireTargets : MonoBehaviour
 
     public GameObject AcquireNearestEnemyTarget()
     {
-        var pawns = FindObjectsOfType<Faction>();
+        GameObject[] enemiesGO = GameObject.FindGameObjectsWithTag("GameEntity");
+        List<Faction> pawns = new List<Faction>();
+        foreach (var item in enemiesGO)
+        {
+            var faction = item.GetComponent<Faction>();
+            if (faction)
+            {
+                pawns.Add(faction);
+            }
+        }
+        //var pawns = FindObjectsOfType<Faction>();
         GameObject closestGO = null;
         float closestDist = float.PositiveInfinity;
 
@@ -81,7 +91,17 @@ public class AcquireTargets : MonoBehaviour
 
     public GameObject AcquireNearestEnemyTargetWithinRange(Vector3 searchPoint, float minRange, float maxRange)
     {
-        var pawns = FindObjectsOfType<Faction>();
+        GameObject[] enemiesGO = GameObject.FindGameObjectsWithTag("GameEntity");
+        List<Faction> pawns = new List<Faction>();
+        foreach (var item in enemiesGO)
+        {
+            var faction = item.GetComponent<Faction>();
+            if (faction)
+            {
+                pawns.Add(faction);
+            }
+        }
+        //var pawns = FindObjectsOfType<Faction>();
         GameObject closestGO = null;
         float closestDist = float.PositiveInfinity;
 
@@ -176,7 +196,16 @@ public class AcquireTargets : MonoBehaviour
     public List<GameObject> AcquireAllEnemyTargets()
     {
         List<GameObject> targetList = new List<GameObject>();
-        var pawns = FindObjectsOfType<Faction>();
+        GameObject[] enemiesGO = GameObject.FindGameObjectsWithTag("GameEntity");
+        List<Faction> pawns = new List<Faction>();
+        foreach (var item in enemiesGO)
+        {
+            var faction = item.GetComponent<Faction>();
+            if (faction)
+            {
+                pawns.Add(faction);
+            }
+        }
 
         foreach (var pawn in pawns)
         {

@@ -15,6 +15,8 @@ namespace Eldemarkki.VoxelTerrain.World.Chunks
 
         private void Update()
         {
+            if (Random.Range(0, 10) != 0)
+                return;
             foreach (ChunkProperties chunkProperties in VoxelWorld.ChunkStore.Chunks)
             {
                 if (chunkProperties.HasChanges)

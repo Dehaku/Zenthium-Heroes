@@ -24,7 +24,19 @@ public class SquadTargetAssigner : MonoBehaviour
         //Debug.Log("T:" + (Time.realtimeSinceStartupAsDouble - timer) + ":" + villianTargets.Count);
         villainTargets.Clear();
 
-        var targets = FindObjectsOfType<VillainTarget>();
+        //var targets = FindObjectsOfType<VillainTarget>();
+        GameObject[] enemiesGO = GameObject.FindGameObjectsWithTag("GameEntity");
+        List<VillainTarget> targets = new List<VillainTarget>();
+        foreach (var item in enemiesGO)
+        {
+            var faction = item.GetComponent<VillainTarget>();
+            if (faction)
+            {
+                targets.Add(faction);
+            }
+        }
+
+        
         foreach (var tar in targets)
         {
             if (tar.IsValidTarget())

@@ -14,6 +14,7 @@ public class ShootKOBullet : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
     public GameObject aimReticle;
     public PlayerAimController playerCamera;
+    PlayerAimController playerAimController;
     public WeaponRecoil recoil;
 
 
@@ -252,15 +253,18 @@ public class ShootKOBullet : MonoBehaviour
 
             if (predictionTarget && isPlayer)
             {
-                var aimCon = FindObjectOfType<PlayerAimController>();
-                if (aimCon)
-                    aimCon.AimReticleAdjust(_prediction.predictHit.point);
+                if(!playerAimController)
+                    playerAimController = FindObjectOfType<PlayerAimController>();
+                if (playerAimController)
+                    playerAimController.AimReticleAdjust(_prediction.predictHit.point);
         }
 
         }
             
 
     }
+
+    
 
     private GameObject spawnVFX(Transform spawnInfo)
     {

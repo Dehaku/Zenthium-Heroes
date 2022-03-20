@@ -117,11 +117,14 @@ public class World : MonoBehaviour {
 
 
         int enemyCount = 0;
-        var enemies = FindObjectsOfType<Enemy>();
-        foreach (var enemy in enemies)
+        //var enemies = FindObjectsOfType<Enemy>();
+        GameObject[] enemiesGO = GameObject.FindGameObjectsWithTag("GameEntity");
+        foreach (var enemy in enemiesGO)
         {
-            if (enemy.Conscious)
-                enemyCount++;
+            var enemyHealth = enemy.GetComponent<Enemy>();
+            if(enemyHealth)
+                if (enemyHealth.Conscious)
+                    enemyCount++;
         }
 
 

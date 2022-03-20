@@ -49,8 +49,15 @@ public class PaintTheWorld : MonoBehaviour
     float paintStartTime;
     bool _paintOverTime = false;
     ChunkTag[] chunks;
+    bool chunksCached = false;
     int chunkIterator = 0;
 
+
+    void CacheChunks()
+    {
+        chunks = FindObjectsOfType<ChunkTag>();
+        chunksCached = true;
+    }
     public void PaintWorld()
     {
         if (paintTerrainOverTime)
@@ -63,12 +70,16 @@ public class PaintTheWorld : MonoBehaviour
             {
                 paintStartTime = Time.realtimeSinceStartup;
                 _paintOverTime = true;
-                chunks = FindObjectsOfType<ChunkTag>();
+                if (!chunksCached)
+                    CacheChunks();
             }
         }
         else
         {
-            ChunkTag[] chunks = FindObjectsOfType<ChunkTag>();
+
+            if (!chunksCached)
+                CacheChunks();
+
             foreach (var chunk in chunks)
             {
 
