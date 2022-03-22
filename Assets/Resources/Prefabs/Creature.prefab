@@ -212,8 +212,6 @@ GameObject:
   - component: {fileID: 3297220718808129814}
   - component: {fileID: 3297220718808129815}
   - component: {fileID: 3297220718808129809}
-  - component: {fileID: -7735671919675866538}
-  - component: {fileID: 3297220718808129808}
   - component: {fileID: 3297220718808129812}
   - component: {fileID: 3297220718808129803}
   - component: {fileID: 8187214078303500885}
@@ -327,36 +325,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &-7735671919675866538
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3297220718808129810}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.32
-  m_Height: 2.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.5, z: 0}
---- !u!54 &3297220718808129808
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3297220718808129810}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 3
 --- !u!114 &3297220718808129812
 MonoBehaviour:
   m_ObjectHideFlags: 0
