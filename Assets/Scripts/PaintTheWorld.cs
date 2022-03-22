@@ -3,10 +3,10 @@ using Eldemarkki.VoxelTerrain.Utilities;
 using Eldemarkki.VoxelTerrain.Utilities.Intersection;
 using Eldemarkki.VoxelTerrain.World;
 using System.Collections;
+using System.Threading.Tasks;
 using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
-
 
 public class PaintTheWorld : MonoBehaviour
 {
@@ -88,6 +88,7 @@ public class PaintTheWorld : MonoBehaviour
         }
     }
 
+    bool PaintByY = false;
     // Update is called once per frame
     void Update()
     {
@@ -97,7 +98,8 @@ public class PaintTheWorld : MonoBehaviour
         if(_paintOverTime)
         {
             float startTime = Time.realtimeSinceStartup;
-            if (PaintAllLevelTerrainByYCoord(maxYPaint))
+            PaintAllLevelTerrainByYCoord(maxYPaint);
+            if (PaintByY)
             {
                 _paintOverTime = false;
                 Debug.Log("Long Paint:" + ((Time.realtimeSinceStartup - paintStartTime) * 1000f) + "ms");
@@ -118,7 +120,7 @@ public class PaintTheWorld : MonoBehaviour
         }
         else if(_paintOverTime)
         {
-            PaintLevelTerrain(chunks[chunkIterator].gameObject.transform.position);
+            //PaintLevelTerrain(chunks[chunkIterator].gameObject.transform.position);
             chunkIterator++;
         }
 
@@ -201,24 +203,26 @@ public class PaintTheWorld : MonoBehaviour
 
     int _yLevel = 0;
 
-    bool PaintAllLevelTerrainByYCoord(int finalYLevel)
+    async void PaintAllLevelTerrainByYCoord(int finalYLevel)
     {
         Debug.Log("yLevel: " + _yLevel + ":" + finalYLevel);
-        if (_yLevel >= finalYLevel)
+        if (positionCoord.y >= finalYLevel)
         {
             Debug.Log("Done." + _yLevel + ":" + finalYLevel);
             _yLevel = 0;
-            
-            return true;
+            PaintByY = true;
+            //return true;
         }
         
             
         rangeBounds.y = _yLevel;
-        _yLevel++;
+        //_yLevel++;
+        positionCoord.y++;
 
 
         BoundsInt queryBounds = new BoundsInt(positionCoord, rangeBounds);
         Color32 paintColor = new Color32(0, 0, 0, 0);
+        Debug.Log(queryBounds);
 
         voxelWorld.VoxelColorStore.SetVoxelDataCustom(queryBounds, (voxelDataWorldPosition, voxelData) =>
         {
@@ -242,7 +246,9 @@ public class PaintTheWorld : MonoBehaviour
 
         });
 
-        return false;
+        //return false;
+        //yield return null;
+        await Task.Yield();
     }
 
 
