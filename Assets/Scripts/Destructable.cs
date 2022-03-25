@@ -11,6 +11,10 @@ public class Destructable : MonoBehaviour
     public float shakeIntensity = 0.05f;
     public float timeBeforeDisable = 5;
     public GameObject particlesPrefab;
+
+    public GameObject destructableTarget;
+    public Transform particlesTrans;
+
     GameObject _particles;
     bool effectActive = false;
 
@@ -20,12 +24,16 @@ public class Destructable : MonoBehaviour
     void Awake()
     {
         destructable = GetComponent<Creature>();
+        if (!destructableTarget)
+            destructableTarget = this.gameObject;
+        if (!particlesTrans)
+            particlesTrans = this.transform;
     }
 
 
     IEnumerator FallNShake()
     {
-       transform.position += new Vector3(Random.Range(-shakeIntensity, shakeIntensity),
+        destructableTarget.transform.position += new Vector3(Random.Range(-shakeIntensity, shakeIntensity),
            (-fallSpeed * Time.deltaTime),
            Random.Range(-shakeIntensity, shakeIntensity));
         
@@ -36,7 +44,7 @@ public class Destructable : MonoBehaviour
             _particles.GetComponent<VisualEffect>().Stop();
             _particles.transform.parent = null;
         }
-        this.gameObject.SetActive(false);
+        destructableTarget.gameObject.SetActive(false);
         
     }
 
@@ -45,7 +53,7 @@ public class Destructable : MonoBehaviour
         if (!effectActive &&  particlesPrefab)
         {
             effectActive = true;
-            _particles = Instantiate(particlesPrefab, transform.position, Quaternion.identity, transform);
+            _particles = Instantiate(particlesPrefab, particlesTrans.position, Quaternion.identity, transform);
             Destroy(_particles, timeBeforeDisable+10);
         }
 
