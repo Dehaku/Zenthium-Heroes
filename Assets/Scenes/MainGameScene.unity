@@ -3436,7 +3436,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.7078652, y: 1}
+    m_SensorSize: {x: 2.699438, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -29359,6 +29359,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d68556401f52aa742ba3ae1e1806f3e8, type: 3}
+--- !u!1 &1630120607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1630120609}
+  - component: {fileID: 1630120608}
+  m_Layer: 0
+  m_Name: ProceduralIvy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1630120608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630120607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 907fe73d11fc8eb4aae88876750f5a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 534669904}
+  recycleInterval: 30
+  branches: 3
+  maxPointsForBranch: 20
+  segmentLength: 0.002
+  branchRadius: 0.02
+  branchMaterial: {fileID: 2100000, guid: 9e1d1880de24ca4489d719aad3bc7826, type: 2}
+  leafMaterial: {fileID: 2100000, guid: 886920ab95cd11a4bb3c43c4ff2d7d87, type: 2}
+  flowerMaterial: {fileID: 2100000, guid: 2fe0ffa8a1fe8894289bfdca7fc07603, type: 2}
+  leafPrefab: {fileID: 2503682686998312604, guid: fb6de8fca1ef3ec4f92cb3f74dec135c,
+    type: 3}
+  flowerPrefab: {fileID: 2435367529418233688, guid: cb549a15fb3c67a4093ac3de78c2dfb9,
+    type: 3}
+  wantBlossoms: 1
+--- !u!4 &1630120609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630120607}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 246.27063, y: 26.687958, z: 280.11542}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1632479272 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0a12e1486aefcf44da94b659125265c8,
