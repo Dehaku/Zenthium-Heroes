@@ -13,7 +13,7 @@ public class Destructable : MonoBehaviour
     public GameObject particlesPrefab;
 
     public GameObject destructableTarget;
-    public Transform particlesTrans;
+    public List<Transform> particlesTrans;
 
     GameObject _particles;
     bool effectActive = false;
@@ -26,8 +26,8 @@ public class Destructable : MonoBehaviour
         destructable = GetComponent<Creature>();
         if (!destructableTarget)
             destructableTarget = this.gameObject;
-        if (!particlesTrans)
-            particlesTrans = this.transform;
+        if (particlesTrans.Count == 0)
+            particlesTrans.Add(this.transform);
     }
 
 
@@ -53,8 +53,13 @@ public class Destructable : MonoBehaviour
         if (!effectActive &&  particlesPrefab)
         {
             effectActive = true;
-            _particles = Instantiate(particlesPrefab, particlesTrans.position, Quaternion.identity, transform);
-            Destroy(_particles, timeBeforeDisable+10);
+            foreach (var item in particlesTrans)
+            {
+
+                _particles = Instantiate(particlesPrefab, item.position, Quaternion.identity, transform);
+                Destroy(_particles, timeBeforeDisable + 10);
+            }
+            
         }
 
         StartCoroutine(FallNShake());
