@@ -51,7 +51,6 @@ public class PlotSpawner : MonoBehaviour
         if(chanceOfSubplots > 0 || subPlotting)
         {
             float rolledChance = Random.Range(0f, 100f);
-            Debug.Log("Rolled: " + rolledChance + " vs " + chanceOfSubplots);
 
             if(rolledChance <= chanceOfSubplots)
             {
