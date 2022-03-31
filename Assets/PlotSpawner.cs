@@ -44,7 +44,7 @@ public class PlotSpawner : MonoBehaviour
     {
         if(myBuilding)
         {
-            Debug.Log("There's already something here!");
+            // Debug.Log("There's already something here!");
             return;
         }
             
