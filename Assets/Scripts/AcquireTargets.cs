@@ -5,7 +5,7 @@ using UnityEngine;
 public class AcquireTargets : MonoBehaviour
 {
     public Transform SightPos;
-    public float rayTraceHeightOffset = 1f;
+    public float rayTraceHeightOffset = 0.5f;
 
     public List<int> TargetFactions;
     
