@@ -22,7 +22,7 @@ namespace Eldemarkki.VoxelTerrain.World.Chunks
         protected ChunkProperties CreateUnloadedChunkToCoordinate(int3 chunkCoordinate)
         {
             int3 worldPosition = chunkCoordinate * VoxelWorld.WorldSettings.ChunkSize;
-            GameObject chunkGameObject = Instantiate(VoxelWorld.WorldSettings.ChunkPrefab, worldPosition.ToVectorInt(), Quaternion.identity);
+            GameObject chunkGameObject = Instantiate(VoxelWorld.WorldSettings.ChunkPrefab, worldPosition.ToVectorInt(), Quaternion.identity, ChunkParent);
             chunkGameObject.layer = LayerMask.NameToLayer("Environment");
 
             ChunkProperties chunkProperties = new ChunkProperties
@@ -52,5 +52,7 @@ namespace Eldemarkki.VoxelTerrain.World.Chunks
             VoxelWorld.ChunkUpdater.GenerateVoxelDataAndMeshImmediate(chunkProperties);
             return chunkProperties;
         }
+
+        public Transform ChunkParent;
     }
 }
