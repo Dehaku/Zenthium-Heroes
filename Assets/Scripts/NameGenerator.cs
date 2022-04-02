@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GetNamesFromJSON : MonoBehaviour
+public class NameGenerator : MonoBehaviour
 {
     void SavePlayerData()
     {
@@ -32,16 +32,8 @@ public class GetNamesFromJSON : MonoBehaviour
         if(nD == null)
         {
             nD = new NameData();
-            nD.firstNames.Add("Johnny");
-            nD.firstNames.Add("Jack");
             nD.firstNames.Add("Jason");
-            nD.firstNames.Add("Jennifer");
 
-            nD.lastNames.Add("Smith");
-            nD.lastNames.Add("Jackson");
-            nD.lastNames.Add("Doe");
-            nD.lastNames.Add("Cannon");
-            nD.lastNames.Add("Tanner");
             nD.lastNames.Add("James");
         }
         
@@ -95,43 +87,20 @@ public class GetNamesFromJSON : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("GetNamesFromJSON.Start");
         NameDatabase = LoadNameData();
-
     }
 
-    string GetRandomFirstName()
+    public string GetRandomFirstName()
     {
         return NameDatabase.firstNames[Random.Range(0, NameDatabase.firstNames.Count)];
     }
 
-    string GetRandomLastName()
+    public string GetRandomLastName()
     {
         return NameDatabase.lastNames[Random.Range(0, NameDatabase.lastNames.Count)];
     }
 
-    int amount = 0;
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            List<string> first = new List<string>();
-            List<string> last = new List<string>();
-            float startTime = Time.realtimeSinceStartup;
-            for(int i = 0; i != 500; i++)
-            {
-                first.Add(GetRandomFirstName());
-                last.Add(GetRandomLastName());
-            }
-            //Debug.Log(GetRandomFirstName() + " " + GetRandomLastName());
-            Debug.Log(((Time.realtimeSinceStartup - startTime)) + "ms" + ": " + amount);
-            Debug.Log(first.Count);
-            amount++;
-            
-        }
-
-    }
-
+  
     class NameData
     {
         public List<string> firstNames = new List<string>();

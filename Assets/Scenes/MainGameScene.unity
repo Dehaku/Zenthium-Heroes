@@ -3605,7 +3605,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.7070422, y: 1}
+    m_SensorSize: {x: 2.860119, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -8433,6 +8433,7 @@ GameObject:
   - component: {fileID: 430806744}
   - component: {fileID: 430806746}
   - component: {fileID: 430806747}
+  - component: {fileID: 430806748}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -8572,6 +8573,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef47e2879981e23489ce744fbd0389fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &430806748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430806742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de5c78ddf0a9b940ac910a8b13d210f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &441756177 stripped
@@ -15047,6 +15060,7 @@ GameObject:
   - component: {fileID: 861604097}
   - component: {fileID: 861604099}
   - component: {fileID: 861604098}
+  - component: {fileID: 861604100}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -15796,6 +15810,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &861604100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861604074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f376e7903ca864792602c6be57f4fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameFirst: 
+  nameLast: 
+  mana: 0
+  manaMax: 0
+  age: 0
 --- !u!1001 &864892413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27936,6 +27967,7 @@ MonoBehaviour:
   squadPrefab: {fileID: 4597131876903645582, guid: 64bb243a5b95cfb48a486d815dcc8306,
     type: 3}
   squadSOContainer: []
+  nameGenerator: {fileID: 430806748}
   chaseTarget: 0
 --- !u!4 &1472467272
 Transform:

@@ -23,6 +23,7 @@ public class SquadSpawner : MonoBehaviour
     //[HideInInspector]
     public Queue<GameObject> enemyContainer = new Queue<GameObject>();
     public List<SquadScript> squadSOContainer = new List<SquadScript>();
+    public NameGenerator nameGenerator;
 
 
     public bool chaseTarget = false;
@@ -33,6 +34,7 @@ public class SquadSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        nameGenerator = FindObjectOfType<NameGenerator>();
     }
 
     void RespawnDeadEnemies(bool oneAtATime = false)
@@ -85,7 +87,13 @@ public class SquadSpawner : MonoBehaviour
             enemyContainer.Enqueue(enemy);
 
             enemy.GetComponent<SquadRef>().squad = squad;
-
+            Soul soul = enemy.GetComponent<Soul>();
+            if(!soul)
+            {
+                soul = enemy.AddComponent<Soul>();
+                soul.nameFirst = nameGenerator.GetRandomFirstName();
+                soul.nameLast = nameGenerator.GetRandomLastName();
+            }
             
         }
 
