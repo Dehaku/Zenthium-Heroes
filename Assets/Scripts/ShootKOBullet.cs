@@ -18,33 +18,27 @@ public class ShootKOBullet : MonoBehaviour
     public WeaponRecoil recoil;
 
 
+    [Space]
     [Header("Gun")]
+    public WeaponRangedSO weapon;
+    
     [Range(0.1f,2f)]
-    public float fireRate = 1;
     float _fireRateTrack = 0;
-    public float damage = 10;
     
     
-    public AudioClip gunSound;
     private int gunSoundID = 0;
     
     public Transform spawnPos;
     
 
-    public List<GameObject> vfx = new List<GameObject>();
     GameObject effectToSpawn;
 
-    
+
 
     [Space]
     [Header("Bullet")]
-    public GameObject bulletPrefab;
-    public float bulletCount = 1;
-    public Vector2 bulletSpread;
-    public float bulletSpeed = 50;
-    public float bulletGravity = 1;
-    public float bulletForce = 50;
-    public float bulletLifeTime = 50;
+    public BulletSO bullet;
+    
 
     [Space]
     [Header("Prediction")]
@@ -62,8 +56,8 @@ public class ShootKOBullet : MonoBehaviour
 
     private void Awake()
     {
-        if(vfx[0])
-            effectToSpawn = vfx[0];
+        if(weapon.vfx[0])
+            effectToSpawn = weapon.vfx[0];
 
         if (!isPlayer)
             return;
@@ -71,14 +65,14 @@ public class ShootKOBullet : MonoBehaviour
         playerCamera = GetComponent<PlayerAimController>();
         recoil = GetComponent<WeaponRecoil>();
         recoil.playerCamera = playerCamera;
-
         
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        if(!bullet || !weapon)
+            Debug.LogError(name + " doesn't have it's bullet/weapon set!");
     }
 
     bool _isShooting = false;
@@ -99,9 +93,9 @@ public class ShootKOBullet : MonoBehaviour
     {
         _fireRateTrack = 0;
         //gunSound.Play();
-        int audioID = EazySoundManager.PlaySound(gunSound, 1, false, transform);
+        int audioID = EazySoundManager.PlaySound(weapon.gunSound, 1, false, transform);
         
-        if(!bulletPrefab)
+        if(!bullet.bulletPrefab)
         {
             Debug.LogWarning("Prefab not found in ShootKOBullet");
             return;
@@ -112,39 +106,40 @@ public class ShootKOBullet : MonoBehaviour
         damageInfo.damageType = 1;
         if (Input.GetKey(KeyCode.D))
             damageInfo.damageType = -2;
-        damageInfo.damage = damage;
+        damageInfo.damage = weapon.damage;
 
-        for (int i = 0; i < bulletCount; i++)
+        for (int i = 0; i < bullet.bulletCount; i++)
         {
-            GameObject pew = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
+            GameObject pew = Instantiate(bullet.bulletPrefab, spawnPos.position, Quaternion.identity);
             
 
 
-            Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
+            
 
             if (isPlayer)
             {
+                Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
                 if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, rayMask, QueryTriggerInteraction.Ignore)) { pew.transform.forward = Camera.main.transform.forward; }
                 else { pew.transform.LookAt(hit.point); }
             }
             else
                 pew.transform.forward = spawnPos.transform.forward;
 
-            if(bulletSpread != Vector2.zero)
+            if(bullet.bulletSpread != Vector2.zero)
             {
                 var baseAngles = pew.transform.eulerAngles;
-                baseAngles.x += Random.Range(-bulletSpread.y,bulletSpread.y);
-                baseAngles.y += Random.Range(-bulletSpread.x, bulletSpread.x);
+                baseAngles.x += Random.Range(-bullet.bulletSpread.y, bullet.bulletSpread.y);
+                baseAngles.y += Random.Range(-bullet.bulletSpread.x, bullet.bulletSpread.x);
                 pew.transform.eulerAngles = baseAngles;
             }
 
             BulletProjectileRaycast bulletScript = pew.GetComponent<BulletProjectileRaycast>();
             if (bulletScript)
             {
-                bulletScript.Initialize(pew.transform, bulletSpeed, bulletGravity);
+                bulletScript.Initialize(pew.transform, bullet.bulletSpeed, bullet.bulletGravity);
                 bulletScript.damageInfo = damageInfo;
             }
-            Destroy(pew, bulletLifeTime);
+            Destroy(pew, bullet.bulletLifeTime);
 
             if (effectToSpawn)
             {
@@ -180,7 +175,7 @@ public class ShootKOBullet : MonoBehaviour
             EazySoundManager.GetAudio(gunSoundID).Pitch = World.Instance.speedForce;
 
 
-        if (_isShooting && _fireRateTrack >= fireRate)
+        if (_isShooting && _fireRateTrack >= weapon.fireRate)
             Shoot();
 
         
@@ -218,13 +213,13 @@ public class ShootKOBullet : MonoBehaviour
     {
         if(!_predictionGO)
         {
-            if (!bulletPrefab)
+            if (!bullet.bulletPrefab)
             {
                 Debug.LogWarning("Prefab not found in ShootKOBullet");
                 return;
             }
 
-            _predictionGO = Instantiate(bulletPrefab, spawnPos.position, Quaternion.identity);
+            _predictionGO = Instantiate(bullet.bulletPrefab, spawnPos.position, Quaternion.identity);
             _prediction = _predictionGO.GetComponent<BulletProjectileRaycast>();
             _prediction.predictionMaterial = predictionMaterial;
         }
@@ -247,7 +242,7 @@ public class ShootKOBullet : MonoBehaviour
 
         
 
-        if(_prediction.PredictTrajectory(_predictionGO.transform, bulletSpeed, bulletGravity, predictionTime, predictionTimeStep))
+        if(_prediction.PredictTrajectory(_predictionGO.transform, bullet.bulletSpeed, bullet.bulletGravity, predictionTime, predictionTimeStep))
         {
             //spawnVFX(_prediction.predictHit.transform);
 

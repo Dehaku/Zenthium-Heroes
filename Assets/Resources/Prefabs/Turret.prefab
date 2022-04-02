@@ -54,13 +54,9 @@ MonoBehaviour:
   aimReticle: {fileID: 0}
   playerCamera: {fileID: 0}
   recoil: {fileID: 0}
-  fireRate: 0.25
-  damage: 10
-  gunSound: {fileID: 8300000, guid: 1f3c0eab072a21d4c8b9e2a0cb0f6659, type: 3}
+  weapon: {fileID: 11400000, guid: 3fe429140fc9a504f8e25b6774da9ea5, type: 2}
   spawnPos: {fileID: 8508552426511908}
-  vfx:
-  - {fileID: 98131139715565700, guid: 54669149c38e2934aa1e02b34f48992f, type: 3}
-  - {fileID: 98131139715565700, guid: dd8c79bee25874044a91b01a8ed46559, type: 3}
+  bullet: {fileID: 11400000, guid: 215e5d28c8e38f34bac30497237f2905, type: 2}
   bulletPrefab: {fileID: 570900341778744197, guid: 4bdc4eacc812bbc4db51c78ed7945c7c,
     type: 3}
   bulletCount: 1
@@ -89,6 +85,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec554174317ad3249b83bd91de6fb8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SightPos: {fileID: 0}
+  rayTraceHeightOffset: 0.5
   TargetFactions: 0000000002000000030000000400000005000000060000000700000008000000
   target: {fileID: 0}
   targets: []

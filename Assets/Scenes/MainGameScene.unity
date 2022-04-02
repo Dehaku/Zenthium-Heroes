@@ -15399,21 +15399,9 @@ MonoBehaviour:
   aimReticle: {fileID: 1886168351}
   playerCamera: {fileID: 0}
   recoil: {fileID: 0}
-  fireRate: 0.18
-  damage: 35
-  gunSound: {fileID: 8300000, guid: 1f3c0eab072a21d4c8b9e2a0cb0f6659, type: 3}
+  weapon: {fileID: 11400000, guid: a07b43f9f7d0ef744935fdc9ec787246, type: 2}
   spawnPos: {fileID: 524669567}
-  vfx:
-  - {fileID: 98131139715565700, guid: 54669149c38e2934aa1e02b34f48992f, type: 3}
-  - {fileID: 98131139715565700, guid: dd8c79bee25874044a91b01a8ed46559, type: 3}
-  bulletPrefab: {fileID: 570900341778744197, guid: 896819b8da0d65b4b80fb9b4ebc7f8b8,
-    type: 3}
-  bulletCount: 1
-  bulletSpread: {x: 0, y: 0}
-  bulletSpeed: 250
-  bulletGravity: 9.8
-  bulletForce: 50
-  bulletLifeTime: 5
+  bullet: {fileID: 11400000, guid: 1ad649cdf5bb6084ab06482b1fd73dfe, type: 2}
   predictionLine: 1
   predictionTarget: 1
   predictionTime: 1
@@ -15824,8 +15812,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameFirst: 
   nameLast: 
-  mana: 0
-  manaMax: 0
+  mana: 100
+  manaMax: 100
   age: 0
 --- !u!1001 &864892413
 PrefabInstance:

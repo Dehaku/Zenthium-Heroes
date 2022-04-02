@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fba8075642fd9747acd1199864ce796, type: 3}
+  m_Name: SimpleMachinegun
+  m_EditorClassIdentifier: 
+  fireRate: 0.18
+  damage: 35
+  gunSound: {fileID: 8300000, guid: 1f3c0eab072a21d4c8b9e2a0cb0f6659, type: 3}
+  spawnPos: {fileID: 0}
+  vfx:
+  - {fileID: 98131139715565700, guid: 54669149c38e2934aa1e02b34f48992f, type: 3}
+  - {fileID: 98131139715565700, guid: dd8c79bee25874044a91b01a8ed46559, type: 3}
