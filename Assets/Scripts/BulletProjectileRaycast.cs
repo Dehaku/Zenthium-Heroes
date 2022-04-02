@@ -16,6 +16,7 @@ public class BulletProjectileRaycast : MonoBehaviour
     public float aoeRange = 0;
     //Every increment in meters, 10% damage is lost.
     public float aoeDamageFalloffDistanceIncrement = 1f;
+    public bool friendlyFire = false;
 
     Vector3 startPosition;
     Vector3 startForward;
@@ -37,7 +38,7 @@ public class BulletProjectileRaycast : MonoBehaviour
         isInitialized = true;
     }
 
-    public void Initialize(Transform startPoint, float speed, float gravity, float aoeRange, float aoeDamageFalloffDistanceIncrement)
+    public void Initialize(Transform startPoint, float speed, float gravity, float aoeRange, float aoeDamageFalloffDistanceIncrement, bool friendlyFire = false)
     {
         startPosition = startPoint.position;
         startForward = startPoint.forward.normalized;
@@ -45,6 +46,7 @@ public class BulletProjectileRaycast : MonoBehaviour
         this.gravity = gravity;
         this.aoeRange = aoeRange;
         this.aoeDamageFalloffDistanceIncrement = aoeDamageFalloffDistanceIncrement;
+        this.friendlyFire = friendlyFire;
         isInitialized = true;
     }
 
@@ -108,6 +110,7 @@ public class BulletProjectileRaycast : MonoBehaviour
              * We find all creature hits within collision and find their linked creatures/healths.
              * -The 'creature' script is likely on a game object without a collider, but still likely has a CreatureHit script on it.
              * We then store the creature script if it hasn't been hit yet, and hit it.
+             * Assuming it's not from the same faction. (Needs to be updated when the factions are hard defined, instead of per instance)
             */
 
             List<CreatureHit> victims = new List<CreatureHit>();
@@ -121,10 +124,22 @@ public class BulletProjectileRaycast : MonoBehaviour
                 if (!creature) // How? Doing this just in case.
                     continue;
                 var creatureCore = creature.GetComponent<CreatureHit>();
+                if (!creatureCore)
+                    continue;
                 if (victims.Contains(creatureCore))
                     continue;
                 victims.Add(creatureCore);
-                creatureCore.OnHit(hit, damageInfo);
+                
+                
+                if(friendlyFire)
+                    creatureCore.OnHit(hit, damageInfo);
+
+                var cFact = creatureCore.GetComponent<Faction>();
+                if (!cFact)
+                    creatureCore.OnHit(hit, damageInfo);
+                if(cFact.CurrentFactionID != damageInfo.attacker.GetComponent<Faction>().CurrentFactionID)
+                    creatureCore.OnHit(hit, damageInfo);
+
             }
             ShootableObject shootableObject = hit.transform.GetComponent<ShootableObject>();
             if (shootableObject)
