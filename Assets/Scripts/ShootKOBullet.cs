@@ -136,7 +136,7 @@ public class ShootKOBullet : MonoBehaviour
             BulletProjectileRaycast bulletScript = pew.GetComponent<BulletProjectileRaycast>();
             if (bulletScript)
             {
-                bulletScript.Initialize(pew.transform, bullet.bulletSpeed, bullet.bulletGravity);
+                bulletScript.Initialize(pew.transform, bullet.bulletSpeed, bullet.bulletGravity, bullet.aoeRange, bullet.aoeDamageFalloffDistanceIncrement);
                 bulletScript.damageInfo = damageInfo;
             }
             Destroy(pew, bullet.bulletLifeTime);
@@ -222,6 +222,11 @@ public class ShootKOBullet : MonoBehaviour
             _predictionGO = Instantiate(bullet.bulletPrefab, spawnPos.position, Quaternion.identity);
             _prediction = _predictionGO.GetComponent<BulletProjectileRaycast>();
             _prediction.predictionMaterial = predictionMaterial;
+            
+            for(int i = 0; i != _prediction.transform.childCount; i++)
+            {
+                _prediction.transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
         if (!_prediction)
             return;

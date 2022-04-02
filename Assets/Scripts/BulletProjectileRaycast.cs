@@ -12,6 +12,11 @@ public class BulletProjectileRaycast : MonoBehaviour
     public float gravity = 1;
     public float knockbackForce = 50;
 
+    // If above 0, it changes damage logic.
+    public float aoeRange = 0;
+    //Every increment in meters, 10% damage is lost.
+    public float aoeDamageFalloffDistanceIncrement = 1f;
+
     Vector3 startPosition;
     Vector3 startForward;
     bool isInitialized = false;
@@ -29,6 +34,17 @@ public class BulletProjectileRaycast : MonoBehaviour
         startForward = startPoint.forward.normalized;
         this.speed = speed;
         this.gravity = gravity;
+        isInitialized = true;
+    }
+
+    public void Initialize(Transform startPoint, float speed, float gravity, float aoeRange, float aoeDamageFalloffDistanceIncrement)
+    {
+        startPosition = startPoint.position;
+        startForward = startPoint.forward.normalized;
+        this.speed = speed;
+        this.gravity = gravity;
+        this.aoeRange = aoeRange;
+        this.aoeDamageFalloffDistanceIncrement = aoeDamageFalloffDistanceIncrement;
         isInitialized = true;
     }
 
@@ -51,15 +67,18 @@ public class BulletProjectileRaycast : MonoBehaviour
         if (hitPrefab != null)
         {
 
-            var hitVFX = Instantiate(muzzlePrefab, hit.point, Quaternion.Euler(hit.normal));
+            var hitVFX = Instantiate(hitPrefab, hit.point, Quaternion.Euler(hit.normal));
             hitVFX.transform.forward = gameObject.transform.forward;
             var psHit = hitVFX.GetComponent<ParticleSystem>();
             if (psHit != null)
+            {
                 Destroy(hitVFX, psHit.main.duration);
+            }
             else
             {
                 var psChild = hitVFX.transform.GetChild(0).GetComponent<ParticleSystem>();
-                Destroy(hitVFX, psChild.main.duration);
+                if(psChild)
+                    Destroy(hitVFX, psChild.main.duration);
             }
         }
 
@@ -69,12 +88,52 @@ public class BulletProjectileRaycast : MonoBehaviour
         if (impactSound)
             impactSound.PlayImpactSound();
 
-        ShootableObject shootableObject = hit.transform.GetComponent<ShootableObject>();
-        if (shootableObject)
+
+        // Bullets
+        if(aoeRange == 0)
         {
-            
-            shootableObject.OnHit(hit, damageInfo);
+            ShootableObject shootableObject = hit.transform.GetComponent<ShootableObject>();
+            if (shootableObject)
+            {
+
+                shootableObject.OnHit(hit, damageInfo);
+            }
         }
+        // Explosives
+        else
+        {
+            /*
+             * This section is a little complicated and seems counter intuitive.
+             * To prevent an explosive from hitting a creature multiple times, by the amount of CreatureHit scripts it has(limbs, generally)
+             * We find all creature hits within collision and find their linked creatures/healths.
+             * -The 'creature' script is likely on a game object without a collider, but still likely has a CreatureHit script on it.
+             * We then store the creature script if it hasn't been hit yet, and hit it.
+            */
+
+            List<CreatureHit> victims = new List<CreatureHit>();
+            var hits = Physics.OverlapSphere(hit.point, aoeRange/2);
+            foreach (var item in hits)
+            {
+                var cHit = item.GetComponent<CreatureHit>();
+                if (!cHit)
+                    continue;
+                var creature = cHit.creature;
+                if (!creature) // How? Doing this just in case.
+                    continue;
+                var creatureCore = creature.GetComponent<CreatureHit>();
+                if (victims.Contains(creatureCore))
+                    continue;
+                victims.Add(creatureCore);
+                creatureCore.OnHit(hit, damageInfo);
+            }
+            ShootableObject shootableObject = hit.transform.GetComponent<ShootableObject>();
+            if (shootableObject)
+            {
+
+                shootableObject.OnHit(hit, damageInfo);
+            }
+        }
+        
 
         // var myRigid = GetComponent<Rigidbody>();
         // 
