@@ -15,9 +15,15 @@ public class RandomWalk : MonoBehaviour
 
     void Update()
     {
+        if (m_Agent.enabled == false)
+            return;
+
+        if (!m_Agent.isOnNavMesh)
+            return;
+
         if (m_Agent.pathPending || m_Agent.remainingDistance > 0.1f)
             return;
 
-        m_Agent.destination = m_Range * Random.insideUnitCircle;
+        m_Agent.destination = m_Agent.transform.position + (Vector3)(m_Range * Random.insideUnitCircle);
     }
 }
