@@ -7,7 +7,9 @@ public class PossessorController : MonoBehaviour
     public bool allowPossessing = true;
     public bool allowCompleteUnPossessing = true;
 
+    public FreeCam freeCam;
     public Cinemachine.CinemachineFreeLook cam;
+    public Cinemachine.CinemachineVirtualCamera vcam;
     public PlayerPossessable currentlyPossessing;
 
     RaycastHit m_HitInfo = new RaycastHit();
@@ -65,8 +67,21 @@ public class PossessorController : MonoBehaviour
                     // Tracking our current possession
                     currentlyPossessing = possessable;
 
-                    cam.Follow = possessable.transform;
-                    cam.LookAt = possessable.transform;
+                    if(cam)
+                    {
+                        cam.Follow = possessable.transform;
+                        cam.LookAt = possessable.transform;
+                    }
+                    if(vcam)
+                    {
+                        vcam.Follow = possessable.transform;
+                        vcam.LookAt = possessable.transform;
+                    }
+                    if(freeCam)
+                    {
+                        freeCam.enabled = false;
+                    }
+                    
                 }
             }
         }

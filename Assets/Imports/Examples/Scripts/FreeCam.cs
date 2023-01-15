@@ -14,6 +14,7 @@ public class FreeCam : MonoBehaviour
     public float maximumY = 60F;
 
     public float moveSpeed = 1.0f;
+    public float sprintMultiplier = 4.0f;
 
     public bool lockHeight = false;
 
@@ -21,6 +22,11 @@ public class FreeCam : MonoBehaviour
 
     void Update()
     {
+        // Speedboost
+        float modifiedMoveSpeed = moveSpeed;
+        if(Input.GetKey(KeyCode.LeftShift))
+            modifiedMoveSpeed *= sprintMultiplier;
+        
         if (axes == RotationAxes.MouseXAndY)
         {
             float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
@@ -46,13 +52,13 @@ public class FreeCam : MonoBehaviour
         var zAxisValue = Input.GetAxis("Vertical");
         if (lockHeight)
         {
-            var dir = transform.TransformDirection(new Vector3(xAxisValue, 0.0f, zAxisValue) * moveSpeed);
+            var dir = transform.TransformDirection(new Vector3(xAxisValue, 0.0f, zAxisValue) * modifiedMoveSpeed);
             dir.y = 0.0f;
             transform.position += dir;
         }
         else
         {
-            transform.Translate(new Vector3(xAxisValue, 0.0f, zAxisValue) * moveSpeed);
+            transform.Translate(new Vector3(xAxisValue, 0.0f, zAxisValue) * modifiedMoveSpeed);
         }
     }
 }
