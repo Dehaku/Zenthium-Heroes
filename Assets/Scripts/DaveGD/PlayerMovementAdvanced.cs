@@ -11,7 +11,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float slideSpeed;
     public float wallrunSpeed;
     public float climbSpeed;
-   
+    public float airMinSpeed;
+
 
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
@@ -49,6 +50,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     [Header("References")]
     public Climbing climbingScript;
+    public LedgeGrabbing lg;
 
 
     public Transform orientation;
@@ -63,6 +65,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public MovementState state;
     public enum MovementState
     {
+        freeze,
+        unlimited,
         walking,
         sprinting,
         wallrunning,
@@ -75,6 +79,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public bool sliding;
     public bool wallrunning;
     public bool climbing;
+
+    public bool freeze;
+    public bool unlimited;
+
+    public bool restricted;
 
     public float MoveSpeed { get => moveSpeed;}
     public float DesiredMoveSpeed { get => desiredMoveSpeed;}
@@ -141,13 +150,32 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
     }
 
+    public bool keepMomentum;
+
     private void StateHandler()
     {
+        // Mode - Freeze
+        if (freeze)
+        {
+            state = MovementState.freeze;
+            rb.velocity = Vector3.zero;
+            desiredMoveSpeed = 0;
+        }
+
+        // Mode - Unlimited
+        else if(unlimited)
+        {
+            state = MovementState.unlimited;
+            desiredMoveSpeed = 999f;
+            keepMomentum = true;
+        }
+
         // Mode - Climbing
-        if(climbing)
+        else if(climbing)
         {
             state = MovementState.climbing;
             desiredMoveSpeed = climbSpeed;
+            keepMomentum = true;
         }
 
 
@@ -164,8 +192,10 @@ public class PlayerMovementAdvanced : MonoBehaviour
             state = MovementState.sliding;
 
             if (OnSlope() && rb.velocity.y < 0.1f)
+            {
                 desiredMoveSpeed = slideSpeed;
-
+                keepMomentum = true;
+            }
             else
                 desiredMoveSpeed = sprintSpeed;
         }
@@ -182,6 +212,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         {
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
+            keepMomentum = true;
         }
 
         // Mode - Walking
@@ -195,20 +226,34 @@ public class PlayerMovementAdvanced : MonoBehaviour
         else
         {
             state = MovementState.air;
+            keepMomentum = true;
+            //desiredMoveSpeed = climbSpeed;
+            if (moveSpeed < airMinSpeed)
+            {
+                desiredMoveSpeed = airMinSpeed;
+            }
         }
 
+        bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;
+
         // check if desiredMoveSpeed has changed drastically
-        if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0)
+        //if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0)
+        if(desiredMoveSpeedHasChanged)
         {
-            StopAllCoroutines();
-            StartCoroutine(SmoothlyLerpMoveSpeed());
-        }
-        else
-        {
-            moveSpeed = desiredMoveSpeed;
+            if(keepMomentum && moveSpeed < desiredMoveSpeed)
+            {
+                StopAllCoroutines();
+                StartCoroutine(SmoothlyLerpMoveSpeed());
+            }
+            else
+            {
+                moveSpeed = desiredMoveSpeed;
+            }
         }
 
         lastDesiredMoveSpeed = desiredMoveSpeed;
+
+        if (Mathf.Abs(desiredMoveSpeed - moveSpeed) < 0.1f) keepMomentum = false;
     }
 
     private IEnumerator SmoothlyLerpMoveSpeed()
@@ -242,6 +287,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
     {
         if (climbingScript.exitingWall) return;
 
+        if (restricted) return;
+
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
@@ -268,6 +315,13 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void SpeedControl()
     {
+        bool ledgeJump = false;
+        if(lg)
+        {
+            if (lg.exitingLedge)
+                ledgeJump = true;
+        }
+
         // limiting speed on slope
         if (OnSlope() && !exitingSlope)
         {
@@ -275,9 +329,16 @@ public class PlayerMovementAdvanced : MonoBehaviour
                 rb.velocity = rb.velocity.normalized * moveSpeed;
         }
 
+        else if (ledgeJump)
+        {
+
+        }
+
         // limiting speed on ground or in air
         else
         {
+            
+
             Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
             // limit velocity if needed

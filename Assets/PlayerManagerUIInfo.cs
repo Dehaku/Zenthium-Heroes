@@ -22,8 +22,10 @@ public class PlayerManagerUIInfo : MonoBehaviour
     void Update()
     {
         CalculateSpeedAverages();
-
-        speedText.text = "Speed: " + GetSpeedAverage().ToString("F2") + " : " +pm.MoveSpeed.ToString("F2") + " : " + pm.DesiredMoveSpeed.ToString("F2");
+        string momentStr = "";
+        if (pm.keepMomentum)
+            momentStr = "(M)";
+        speedText.text = "Speed: " + GetSpeedAverage().ToString("F2") + " : " +pm.MoveSpeed.ToString("F2") + " : " + pm.DesiredMoveSpeed.ToString("F2") + momentStr;
         stateText.text = "State: " + pm.state.ToString();
     }
 
