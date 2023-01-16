@@ -11,6 +11,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float slideSpeed;
     public float wallrunSpeed;
     public float climbSpeed;
+   
 
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
@@ -74,6 +75,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public bool sliding;
     public bool wallrunning;
     public bool climbing;
+
+    public float MoveSpeed { get => moveSpeed;}
+    public float DesiredMoveSpeed { get => desiredMoveSpeed;}
+
+    public float GetVelocity() { return rb.velocity.magnitude; }
 
     private void Start()
     {
