@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class ThirdPersonCam : MonoBehaviour
 {
     [Header("References")]
     public Transform orientation;
+    public Transform camHolder;
     public Transform player;
     public Transform playerObj;
     public Rigidbody rb;
@@ -88,5 +90,50 @@ public class ThirdPersonCam : MonoBehaviour
         if (newStyle == CameraStyle.FirstPerson) firstPersonCam.SetActive(true);
 
         currentStyle = newStyle;
+    }
+
+    public void DoFov(float endValue)
+    {
+        //GetComponent<Camera>().DOFieldOfView(endValue, 0.25f);
+
+        var freeCam = GetComponent<Cinemachine.CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<Cinemachine.CinemachineFreeLook>();
+        if (freeCam)
+        {
+            DOVirtual.Float(freeCam.m_Lens.FieldOfView, endValue, 0.25f, v => freeCam.m_Lens.FieldOfView = v);
+        }
+        else
+        {
+            var virtCam = GetComponent<Cinemachine.CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<Cinemachine.CinemachineVirtualCamera>();
+            if (virtCam)
+            {
+                DOVirtual.Float(virtCam.m_Lens.FieldOfView, endValue, 0.25f, v => virtCam.m_Lens.FieldOfView = v);
+            }
+            else
+            {
+                Debug.LogError("No virt or free cam detected!");
+            }
+        }
+    }
+
+    public void DoTilt(float zTilt)
+    {
+        // This ended up way bigger than I expected.
+        var freeCam = GetComponent<Cinemachine.CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<Cinemachine.CinemachineFreeLook>();
+        if(freeCam)
+        {
+            DOVirtual.Float(0, zTilt, 0.25f, v => freeCam.m_Lens.Dutch = v);
+        }
+        else
+        {
+            var virtCam = GetComponent<Cinemachine.CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<Cinemachine.CinemachineVirtualCamera>();
+            if(virtCam)
+            {
+                DOVirtual.Float(0, zTilt, 0.25f, v => virtCam.m_Lens.Dutch = v);
+            }
+            else
+            {
+                Debug.LogError("No virt or free cam detected!");
+            }
+        }
     }
 }
