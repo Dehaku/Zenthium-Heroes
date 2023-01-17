@@ -18802,6 +18802,7 @@ GameObject:
   - component: {fileID: 1557719953}
   - component: {fileID: 1557719954}
   - component: {fileID: 1557719955}
+  - component: {fileID: 1557719956}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -18855,10 +18856,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 7
   sprintSpeed: 15
+  dashSpeed: 20
+  dashSpeedChangeFactor: 50
   slideSpeed: 30
   wallrunSpeed: 8.5
   climbSpeed: 3
   airMinSpeed: 0.5
+  maxYSpeed: 75
   speedIncreaseMultiplier: 1.5
   slopeIncreaseMultiplier: 2.5
   groundDrag: 4
@@ -18880,6 +18884,7 @@ MonoBehaviour:
   lg: {fileID: 1557719955}
   orientation: {fileID: 1863225703}
   state: 0
+  dashing: 0
   sliding: 0
   wallrunning: 0
   climbing: 0
@@ -19004,6 +19009,32 @@ MonoBehaviour:
     m_Bits: 262144
   exitingLedge: 0
   exitLedgeTime: 0.2
+--- !u!114 &1557719956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557719948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3943484d7d735a741b625783a9fda110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 1863225703}
+  playerCam: {fileID: 963194228}
+  dashForce: 20
+  dashUpwardForce: 0
+  maxDashYSpeed: 0
+  dashDuration: 0.25
+  cam: {fileID: 963194229}
+  dashFov: 70
+  useCameraForward: 1
+  allowAllDirections: 1
+  disableGravity: 0
+  resetVel: 1
+  dashCd: 1.5
+  dashKey: 101
 --- !u!1 &1557878068
 GameObject:
   m_ObjectHideFlags: 0
@@ -26107,7 +26138,7 @@ PrefabInstance:
     - target: {fileID: 3043847568527252106, guid: c5f6af8ade86ca5449b9775f1d70fa8b,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5f6af8ade86ca5449b9775f1d70fa8b, type: 3}
@@ -27270,7 +27301,7 @@ PrefabInstance:
     - target: {fileID: 9140049742488252047, guid: 5b73f55316a1c0b4bac6f488ec9d3233,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b73f55316a1c0b4bac6f488ec9d3233, type: 3}
@@ -27501,7 +27532,7 @@ PrefabInstance:
     - target: {fileID: 6239566309244614274, guid: 84b2e7fd01ad126468f437666801b5b5,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8572311072359489149, guid: 84b2e7fd01ad126468f437666801b5b5,
         type: 3}
@@ -27630,7 +27661,7 @@ PrefabInstance:
     - target: {fileID: 7356794766835386677, guid: 9b059dc6477a3be49baa04addc732e67,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b059dc6477a3be49baa04addc732e67, type: 3}
@@ -27710,7 +27741,7 @@ PrefabInstance:
     - target: {fileID: 7716392118408956512, guid: 9acf48a55782c5b4da0118d166df5563,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9acf48a55782c5b4da0118d166df5563, type: 3}
@@ -27922,7 +27953,7 @@ PrefabInstance:
     - target: {fileID: 8474327197599528404, guid: 455682f92b929434fbd87009ed5ae269,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 455682f92b929434fbd87009ed5ae269, type: 3}
