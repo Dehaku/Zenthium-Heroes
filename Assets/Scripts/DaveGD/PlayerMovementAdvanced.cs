@@ -286,7 +286,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
             }
             else
             {
-                StopAllCoroutines();
+                //StopAllCoroutines();
                 moveSpeed = desiredMoveSpeed;
             }
         }
@@ -427,7 +427,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
         
         velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
         Invoke(nameof(SetVelocity), 0.1f);
-        Invoke(nameof(ResetRestrictions), grappleScript.debugBreakGrappleTimer);
+        if(grappleScript)
+            Invoke(nameof(ResetRestrictions), grappleScript.debugBreakGrappleTimer);
     }
 
     private Vector3 velocityToSet;
