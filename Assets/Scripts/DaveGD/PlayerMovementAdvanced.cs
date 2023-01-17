@@ -237,7 +237,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         else if (swinging)
         {
             state = MovementState.swinging;
-            desiredMoveSpeed = sprintSpeed;
+            desiredMoveSpeed = swingSpeed;
         }
 
         // Mode - Crouching
@@ -452,7 +452,14 @@ public class PlayerMovementAdvanced : MonoBehaviour
             enableMovementOnNextTouch = false;
             ResetRestrictions();
 
-            grappleScript.StopGrapple();
+            if(grappleScript)
+                grappleScript.StopGrapple();
+            
+            if(TryGetComponent<DualHooks>(out DualHooks hooks))
+            {
+                StartCoroutine(hooks.StopGrapple(0));
+                StartCoroutine(hooks.StopGrapple(1));
+            }
         }
     }
 
