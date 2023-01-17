@@ -95,7 +95,7 @@ public class LedgeGrabbing : MonoBehaviour
     {
         
         Vector3 forceToAdd = cam.forward * ledgeJumpForwardForce + orientation.up * ledgeJumpUpwardForce;
-        Debug.Log((cam.forward * ledgeJumpForwardForce) + " : " + (orientation.up * ledgeJumpUpwardForce) + ": " + forceToAdd);
+        //Debug.Log((cam.forward * ledgeJumpForwardForce) + " : " + (orientation.up * ledgeJumpUpwardForce) + ": " + forceToAdd);
         //Debug.Log(forceToAdd);
         rb.velocity = Vector3.zero;
         rb.AddForce(forceToAdd, ForceMode.Impulse);

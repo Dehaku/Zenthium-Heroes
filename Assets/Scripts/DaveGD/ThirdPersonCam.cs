@@ -22,6 +22,8 @@ public class ThirdPersonCam : MonoBehaviour
     public GameObject firstPersonCam;
     public GameObject newThirdCam;
 
+    public float baseFOV;
+
     public CameraStyle currentStyle;
     public enum CameraStyle
     {
@@ -36,6 +38,8 @@ public class ThirdPersonCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        SwitchCameraStyle(currentStyle);
     }
 
     private void Update()
@@ -54,7 +58,9 @@ public class ThirdPersonCam : MonoBehaviour
     {
         // rotate orientation
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
-        orientation.forward = viewDir.normalized;
+        
+        if(viewDir.normalized != Vector3.zero)
+            orientation.forward = viewDir.normalized;
 
         // roate player object
         if (currentStyle == CameraStyle.Basic || currentStyle == CameraStyle.Topdown)
@@ -93,11 +99,31 @@ public class ThirdPersonCam : MonoBehaviour
         firstPersonCam.SetActive(false);
         newThirdCam.SetActive(false);
 
-        if (newStyle == CameraStyle.Basic) thirdPersonCam.SetActive(true);
-        if (newStyle == CameraStyle.Combat) combatCam.SetActive(true);
-        if (newStyle == CameraStyle.Topdown) topDownCam.SetActive(true);
-        if (newStyle == CameraStyle.FirstPerson) firstPersonCam.SetActive(true);
-        if (newStyle == CameraStyle.NewThird) newThirdCam.SetActive(true);
+        if (newStyle == CameraStyle.Basic)
+        {
+            thirdPersonCam.SetActive(true);
+            baseFOV = thirdPersonCam.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView;
+        }
+        if (newStyle == CameraStyle.Combat) 
+        {
+            combatCam.SetActive(true);
+            baseFOV = combatCam.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView;
+        }
+        if (newStyle == CameraStyle.Topdown) 
+        {
+            topDownCam.SetActive(true);
+            baseFOV = topDownCam.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView;
+        }
+        if (newStyle == CameraStyle.FirstPerson) 
+        {
+            firstPersonCam.SetActive(true);
+            baseFOV = firstPersonCam.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView;
+        }
+        if (newStyle == CameraStyle.NewThird) 
+        {
+            newThirdCam.SetActive(true);
+            baseFOV = newThirdCam.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView;
+        }
 
         currentStyle = newStyle;
     }
@@ -105,7 +131,6 @@ public class ThirdPersonCam : MonoBehaviour
     public void DoFov(float endValue)
     {
         //GetComponent<Camera>().DOFieldOfView(endValue, 0.25f);
-
         var freeCam = GetComponent<Cinemachine.CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<Cinemachine.CinemachineFreeLook>();
         if (freeCam)
         {
