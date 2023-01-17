@@ -8,6 +8,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
+    public float swingSpeed;
 
     public float dashSpeed;
     public float dashSpeedChangeFactor;
@@ -79,6 +80,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
     {
         freeze,
         unlimited,
+        grappling,
+        swinging,
         walking,
         sprinting,
         wallrunning,
@@ -95,6 +98,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public bool climbing;
 
     public bool activeGrapple;
+    public bool swinging;
 
     public bool freeze;
     public bool unlimited;
@@ -214,12 +218,26 @@ public class PlayerMovementAdvanced : MonoBehaviour
                 desiredMoveSpeed = sprintSpeed;
         }
 
-        // Mode - Dashiing
+        // Mode - Dashing
         else if (dashing)
         {
             state = MovementState.dashing;
             desiredMoveSpeed = dashSpeed;
             speedChangeFactor = dashSpeedChangeFactor;
+        }
+
+        // Mode - Grappling
+        else if (activeGrapple)
+        {
+            state = MovementState.grappling;
+            desiredMoveSpeed = sprintSpeed;
+        }
+
+        // Mode - Swinging
+        else if (swinging)
+        {
+            state = MovementState.swinging;
+            desiredMoveSpeed = sprintSpeed;
         }
 
         // Mode - Crouching
@@ -312,6 +330,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private void MovePlayer()
     {
         if (activeGrapple) return;
+        if (swinging) return;
         
         if (climbingScript.exitingWall) return;
 
