@@ -1934,6 +1934,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 134305927}
+  - component: {fileID: 134305928}
   m_Layer: 0
   m_Name: PointAimer (1)
   m_TagString: Untagged
@@ -1948,13 +1949,25 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134305926}
-  m_LocalRotation: {x: 0, y: -0.17364825, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: 0.17364816, z: 0, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 342381419}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: -20, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 20, z: 0}
+--- !u!114 &134305928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134305926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6e23d68d6b8104b93563060bb5c733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &137992516
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,6 +2978,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 214900324}
+  - component: {fileID: 214900325}
   m_Layer: 0
   m_Name: PointAimer
   m_TagString: Untagged
@@ -2979,13 +2993,25 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214900323}
-  m_LocalRotation: {x: 0, y: 0.17364816, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: -0.17364825, z: 0, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 720904806}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 20, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -20, z: 0}
+--- !u!114 &214900325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214900323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6e23d68d6b8104b93563060bb5c733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &216692090
 GameObject:
   m_ObjectHideFlags: 3
@@ -6670,6 +6696,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 65536
   pm: {fileID: 424059657}
+  camScript: {fileID: 0}
   maxSwingDistance: 250
   swingPoints: []
   maxGrappleDistance: 250
@@ -16682,6 +16709,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1072124251}
+  - component: {fileID: 1072124252}
   m_Layer: 0
   m_Name: PointAimer
   m_TagString: Untagged
@@ -16696,13 +16724,25 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072124250}
-  m_LocalRotation: {x: 0, y: 0.17364816, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: -0.17364825, z: 0, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 342381419}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 20, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -20, z: 0}
+--- !u!114 &1072124252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072124250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6e23d68d6b8104b93563060bb5c733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1074860065
 GameObject:
   m_ObjectHideFlags: 0
@@ -17405,6 +17445,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1121475473}
+  - component: {fileID: 1121475474}
   m_Layer: 0
   m_Name: PointAimer
   m_TagString: Untagged
@@ -17419,13 +17460,25 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121475472}
-  m_LocalRotation: {x: 0, y: 0.17364816, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: -0.17364825, z: 0, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1779429637}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 20, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -20, z: 0}
+--- !u!114 &1121475474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121475472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6e23d68d6b8104b93563060bb5c733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1127437086
 GameObject:
   m_ObjectHideFlags: 0
@@ -22860,6 +22913,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 65536
   pm: {fileID: 1557719951}
+  camScript: {fileID: 963194229}
   maxSwingDistance: 250
   swingPoints: []
   maxGrappleDistance: 250
@@ -26059,6 +26113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1858869350}
+  - component: {fileID: 1858869351}
   m_Layer: 0
   m_Name: PointAimer (1)
   m_TagString: Untagged
@@ -26073,13 +26128,25 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858869349}
-  m_LocalRotation: {x: 0, y: -0.17364825, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: 0.17364816, z: 0, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 720904806}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: -20, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 20, z: 0}
+--- !u!114 &1858869351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858869349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6e23d68d6b8104b93563060bb5c733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1863225702
 GameObject:
   m_ObjectHideFlags: 0
@@ -29792,6 +29859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2139990364}
+  - component: {fileID: 2139990365}
   m_Layer: 0
   m_Name: PointAimer (1)
   m_TagString: Untagged
@@ -29806,13 +29874,25 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139990363}
-  m_LocalRotation: {x: 0, y: -0.17364825, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: 0.17364816, z: 0, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1779429637}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: -20, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 20, z: 0}
+--- !u!114 &2139990365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139990363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6e23d68d6b8104b93563060bb5c733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &47882772368704336
 PrefabInstance:
   m_ObjectHideFlags: 0
