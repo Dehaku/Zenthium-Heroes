@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DualHooks : MonoBehaviour
+public class DualHooksOriginal : MonoBehaviour
 {
     [Header("References")]
+    public List<LineRenderer> lineRenderers;
     public List<Transform> gunTips;
     public Transform cam;
     public Transform player;
@@ -13,7 +14,7 @@ public class DualHooks : MonoBehaviour
 
     [Header("Swinging")]
     public float maxSwingDistance = 25f;
-    public List<Vector3> swingPoints;
+    private List<Vector3> swingPoints;
     private List<SpringJoint> joints;
 
     [Header("Grappling")]
@@ -21,7 +22,7 @@ public class DualHooks : MonoBehaviour
     public float grappleDelayTime;
     public float overshootYAxis;
 
-    public List<bool> grapplesActive;
+    private List<bool> grapplesActive;
 
     [Header("Cooldown")]
     public float grapplingCd;
@@ -47,7 +48,7 @@ public class DualHooks : MonoBehaviour
     [Header("DualSwinging")]
     public int amountOfSwingPoints = 2;
     public List<Transform> pointAimers;
-    public List<bool> swingsActive;
+    private List<bool> swingsActive;
 
     private void Start()
     {
@@ -64,7 +65,7 @@ public class DualHooks : MonoBehaviour
         swingsActive = new List<bool>();
         grapplesActive = new List<bool>();
 
-        //currentGrapplePositions = new List<Vector3>();
+        currentGrapplePositions = new List<Vector3>();
 
         for (int i = 0; i < amountOfSwingPoints; i++)
         {
@@ -73,7 +74,7 @@ public class DualHooks : MonoBehaviour
             swingPoints.Add(Vector3.zero);
             swingsActive.Add(false);
             grapplesActive.Add(false);
-            //currentGrapplePositions.Add(Vector3.zero);
+            currentGrapplePositions.Add(Vector3.zero);
         }
     }
 
@@ -88,7 +89,10 @@ public class DualHooks : MonoBehaviour
             grapplingCdTimer -= Time.deltaTime;
     }
 
-    
+    private void LateUpdate()
+    {
+        DrawRope();
+    }
 
     private void MyInput()
     {
@@ -187,8 +191,8 @@ public class DualHooks : MonoBehaviour
         joints[swingIndex].damper = 7f;
         joints[swingIndex].massScale = 4.5f;
 
-        //lineRenderers[swingIndex].positionCount = 2;
-        //currentGrapplePositions[swingIndex] = gunTips[swingIndex].position;
+        lineRenderers[swingIndex].positionCount = 2;
+        currentGrapplePositions[swingIndex] = gunTips[swingIndex].position;
     }
 
     public void StopSwing(int swingIndex)
@@ -231,6 +235,8 @@ public class DualHooks : MonoBehaviour
             StartCoroutine(StopGrapple(grappleIndex, grappleDelayTime));
         }
 
+        lineRenderers[grappleIndex].positionCount = 2;
+        currentGrapplePositions[grappleIndex] = gunTips[grappleIndex].position;
     }
 
     private void DelayedFreeze()
@@ -354,9 +360,26 @@ public class DualHooks : MonoBehaviour
 
     #region Visualisation
 
-    
+    private List<Vector3> currentGrapplePositions;
 
-    
+    private void DrawRope()
+    {
+        for (int i = 0; i < amountOfSwingPoints; i++)
+        {
+            // if not grappling, don't draw rope
+            if (!grapplesActive[i] && !swingsActive[i])
+            {
+                lineRenderers[i].positionCount = 0;
+            }
+            else
+            {
+                currentGrapplePositions[i] = Vector3.Lerp(currentGrapplePositions[i], swingPoints[i], Time.deltaTime * 8f);
+
+                lineRenderers[i].SetPosition(0, gunTips[i].position);
+                lineRenderers[i].SetPosition(1, currentGrapplePositions[i]);
+            }
+        }
+    }
 
     #endregion
 }

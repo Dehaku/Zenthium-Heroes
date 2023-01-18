@@ -6883,9 +6883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb4d189c6632ff4298996575e52b05e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderers:
-  - {fileID: 400180918}
-  - {fileID: 1020408335}
   gunTips:
   - {fileID: 788477897}
   - {fileID: 31447381}
@@ -6896,9 +6893,11 @@ MonoBehaviour:
     m_Bits: 65536
   pm: {fileID: 424059657}
   maxSwingDistance: 250
+  swingPoints: []
   maxGrappleDistance: 250
   grappleDelayTime: 0.25
   overshootYAxis: 2
+  grapplesActive: 
   grapplingCd: 1
   orientation: {fileID: 1788569564}
   rb: {fileID: 424059658}
@@ -6915,6 +6914,7 @@ MonoBehaviour:
   pointAimers:
   - {fileID: 134305927}
   - {fileID: 1072124251}
+  swingsActive: 
 --- !u!114 &424059650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23056,6 +23056,7 @@ GameObject:
   - component: {fileID: 1557719955}
   - component: {fileID: 1557719956}
   - component: {fileID: 1557719959}
+  - component: {fileID: 1557719957}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -23294,6 +23295,63 @@ MonoBehaviour:
   resetVel: 1
   dashCd: 1.5
   dashKey: 101
+--- !u!114 &1557719957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557719948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f9da74135e4244aa4da1fa33242703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineRenderers:
+  - {fileID: 738297030}
+  - {fileID: 174492648}
+  currentGrapplePositions: []
+  grapplingGun: {fileID: 1557719959}
+  quality: 500
+  damper: 14
+  strength: 800
+  velocity: 15
+  waveCount: 3
+  waveHeight: 1
+  affectCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0
+      outSlope: -0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.21119714
+    - serializedVersion: 3
+      time: 0.50297606
+      value: 1.000742
+      inSlope: 0.033880655
+      outSlope: 0.033880655
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.19299881
+    - serializedVersion: 3
+      time: 1
+      value: -0.04590988
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  debugSpeedGrappleThing: 12
 --- !u!114 &1557719959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23306,9 +23364,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb4d189c6632ff4298996575e52b05e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderers:
-  - {fileID: 738297030}
-  - {fileID: 174492648}
   gunTips:
   - {fileID: 1517874001}
   - {fileID: 1415747906}
@@ -23319,9 +23374,11 @@ MonoBehaviour:
     m_Bits: 65536
   pm: {fileID: 1557719951}
   maxSwingDistance: 250
+  swingPoints: []
   maxGrappleDistance: 250
   grappleDelayTime: 0.25
   overshootYAxis: 2
+  grapplesActive: 
   grapplingCd: 1
   orientation: {fileID: 1863225703}
   rb: {fileID: 1557719949}
@@ -23338,6 +23395,7 @@ MonoBehaviour:
   pointAimers:
   - {fileID: 134305927}
   - {fileID: 1072124251}
+  swingsActive: 
 --- !u!1 &1557878068
 GameObject:
   m_ObjectHideFlags: 0
