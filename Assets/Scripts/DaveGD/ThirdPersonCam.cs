@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,13 +19,19 @@ public class ThirdPersonCam : MonoBehaviour
 
     public GameObject thirdPersonCam;
     public GameObject combatCam;
-    public GameObject topDownCam;
+    [HideInInspector]public GameObject topDownCam;
     public GameObject firstPersonCam;
-    public GameObject newThirdCam;
+    [HideInInspector] public GameObject newThirdCam;
 
     public float baseFOV;
 
     public CameraStyle currentStyle;
+
+    //[Header("Events")]
+    public event Action<List<GameObject>> onCameraSwitch;
+
+
+
     public enum CameraStyle
     {
         Basic,
@@ -42,20 +49,27 @@ public class ThirdPersonCam : MonoBehaviour
         SwitchCameraStyle(currentStyle);
     }
 
-    private void Update()
+    void Inputs()
     {
         // switch styles
         if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic);
         if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CameraStyle.Combat);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchCameraStyle(CameraStyle.Topdown);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) SwitchCameraStyle(CameraStyle.FirstPerson);
-        if (Input.GetKeyDown(KeyCode.Alpha5)) SwitchCameraStyle(CameraStyle.NewThird);
-
-
+        //if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchCameraStyle(CameraStyle.Topdown);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchCameraStyle(CameraStyle.FirstPerson);
+        //if (Input.GetKeyDown(KeyCode.Alpha5)) SwitchCameraStyle(CameraStyle.NewThird);
     }
 
     private void FixedUpdate()
     {
+        
+
+
+    }
+
+    private void Update()
+    {
+        Inputs();
+
         // rotate orientation
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         
@@ -99,15 +113,24 @@ public class ThirdPersonCam : MonoBehaviour
         firstPersonCam.SetActive(false);
         newThirdCam.SetActive(false);
 
+        List<GameObject> go = new List<GameObject>();
+
         if (newStyle == CameraStyle.Basic)
         {
             thirdPersonCam.SetActive(true);
             baseFOV = thirdPersonCam.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView;
+            var pointAimers = thirdPersonCam.GetComponentsInChildren<TagPointAimer>();
+            foreach (var item in pointAimers)
+                go.Add(item.gameObject);
+            
         }
         if (newStyle == CameraStyle.Combat) 
         {
             combatCam.SetActive(true);
             baseFOV = combatCam.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView;
+            var pointAimers = combatCam.GetComponentsInChildren<TagPointAimer>();
+            foreach (var item in pointAimers)
+                go.Add(item.gameObject);
         }
         if (newStyle == CameraStyle.Topdown) 
         {
@@ -118,6 +141,9 @@ public class ThirdPersonCam : MonoBehaviour
         {
             firstPersonCam.SetActive(true);
             baseFOV = firstPersonCam.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView;
+            var pointAimers = firstPersonCam.GetComponentsInChildren<TagPointAimer>();
+            foreach (var item in pointAimers)
+                go.Add(item.gameObject);
         }
         if (newStyle == CameraStyle.NewThird) 
         {
@@ -126,6 +152,9 @@ public class ThirdPersonCam : MonoBehaviour
         }
 
         currentStyle = newStyle;
+
+        if (onCameraSwitch != null)
+            onCameraSwitch(go);
     }
 
     public void DoFov(float endValue)

@@ -10,6 +10,7 @@ public class DualHooks : MonoBehaviour
     public Transform player;
     public LayerMask whatIsGrappleable;
     public PlayerMovementAdvanced pm;
+    public ThirdPersonCam camScript;
 
     [Header("Swinging")]
     public float maxSwingDistance = 25f;
@@ -51,7 +52,19 @@ public class DualHooks : MonoBehaviour
 
     private void Start()
     {
+        camScript.onCameraSwitch += SwapAimPointsOnCameraSwap;
+
         ListSetup();
+    }
+
+    void SwapAimPointsOnCameraSwap(List<GameObject> go)
+    {
+        Debug.Log("Camera Swapped!");
+        pointAimers.Clear();
+        foreach (var item in go)
+        {
+            pointAimers.Add(item.transform);
+        }
     }
 
     private void ListSetup()
@@ -359,4 +372,8 @@ public class DualHooks : MonoBehaviour
     
 
     #endregion
+
+
+
+
 }
