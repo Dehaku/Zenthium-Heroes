@@ -507,14 +507,13 @@ public class PlayerMovementAdvanced : MonoBehaviour
     bool sprintInputToggle = false;
     public void InputSprintLogic()
     {
+        // Toggle sprint on
         if (playerInput.actions["Sprint"].WasPressedThisFrame())
             sprintInputToggle = true;
 
-
-
+        // Stop sprinting when no longer inputting movement.
         if (inputMovement.magnitude <= 0.1f)
             sprintInputToggle = false;
-
     }
 
     #endregion
