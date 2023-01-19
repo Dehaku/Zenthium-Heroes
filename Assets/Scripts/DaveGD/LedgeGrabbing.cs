@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LedgeGrabbing : MonoBehaviour
 {
     [Header("References")]
+    public PlayerInput playerInput;
     public PlayerMovementAdvanced pm;
     public Transform orientation;
     public Transform cam;
@@ -20,7 +22,6 @@ public class LedgeGrabbing : MonoBehaviour
     public bool holding;
 
     [Header("Ledge Jumping")]
-    public KeyCode jumpKey = KeyCode.Space;
     public float ledgeJumpForwardForce;
     public float ledgeJumpUpwardForce;
 
@@ -47,8 +48,8 @@ public class LedgeGrabbing : MonoBehaviour
 
     private void SubStateMachine()
     {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
+        float horizontalInput = playerInput.actions["Movement"].ReadValue<Vector2>().x;
+        float verticalInput = playerInput.actions["Movement"].ReadValue<Vector2>().y;
         bool anyInputKeyPressed = horizontalInput != 0 || verticalInput != 0;
 
         // SubState 1 - Holding onto ledge
@@ -60,7 +61,7 @@ public class LedgeGrabbing : MonoBehaviour
 
             if (timeOnLedge > minTimeOnLedge && anyInputKeyPressed) ExitLedgeHold();
 
-            if (Input.GetKeyDown(jumpKey)) LedgeJump();
+            if (playerInput.actions["Jump"].WasPressedThisFrame()) LedgeJump();
         }
 
         // Substate 2 - Exiting Ledge

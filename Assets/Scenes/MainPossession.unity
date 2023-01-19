@@ -6391,6 +6391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4be103a919f9c43948a6cc95256f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   pm: {fileID: 424059657}
   orientation: {fileID: 1788569564}
   cam: {fileID: 963194228}
@@ -6399,7 +6400,6 @@ MonoBehaviour:
   maxLedgeGrabDistance: 2
   minTimeOnLedge: 0.5
   holding: 0
-  jumpKey: 32
   ledgeJumpForwardForce: 14
   ledgeJumpUpwardForce: 5
   ledgeDetectionLength: 3
@@ -6421,6 +6421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca697a9abbc65484aa5203c0216a95fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   orientation: {fileID: 1788569564}
   rb: {fileID: 424059658}
   pm: {fileID: 424059657}
@@ -6432,7 +6433,6 @@ MonoBehaviour:
   maxClimbTime: 0.75
   climbJumpUpForce: 14
   climbJumpBackForce: 12
-  jumpKey: 32
   climbJumps: 3
   detectionLength: 0.7
   sphereCastRadius: 0.25
@@ -21022,7 +21022,7 @@ MonoBehaviour:
   gravityCounterForce: 0
   orientation: {fileID: 1863225703}
   cam: {fileID: 963194229}
-  lg: {fileID: 0}
+  lg: {fileID: 1557719955}
 --- !u!114 &1557719954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21035,6 +21035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca697a9abbc65484aa5203c0216a95fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 483480946213657364}
   orientation: {fileID: 1863225703}
   rb: {fileID: 1557719949}
   pm: {fileID: 1557719951}
@@ -21046,7 +21047,6 @@ MonoBehaviour:
   maxClimbTime: 0.75
   climbJumpUpForce: 14
   climbJumpBackForce: 12
-  jumpKey: 32
   climbJumps: 3
   detectionLength: 0.7
   sphereCastRadius: 0.25
@@ -21066,6 +21066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4be103a919f9c43948a6cc95256f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 483480946213657364}
   pm: {fileID: 1557719951}
   orientation: {fileID: 1863225703}
   cam: {fileID: 963194228}
@@ -21074,7 +21075,6 @@ MonoBehaviour:
   maxLedgeGrabDistance: 2
   minTimeOnLedge: 0.5
   holding: 0
-  jumpKey: 32
   ledgeJumpForwardForce: 14
   ledgeJumpUpwardForce: 5
   ledgeDetectionLength: 3
