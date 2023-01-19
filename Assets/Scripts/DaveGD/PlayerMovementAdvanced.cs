@@ -154,6 +154,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
+        InputSprintLogic();
+
         // start crouch
         if (Input.GetKeyDown(crouchKey))
         {
@@ -246,7 +248,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         // Mode - Sprinting
-        else if (grounded && Input.GetKey(sprintKey))
+        else if (grounded && sprintInputToggle)
         {
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
@@ -500,6 +502,19 @@ public class PlayerMovementAdvanced : MonoBehaviour
     {
         var inputValue = context.ReadValue<Vector2>();
         inputMovement = inputValue;
+    }
+
+    bool sprintInputToggle = false;
+    public void InputSprintLogic()
+    {
+        if (playerInput.actions["Sprint"].WasPressedThisFrame())
+            sprintInputToggle = true;
+
+
+
+        if (inputMovement.magnitude <= 0.1f)
+            sprintInputToggle = false;
+
     }
 
     #endregion
