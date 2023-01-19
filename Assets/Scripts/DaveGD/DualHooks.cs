@@ -17,6 +17,7 @@ public class DualHooks : MonoBehaviour
     public float maxSwingDistance = 25f;
     public List<Vector3> swingPoints;
     private List<SpringJoint> joints;
+    public bool allowForward = false;
 
     [Header("Grappling")]
     public float maxGrappleDistance;
@@ -291,8 +292,9 @@ public class DualHooks : MonoBehaviour
         // left
         if (playerInput.actions["Movement"].ReadValue<Vector2>().x < -0.05f) 
             rb.AddForce(-orientation.right * horizontalThrustForce * Time.deltaTime);
+        
         // forward
-        if (playerInput.actions["Movement"].ReadValue<Vector2>().y > 0.05f) 
+        if (playerInput.actions["Movement"].ReadValue<Vector2>().y > 0.05f && allowForward) 
             rb.AddForce(orientation.forward * forwardThrustForce * Time.deltaTime);
         // backward
         if (playerInput.actions["Movement"].ReadValue<Vector2>().y < -0.05f) 
