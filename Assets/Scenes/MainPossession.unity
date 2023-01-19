@@ -6292,6 +6292,7 @@ MonoBehaviour:
   - {fileID: 491676474}
   - {fileID: 822804755}
   predictionSphereCastRadius: 3
+  playerInput: {fileID: 0}
   swingKey1: 323
   swingKey2: 324
   amountOfSwingPoints: 2
@@ -15132,9 +15133,14 @@ MonoBehaviour:
     ^
     + Shift/LR -> Right Grapple
 
+    space / A -> Retract Rope
 
+    ctrl / B -> Extend
+    Rope
 
-    xx'
+    E / X -> Dash
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -19841,7 +19847,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 318.6, y: 279.67}
+  m_SizeDelta: {x: 318.6, y: 303.78}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1473451494
 MonoBehaviour:
@@ -21203,6 +21209,7 @@ MonoBehaviour:
   - {fileID: 491676474}
   - {fileID: 822804755}
   predictionSphereCastRadius: 3
+  playerInput: {fileID: 483480946213657364}
   swingKey1: 323
   swingKey2: 324
   amountOfSwingPoints: 2
@@ -29639,6 +29646,74 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8a4d2131-fadf-4638-ae91-fe7394f3f2ac
     m_ActionName: Ground/CrouchSlide[/Keyboard/leftCtrl,/XInputControllerWindows/buttonEast,/LogitechDualAction/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1557719959}
+        m_TargetAssemblyTypeName: DualHooks, Assembly-CSharp
+        m_MethodName: SwingLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9ba272e4-9aef-4c19-8c26-7e2e16bd02d7
+    m_ActionName: Ground/SwingLeft[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1557719959}
+        m_TargetAssemblyTypeName: DualHooks, Assembly-CSharp
+        m_MethodName: GrappleLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2bf6c164-4fec-43a0-9d1d-acc9ea6a1f86
+    m_ActionName: Ground/GrappleLeft[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e13a40cf-b7fd-479e-b210-4358b386be24
+    m_ActionName: Ground/GrappleModifier[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1557719959}
+        m_TargetAssemblyTypeName: DualHooks, Assembly-CSharp
+        m_MethodName: SwingRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 76f87be6-62a5-48fb-805f-597b8b4ba999
+    m_ActionName: Ground/SwingRight[/Mouse/rightButton,/XInputControllerWindows/rightTrigger,/LogitechDualAction/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1557719959}
+        m_TargetAssemblyTypeName: DualHooks, Assembly-CSharp
+        m_MethodName: GrappleRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bdb9da46-3d91-485e-a089-9f2a2a049c99
+    m_ActionName: Ground/GrappleRight[/Mouse/rightButton,/XInputControllerWindows/rightTrigger,/LogitechDualAction/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Ground

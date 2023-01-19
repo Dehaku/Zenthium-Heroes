@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DualHooks : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class DualHooks : MonoBehaviour
     public float predictionSphereCastRadius;
 
     [Header("Input")]
+    public PlayerInput playerInput;
     public KeyCode swingKey1 = KeyCode.Mouse0;
     public KeyCode swingKey2 = KeyCode.Mouse1;
 
@@ -105,23 +107,7 @@ public class DualHooks : MonoBehaviour
 
     private void MyInput()
     {
-        // starting swings or grapples depends on whether or not shift is pressed
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            if (Input.GetKeyDown(swingKey1)) StartGrapple(0);
-            if (Input.GetKeyDown(swingKey2)) StartGrapple(1);
-        }
-        else
-        {
-            if (Input.GetKeyDown(swingKey1)) StartSwing(0);
-            if (Input.GetKeyDown(swingKey2)) StartSwing(1);
-        }
-
-        // stopping is always possible
-        //if (Input.GetKeyUp(swingKey1)) StopGrapple(0);
-        //if (Input.GetKeyUp(swingKey2)) StopGrapple(1);
-        if (Input.GetKeyUp(swingKey1)) StopSwing(0);
-        if (Input.GetKeyUp(swingKey2)) StopSwing(1);
+        
     }
 
     private void CheckForSwingPoints()
@@ -174,6 +160,7 @@ public class DualHooks : MonoBehaviour
 
     private void StartSwing(int swingIndex)
     {
+        Debug.Log("Swing: " + swingIndex);
         // return if predictionHit not found
         if (predictionHits[swingIndex].point == Vector3.zero) return;
 
@@ -299,15 +286,19 @@ public class DualHooks : MonoBehaviour
         }
 
         // right
-        if (Input.GetKey(KeyCode.D)) rb.AddForce(orientation.right * horizontalThrustForce * Time.deltaTime);
+        if (playerInput.actions["Movement"].ReadValue<Vector2>().x > 0.05f) 
+            rb.AddForce(orientation.right * horizontalThrustForce * Time.deltaTime);
         // left
-        if (Input.GetKey(KeyCode.A)) rb.AddForce(-orientation.right * horizontalThrustForce * Time.deltaTime);
+        if (playerInput.actions["Movement"].ReadValue<Vector2>().x < -0.05f) 
+            rb.AddForce(-orientation.right * horizontalThrustForce * Time.deltaTime);
         // forward
-        if (Input.GetKey(KeyCode.W)) rb.AddForce(orientation.forward * forwardThrustForce * Time.deltaTime);
+        if (playerInput.actions["Movement"].ReadValue<Vector2>().y > 0.05f) 
+            rb.AddForce(orientation.forward * forwardThrustForce * Time.deltaTime);
         // backward
-        /// if (Input.GetKey(KeyCode.S)) rb.AddForce(-orientation.forward * forwardThrustForce * Time.deltaTime);
+        if (playerInput.actions["Movement"].ReadValue<Vector2>().y < -0.05f) 
+            rb.AddForce(-orientation.forward * forwardThrustForce * Time.deltaTime);
         // shorten cable
-        if (Input.GetKey(KeyCode.Space))
+        if (playerInput.actions["Jump"].IsPressed())
         {
             Vector3 directionToPoint = pullPoint - transform.position;
             rb.AddForce(directionToPoint.normalized * forwardThrustForce * Time.deltaTime);
@@ -319,7 +310,7 @@ public class DualHooks : MonoBehaviour
             UpdateJoints(distanceFromPoint);
         }
         // extend cable
-        if (Input.GetKey(KeyCode.S))
+        if (playerInput.actions["CrouchSlide"].IsPressed())
         {
             // calculate the distance to the grapplePoint
             float extendedDistanceFromPoint = Vector3.Distance(transform.position, pullPoint) + extendCableSpeed;
@@ -367,13 +358,69 @@ public class DualHooks : MonoBehaviour
 
     #region Visualisation
 
-    
 
-    
+
+
 
     #endregion
 
 
+    #region inputfunctions
 
+    public void SwingLeft(InputAction.CallbackContext context)
+    {
+        if (!gameObject.activeInHierarchy)
+            return;
+
+        if (playerInput.actions["GrappleModifier"].IsPressed())
+            return;
+
+        if (context.started)
+            StartSwing(0);
+
+        if (context.canceled)
+            StopSwing(0);
+    }
+
+    public void GrappleLeft(InputAction.CallbackContext context)
+    {
+        if (!gameObject.activeInHierarchy)
+            return;
+
+        if (!playerInput.actions["GrappleModifier"].IsPressed())
+            return;
+
+        if (context.started)
+            StartGrapple(0);
+    }
+
+    public void SwingRight(InputAction.CallbackContext context)
+    {
+        if (!gameObject.activeInHierarchy)
+            return;
+
+        if (playerInput.actions["GrappleModifier"].IsPressed())
+            return;
+
+        if (context.started)
+            StartSwing(1);
+
+        if (context.canceled)
+            StopSwing(1);
+    }
+
+    public void GrappleRight(InputAction.CallbackContext context)
+    {
+        if (!gameObject.activeInHierarchy)
+            return;
+
+        if (!playerInput.actions["GrappleModifier"].IsPressed())
+            return;
+
+        if (context.started)
+            StartGrapple(1);
+    }
+
+    #endregion
 
 }
