@@ -1,5 +1,5 @@
 {
-    "name": "ZenthPlayerInputActions",
+    "name": "PossessionPlayerInputActions",
     "maps": [
         {
             "name": "Ground",
@@ -16,12 +16,12 @@
                 },
                 {
                     "name": "Jump",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "e5a367a2-122e-4454-9faf-ea196e2b6d6e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Look",
@@ -34,54 +34,63 @@
                 },
                 {
                     "name": "Aim",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "03dc7e62-1515-4f70-9bc6-233333584cef",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "PowerModify",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "d23658bf-270d-4208-9be8-dba8c4691142",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "SuperJump",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "a35fd537-cfe2-4859-998e-d3fdb42930f7",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "CameraDistanceZoom",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "e81557fa-b740-40c6-a678-883abb630983",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Fire",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "2c7ec9ab-bfb0-4457-b008-ae6358bb7eca",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Sprint",
                     "type": "Value",
                     "id": "04378b60-c03c-4f39-abf2-5a2189937c7f",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "CrouchSlide",
+                    "type": "Value",
+                    "id": "8a4d2131-fadf-4638-ae91-fe7394f3f2ac",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -204,7 +213,7 @@
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyboardMouse",
                     "action": "PowerModify",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -338,6 +347,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c56aaa5e-f61e-4098-99c7-8f3c54817a64",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "CrouchSlide",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f8bc431f-7569-49f7-acd7-c873e92f68ff",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "CrouchSlide",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

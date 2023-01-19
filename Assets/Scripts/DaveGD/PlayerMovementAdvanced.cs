@@ -157,17 +157,21 @@ public class PlayerMovementAdvanced : MonoBehaviour
         InputSprintLogic();
 
         // start crouch
-        if (Input.GetKeyDown(crouchKey))
+        
+        
+        if (playerInput.actions["CrouchSlide"].WasPressedThisFrame())
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
 
         // stop crouch
-        if (Input.GetKeyUp(crouchKey))
+        if (playerInput.actions["CrouchSlide"].WasReleasedThisFrame())
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         }
+
+        
     }
 
     public bool keepMomentum;
@@ -241,7 +245,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         // Mode - Crouching
-        else if (Input.GetKey(crouchKey))
+        else if (playerInput.actions["CrouchSlide"].IsPressed())
         {
             state = MovementState.crouching;
             desiredMoveSpeed = crouchSpeed;

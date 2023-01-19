@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Sliding : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class Sliding : MonoBehaviour
     private float startYScale;
 
     [Header("Input")]
-    public KeyCode slideKey = KeyCode.LeftControl;
+    public PlayerInput playerInput;
     private float horizontalInput;
     private float verticalInput;
 
@@ -34,13 +35,13 @@ public class Sliding : MonoBehaviour
 
     private void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        horizontalInput = playerInput.actions["Movement"].ReadValue<Vector2>().x;
+        verticalInput = playerInput.actions["Movement"].ReadValue<Vector2>().y;
 
-        if (Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0))
+        if (playerInput.actions["CrouchSlide"].WasPressedThisFrame() && (horizontalInput != 0 || verticalInput != 0))
             StartSlide();
 
-        if (Input.GetKeyUp(slideKey) && pm.sliding)
+        if (playerInput.actions["CrouchSlide"].WasReleasedThisFrame() && pm.sliding)
             StopSlide();
     }
 

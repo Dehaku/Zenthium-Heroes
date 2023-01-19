@@ -3477,7 +3477,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &251359699
 GameObject:
@@ -6494,7 +6494,7 @@ MonoBehaviour:
   maxSlideTime: 1
   slideForce: 200
   slideYScale: 1
-  slideKey: 306
+  playerInput: {fileID: 0}
 --- !u!114 &424059657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6582,7 +6582,7 @@ Transform:
   - {fileID: 1838252487}
   - {fileID: 1788569564}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &428550561
 GameObject:
@@ -7593,7 +7593,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &492023968
 GameObject:
@@ -12654,7 +12654,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &823779172
 GameObject:
@@ -20906,7 +20906,7 @@ Transform:
   - {fileID: 595340504}
   - {fileID: 1863225703}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1557719951
 MonoBehaviour:
@@ -20982,7 +20982,7 @@ MonoBehaviour:
   maxSlideTime: 1
   slideForce: 200
   slideYScale: 1
-  slideKey: 306
+  playerInput: {fileID: 483480946213657364}
 --- !u!114 &1557719953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26444,7 +26444,7 @@ Transform:
   - {fileID: 1779429637}
   - {fileID: 342381419}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2051093176
 GameObject:
@@ -28909,7 +28909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &483480945670150223
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29359,7 +29359,7 @@ Transform:
   - {fileID: 483480945670150223}
   - {fileID: 1160662132530612986}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &483480946213657361
 MonoBehaviour:
@@ -29620,9 +29620,25 @@ MonoBehaviour:
     m_ActionId: 2c7ec9ab-bfb0-4457-b008-ae6358bb7eca
     m_ActionName: Ground/New action
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1557719951}
+        m_TargetAssemblyTypeName: PlayerMovementAdvanced, Assembly-CSharp
+        m_MethodName: InputSprintLogic
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 04378b60-c03c-4f39-abf2-5a2189937c7f
     m_ActionName: Ground/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8a4d2131-fadf-4638-ae91-fe7394f3f2ac
+    m_ActionName: Ground/CrouchSlide[/Keyboard/leftCtrl,/XInputControllerWindows/buttonEast,/LogitechDualAction/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Ground
