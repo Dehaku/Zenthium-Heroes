@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovementAdvanced : MonoBehaviour
 {
@@ -60,6 +61,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float grappleFov = 95f;
 
     [Header("References")]
+    public PlayerInput playerInput;
     public Climbing climbingScript;
     public LedgeGrabbing ledgeGrabScript;
     public Grappling grappleScript;
@@ -68,10 +70,9 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public Transform orientation;
 
-    float horizontalInput;
-    float verticalInput;
-
     Vector3 moveDirection;
+
+    Vector3 inputMovement;
 
     Rigidbody rb;
 
@@ -143,11 +144,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void MyInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
         // when to jump
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (playerInput.actions["Jump"].IsPressed() && readyToJump && grounded)
         {
             readyToJump = false;
 
@@ -339,7 +337,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         if (restricted) return;
 
         // calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection = orientation.forward * inputMovement.y + orientation.right * inputMovement.x;
 
         // on slope
         if (OnSlope() && !exitingSlope)
@@ -353,6 +351,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
         // on ground
         else if (grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+
+        
 
         // in air
         else if (!grounded)
@@ -494,4 +494,16 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     }
 
+    #region inputfunctions
+
+    public void Movement(InputAction.CallbackContext context)
+    {
+        var inputValue = context.ReadValue<Vector2>();
+        inputMovement = inputValue;
+    }
+
+    #endregion
+
 }
+
+

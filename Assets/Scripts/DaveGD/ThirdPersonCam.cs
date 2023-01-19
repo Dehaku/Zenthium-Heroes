@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.InputSystem;
 
 public class ThirdPersonCam : MonoBehaviour
 {
     [Header("References")]
+    public PlayerInput playerInput;
     public Transform orientation;
     public Transform camHolder;
     public Transform player;
@@ -26,6 +28,8 @@ public class ThirdPersonCam : MonoBehaviour
     public float baseFOV;
 
     public CameraStyle currentStyle;
+
+    Vector3 inputMovement;
 
     //[Header("Events")]
     public event Action<List<GameObject>> onCameraSwitch;
@@ -79,9 +83,7 @@ public class ThirdPersonCam : MonoBehaviour
         // roate player object
         if (currentStyle == CameraStyle.Basic || currentStyle == CameraStyle.Topdown)
         {
-            float horizontalInput = Input.GetAxis("Horizontal");
-            float verticalInput = Input.GetAxis("Vertical");
-            Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+            Vector3 inputDir = orientation.forward * inputMovement.y + orientation.right * inputMovement.x;
 
             if (inputDir != Vector3.zero)
                 playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
@@ -200,4 +202,15 @@ public class ThirdPersonCam : MonoBehaviour
             }
         }
     }
+
+    #region inputfunctions
+
+    public void Movement(InputAction.CallbackContext context)
+    {
+        var inputValue = context.ReadValue<Vector2>();
+        inputMovement = inputValue;
+    }
+
+    #endregion
+
 }
