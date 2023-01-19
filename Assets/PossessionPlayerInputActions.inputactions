@@ -166,6 +166,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "CycleCameras",
+                    "type": "Value",
+                    "id": "32dc905e-78f2-4a2e-9319-4a4074d435fe",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -617,6 +626,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "WallRunDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c248f85-b2ef-45e2-a633-166b25b18232",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "CycleCameras",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d2c3b61-45d7-407b-b18e-5fd0fb8e2438",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "CycleCameras",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

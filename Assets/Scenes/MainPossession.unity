@@ -14009,6 +14009,7 @@ MonoBehaviour:
   newThirdCam: {fileID: 1779429636}
   baseFOV: 0
   currentStyle: 0
+  currentCam: 0
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29726,6 +29727,30 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e7c4ece8-0cea-4a73-bc17-3e83dcd6e1d2
     m_ActionName: Ground/Dash[/Keyboard/e,/XInputControllerWindows/buttonWest,/LogitechDualAction/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3acb91ce-c13b-4ecd-ad05-f90d302e5b43
+    m_ActionName: Ground/WallRunUp[/Keyboard/leftShift,/XInputControllerWindows/buttonNorth,/LogitechDualAction/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f86a9f29-dc62-41ab-af8c-0fe61842779d
+    m_ActionName: Ground/WallRunDown[/Keyboard/ctrl,/XInputControllerWindows/buttonEast,/LogitechDualAction/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 963194229}
+        m_TargetAssemblyTypeName: ThirdPersonCam, Assembly-CSharp
+        m_MethodName: CycleCameraInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 32dc905e-78f2-4a2e-9319-4a4074d435fe
+    m_ActionName: Ground/CycleCameras[/Keyboard/1,/XInputControllerWindows/select,/LogitechDualAction/select]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Ground

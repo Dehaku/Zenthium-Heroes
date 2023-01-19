@@ -45,22 +45,48 @@ public class ThirdPersonCam : MonoBehaviour
         NewThird
     }
 
-    private void Start()
+    private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        SwitchCameraStyle(currentStyle);
+        //SwitchCameraStyle(currentStyle);
+        
+    }
+
+    private void Start()
+    {
+        CycleCameraStyles();
+    }
+
+    public void CycleCameraInput(InputAction.CallbackContext context)
+    {
+        if (!gameObject.activeInHierarchy)
+            return;
+
+        if (context.started)
+            CycleCameraStyles();
+    }
+
+    public int currentCam = -1;
+    int amountOfCameras = 3;
+    public void CycleCameraStyles()
+    {
+        currentCam++;
+        if (currentCam >= amountOfCameras)
+            currentCam = 0;
+
+        if (currentCam == 0)
+            SwitchCameraStyle(CameraStyle.Basic);
+        if (currentCam == 1)
+            SwitchCameraStyle(CameraStyle.Combat);
+        if(currentCam == 2)
+            SwitchCameraStyle(CameraStyle.FirstPerson);
     }
 
     void Inputs()
     {
-        // switch styles
-        if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CameraStyle.Combat);
-        //if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchCameraStyle(CameraStyle.Topdown);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchCameraStyle(CameraStyle.FirstPerson);
-        //if (Input.GetKeyDown(KeyCode.Alpha5)) SwitchCameraStyle(CameraStyle.NewThird);
+       
     }
 
     private void FixedUpdate()

@@ -52,7 +52,7 @@ public class DualHooks : MonoBehaviour
     public List<Transform> pointAimers;
     public List<bool> swingsActive;
 
-    private void Start()
+    private void Awake()
     {
         camScript.onCameraSwitch += SwapAimPointsOnCameraSwap;
 
