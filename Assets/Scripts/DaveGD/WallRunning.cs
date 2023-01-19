@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WallRunning : MonoBehaviour
 {
@@ -21,9 +22,7 @@ public class WallRunning : MonoBehaviour
     public bool wallRunTimerEmptysJumpsOnEnd;
 
     [Header("Input")]
-    public KeyCode jumpKey = KeyCode.Space;
-    public KeyCode upwardsRunKey = KeyCode.LeftShift;
-    public KeyCode downwardsRunKey = KeyCode.LeftControl;
+    public PlayerInput playerInput;
     private bool upwardsRunning;
     private bool downwardsRunning;
     private float horizontalInput;
@@ -103,11 +102,12 @@ public class WallRunning : MonoBehaviour
     private void StateMachine()
     {
         // Getting Inputs
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        horizontalInput = playerInput.actions["Movement"].ReadValue<Vector2>().x;
+        verticalInput = playerInput.actions["Movement"].ReadValue<Vector2>().y;
 
-        upwardsRunning = Input.GetKey(upwardsRunKey);
-        downwardsRunning = Input.GetKey(downwardsRunKey);
+        upwardsRunning = playerInput.actions["WallRunUp"].IsPressed();
+        downwardsRunning = playerInput.actions["WallRunDown"].IsPressed();
+
 
         // State 1 - Wallrunning
         if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround() && !exitingWall)
@@ -126,7 +126,7 @@ public class WallRunning : MonoBehaviour
             }
 
             // wall jump
-            if (Input.GetKeyDown(jumpKey) && wallRunJumpsLeft > 0) WallJump();
+            if (playerInput.actions["Jump"].WasPressedThisFrame() && wallRunJumpsLeft > 0) WallJump();
         }
 
         // State 2 - Exiting
@@ -181,7 +181,6 @@ public class WallRunning : MonoBehaviour
         Vector3 wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
 
         Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
-
         if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
             wallForward = -wallForward;
 
@@ -191,8 +190,10 @@ public class WallRunning : MonoBehaviour
         // upwards/downwards force
         if (upwardsRunning)
             rb.velocity = new Vector3(rb.velocity.x, wallClimbSpeed, rb.velocity.z);
-        if (downwardsRunning)
+        else if (downwardsRunning)
             rb.velocity = new Vector3(rb.velocity.x, -wallClimbSpeed, rb.velocity.z);
+        else
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
         // push to wall force
         if (!(wallLeft && horizontalInput > 0) && !(wallRight && horizontalInput < 0))

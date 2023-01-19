@@ -159,7 +159,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         // start crouch
         
         
-        if (playerInput.actions["CrouchSlide"].WasPressedThisFrame() && !(activeGrapple || swinging))
+        if (playerInput.actions["CrouchSlide"].WasPressedThisFrame() && !(activeGrapple || swinging || wallrunning))
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);

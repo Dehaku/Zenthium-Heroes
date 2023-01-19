@@ -6466,9 +6466,7 @@ MonoBehaviour:
   wallRunJumps: 3
   wallRunJumpEndsCurrentRun: 0
   wallRunTimerEmptysJumpsOnEnd: 0
-  jumpKey: 32
-  upwardsRunKey: 304
-  downwardsRunKey: 306
+  playerInput: {fileID: 0}
   wallCheckDistance: 0.7
   minJumpHeight: 2
   minWallNormalAngleChange: 0
@@ -21008,16 +21006,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 65536
   wallRunForce: 200
-  wallClimbSpeed: 3
+  wallClimbSpeed: 5
   maxWallRunTime: 1.5
   wallJumpUpForce: 7
   wallJumpSideForce: 12
   wallRunJumps: 3
   wallRunJumpEndsCurrentRun: 0
   wallRunTimerEmptysJumpsOnEnd: 0
-  jumpKey: 32
-  upwardsRunKey: 304
-  downwardsRunKey: 306
+  playerInput: {fileID: 483480946213657364}
   wallCheckDistance: 0.7
   minJumpHeight: 2
   minWallNormalAngleChange: 0
@@ -21100,7 +21096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3943484d7d735a741b625783a9fda110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 0}
+  playerInput: {fileID: 483480946213657364}
   orientation: {fileID: 1863225703}
   playerCam: {fileID: 963194228}
   dashForce: 20
