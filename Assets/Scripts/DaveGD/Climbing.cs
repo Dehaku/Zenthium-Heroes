@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Climbing : MonoBehaviour
 {
     [Header("References")]
+    public PlayerInput playerInput;
     public Transform orientation;
     public Rigidbody rb;
     public PlayerMovementAdvanced pm;
@@ -22,7 +24,6 @@ public class Climbing : MonoBehaviour
     public float climbJumpUpForce;
     public float climbJumpBackForce;
 
-    public KeyCode jumpKey = KeyCode.Space;
     public int climbJumps;
     private int climbJumpsLeft;
 
@@ -67,7 +68,7 @@ public class Climbing : MonoBehaviour
         }
 
         // State 1 - Climbing
-        else if (wallFront && Input.GetKey(KeyCode.W) && wallLookAngle < maxWallLookAngle && !exitingWall)
+        else if (wallFront && (playerInput.actions["Movement"].ReadValue<Vector2>().y > 0.05f) && wallLookAngle < maxWallLookAngle && !exitingWall)
         {
             if (!climbing && climbTimer > 0) StartClimbing();
 
@@ -91,7 +92,7 @@ public class Climbing : MonoBehaviour
             if (climbing) StopClimbing();
         }
 
-        if (wallFront && Input.GetKeyDown(jumpKey) && climbJumpsLeft > 0) ClimbJump();
+        if (wallFront && playerInput.actions["Jump"].WasPressedThisFrame() && climbJumpsLeft > 0 && !exitingWall) ClimbJump();
     }
 
     private void WallCheck()
