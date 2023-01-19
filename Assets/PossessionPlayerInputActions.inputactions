@@ -96,6 +96,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Dash",
+                    "type": "Value",
+                    "id": "e7c4ece8-0cea-4a73-bc17-3e83dcd6e1d2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "SwingLeft",
                     "type": "Value",
                     "id": "9ba272e4-9aef-4c19-8c26-7e2e16bd02d7",
@@ -524,6 +533,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "GrappleRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ada94851-b067-400e-8d93-e60b686a08fe",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6458d64-41a6-4c26-a867-4b804bea4273",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -6365,6 +6365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3943484d7d735a741b625783a9fda110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   orientation: {fileID: 1788569564}
   playerCam: {fileID: 963194228}
   dashForce: 20
@@ -6378,7 +6379,6 @@ MonoBehaviour:
   disableGravity: 1
   resetVel: 1
   dashCd: 1.5
-  dashKey: 101
 --- !u!114 &424059653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19847,7 +19847,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 318.6, y: 303.78}
+  m_SizeDelta: {x: 318.6, y: 356.12}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1473451494
 MonoBehaviour:
@@ -21100,6 +21100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3943484d7d735a741b625783a9fda110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   orientation: {fileID: 1863225703}
   playerCam: {fileID: 963194228}
   dashForce: 20
@@ -21113,7 +21114,6 @@ MonoBehaviour:
   disableGravity: 1
   resetVel: 1
   dashCd: 1.5
-  dashKey: 101
 --- !u!114 &1557719957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29714,6 +29714,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bdb9da46-3d91-485e-a089-9f2a2a049c99
     m_ActionName: Ground/GrappleRight[/Mouse/rightButton,/XInputControllerWindows/rightTrigger,/LogitechDualAction/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1557719956}
+        m_TargetAssemblyTypeName: Dashing, Assembly-CSharp
+        m_MethodName: DashInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e7c4ece8-0cea-4a73-bc17-3e83dcd6e1d2
+    m_ActionName: Ground/Dash[/Keyboard/e,/XInputControllerWindows/buttonWest,/LogitechDualAction/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Ground

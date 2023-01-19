@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Dashing : MonoBehaviour
 {
     [Header("References")]
+    public PlayerInput playerInput;
     public Transform orientation;
     public Transform playerCam;
     private Rigidbody rb;
@@ -30,20 +32,23 @@ public class Dashing : MonoBehaviour
     public float dashCd;
     private float dashCdTimer;
 
-    [Header("Input")]
-    public KeyCode dashKey = KeyCode.E;
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovementAdvanced>();
     }
 
+    public void DashInput(InputAction.CallbackContext context)
+    {
+        if (!gameObject.activeInHierarchy)
+            return;
+
+        if (context.started)
+            Dash();
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(dashKey))
-            Dash();
-
         if (dashCdTimer > 0)
             dashCdTimer -= Time.deltaTime;
     }
@@ -100,8 +105,8 @@ public class Dashing : MonoBehaviour
 
     private Vector3 GetDirection(Transform forwardT)
     {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
+        float horizontalInput = playerInput.actions["Movement"].ReadValue<Vector2>().x;
+        float verticalInput = playerInput.actions["Movement"].ReadValue<Vector2>().y;
 
         Vector3 direction = new Vector3();
 
