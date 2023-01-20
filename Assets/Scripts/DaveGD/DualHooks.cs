@@ -18,6 +18,7 @@ public class DualHooks : MonoBehaviour
     public List<Vector3> swingPoints;
     private List<SpringJoint> joints;
     public bool allowForward = false;
+    public float jointMinDistanceMultiplier = 1f;
 
     [Header("Grappling")]
     public float maxGrappleDistance;
@@ -25,6 +26,7 @@ public class DualHooks : MonoBehaviour
     public float overshootYAxis;
 
     public List<bool> grapplesActive;
+    
 
     [Header("Cooldown")]
     public float grapplingCd;
@@ -44,14 +46,13 @@ public class DualHooks : MonoBehaviour
 
     [Header("Input")]
     public PlayerInput playerInput;
-    public KeyCode swingKey1 = KeyCode.Mouse0;
-    public KeyCode swingKey2 = KeyCode.Mouse1;
 
 
     [Header("DualSwinging")]
     public int amountOfSwingPoints = 2;
     public List<Transform> pointAimers;
     public List<bool> swingsActive;
+    public bool bothSwingsActive;
 
     private void Awake()
     {
@@ -97,6 +98,9 @@ public class DualHooks : MonoBehaviour
     {
         MyInput();
         CheckForSwingPoints();
+
+        if (swingsActive[0] && swingsActive[1])
+            bothSwingsActive = true;
 
         if (joints[0] != null || joints[1] != null) OdmGearMovement();
 
@@ -181,7 +185,7 @@ public class DualHooks : MonoBehaviour
 
         // the distance grapple will try to keep from grapple point. 
         joints[swingIndex].maxDistance = distanceFromPoint * 0.8f;
-        joints[swingIndex].minDistance = distanceFromPoint * 0.25f;
+        joints[swingIndex].minDistance = distanceFromPoint * (0.25f * jointMinDistanceMultiplier);
 
         // customize values as you like
         joints[swingIndex].spring = 15f;
@@ -304,6 +308,10 @@ public class DualHooks : MonoBehaviour
         {
             Vector3 directionToPoint = pullPoint - transform.position;
             rb.AddForce(directionToPoint.normalized * forwardThrustForce * Time.deltaTime);
+            
+            // Extra Boost
+            if(bothSwingsActive)
+                rb.AddForce(directionToPoint.normalized * (forwardThrustForce) * Time.deltaTime);
 
             // calculate the distance to the grapplePoint
             float distanceFromPoint = Vector3.Distance(transform.position, pullPoint);
@@ -329,7 +337,7 @@ public class DualHooks : MonoBehaviour
             if (joints[i] != null)
             {
                 joints[i].maxDistance = distanceFromPoint * 0.8f;
-                joints[i].minDistance = distanceFromPoint * 0.25f;
+                joints[i].minDistance = distanceFromPoint * (0.25f * jointMinDistanceMultiplier);
             }
         }
     }

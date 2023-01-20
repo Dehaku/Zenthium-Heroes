@@ -7,7 +7,6 @@ public class DestroyOnCollision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Hello?");
     }
 
     // Update is called once per frame
@@ -19,13 +18,11 @@ public class DestroyOnCollision : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         Destroy(this.gameObject);
-        Debug.Log("Trigger!");
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(this.gameObject);
-        Debug.Log("Collision!");
     }
 
     

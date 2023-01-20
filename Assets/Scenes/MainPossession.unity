@@ -6983,6 +6983,7 @@ MonoBehaviour:
   maxSwingDistance: 250
   swingPoints: []
   allowForward: 0
+  jointMinDistanceMultiplier: 1
   maxGrappleDistance: 250
   grappleDelayTime: 0.25
   overshootYAxis: 2
@@ -6998,13 +6999,12 @@ MonoBehaviour:
   - {fileID: 822804755}
   predictionSphereCastRadius: 3
   playerInput: {fileID: 0}
-  swingKey1: 323
-  swingKey2: 324
   amountOfSwingPoints: 2
   pointAimers:
   - {fileID: 134305927}
   - {fileID: 1072124251}
   swingsActive: 
+  bothSwingsActive: 0
 --- !u!114 &424059650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11668,7 +11668,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.6206088, y: 1}
+    m_SensorSize: {x: 2.6491647, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 1
@@ -22122,7 +22122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 7
   sprintSpeed: 15
-  swingSpeed: 30
+  swingSpeed: 20
   dashSpeed: 20
   dashSpeedChangeFactor: 50
   slideSpeed: 30
@@ -22391,7 +22391,8 @@ MonoBehaviour:
   camScript: {fileID: 963194229}
   maxSwingDistance: 250
   swingPoints: []
-  allowForward: 0
+  allowForward: 1
+  jointMinDistanceMultiplier: 1
   maxGrappleDistance: 250
   grappleDelayTime: 0.25
   overshootYAxis: 2
@@ -22399,21 +22400,20 @@ MonoBehaviour:
   grapplingCd: 1
   orientation: {fileID: 1863225703}
   rb: {fileID: 1557719949}
-  horizontalThrustForce: 2000
-  forwardThrustForce: 3000
-  extendCableSpeed: 20
+  horizontalThrustForce: 200
+  forwardThrustForce: 300
+  extendCableSpeed: 10
   predictionPoints:
   - {fileID: 491676474}
   - {fileID: 822804755}
   predictionSphereCastRadius: 3
   playerInput: {fileID: 483480946213657364}
-  swingKey1: 323
-  swingKey2: 324
   amountOfSwingPoints: 2
   pointAimers:
   - {fileID: 134305927}
   - {fileID: 1072124251}
   swingsActive: 
+  bothSwingsActive: 0
 --- !u!1 &1557878068
 GameObject:
   m_ObjectHideFlags: 0
