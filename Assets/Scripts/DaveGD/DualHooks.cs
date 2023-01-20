@@ -181,6 +181,9 @@ public class DualHooks : MonoBehaviour
         joints[swingIndex].autoConfigureConnectedAnchor = false;
         joints[swingIndex].connectedAnchor = swingPoints[swingIndex];
 
+        //GameObject connectionPoint = new GameObject();
+        //connectionPoint.transform.parent = predictionHits[swingIndex].point
+
         float distanceFromPoint = Vector3.Distance(player.position, swingPoints[swingIndex]);
 
         // the distance grapple will try to keep from grapple point. 
