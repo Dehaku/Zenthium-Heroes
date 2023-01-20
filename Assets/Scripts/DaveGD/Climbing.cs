@@ -70,7 +70,9 @@ public class Climbing : MonoBehaviour
         }
 
         // State 1 - Climbing
-        else if (wallFront && (playerInput.actions["Movement"].ReadValue<Vector2>().y > 0.05f) && wallLookAngle < maxWallLookAngle && !exitingWall)
+        else if (wallFront && (playerInput.actions["Movement"].ReadValue<Vector2>().y > 0.05f) && 
+            wallLookAngle < maxWallLookAngle && !exitingWall &&
+            !pm.swinging)
         {
             if (!climbing && climbTimer > 0) StartClimbing();
 

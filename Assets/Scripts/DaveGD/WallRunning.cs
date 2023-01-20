@@ -111,7 +111,7 @@ public class WallRunning : MonoBehaviour
 
 
         // State 1 - Wallrunning
-        if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround() && !exitingWall)
+        if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround() && !exitingWall && !pm.swinging)
         {
             if (!pm.wallrunning && wallRunTimer > 0)
                 StartWallRun();
