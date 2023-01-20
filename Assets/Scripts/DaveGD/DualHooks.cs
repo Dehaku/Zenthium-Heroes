@@ -54,6 +54,8 @@ public class DualHooks : MonoBehaviour
     public List<bool> swingsActive;
     public bool bothSwingsActive;
 
+    public List<Transform> connectionPoints;
+
     private void Awake()
     {
         camScript.onCameraSwitch += SwapAimPointsOnCameraSwap;
@@ -90,6 +92,7 @@ public class DualHooks : MonoBehaviour
             swingPoints.Add(Vector3.zero);
             swingsActive.Add(false);
             grapplesActive.Add(false);
+            connectionPoints.Add(null);
             //currentGrapplePositions.Add(Vector3.zero);
         }
     }
@@ -165,7 +168,6 @@ public class DualHooks : MonoBehaviour
 
     private void StartSwing(int swingIndex)
     {
-        Debug.Log("Swing: " + swingIndex);
         // return if predictionHit not found
         if (predictionHits[swingIndex].point == Vector3.zero) return;
 
@@ -179,10 +181,25 @@ public class DualHooks : MonoBehaviour
         swingPoints[swingIndex] = predictionHits[swingIndex].point;
         joints[swingIndex] = player.gameObject.AddComponent<SpringJoint>();
         joints[swingIndex].autoConfigureConnectedAnchor = false;
-        joints[swingIndex].connectedAnchor = swingPoints[swingIndex];
+        //joints[swingIndex].connectedAnchor = swingPoints[swingIndex];
 
-        //GameObject connectionPoint = new GameObject();
-        //connectionPoint.transform.parent = predictionHits[swingIndex].point
+        // Tracking rope position on moving body
+        GameObject connectionPoint = new GameObject();
+        connectionPoint.transform.parent = predictionHits[swingIndex].collider.transform;
+        connectionPoint.transform.position = predictionHits[swingIndex].point;
+        connectionPoints[swingIndex] = connectionPoint.transform;
+        
+
+        if(connectionPoints[swingIndex].parent)
+            if(connectionPoints[swingIndex].parent.TryGetComponent<Rigidbody>(out Rigidbody rb))
+            {
+                //joints[swingIndex].connectedBody = rb;
+                
+            }
+                
+
+        
+
 
         float distanceFromPoint = Vector3.Distance(player.position, swingPoints[swingIndex]);
 
@@ -331,6 +348,11 @@ public class DualHooks : MonoBehaviour
             // the distance grapple will try to keep from grapple point.
             UpdateJoints(extendedDistanceFromPoint);
         }
+        if(joints[0] && connectionPoints[0])
+            joints[0].connectedAnchor = connectionPoints[0].position;
+        if (joints[1] && connectionPoints[1])
+            joints[1].connectedAnchor = connectionPoints[1].position;
+
     }
 
     private void UpdateJoints(float distanceFromPoint)
