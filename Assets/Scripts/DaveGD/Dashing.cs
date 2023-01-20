@@ -17,6 +17,8 @@ public class Dashing : MonoBehaviour
     public float dashUpwardForce;
     public float maxDashYSpeed;
     public float dashDuration;
+    public int dashAmountPerGrounding;
+    public int dashsLeft;
 
     [Header("CameraEffects")]
     public ThirdPersonCam cam;
@@ -31,6 +33,7 @@ public class Dashing : MonoBehaviour
     [Header("Cooldown")]
     public float dashCd;
     private float dashCdTimer;
+    public float DashCdTimer { get => dashCdTimer; set => dashCdTimer = value; }
 
     private void Start()
     {
@@ -51,13 +54,21 @@ public class Dashing : MonoBehaviour
     {
         if (dashCdTimer > 0)
             dashCdTimer -= Time.deltaTime;
+        if (pm.grounded)
+            dashsLeft = dashAmountPerGrounding;
     }
 
     private void Dash()
     {
+        // Check if we need to touch the ground to recharge.
+
         if (dashCdTimer > 0) return;
         else dashCdTimer = dashCd;
 
+        if (dashsLeft < 1)
+            return;
+
+        dashsLeft--;
         pm.dashing = true;
         pm.maxYSpeed = maxDashYSpeed;
 
@@ -84,6 +95,9 @@ public class Dashing : MonoBehaviour
     }
 
     private Vector3 delayedForceToApply;
+
+    
+
     private void DelayedDashForce()
     {
         if (resetVel)

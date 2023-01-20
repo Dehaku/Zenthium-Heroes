@@ -25,7 +25,7 @@ public class Climbing : MonoBehaviour
     public float climbJumpBackForce;
 
     public int climbJumps;
-    private int climbJumpsLeft;
+    public int climbJumpsLeft;
 
     [Header("Detection")]
     public float detectionLength;
@@ -44,6 +44,8 @@ public class Climbing : MonoBehaviour
     public bool exitingWall;
     public float exitWallTime;
     private float exitWallTimer;
+
+    public float ClimbTimer { get => climbTimer; set => climbTimer = value; }
 
     private void Start()
     {

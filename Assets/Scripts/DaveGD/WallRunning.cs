@@ -12,12 +12,13 @@ public class WallRunning : MonoBehaviour
     public float wallClimbSpeed;
     public float maxWallRunTime;
     private float wallRunTimer;
+    public float WallRunTimer { get => wallRunTimer; set => wallRunTimer = value; }
 
     [Header("Wallrun Jumps")]
     public float wallJumpUpForce;
     public float wallJumpSideForce;
     public int wallRunJumps;
-    private int wallRunJumpsLeft;
+    public int wallRunJumpsLeft;
     public bool wallRunJumpEndsCurrentRun;
     public bool wallRunTimerEmptysJumpsOnEnd;
 

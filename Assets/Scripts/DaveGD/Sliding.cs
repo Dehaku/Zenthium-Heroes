@@ -15,6 +15,7 @@ public class Sliding : MonoBehaviour
     public float maxSlideTime;
     public float slideForce;
     private float slideTimer;
+    public float SlideTimer { get => slideTimer; set => slideTimer = value; }
 
     public float slideYScale;
     private float startYScale;
@@ -24,6 +25,7 @@ public class Sliding : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
+    
 
     private void Start()
     {
