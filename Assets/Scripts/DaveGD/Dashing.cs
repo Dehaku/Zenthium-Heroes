@@ -61,6 +61,9 @@ public class Dashing : MonoBehaviour
     private void Dash()
     {
         // Check if we need to touch the ground to recharge.
+        if (pm.state == PlayerMovementAdvanced.MovementState.swinging ||
+            pm.state == PlayerMovementAdvanced.MovementState.grappling)
+            return;
 
         if (dashCdTimer > 0) return;
         else dashCdTimer = dashCd;
