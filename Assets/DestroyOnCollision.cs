@@ -28,10 +28,5 @@ public class DestroyOnCollision : MonoBehaviour
         Debug.Log("Collision!");
     }
 
-    Fix Climb Time
-Add ground refresh to Dash
-Fix camera tilt when swapping styles while wallrunning
-Fix slide momentum keep
-        fix mid air crouching
-        disable dash during swing
+    
 }
