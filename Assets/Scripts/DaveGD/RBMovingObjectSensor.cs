@@ -7,8 +7,6 @@ namespace PhysicsBasedCharacterController
     public class RBMovingObjectSensor : MonoBehaviour
     {
         public RBMovingObject rbMovingObject;
-        private BoxCollider boxCollider;
-
 
         /**/
 

@@ -5,10 +5,11 @@ using UnityEngine;
 
 namespace PhysicsBasedCharacterController
 {
-    [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(Rigidbody))]
     public class RBMovingObject : MonoBehaviour
     {
+        public bool GainMomentumOnExitCollision = true;
+
         private List<Rigidbody> rigidbodies = new List<Rigidbody>();
 
         private Vector3 lastEulerAngles;
@@ -85,7 +86,13 @@ namespace PhysicsBasedCharacterController
 
         public void Remove(Rigidbody _rb)
         {
-            if (rigidbodies.Contains(_rb)) rigidbodies.Remove(_rb);
+            if (rigidbodies.Contains(_rb))
+            {
+                if (GainMomentumOnExitCollision && rigidbody.velocity.magnitude > 0) _rb.velocity += rigidbody.velocity;
+                rigidbodies.Remove(_rb);
+            }
+                
+                
         }
 
         #endregion
