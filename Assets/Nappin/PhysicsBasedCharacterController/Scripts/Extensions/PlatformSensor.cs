@@ -16,6 +16,8 @@ namespace PhysicsBasedCharacterController
         private void Awake()
         {
             movingPlatform = this.transform.parent.GetComponent<MovingPlatform>();
+            if (!movingPlatform)
+                Debug.LogError(transform.parent.name + "No moving platform assigned!");
         }
 
 
@@ -23,15 +25,37 @@ namespace PhysicsBasedCharacterController
 
         private void OnTriggerEnter(Collider other)
         {
+            
             Rigidbody rigidbody = other.GetComponent<Rigidbody>();
-            if (rigidbody != null && rigidbody != movingPlatform.GetComponent<Rigidbody>()) movingPlatform.Add(rigidbody);
+            if (rigidbody != null && rigidbody != movingPlatform.GetComponent<Rigidbody>())
+            {
+                movingPlatform.Add(rigidbody);
+                return;
+            }
+            //if(other.attachedRigidbody != null && other.attachedRigidbody != movingPlatform.GetComponent<Rigidbody>()) movingPlatform.Add(rigidbody);
+            Debug.Log("Trigger In: " + other.attachedRigidbody);
+            if (other.attachedRigidbody)
+            {
+                movingPlatform.Add(other.attachedRigidbody);
+                Debug.Log("Name of : " + other.attachedRigidbody.name);
+            }
+                
         }
 
 
         private void OnTriggerExit(Collider other)
         {
             Rigidbody rigidbody = other.GetComponent<Rigidbody>();
-            if (rigidbody != null && rigidbody != movingPlatform.GetComponent<Rigidbody>()) movingPlatform.Remove(rigidbody);
+            if (rigidbody != null && rigidbody != movingPlatform.GetComponent<Rigidbody>())
+            {
+                movingPlatform.Remove(rigidbody);
+                return;
+            }
+            if (other.attachedRigidbody)
+            {
+                movingPlatform.Remove(other.attachedRigidbody);
+                return;
+            }
         }
 
         #endregion

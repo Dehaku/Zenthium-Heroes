@@ -131,7 +131,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
         StateHandler();
 
         // handle drag
-        if ((state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching) && !activeGrapple)
+        if(transform.parent)
+        {
+            rb.drag = 0;
+        }
+        else if ((state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching) && !activeGrapple)
             rb.drag = groundDrag;
         else
             rb.drag = 0;
@@ -358,6 +362,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
         else if (grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
+
+
         
 
         // in air
@@ -371,6 +377,10 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private void SpeedControl()
     {
         if (activeGrapple) return;
+
+        // Velocities get funky when parenting.
+        if (transform.parent)
+            return;
 
         bool ledgeJump = false;
         if(ledgeGrabScript)

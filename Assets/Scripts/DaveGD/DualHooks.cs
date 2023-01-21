@@ -190,12 +190,16 @@ public class DualHooks : MonoBehaviour
         connectionPoints[swingIndex] = connectionPoint.transform;
         
 
+        /*
         if(connectionPoints[swingIndex].parent)
             if(connectionPoints[swingIndex].parent.TryGetComponent<Rigidbody>(out Rigidbody rb))
             {
-                //joints[swingIndex].connectedBody = rb;
+                joints[swingIndex].autoConfigureConnectedAnchor = true;
+                joints[swingIndex].connectedBody = rb;
                 
+
             }
+        */
                 
 
         
@@ -349,7 +353,23 @@ public class DualHooks : MonoBehaviour
             UpdateJoints(extendedDistanceFromPoint);
         }
         if(joints[0] && connectionPoints[0])
+        {
+            // Attempting to let the player drag objects
+            
+            /*
+            if(connectionPoints[0].parent.TryGetComponent<Rigidbody>(out Rigidbody rb))
+            {
+                //Debug.Log(joints[0].anchor + ":" + joints[0].connectedAnchor);
+                //joints[0].connectedAnchor = connectionPoints[0].position;
+                //joints[0].minDistance = 5;
+                //joints[0].maxDistance = 15;
+            }
+            else
+                joints[0].connectedAnchor = connectionPoints[0].position;
+            */
             joints[0].connectedAnchor = connectionPoints[0].position;
+        }
+            
         if (joints[1] && connectionPoints[1])
             joints[1].connectedAnchor = connectionPoints[1].position;
 

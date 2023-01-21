@@ -108,8 +108,11 @@ public class GrapplingRopeSpin : MonoBehaviour
 
 
 
-            //var grapplePoint = grapplingGun.swingPoints[i];
-            var grapplePoint = grapplingGun.connectionPoints[i].position;
+            var grapplePoint = grapplingGun.swingPoints[i];
+            if (grapplingGun.connectionPoints[i])
+            {
+                grapplePoint = grapplingGun.connectionPoints[i].position;
+            }
 
             var gunTipPosition = grapplingGun.gunTips[i].position;
 
