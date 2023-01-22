@@ -13440,7 +13440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 720904805}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.81746, y: 54.916946, z: -126.98796}
+  m_LocalPosition: {x: -29.81746, y: 54.916946, z: -127.64795}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 451104029}
@@ -17086,7 +17086,6 @@ GameObject:
   m_Component:
   - component: {fileID: 932844435}
   - component: {fileID: 932844437}
-  - component: {fileID: 932844436}
   m_Layer: 16
   m_Name: Sensor
   m_TagString: Untagged
@@ -17108,19 +17107,6 @@ Transform:
   m_Father: {fileID: 1773540729}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &932844436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 932844434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b912ce8cbf078a40a7defa2c0d94a56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rbMovingObject: {fileID: 1773540732}
 --- !u!65 &932844437
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17627,7 +17613,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GainMomentumOnExitCollision: 1
-  GainAngularMomentumOnExitCollision: 1
 --- !u!1 &960304723
 GameObject:
   m_ObjectHideFlags: 0
@@ -17762,7 +17747,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -113.4, y: 70.74, z: -180.76001}
+  m_LocalPosition: {x: -113.4, y: 70.74, z: -181.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1783819647}
@@ -26418,8 +26403,6 @@ GameObject:
   - component: {fileID: 1544579306}
   - component: {fileID: 1544579305}
   - component: {fileID: 1544579304}
-  - component: {fileID: 1544579307}
-  - component: {fileID: 1544579308}
   m_Layer: 16
   m_Name: Truck (1)
   m_TagString: Untagged
@@ -26468,47 +26451,10 @@ Transform:
   m_LocalPosition: {x: -103.84, y: 20.31, z: -317.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1569801338}
   - {fileID: 1694135738}
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 12.189, z: 0}
---- !u!65 &1544579307
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1544579303}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 8.06, y: 5.56, z: 15.36}
-  m_Center: {x: 0, y: 0.8, z: 0}
---- !u!114 &1544579308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1544579303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e6e42095cd5f6941a76244515f2a735, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destinations:
-  - {x: -103.84, y: 20.31, z: -317.66}
-  - {x: 0, y: 0, z: 0}
-  timeDelay: 1000000
-  timeDelayBeginningEnd: 1000001
-  platformSpeedDamp: 0
-  smoothMovement: 0
-  canTranslate: 0
-  rotationSpeed: {x: 0, y: 0, z: 0}
-  canRotate: 0
-  canBeMoved: 0
 --- !u!1 &1547580380
 GameObject:
   m_ObjectHideFlags: 0
@@ -26734,6 +26680,7 @@ GameObject:
   - component: {fileID: 1557719956}
   - component: {fileID: 1557719959}
   - component: {fileID: 1557719957}
+  - component: {fileID: 1557719958}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -26765,7 +26712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557719948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -113.4, y: 70.2, z: -177.6}
+  m_LocalPosition: {x: -113.4, y: 70.2, z: -178.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 595340504}
@@ -27032,6 +26979,24 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   debugSpeedGrappleThing: 12
+--- !u!114 &1557719958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557719948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af0a710bcf2e124c87744fdbd5ee731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KeepMomentumOnExitCollision: 0
+  KeepRotationMomentumOnExitCollision: 0
+  _myTransform: {fileID: 1557719950}
+  _myRB: {fileID: 1557719949}
+  _carrierTransform: {fileID: 0}
+  _carrierRB: {fileID: 0}
 --- !u!114 &1557719959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27245,63 +27210,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565642314}
   m_CullTransparentMesh: 1
---- !u!1 &1569801337
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1569801338}
-  - component: {fileID: 1569801340}
-  - component: {fileID: 1569801339}
-  m_Layer: 16
-  m_Name: Sensor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1569801338
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569801337}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1544579306}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1569801339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569801337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61a3037e0014c5345be9034239b44458, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &1569801340
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569801337}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 8.6, y: 5.84, z: 15.71}
-  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!1 &1576033360
 GameObject:
   m_ObjectHideFlags: 0
@@ -28942,7 +28850,7 @@ Transform:
   - {fileID: 1686100977}
   - {fileID: 1543139090}
   m_Father: {fileID: 1544579306}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1696447145
 GameObject:
@@ -30078,7 +29986,6 @@ GameObject:
   - component: {fileID: 1773540729}
   - component: {fileID: 1773540730}
   - component: {fileID: 1773540731}
-  - component: {fileID: 1773540732}
   m_Layer: 16
   m_Name: CraneMotor
   m_TagString: Untagged
@@ -30135,20 +30042,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &1773540732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773540728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73f64d5df9d693b4b90e3632d370d7a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GainMomentumOnExitCollision: 1
-  GainAngularMomentumOnExitCollision: 1
 --- !u!1 &1779429636
 GameObject:
   m_ObjectHideFlags: 0
@@ -48708,7 +48601,7 @@ PrefabInstance:
     - target: {fileID: 8113856756836102672, guid: d00b6f15d6c6be04a849e6d8d906c243,
         type: 3}
       propertyPath: canBeMoved
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8113856756836102673, guid: d00b6f15d6c6be04a849e6d8d906c243,
         type: 3}

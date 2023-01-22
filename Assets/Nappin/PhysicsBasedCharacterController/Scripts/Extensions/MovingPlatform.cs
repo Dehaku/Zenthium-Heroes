@@ -10,6 +10,8 @@ namespace PhysicsBasedCharacterController
     public class MovingPlatform : MonoBehaviour
     {
         [Header("Platform movement")]
+        public bool DisableCarry = true; // A dirty disable for other tests.
+
         public Vector3[] destinations;
         public float timeDelay;
         public float timeDelayBeginningEnd;
@@ -102,6 +104,9 @@ namespace PhysicsBasedCharacterController
 
         private void UpdateBodies()
         {
+            if (DisableCarry) // A dirty disable for other tests.
+                return;
+
             if (rigidbodies.Count > 0)
             {
                 Vector3 velocity = transform.position - lastPosition;
