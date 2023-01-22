@@ -50,20 +50,33 @@ namespace PhysicsBasedCharacterController
 
                     //rb.transform.RotateAround(transform.position, Vector3.up, angularVelocity.y);
 
-                    if (angularVelocity.y > 0)
+                    //rb.position += velocity;
+                    rb.transform.Translate(velocity, Space.World);
+                    rb.transform.RotateAround(transform.position, Vector3.up, angularVelocity.y);
+
+                    string text = "";
+                    if (angularVelocity.y > 0.1f || angularVelocity.y < -0.1f)
                     {
-                        if (!rb)
-                            Debug.Log("RB Missing!" + name + gameObject.name + ", Size: " + rigidbodies.Count);
+                        Debug.Log("Spinning");
+                            
+                        text += rb.position.ToString("F4") + " : ";
                         //rb.transform.RotateAround(transform.position, Vector3.up, angularVelocity.y);
-                        try { rb.GetComponent<CharacterManager>().targetAngle = rb.GetComponent<CharacterManager>().targetAngle + angularVelocity.y; }
-                        catch { /* Debug.Log("There is no player on the platform") */ }
+                        text += rb.position.ToString("F4");
+                        
+                        //rb.transform.RotateAround(transform.position, Vector3.up, angularVelocity.y);
+                    }
+                    else
+                    {
+                        //rb.position += velocity;
                     }
 
                     //if (rigidbody.velocity.magnitude > 0) rb.velocity += rigidbody.velocity;
 
-                    rb.position += velocity;
-                    if(rb.name == "Player")
-                        Debug.Log(rb.name + ", v: " + velocity + ", a:" + angularVelocity);
+                    
+                    text += " : " + rb.position.ToString("F4");
+                    Debug.Log(text);
+                    if (rb.name == "Player")
+                        Debug.Log(rb.name + ", v: " + velocity.ToString("F4") + ", a:" + angularVelocity.ToString("F4"));
                 }
             }
             Debug.Log("RBs: " + rigidbodies.Count);

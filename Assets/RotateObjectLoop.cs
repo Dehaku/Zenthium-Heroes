@@ -10,6 +10,7 @@ public class RotateObjectLoop : MonoBehaviour
     public float rotationTime;
     public LoopType loopType;
     public Ease easeMethod;
+    public UpdateType updateType;
 
 
     private Vector3 _startRotation;
@@ -24,7 +25,8 @@ public class RotateObjectLoop : MonoBehaviour
         var rotate = transform.DORotate(rotationAmount, rotationTime, RotateMode.FastBeyond360)
             .SetLoops(-1, loopType)
             .SetRelative()
-            .SetEase(easeMethod);
+            .SetEase(easeMethod)
+            .SetUpdate(updateType);
     }
 
     // Update is called once per frame
