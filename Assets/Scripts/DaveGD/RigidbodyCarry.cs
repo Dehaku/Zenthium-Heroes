@@ -26,6 +26,9 @@ public class RigidbodyCarry : MonoBehaviour
     public LayerMask carrierLayerMasks;
     public Transform alternateCastPosition;
 
+    [Space(5)]
+    public bool drawDebugRaycastLines = false;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -123,41 +126,132 @@ public class RigidbodyCarry : MonoBehaviour
 
         bool anyHits = false;
         RaycastHit raycastHit;
+
+        // =====Down=====
         // Downcast should be universal, if not, feel free to add a bool here.
         Physics.Raycast(castPos, -castUp,
                             out raycastHit, rayCastLength, carrierLayerMasks);
-        
+
         if (raycastHit.collider)
+            anyHits = RaycastHit(raycastHit.collider);
+
+        if (drawDebugRaycastLines)
         {
-            
-
-            // Do we allow moving objects without rigidbodies?
-            if(allowNonRigidbodyCarriersToo)
-            {
-                anyHits = true;
-                Debug.Log("Not implemented yet");
-            }
-
-            // Assign hit rigidbody as our carrier
-            Rigidbody _rb = raycastHit.collider.attachedRigidbody;
-            if (_rb)
-            {
-                anyHits = true;
-                if (_rb != _myRB && _rb != _carrierRB)
-                    SetCarrier(_rb);
-            }
-                
+            if(raycastHit.collider)
+                Debug.DrawLine(castPos, raycastHit.point, Color.white);
+            else
+                Debug.DrawLine(castPos, castPos + (-castUp * rayCastLength), Color.green);
         }
 
-        
+        // =====Sideways=====
+        // If down didn't hit, let's cast around us if allowed.
+        if(useSidewaysRays && anyHits == false)
+        {
+            // Right Cast
+            Physics.Raycast(castPos, castRight,
+                                out raycastHit, rayCastLength, carrierLayerMasks);
 
-        if(anyHits == false)
+            if (raycastHit.collider)
+                anyHits = RaycastHit(raycastHit.collider);
+
+            if (drawDebugRaycastLines)
+            {
+                if (raycastHit.collider)
+                    Debug.DrawLine(castPos, raycastHit.point, Color.white);
+                else
+                    Debug.DrawLine(castPos, castPos + (castRight * rayCastLength), Color.red);
+            }
+
+            // Left Cast
+            if(anyHits == false)
+            {
+                Physics.Raycast(castPos, -castRight,
+                                out raycastHit, rayCastLength, carrierLayerMasks);
+
+                if (raycastHit.collider)
+                    anyHits = RaycastHit(raycastHit.collider);
+
+                if (drawDebugRaycastLines)
+                {
+                    if (raycastHit.collider)
+                        Debug.DrawLine(castPos, raycastHit.point, Color.white);
+                    else
+                        Debug.DrawLine(castPos, castPos + (-castRight * rayCastLength), Color.red);
+                }
+            }
+        }
+
+        // =====Front and Back=====
+        // If down AND sides didn't hit, let's cast front and back if allowed.
+        if (useFrontAndBackRays && anyHits == false)
+        {
+            // Forward Cast
+            Physics.Raycast(castPos, castForward,
+                                out raycastHit, rayCastLength, carrierLayerMasks);
+
+            if (raycastHit.collider)
+                anyHits = RaycastHit(raycastHit.collider);
+
+            if (drawDebugRaycastLines)
+            {
+                if (raycastHit.collider)
+                    Debug.DrawLine(castPos, raycastHit.point, Color.white);
+                else
+                    Debug.DrawLine(castPos, castPos + (castForward * rayCastLength), Color.blue);
+            }
+
+            // Back Cast
+            if (anyHits == false)
+            {
+                Physics.Raycast(castPos, -castForward,
+                                out raycastHit, rayCastLength, carrierLayerMasks);
+
+                if (raycastHit.collider)
+                    anyHits = RaycastHit(raycastHit.collider);
+
+                if (drawDebugRaycastLines)
+                {
+                    if (raycastHit.collider)
+                        Debug.DrawLine(castPos, raycastHit.point, Color.white);
+                    else
+                        Debug.DrawLine(castPos, castPos + (-castForward * rayCastLength), Color.blue);
+                }
+            }
+        }
+
+
+
+
+
+        if (anyHits == false)
         {
             if (_carrierRB)
                 RemoveCarrier(_carrierRB);
                 
         }
 
+    }
+
+    bool RaycastHit(Collider collider)
+    {
+        bool anyHits = false;
+        // Do we allow moving objects without rigidbodies?
+        if (allowNonRigidbodyCarriersToo)
+        {
+            anyHits = true;
+            Debug.Log("Not implemented yet");
+        }
+
+        // Assign hit rigidbody as our carrier
+        Rigidbody _rb = collider.attachedRigidbody;
+        if (_rb)
+        {
+            anyHits = true;
+            if (_rb != _myRB && _rb != _carrierRB)
+                SetCarrier(_rb);
+        }
+
+        return anyHits;
     }
 
     private void OnCollisionEnter(Collision other)
