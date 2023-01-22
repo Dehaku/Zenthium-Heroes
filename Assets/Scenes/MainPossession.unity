@@ -26991,7 +26991,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af0a710bcf2e124c87744fdbd5ee731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowNonRigidbodyCarriersToo: 0
   keepMomentumOnExitCollision: 1
   keepRotationMomentumOnExitCollision: 1
   _myTransform: {fileID: 1557719950}
@@ -26999,9 +26998,9 @@ MonoBehaviour:
   _carrierTransform: {fileID: 0}
   _carrierRB: {fileID: 0}
   useRayCastInsteadOfCollision: 1
-  useSidewaysRays: 0
-  useFrontAndBackRays: 0
-  rayCastLength: 2
+  allowHorizontalRays: 1
+  downRayCastLength: 2
+  horizontalRayCastLength: 1
   carrierLayerMasks:
     serializedVersion: 2
     m_Bits: 65536
