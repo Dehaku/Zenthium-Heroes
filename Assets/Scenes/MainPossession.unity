@@ -17627,6 +17627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GainMomentumOnExitCollision: 1
+  GainAngularMomentumOnExitCollision: 1
 --- !u!1 &960304723
 GameObject:
   m_ObjectHideFlags: 0
@@ -30117,6 +30118,7 @@ MonoBehaviour:
   rotationTime: 10
   loopType: 1
   easeMethod: 4
+  updateType: 2
 --- !u!54 &1773540731
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -30146,6 +30148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GainMomentumOnExitCollision: 1
+  GainAngularMomentumOnExitCollision: 1
 --- !u!1 &1779429636
 GameObject:
   m_ObjectHideFlags: 0
@@ -34446,6 +34449,7 @@ MonoBehaviour:
   rotationTime: 10
   loopType: 1
   easeMethod: 4
+  updateType: 0
 --- !u!1 &2085094909
 GameObject:
   m_ObjectHideFlags: 0

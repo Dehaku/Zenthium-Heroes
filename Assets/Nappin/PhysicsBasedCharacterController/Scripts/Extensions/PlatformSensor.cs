@@ -33,11 +33,9 @@ namespace PhysicsBasedCharacterController
                 return;
             }
             //if(other.attachedRigidbody != null && other.attachedRigidbody != movingPlatform.GetComponent<Rigidbody>()) movingPlatform.Add(rigidbody);
-            Debug.Log("Trigger In: " + other.attachedRigidbody);
             if (other.attachedRigidbody)
             {
                 movingPlatform.Add(other.attachedRigidbody);
-                Debug.Log("Name of : " + other.attachedRigidbody.name);
             }
                 
         }

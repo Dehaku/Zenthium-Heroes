@@ -123,8 +123,6 @@ namespace PhysicsBasedCharacterController
                     //if (rigidbody.velocity.magnitude > 0) rb.velocity += rigidbody.velocity;
 
                     rb.position += velocity;
-                    if(rb.name == "Player")
-                        Debug.Log(rb.name + ", v: " + velocity + ", a:" + angularVelocity);
                 }
             }
 
@@ -139,7 +137,6 @@ namespace PhysicsBasedCharacterController
 
         public void Add(Rigidbody _rb)
         {
-            Debug.Log("Adding: " + _rb.name);
             if (!rigidbodies.Contains(_rb)) rigidbodies.Add(_rb);
         }
 
