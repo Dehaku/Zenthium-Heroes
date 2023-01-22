@@ -2,27 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Cobbled together by Dehaku with love and frustration
+
 public class RigidbodyCarry : MonoBehaviour
 {
+    
 
-    public bool keepMomentumOnExitCollision = true;
-    public bool keepRotationMomentumOnExitCollision = true;
+    [Tooltip("Purely keeps carrier's velocity, no rotations are tracked.")]
+    public bool keepBasicMomentumOnExitCollision = true;
+    
+    [Tooltip("Attempts to keep carrier rotational values in exit momentum. \n Cranes, for example, don't move, but rotate and you can launch off of them.")]
+    public bool keepAdvancedMomentumOnExitCollision = true;
 
     [SerializeField] Transform _myTransform;
     [SerializeField] Rigidbody _myRB;
 
     private Vector3 lastEulerAngles;
     private Vector3 lastPosition;
+    private Vector3 myLastPosition;
+    
 
     [SerializeField] private Transform _carrierTransform;
     [SerializeField] private Rigidbody _carrierRB;
 
     [Header("Raycast Or Collision")]
     public bool useRayCastInsteadOfCollision = false;
+    
+    [Tooltip("Mainly for wallrunning/climbing moving objects.")]
     public bool allowHorizontalRays = false;
     public float downRayCastLength = 1f;
     public float horizontalRayCastLength = 1f;
     public LayerMask carrierLayerMasks;
+    [Header("Optional")]
     public Transform alternateCastPosition;
 
     [Space(5)]
@@ -70,10 +81,12 @@ public class RigidbodyCarry : MonoBehaviour
             RaycastChecks();
 
 
+        /*
         if (_carrierRB)
             Debug.Log("Carrier: " + _carrierRB.name);
         else
             Debug.Log("Carrier: None");
+        */
     }
 
     private void FixedUpdate()
@@ -95,6 +108,7 @@ public class RigidbodyCarry : MonoBehaviour
 
             lastPosition = _carrierTransform.position;
             lastEulerAngles = _carrierTransform.eulerAngles;
+            myLastPosition = _myRB.position;
         }
     }
 
@@ -111,11 +125,29 @@ public class RigidbodyCarry : MonoBehaviour
         lastEulerAngles = _carrierTransform.eulerAngles;
     }
 
-
+    float launchDrag = 1;
     public void RemoveCarrier(Rigidbody _rb)
     {
-        if (keepMomentumOnExitCollision && _myRB.velocity.magnitude > 0)
+        if (keepBasicMomentumOnExitCollision && _myRB.velocity.magnitude > 0 &&
+            !keepAdvancedMomentumOnExitCollision)
             _myRB.velocity += _rb.velocity;
+        
+        if (keepAdvancedMomentumOnExitCollision)
+        {
+            float desiredFinalMagnitude = _myRB.velocity.magnitude;
+
+            Vector3 dest = _myRB.position;
+
+            float distance = Vector3.Distance(dest, myLastPosition);
+            float speedNeeded = distance / launchDrag + desiredFinalMagnitude;
+
+            Vector3 direction = (dest - myLastPosition).normalized;
+            
+            Vector3 finalPush = direction * speedNeeded;
+            
+            finalPush = new Vector3(finalPush.x, 0, finalPush.z);
+            _myRB.velocity += finalPush;
+        }
         
         _carrierRB = null;
     }
@@ -127,15 +159,15 @@ public class RigidbodyCarry : MonoBehaviour
     {
 
         Vector3 castPos = transform.position;
-        Vector3 castForward = transform.forward;
-        Vector3 castUp = transform.up;
-        Vector3 castRight = transform.right;
+        //Vector3 castForward = transform.forward;
+        //Vector3 castUp = transform.up;
+        //Vector3 castRight = transform.right;
         if (alternateCastPosition)
         {
             castPos = alternateCastPosition.position;
-            castForward = alternateCastPosition.forward;
-            castUp = alternateCastPosition.up;
-            castRight = alternateCastPosition.right;
+            //castForward = alternateCastPosition.forward;
+            //castUp = alternateCastPosition.up;
+            //castRight = alternateCastPosition.right;
         }
 
         bool anyHits = false;
@@ -143,7 +175,7 @@ public class RigidbodyCarry : MonoBehaviour
 
         // =====Down=====
         // Downcast should be universal, if not, feel free to add a bool here.
-        Physics.Raycast(castPos, -castUp,
+        Physics.Raycast(castPos, vectorDirections[0],
                             out raycastHit, downRayCastLength, carrierLayerMasks);
 
         if (raycastHit.collider)
@@ -154,7 +186,7 @@ public class RigidbodyCarry : MonoBehaviour
             if(raycastHit.collider)
                 Debug.DrawLine(castPos, raycastHit.point, Color.green);
             else
-                Debug.DrawLine(castPos, castPos + (-castUp * downRayCastLength), Color.red);
+                Debug.DrawLine(castPos, castPos + (vectorDirections[0] * downRayCastLength), Color.red);
         }
 
         // =====Horizontal=====
