@@ -124,7 +124,7 @@ public class DualHooks : MonoBehaviour
     {
         for (int i = 0; i < amountOfSwingPoints; i++)
         {
-            if (swingsActive[i]) { /* Do Nothing */ }
+            if (swingsActive[i] || grapplesActive[i]) { /* Do Nothing */ }
             else
             {
                 RaycastHit sphereCastHit;
@@ -163,6 +163,15 @@ public class DualHooks : MonoBehaviour
 
                 predictionHits[i] = raycastHit.point == Vector3.zero ? sphereCastHit : raycastHit;
             }
+
+            // Move the points to where we're latched onto.
+            
+            if (swingsActive[i] || grapplesActive[i])
+            {
+                if (connectionPoints[i])
+                    predictionPoints[i].position = connectionPoints[i].position;
+            }
+            
         }
     }
 
@@ -249,7 +258,14 @@ public class DualHooks : MonoBehaviour
 
             grapplesActive[grappleIndex] = true;
 
+
             swingPoints[grappleIndex] = predictionHits[grappleIndex].point;
+            
+            // Tracking rope position on moving body
+            GameObject connectionPoint = new GameObject();
+            connectionPoint.transform.parent = predictionHits[grappleIndex].collider.transform;
+            connectionPoint.transform.position = predictionHits[grappleIndex].point;
+            connectionPoints[grappleIndex] = connectionPoint.transform;
 
             StartCoroutine(ExecuteGrapple(grappleIndex));
         }

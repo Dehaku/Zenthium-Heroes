@@ -83,6 +83,7 @@ public class GrapplingRopeSpin : MonoBehaviour
 
                     lineRenderers[i].positionCount = 0;
 
+                // Go no further since we're not active.
                 continue;
             }
 
@@ -108,7 +109,7 @@ public class GrapplingRopeSpin : MonoBehaviour
 
 
 
-            var grapplePoint = grapplingGun.swingPoints[i];
+            Vector3 grapplePoint = grapplingGun.swingPoints[i];
             if (grapplingGun.connectionPoints[i])
             {
                 grapplePoint = grapplingGun.connectionPoints[i].position;
