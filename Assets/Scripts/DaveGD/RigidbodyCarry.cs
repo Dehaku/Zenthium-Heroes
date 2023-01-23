@@ -22,8 +22,8 @@ public class RigidbodyCarry : MonoBehaviour
     private Vector3 myLastPosition;
     
 
-    [SerializeField] private Transform _carrierTransform;
-    [SerializeField] private Rigidbody _carrierRB;
+    private Transform _carrierTransform;
+    private Rigidbody _carrierRB;
 
     [Header("Raycast Or Collision")]
     public bool useRayCastInsteadOfCollision = false;

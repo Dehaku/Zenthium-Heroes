@@ -740,6 +740,102 @@ Transform:
   m_Father: {fileID: 446188621}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &44541811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 44541815}
+  - component: {fileID: 44541814}
+  - component: {fileID: 44541813}
+  - component: {fileID: 44541812}
+  m_Layer: 18
+  m_Name: Ledge (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &44541812
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44541811}
+  m_Material: {fileID: 13400000, guid: 552a7ce73d737f54097b5eadd9382fa1, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &44541813
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44541811}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9503aa2300e0bf34fb32ef8d63124d55, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &44541814
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44541811}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &44541815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44541811}
+  m_LocalRotation: {x: 0.00026359296, y: -0.0033019478, z: 0.0037113617, w: 0.99998766}
+  m_LocalPosition: {x: -1.191, y: 0.143, z: 0.093}
+  m_LocalScale: {x: 0.06612761, y: 0.117991194, z: 1.083151}
+  m_Children: []
+  m_Father: {fileID: 1091890317}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.032, y: 359.622, z: 0.425}
 --- !u!1 &49064972
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,7 +2562,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1091890317}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &164701042
 SphereCollider:
@@ -15315,7 +15411,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1091890317}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &819223568
 SphereCollider:
@@ -16145,7 +16241,7 @@ Transform:
   m_LocalScale: {x: 2.2759, y: 2.2759, z: 4.6997333}
   m_Children: []
   m_Father: {fileID: 1091890317}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &854732620
 GameObject:
@@ -20119,6 +20215,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
+  - {fileID: 44541815}
   - {fileID: 852398520}
   - {fileID: 1330088951}
   - {fileID: 1627217447}
@@ -22091,7 +22188,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1091890317}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1248828820
 SphereCollider:
@@ -23256,7 +23353,7 @@ Transform:
   m_LocalScale: {x: 1.3790815, y: 1.4676186, z: 1.0790327}
   m_Children: []
   m_Father: {fileID: 1091890317}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1330088952
 BoxCollider:
@@ -26991,15 +27088,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af0a710bcf2e124c87744fdbd5ee731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keepMomentumOnExitCollision: 1
-  keepRotationMomentumOnExitCollision: 1
+  keepBasicMomentumOnExitCollision: 1
+  keepAdvancedMomentumOnExitCollision: 1
   _myTransform: {fileID: 1557719950}
   _myRB: {fileID: 1557719949}
-  _carrierTransform: {fileID: 0}
-  _carrierRB: {fileID: 0}
   useRayCastInsteadOfCollision: 1
   allowHorizontalRays: 1
-  downRayCastLength: 2
+  downRayCastLength: 1.2
   horizontalRayCastLength: 1
   carrierLayerMasks:
     serializedVersion: 2
@@ -27935,7 +28030,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1091890317}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1627217448
 SphereCollider:
@@ -37466,7 +37561,7 @@ MonoBehaviour:
     m_ActionId: 32dc905e-78f2-4a2e-9319-4a4074d435fe
     m_ActionName: Ground/CycleCameras[/Keyboard/1,/XInputControllerWindows/select,/LogitechDualAction/select]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: KeyboardMouse
   m_DefaultActionMap: Ground
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
