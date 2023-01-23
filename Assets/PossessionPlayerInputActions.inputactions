@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
-                    "type": "Value",
-                    "id": "e5a367a2-122e-4454-9faf-ea196e2b6d6e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Look",
                     "type": "PassThrough",
                     "id": "eab43374-a87f-47a4-b61a-1537fd3c5553",
@@ -33,9 +24,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Jump",
+                    "type": "Value",
+                    "id": "e5a367a2-122e-4454-9faf-ea196e2b6d6e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Aim",
                     "type": "Value",
                     "id": "03dc7e62-1515-4f70-9bc6-233333584cef",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Fire",
+                    "type": "Value",
+                    "id": "2c7ec9ab-bfb0-4457-b008-ae6358bb7eca",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -63,15 +72,6 @@
                     "name": "CameraDistanceZoom",
                     "type": "Value",
                     "id": "e81557fa-b740-40c6-a678-883abb630983",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Fire",
-                    "type": "Value",
-                    "id": "2c7ec9ab-bfb0-4457-b008-ae6358bb7eca",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -177,9 +177,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Pause",
+                    "name": "Possession",
                     "type": "Value",
-                    "id": "e549510e-d24a-4a15-aeb8-7bd0b319ce82",
+                    "id": "68d1e5ab-f520-49a8-a7b8-783cd5be0ed2",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -206,28 +206,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fd57adc7-9839-4f1a-b6c1-512b0177d538",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "Normalize",
-                    "groups": "KeyboardMouse",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5117826d-db9f-429c-b3ea-abab23736882",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "ScaleVector2(x=30,y=30)",
-                    "groups": "Gamepad",
-                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -393,28 +371,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "CameraDistanceZoom",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "70625d77-249b-45b1-ad1d-b5bdf1c1d4f7",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b1744fa9-fcfa-4f60-b7b7-1e31ab88691d",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -662,34 +618,89 @@
                 },
                 {
                     "name": "",
-                    "id": "34916dde-e242-45e5-97a6-a302e8c2cb06",
-                    "path": "<Keyboard>/escape",
+                    "id": "809490ec-2e39-433b-b700-f05f303c499a",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "Pause",
+                    "action": "Possession",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "LB+RB",
+                    "id": "894ce32d-821f-4baf-9ece-455ea0d2e118",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Possession",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "30f01a65-e568-4bbd-b522-9ab424b5cff9",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Possession",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "54026ae1-2495-47bd-a9a3-74998a0f3ce6",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Possession",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "fd57adc7-9839-4f1a-b6c1-512b0177d538",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "Normalize",
+                    "groups": "KeyboardMouse",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "f2d64bf4-e992-4dd7-8ea8-0760fb8144d4",
-                    "path": "<Keyboard>/tab",
+                    "id": "5117826d-db9f-429c-b3ea-abab23736882",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Pause",
+                    "processors": "ScaleVector2(x=30,y=30)",
+                    "groups": "Gamepad",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "a299d625-30a4-443b-9b15-e39375a1b062",
-                    "path": "<Gamepad>/start",
+                    "id": "70625d77-249b-45b1-ad1d-b5bdf1c1d4f7",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b1744fa9-fcfa-4f60-b7b7-1e31ab88691d",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Pause",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
