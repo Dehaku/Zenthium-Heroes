@@ -104,6 +104,8 @@ public class DualHooks : MonoBehaviour
 
         if (swingsActive[0] && swingsActive[1])
             bothSwingsActive = true;
+        else
+            bothSwingsActive = false;
 
         if (joints[0] != null || joints[1] != null) OdmGearMovement();
 
