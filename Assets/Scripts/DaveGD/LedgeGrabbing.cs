@@ -74,11 +74,17 @@ public class LedgeGrabbing : MonoBehaviour
 
     private void LedgeDetection()
     {
-        bool ledgeDetected = Physics.SphereCast(transform.position, ledgeSphereCastRadius, cam.forward, out ledgeHit, ledgeDetectionLength, whatIsLedge);
-
+        bool ledgeDetected = false;
+        // Look for new Ledge
+        if(!holding)
+            ledgeDetected = Physics.SphereCast(transform.position, ledgeSphereCastRadius, orientation.forward, out ledgeHit, ledgeDetectionLength, whatIsLedge);
+        
+        // Aim at our Current ledge instead, so we can look away without breaking it.
+        if(!ledgeDetected && holding)
+            ledgeDetected = Physics.SphereCast(transform.position, ledgeSphereCastRadius, (ledgeHit.point-transform.position).normalized, out ledgeHit, ledgeDetectionLength, whatIsLedge);
         if (!ledgeDetected) return;
 
-        float distanceToLedge = Vector3.Distance(transform.position, ledgeHit.transform.position);
+        float distanceToLedge = Vector3.Distance(transform.position, ledgeHit.point);
 
         if (ledgeHit.transform == lastLedge) return;
 
@@ -118,10 +124,12 @@ public class LedgeGrabbing : MonoBehaviour
 
     private void FreezeRigidbodyOnLedge()
     {
+        //if (!ledgeHit.collider)
+          //  Debug.Log("No collider found in LedgeHit, something went wrong.");
         rb.useGravity = false;
 
         Vector3 directionToLedge = currLedge.position - transform.position;
-        float distanceToLedge = Vector3.Distance(transform.position, currLedge.position);
+        float distanceToLedge = Vector3.Distance(transform.position, ledgeHit.point);
 
         // Move player towards ledge
         if(distanceToLedge > 1f)
