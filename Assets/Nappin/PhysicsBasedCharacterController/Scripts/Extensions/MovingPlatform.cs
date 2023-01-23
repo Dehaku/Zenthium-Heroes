@@ -39,8 +39,8 @@ namespace PhysicsBasedCharacterController
 
         private Vector3 lastEulerAngles;
         private Vector3 lastPosition;
-        private Transform transform;
-        private Rigidbody rigidbody;
+        private Transform _transform;
+        private Rigidbody _rigidbody;
 
 
         /**/
@@ -48,13 +48,13 @@ namespace PhysicsBasedCharacterController
 
         private void Awake()
         {
-            transform = this.GetComponent<Transform>();
-            lastPosition = transform.position;
-            lastEulerAngles = transform.eulerAngles;
-            rigidbody = this.GetComponent<Rigidbody>();
+            _transform = this.GetComponent<Transform>();
+            lastPosition = _transform.position;
+            lastEulerAngles = _transform.eulerAngles;
+            _rigidbody = this.GetComponent<Rigidbody>();
 
-            if (canTranslate) transform.position = destinations[0];
-            nextDestination = transform.position;
+            if (canTranslate) _transform.position = destinations[0];
+            nextDestination = _transform.position;
         }
 
 
@@ -71,9 +71,9 @@ namespace PhysicsBasedCharacterController
         private void UpdateDestination()
         {
 
-            if (Vector3.Distance(transform.position, nextDestination) <= 0.01f)
+            if (Vector3.Distance(_transform.position, nextDestination) <= 0.01f)
             {
-                rigidbody.position = nextDestination;
+                _rigidbody.position = nextDestination;
 
                 if ((currentDestination == 0 || currentDestination == destinations.Length - 1) && canMove) StartCoroutine(WaitTime(timeDelayBeginningEnd));
                 else if (canMove) StartCoroutine(WaitTime(timeDelay));
@@ -89,14 +89,14 @@ namespace PhysicsBasedCharacterController
             {
                 if (canTranslate)
                 {
-                    if (smoothMovement) rigidbody.position = Vector3.SmoothDamp(transform.position, nextDestination, ref velocity, platformSpeedDamp * Time.deltaTime);
-                    else rigidbody.position = Vector3.MoveTowards(transform.position, nextDestination, platformSpeedDamp * Time.deltaTime);
+                    if (smoothMovement) _rigidbody.position = Vector3.SmoothDamp(_transform.position, nextDestination, ref velocity, platformSpeedDamp * Time.deltaTime);
+                    else _rigidbody.position = Vector3.MoveTowards(_transform.position, nextDestination, platformSpeedDamp * Time.deltaTime);
                 }
 
                 if (canRotate)
                 {
-                    if (!canBeMoved) transform.Rotate(rotationSpeed.x * Time.deltaTime, rotationSpeed.y * Time.deltaTime, rotationSpeed.z * Time.deltaTime);
-                    else rigidbody.AddTorque(new Vector3(rotationSpeed.x, rotationSpeed.y, rotationSpeed.z), ForceMode.Force);
+                    if (!canBeMoved) _transform.Rotate(rotationSpeed.x * Time.deltaTime, rotationSpeed.y * Time.deltaTime, rotationSpeed.z * Time.deltaTime);
+                    else _rigidbody.AddTorque(new Vector3(rotationSpeed.x, rotationSpeed.y, rotationSpeed.z), ForceMode.Force);
                 }
             }
         }
@@ -109,8 +109,8 @@ namespace PhysicsBasedCharacterController
 
             if (rigidbodies.Count > 0)
             {
-                Vector3 velocity = transform.position - lastPosition;
-                Vector3 angularVelocity = transform.eulerAngles - lastEulerAngles;
+                Vector3 velocity = _transform.position - lastPosition;
+                Vector3 angularVelocity = _transform.eulerAngles - lastEulerAngles;
 
                 for (int i = 0; i < rigidbodies.Count; i++)
                 {
@@ -120,7 +120,7 @@ namespace PhysicsBasedCharacterController
                     {
                         if (!rb)
                             Debug.Log("RB Missing!" + name + gameObject.name + ", Size: " + rigidbodies.Count);
-                        rb.transform.RotateAround(transform.position, Vector3.up, angularVelocity.y);
+                        rb.transform.RotateAround(_transform.position, Vector3.up, angularVelocity.y);
                         try { rb.GetComponent<CharacterManager>().targetAngle = rb.GetComponent<CharacterManager>().targetAngle + angularVelocity.y; }
                         catch { /* Debug.Log("There is no player on the platform") */ }
                     }
@@ -131,8 +131,8 @@ namespace PhysicsBasedCharacterController
                 }
             }
 
-            lastPosition = transform.position;
-            lastEulerAngles = transform.eulerAngles;
+            lastPosition = _transform.position;
+            lastEulerAngles = _transform.eulerAngles;
         }
 
         #endregion

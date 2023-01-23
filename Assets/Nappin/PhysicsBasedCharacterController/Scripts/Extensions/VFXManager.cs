@@ -16,7 +16,7 @@ namespace PhysicsBasedCharacterController
 
         public bool enableVFX = false;
 
-        private CapsuleCollider collider;
+        private CapsuleCollider _collider;
         private GameObject characterModel;
 
 
@@ -25,7 +25,7 @@ namespace PhysicsBasedCharacterController
 
         private void Awake()
         {
-            collider = characterManager.GetComponent<CapsuleCollider>();
+            _collider = characterManager.GetComponent<CapsuleCollider>();
             characterModel = characterManager.characterModel;
         }
 
@@ -36,7 +36,7 @@ namespace PhysicsBasedCharacterController
         {
             if (enableVFX)
             {
-                GameObject tmpObj = GameObject.Instantiate(particleJump, characterManager.transform.position - new Vector3(0f, collider.height / 2f, 0f), Quaternion.identity);
+                GameObject tmpObj = GameObject.Instantiate(particleJump, characterManager.transform.position - new Vector3(0f, _collider.height / 2f, 0f), Quaternion.identity);
                 tmpObj.transform.parent = this.transform;
             }
         }
@@ -45,7 +45,7 @@ namespace PhysicsBasedCharacterController
         {
             if (enableVFX)
             {
-                GameObject tmpObj = GameObject.Instantiate(particleLand, characterManager.transform.position - new Vector3(0f, collider.height / 2f, 0f), Quaternion.identity);
+                GameObject tmpObj = GameObject.Instantiate(particleLand, characterManager.transform.position - new Vector3(0f, _collider.height / 2f, 0f), Quaternion.identity);
                 tmpObj.transform.parent = this.transform;
             }
         }

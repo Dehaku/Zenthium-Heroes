@@ -65,7 +65,6 @@ public class DualHooks : MonoBehaviour
 
     void SwapAimPointsOnCameraSwap(List<GameObject> go)
     {
-        Debug.Log("Camera Swapped!");
         pointAimers.Clear();
         foreach (var item in go)
         {

@@ -22330,7 +22330,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.2840095, y: 1}
+    m_SensorSize: {x: 2.849642, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 1
@@ -43384,9 +43384,9 @@ MonoBehaviour:
   minTimeOnLedge: 0.5
   holding: 0
   ledgeJumpForwardForce: 14
-  ledgeJumpUpwardForce: 5
+  ledgeJumpUpwardForce: 0
   ledgeDetectionLength: 3
-  ledgeSphereCastRadius: 0.5
+  ledgeSphereCastRadius: 0.2
   whatIsLedge:
     serializedVersion: 2
     m_Bits: 262144

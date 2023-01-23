@@ -190,8 +190,8 @@ namespace PhysicsBasedCharacterController
 
         [HideInInspector]
         public float targetAngle;
-        private Rigidbody rigidbody;
-        private CapsuleCollider collider;
+        private Rigidbody _rigidbody;
+        private CapsuleCollider _collider;
         private float originalColliderHeight;
 
         private Vector3 currVelocity = Vector3.zero;
@@ -204,9 +204,9 @@ namespace PhysicsBasedCharacterController
 
         private void Awake()
         {
-            rigidbody = this.GetComponent<Rigidbody>();
-            collider = this.GetComponent<CapsuleCollider>();
-            originalColliderHeight = collider.height;
+            _rigidbody = this.GetComponent<Rigidbody>();
+            _collider = this.GetComponent<CapsuleCollider>();
+            originalColliderHeight = _collider.height;
 
             SetFriction(frictionAgainstFloor, true);
             currentLockOnSlope = lockOnSlope;
@@ -459,8 +459,8 @@ namespace PhysicsBasedCharacterController
                 if (meshCharacterCrouch != null) meshCharacterCrouch.SetActive(true);
 
                 float newHeight = originalColliderHeight * crouchHeightMultiplier;
-                collider.height = newHeight;
-                collider.center = new Vector3(0f, -newHeight * crouchHeightMultiplier, 0f);
+                _collider.height = newHeight;
+                _collider.center = new Vector3(0f, -newHeight * crouchHeightMultiplier, 0f);
 
                 headPoint.position = new Vector3(transform.position.x + POV_crouchHeadHeight.x, transform.position.y + POV_crouchHeadHeight.y, transform.position.z + POV_crouchHeadHeight.z);
             }
@@ -470,8 +470,8 @@ namespace PhysicsBasedCharacterController
                 if (meshCharacterCrouch != null && meshCharacter != null) meshCharacter.SetActive(true);
                 if (meshCharacterCrouch != null) meshCharacterCrouch.SetActive(false);
 
-                collider.height = originalColliderHeight;
-                collider.center = Vector3.zero;
+                _collider.height = originalColliderHeight;
+                _collider.center = Vector3.zero;
 
                 headPoint.position = new Vector3(transform.position.x + POV_normalHeadHeight.x, transform.position.y + POV_normalHeadHeight.y, transform.position.z + POV_normalHeadHeight.z);
             }
@@ -487,10 +487,10 @@ namespace PhysicsBasedCharacterController
             {
                 targetAngle = Mathf.Atan2(axisInput.x, axisInput.y) * Mathf.Rad2Deg + characterCamera.transform.eulerAngles.y;
 
-                if (!sprint) rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, forward * movementSpeed * crouchMultiplier, ref currVelocity, dampSpeedUp);
-                else rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, forward * sprintSpeed * crouchMultiplier, ref currVelocity, dampSpeedUp);
+                if (!sprint) _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, forward * movementSpeed * crouchMultiplier, ref currVelocity, dampSpeedUp);
+                else _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, forward * sprintSpeed * crouchMultiplier, ref currVelocity, dampSpeedUp);
             }
-            else rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, Vector3.zero * crouchMultiplier, ref currVelocity, dampSpeedDown);
+            else _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, Vector3.zero * crouchMultiplier, ref currVelocity, dampSpeedDown);
         }
 
 
@@ -516,7 +516,7 @@ namespace PhysicsBasedCharacterController
             //jumped from wall
             if (jump && isTouchingWall)
             {
-                rigidbody.velocity += wallNormal * jumpFromWallMultiplier + (Vector3.up * jumpFromWallMultiplier) * multiplierVerticalLeap;
+                _rigidbody.velocity += wallNormal * jumpFromWallMultiplier + (Vector3.up * jumpFromWallMultiplier) * multiplierVerticalLeap;
                 isJumping = true;
 
                 targetAngle = Mathf.Atan2(wallNormal.x, wallNormal.z) * Mathf.Rad2Deg;
@@ -528,13 +528,13 @@ namespace PhysicsBasedCharacterController
             //jumped
             else if (jump && isGrounded && ((isTouchingSlope && currentSurfaceAngle <= maxClimbableSlopeAngle) || !isTouchingSlope) && !isTouchingWall)
             {
-                rigidbody.velocity += Vector3.up * jumpVelocity;
+                _rigidbody.velocity += Vector3.up * jumpVelocity;
                 isJumping = true;
             }
 
             //is falling
-            if (rigidbody.velocity.y < 0 && !isGrounded) coyoteJumpMultiplier = fallMultiplier;
-            else if (rigidbody.velocity.y > 0.1f && (currentSurfaceAngle <= maxClimbableSlopeAngle || isTouchingStep))
+            if (_rigidbody.velocity.y < 0 && !isGrounded) coyoteJumpMultiplier = fallMultiplier;
+            else if (_rigidbody.velocity.y > 0.1f && (currentSurfaceAngle <= maxClimbableSlopeAngle || isTouchingStep))
             {
                 //is short jumping
                 if (!jumpHold || !canLongJump) coyoteJumpMultiplier = 1f;
@@ -576,9 +576,9 @@ namespace PhysicsBasedCharacterController
             }
 
             //friction when touching wall
-            if (isTouchingWall && rigidbody.velocity.y < 0) gravity *= frictionAgainstWall;
+            if (isTouchingWall && _rigidbody.velocity.y < 0) gravity *= frictionAgainstWall;
 
-            rigidbody.AddForce(gravity);
+            _rigidbody.AddForce(gravity);
         }
 
         #endregion
@@ -589,9 +589,9 @@ namespace PhysicsBasedCharacterController
         private void UpdateEvents()
         {
             if ((jump && isGrounded && ((isTouchingSlope && currentSurfaceAngle <= maxClimbableSlopeAngle) || !isTouchingSlope)) || (jump && !isGrounded && isTouchingWall)) OnJump.Invoke();
-            if (isGrounded && !prevGrounded && rigidbody.velocity.y > -minimumVerticalSpeedToLandEvent) OnLand.Invoke();
-            if (Mathf.Abs(rigidbody.velocity.x) + Mathf.Abs(rigidbody.velocity.z) > minimumHorizontalSpeedToFastEvent) OnFast.Invoke();
-            if (isTouchingWall && rigidbody.velocity.y < 0) OnWallSlide.Invoke();
+            if (isGrounded && !prevGrounded && _rigidbody.velocity.y > -minimumVerticalSpeedToLandEvent) OnLand.Invoke();
+            if (Mathf.Abs(_rigidbody.velocity.x) + Mathf.Abs(_rigidbody.velocity.z) > minimumHorizontalSpeedToFastEvent) OnFast.Invoke();
+            if (isTouchingWall && _rigidbody.velocity.y < 0) OnWallSlide.Invoke();
             if (sprint) OnSprint.Invoke();
             if (isCrouch) OnCrouch.Invoke();
         }
@@ -603,11 +603,11 @@ namespace PhysicsBasedCharacterController
 
         private void SetFriction(float _frictionWall, bool _isMinimum)
         {
-            collider.material.dynamicFriction = 0.6f * _frictionWall;
-            collider.material.staticFriction = 0.6f * _frictionWall;
+            _collider.material.dynamicFriction = 0.6f * _frictionWall;
+            _collider.material.staticFriction = 0.6f * _frictionWall;
 
-            if (_isMinimum) collider.material.frictionCombine = PhysicMaterialCombine.Minimum;
-            else collider.material.frictionCombine = PhysicMaterialCombine.Maximum;
+            if (_isMinimum) _collider.material.frictionCombine = PhysicMaterialCombine.Minimum;
+            else _collider.material.frictionCombine = PhysicMaterialCombine.Maximum;
         }
 
 
@@ -643,8 +643,8 @@ namespace PhysicsBasedCharacterController
         {
             if (debug)
             {
-                rigidbody = this.GetComponent<Rigidbody>();
-                collider = this.GetComponent<CapsuleCollider>();
+                _rigidbody = this.GetComponent<Rigidbody>();
+                _collider = this.GetComponent<CapsuleCollider>();
 
                 Vector3 bottomStepPos = transform.position - new Vector3(0f, originalColliderHeight / 2f, 0f) + new Vector3(0f, 0.05f, 0f);
                 Vector3 topWallPos = new Vector3(transform.position.x, transform.position.y + hightWallCheckerChecker, transform.position.z);
