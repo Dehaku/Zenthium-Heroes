@@ -457,7 +457,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public void ResetRestrictions()
     {
-        Debug.Log("Resetting Restrictions");
         activeGrapple = false;
         cam.DoFov(cam.baseFOV);
     }

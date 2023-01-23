@@ -296,7 +296,6 @@ public class DualHooks : MonoBehaviour
 
         if (grapplePointRelativeYPos < 0) highestPointOnArc = overshootYAxis;
 
-        Debug.Log("Pos: " + swingPoints[grappleIndex]);
         pm.JumpToPosition(swingPoints[grappleIndex], highestPointOnArc);
 
         //StartCoroutine(StopGrapple(grappleIndex, 0.5f));
