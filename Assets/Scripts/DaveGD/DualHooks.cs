@@ -124,45 +124,43 @@ public class DualHooks : MonoBehaviour
     {
         for (int i = 0; i < amountOfSwingPoints; i++)
         {
-            if (swingsActive[i] || grapplesActive[i]) { /* Do Nothing */ }
+            
+            RaycastHit sphereCastHit;
+            Physics.SphereCast(pointAimers[i].position, predictionSphereCastRadius, pointAimers[i].forward,
+                                out sphereCastHit, maxSwingDistance, whatIsGrappleable);
+
+            RaycastHit raycastHit;
+            Physics.Raycast(cam.position, cam.forward,
+                                out raycastHit, maxSwingDistance, whatIsGrappleable);
+
+            Vector3 realHitPoint;
+
+            // Option 1 - Direct Hit
+            if (raycastHit.point != Vector3.zero)
+                realHitPoint = raycastHit.point;
+
+            // Option 2 - Indirect (predicted) Hit
+            else if (sphereCastHit.point != Vector3.zero)
+                realHitPoint = sphereCastHit.point;
+
+            // Option 3 - Miss
+            else
+                realHitPoint = Vector3.zero;
+
+            // realHitPoint found
+            if (realHitPoint != Vector3.zero)
+            {
+                predictionPoints[i].gameObject.SetActive(true);
+                predictionPoints[i].position = realHitPoint;
+            }
+            // realHitPoint not found
             else
             {
-                RaycastHit sphereCastHit;
-                Physics.SphereCast(pointAimers[i].position, predictionSphereCastRadius, pointAimers[i].forward,
-                                    out sphereCastHit, maxSwingDistance, whatIsGrappleable);
-
-                RaycastHit raycastHit;
-                Physics.Raycast(cam.position, cam.forward,
-                                    out raycastHit, maxSwingDistance, whatIsGrappleable);
-
-                Vector3 realHitPoint;
-
-                // Option 1 - Direct Hit
-                if (raycastHit.point != Vector3.zero)
-                    realHitPoint = raycastHit.point;
-
-                // Option 2 - Indirect (predicted) Hit
-                else if (sphereCastHit.point != Vector3.zero)
-                    realHitPoint = sphereCastHit.point;
-
-                // Option 3 - Miss
-                else
-                    realHitPoint = Vector3.zero;
-
-                // realHitPoint found
-                if (realHitPoint != Vector3.zero)
-                {
-                    predictionPoints[i].gameObject.SetActive(true);
-                    predictionPoints[i].position = realHitPoint;
-                }
-                // realHitPoint not found
-                else
-                {
-                    predictionPoints[i].gameObject.SetActive(false);
-                }
-
-                predictionHits[i] = raycastHit.point == Vector3.zero ? sphereCastHit : raycastHit;
+                predictionPoints[i].gameObject.SetActive(false);
             }
+
+            predictionHits[i] = raycastHit.point == Vector3.zero ? sphereCastHit : raycastHit;
+            
 
             // Move the points to where we're latched onto.
             
@@ -298,9 +296,10 @@ public class DualHooks : MonoBehaviour
 
         if (grapplePointRelativeYPos < 0) highestPointOnArc = overshootYAxis;
 
+        Debug.Log("Pos: " + swingPoints[grappleIndex]);
         pm.JumpToPosition(swingPoints[grappleIndex], highestPointOnArc);
 
-        //StartCoroutine(StopGrapple(grappleIndex, 1f));
+        //StartCoroutine(StopGrapple(grappleIndex, 0.5f));
     }
 
     public IEnumerator StopGrapple(int grappleIndex, float delay = 0f)
