@@ -12,6 +12,9 @@ public class AnimatorController : MonoBehaviour
     int speedHash;
     int crouchHash;
     int hipWalkHash;
+
+    int velocityXHash;
+    int velocityZHash;
     #endregion
 
 
@@ -22,6 +25,8 @@ public class AnimatorController : MonoBehaviour
         speedHash = Animator.StringToHash("Speed");
         crouchHash = Animator.StringToHash("IsCrouching");
         hipWalkHash = Animator.StringToHash("HipWalk");
+        velocityXHash = Animator.StringToHash("Velocity X");
+        velocityZHash = Animator.StringToHash("Velocity Z");
     }
 
     public float debugValue = 0;
@@ -32,6 +37,9 @@ public class AnimatorController : MonoBehaviour
     {
         animator.SetBool(hipWalkHash, hipWalk);
 
+
+        animator.SetFloat(velocityXHash, pm.GetInputMovement().x);
+        animator.SetFloat(velocityZHash, pm.GetInputMovement().y);
 
         // Walk/Run
         if (pm.GetVelocity() > 0.25f)

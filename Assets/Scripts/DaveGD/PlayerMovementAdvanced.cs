@@ -74,8 +74,12 @@ public class PlayerMovementAdvanced : MonoBehaviour
     Vector3 moveDirection;
 
     Vector3 inputMovement;
+    public Vector3 GetInputMovement()
+    {
+        return inputMovement;
+    }
 
-    Rigidbody rb;
+    public Rigidbody rb;
 
     public MovementState state;
     public enum MovementState
