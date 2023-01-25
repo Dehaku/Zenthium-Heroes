@@ -98,6 +98,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public bool sliding;
     public bool wallrunning;
     public bool climbing;
+    public bool crouching;
 
     public bool activeGrapple;
     public bool swinging;
@@ -166,6 +167,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         
         if (playerInput.actions["CrouchSlide"].WasPressedThisFrame() && !(activeGrapple || swinging || wallrunning))
         {
+            crouching = true;
             playerCollider.localScale = new Vector3(playerCollider.localScale.x, crouchYScale, playerCollider.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
@@ -173,6 +175,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         // stop crouch
         if (playerInput.actions["CrouchSlide"].WasReleasedThisFrame())
         {
+            crouching = false;
             playerCollider.localScale = new Vector3(playerCollider.localScale.x, startYScale, playerCollider.localScale.z);
         }
 
