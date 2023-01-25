@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 7040629}
   - component: {fileID: 7040628}
   m_Layer: 0
-  m_Name: PlayerObj
+  m_Name: CapsuleWithCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -297,7 +297,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7040625}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 552a7ce73d737f54097b5eadd9382fa1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -43013,7 +43013,7 @@ GameObject:
   - component: {fileID: 1543323647}
   - component: {fileID: 1543323646}
   m_Layer: 0
-  m_Name: Pl
+  m_Name: PlayerWithMovementScript
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43026,7 +43026,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543323644}
-  m_LocalRotation: {x: 0.09465247, y: 0.0155532425, z: -0.001545013, w: 0.9953877}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -157.44064, y: 70.07916, z: -21.21257}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -43047,19 +43047,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d09091a6ad63245bba71b16742da60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
-  groundDrag: 1
-  jumpForce: 5
+  moveSpeed: 6
+  groundDrag: 5
+  jumpForce: 10
   jumpCooldown: 0.25
   airMultiplier: 0.4
   walkSpeed: 0
   sprintSpeed: 0
   jumpKey: 32
-  playerHeight: 1
+  playerHeight: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 65536
-  maxSlopeAngle: 45
+  maxSlopeAngle: 40
   orientation: {fileID: 1073420845}
 --- !u!54 &1543323647
 Rigidbody:
@@ -43075,7 +43075,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1543377758
 GameObject:
@@ -49453,8 +49453,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 100
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1673726354}
-  m_Follow: {fileID: 534869359}
+  m_LookAt: {fileID: 1543323645}
+  m_Follow: {fileID: 1543323645}
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 10

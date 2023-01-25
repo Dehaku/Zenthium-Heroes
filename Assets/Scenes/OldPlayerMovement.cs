@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class NinjialPlayerMovement : MonoBehaviour
+public class OldPlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
@@ -39,6 +39,8 @@ public class NinjialPlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+    public float raycastExtension = 0.4f;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,7 +52,7 @@ public class NinjialPlayerMovement : MonoBehaviour
     private void Update()
     {
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.4f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + raycastExtension, whatIsGround);
 
         MyInput();
         SpeedControl();
@@ -135,19 +137,23 @@ public class NinjialPlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        Debug.Log("Pre-Jump: " + rb.position + ":" + rb.velocity.ToString("F4"));
         // reset y velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+        Debug.Log("Post-Jump: " + rb.position + ":" + rb.velocity.ToString("F4"));
     }
     private void ResetJump()
     {
         readyToJump = true;
+        Debug.Log("Blep");
     }
 
     private bool OnSlope()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.4f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
