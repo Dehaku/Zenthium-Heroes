@@ -676,7 +676,7 @@
                     "id": "5117826d-db9f-429c-b3ea-abab23736882",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "ScaleVector2(x=30,y=30)",
+                    "processors": "ScaleVector2(x=30,y=30),StickDeadzone",
                     "groups": "Gamepad",
                     "action": "Look",
                     "isComposite": false,
