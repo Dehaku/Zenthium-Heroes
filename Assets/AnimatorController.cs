@@ -7,6 +7,7 @@ public class AnimatorController : MonoBehaviour
 {
     public Animator animator;
     public PlayerMovementAdvanced pm;
+    public Transform Orientation;
 
     #region AnimatorHashes
     int speedHash;
@@ -37,9 +38,12 @@ public class AnimatorController : MonoBehaviour
     {
         animator.SetBool(hipWalkHash, hipWalk);
 
+        var locVel = Orientation.InverseTransformDirection(pm.rb.velocity);
 
-        animator.SetFloat(velocityXHash, pm.GetInputMovement().x);
-        animator.SetFloat(velocityZHash, pm.GetInputMovement().y);
+        animator.SetFloat(velocityXHash, locVel.x);
+        animator.SetFloat(velocityZHash, locVel.z);
+        
+        
 
         // Walk/Run
         if (pm.GetVelocity() > 0.25f)

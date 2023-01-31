@@ -116,6 +116,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float DesiredMoveSpeed { get => desiredMoveSpeed;}
 
     public float GetVelocity() { return rb.velocity.magnitude; }
+    public Vector3 GetVelocityVector3() { return rb.velocity; }
 
     private void Start()
     {
