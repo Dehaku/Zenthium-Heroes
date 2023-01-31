@@ -18,6 +18,18 @@ public class AnimatorController : MonoBehaviour
     int crouchHash;
     int hipWalkHash;
 
+    int grapplingLeftHash;
+    int grapplingRightHash;
+    int swingingLeftHash;
+    int swingingRightHash;
+    int wallRunningLeftHash;
+    int wallRunningRightHash;
+    int climbingHash;
+    int dashingHash;
+    int slidingHash;
+    int airHash;
+    int flyingHash;
+
     int velocityXHash;
     int velocityZHash;
 
@@ -29,12 +41,31 @@ public class AnimatorController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speedHash = Animator.StringToHash("Speed");
-        crouchHash = Animator.StringToHash("IsCrouching");
+        idleAnimationHash = Animator.StringToHash("IdleAnimation");
         hipWalkHash = Animator.StringToHash("HipWalk");
         velocityXHash = Animator.StringToHash("Velocity X");
         velocityZHash = Animator.StringToHash("Velocity Z");
-        idleAnimationHash = Animator.StringToHash("IdleAnimation");
+
+        speedHash = Animator.StringToHash("Speed");
+        crouchHash = Animator.StringToHash("IsCrouching");
+        slidingHash = Animator.StringToHash("IsSliding");
+        airHash = Animator.StringToHash("IsInAir");
+        climbingHash = Animator.StringToHash("IsClimbing");
+        dashingHash = Animator.StringToHash("IsDashing");
+
+        wallRunningLeftHash = Animator.StringToHash("wallRunningLeft");
+        wallRunningRightHash = Animator.StringToHash("wallRunningRight");
+
+        grapplingLeftHash = Animator.StringToHash("grapplingLeft"); 
+        grapplingRightHash = Animator.StringToHash("grapplingRight"); 
+        swingingLeftHash = Animator.StringToHash("swingingLeft"); 
+        swingingRightHash = Animator.StringToHash("swingingRight"); 
+        
+
+        flyingHash = Animator.StringToHash("IsFlying");
+
+
+
     }
 
     public float debugValue = 0;
@@ -71,7 +102,18 @@ public class AnimatorController : MonoBehaviour
         // Crouch
         animator.SetBool(crouchHash, pm.crouching);
 
+        // Sliding
+        animator.SetBool(slidingHash, pm.sliding);
+
+        // Is In Air
+        animator.SetBool(airHash, (pm.state == PlayerMovementAdvanced.MovementState.air) );
+
         /*
+         * 
+         * 
+         *       animator.Play(punchHash);
+                //animator.CrossFade(Punch, 0.25f);
+         *  
         // Walk/Run
         if (pm.GetVelocity() > 0.25f)
             animator.SetFloat(speedHash, pm.GetVelocity());

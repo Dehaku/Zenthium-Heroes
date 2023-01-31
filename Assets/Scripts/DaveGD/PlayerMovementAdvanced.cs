@@ -66,7 +66,9 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public Climbing climbingScript;
     public LedgeGrabbing ledgeGrabScript;
     public Grappling grappleScript;
-    
+    public GameObject colliderStanding;
+    public GameObject colliderCrouching;
+
 
 
     public Transform orientation;
@@ -173,6 +175,9 @@ public class PlayerMovementAdvanced : MonoBehaviour
         if (playerInput.actions["CrouchSlide"].WasPressedThisFrame() && !(activeGrapple || swinging || wallrunning))
         {
             crouching = true;
+            colliderStanding.SetActive(false);
+            colliderCrouching.SetActive(true);
+            
             playerCollider.localScale = new Vector3(playerCollider.localScale.x, crouchYScale, playerCollider.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
@@ -181,6 +186,9 @@ public class PlayerMovementAdvanced : MonoBehaviour
         if (playerInput.actions["CrouchSlide"].WasReleasedThisFrame())
         {
             crouching = false;
+            colliderCrouching.SetActive(false);
+            colliderStanding.SetActive(true);
+            
             playerCollider.localScale = new Vector3(playerCollider.localScale.x, startYScale, playerCollider.localScale.z);
         }
 
