@@ -40,8 +40,8 @@ public class ThirdPersonCam : MonoBehaviour
     {
         Basic,
         Combat,
-        Topdown,
         FirstPerson,
+        Topdown,
         NewThird
     }
 
@@ -80,7 +80,7 @@ public class ThirdPersonCam : MonoBehaviour
             SwitchCameraStyle(CameraStyle.Basic);
         if (currentCam == 1)
             SwitchCameraStyle(CameraStyle.Combat);
-        if(currentCam == 2)
+        if (currentCam == 2)
             SwitchCameraStyle(CameraStyle.FirstPerson);
     }
 
@@ -160,11 +160,6 @@ public class ThirdPersonCam : MonoBehaviour
             foreach (var item in pointAimers)
                 go.Add(item.gameObject);
         }
-        if (newStyle == CameraStyle.Topdown) 
-        {
-            topDownCam.SetActive(true);
-            baseFOV = topDownCam.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView;
-        }
         if (newStyle == CameraStyle.FirstPerson) 
         {
             firstPersonCam.SetActive(true);
@@ -172,6 +167,11 @@ public class ThirdPersonCam : MonoBehaviour
             var pointAimers = firstPersonCam.GetComponentsInChildren<TagPointAimer>();
             foreach (var item in pointAimers)
                 go.Add(item.gameObject);
+        }
+        if (newStyle == CameraStyle.Topdown)
+        {
+            topDownCam.SetActive(true);
+            baseFOV = topDownCam.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Lens.FieldOfView;
         }
         if (newStyle == CameraStyle.NewThird) 
         {
