@@ -9,6 +9,9 @@ public class AnimatorController : MonoBehaviour
     public PlayerMovementAdvanced pm;
     public Transform Orientation;
 
+    [Range(0,10)]
+    public float idleAnimation = 0;
+
     #region AnimatorHashes
     int speedHash;
     int crouchHash;
@@ -16,6 +19,8 @@ public class AnimatorController : MonoBehaviour
 
     int velocityXHash;
     int velocityZHash;
+
+    int idleAnimationHash;
     #endregion
 
 
@@ -28,6 +33,7 @@ public class AnimatorController : MonoBehaviour
         hipWalkHash = Animator.StringToHash("HipWalk");
         velocityXHash = Animator.StringToHash("Velocity X");
         velocityZHash = Animator.StringToHash("Velocity Z");
+        idleAnimationHash = Animator.StringToHash("IdleAnimation");
     }
 
     public float debugValue = 0;
@@ -40,11 +46,20 @@ public class AnimatorController : MonoBehaviour
 
         var locVel = Orientation.InverseTransformDirection(pm.rb.velocity);
 
+        // Idle Animation
+        animator.SetFloat(idleAnimationHash, idleAnimation);
+
+        // Strafe Movement
         animator.SetFloat(velocityXHash, locVel.x);
         animator.SetFloat(velocityZHash, locVel.z);
-        
-        
 
+        // Velocity
+        animator.SetFloat(speedHash, pm.GetVelocity());
+
+        // Crouch
+        animator.SetBool(crouchHash, pm.crouching);
+
+        /*
         // Walk/Run
         if (pm.GetVelocity() > 0.25f)
             animator.SetFloat(speedHash, pm.GetVelocity());
@@ -55,9 +70,9 @@ public class AnimatorController : MonoBehaviour
 
         if(debugValue > 0)
             animator.SetFloat(speedHash, debugValue);
+        */
 
-        // Crouch
-        animator.SetBool(crouchHash, pm.crouching);
+
 
     }
 }
