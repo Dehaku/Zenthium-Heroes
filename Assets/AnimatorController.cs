@@ -116,6 +116,25 @@ public class AnimatorController : MonoBehaviour
             animator.SetBool(wallRunLeftHash, pm.wallRunScript.wallLeft);
             animator.SetBool(wallRunRightHash, pm.wallRunScript.wallRight);
         }
+
+        // Climbing
+        if(pm.climbingScript)
+        {
+            if(pm.state == PlayerMovementAdvanced.MovementState.climbing)
+            {
+                animator.SetFloat("ClimbSpeed", pm.climbingScript.climbSpeed);
+                if(!animator.GetBool(climbingHash))
+                {
+                    animator.SetBool(climbingHash, true);
+                    int climb = Animator.StringToHash("Climbing");
+                    //animator.Play(climb);
+                    animator.CrossFade(climb, 0.25f);
+                }
+                
+            }
+            else if(animator.GetBool(climbingHash))
+                animator.SetBool(climbingHash, false);
+        }
         
 
         /*

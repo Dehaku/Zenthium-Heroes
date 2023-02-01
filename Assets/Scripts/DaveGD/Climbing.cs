@@ -50,6 +50,7 @@ public class Climbing : MonoBehaviour
     private void Start()
     {
         lg = GetComponent<LedgeGrabbing>();
+        Debug.Log("Add x/z drag while climbing.");
     }
 
     private void Update()
