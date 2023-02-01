@@ -66,6 +66,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public Climbing climbingScript;
     public LedgeGrabbing ledgeGrabScript;
     public Grappling grappleScript;
+    public WallRunning wallRunScript;
     public GameObject colliderStanding;
     public GameObject colliderCrouching;
 

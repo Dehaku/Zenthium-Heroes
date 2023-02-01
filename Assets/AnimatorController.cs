@@ -5,11 +5,13 @@ using UnityEngine.InputSystem;
 
 public class AnimatorController : MonoBehaviour
 {
+    [Header("References")]
     public Animator animator;
     public PlayerMovementAdvanced pm;
     public Transform Orientation;
     public ThirdPersonCam cam;
 
+    [Header("Test Settings")]
     [Range(0,10)]
     public float idleAnimation = 0;
 
@@ -22,8 +24,8 @@ public class AnimatorController : MonoBehaviour
     int grapplingRightHash;
     int swingingLeftHash;
     int swingingRightHash;
-    int wallRunningLeftHash;
-    int wallRunningRightHash;
+    int wallRunLeftHash;
+    int wallRunRightHash;
     int climbingHash;
     int dashingHash;
     int slidingHash;
@@ -53,8 +55,8 @@ public class AnimatorController : MonoBehaviour
         climbingHash = Animator.StringToHash("IsClimbing");
         dashingHash = Animator.StringToHash("IsDashing");
 
-        wallRunningLeftHash = Animator.StringToHash("wallRunningLeft");
-        wallRunningRightHash = Animator.StringToHash("wallRunningRight");
+        wallRunLeftHash = Animator.StringToHash("WallRunLeft");
+        wallRunRightHash = Animator.StringToHash("WallRunRight");
 
         grapplingLeftHash = Animator.StringToHash("grapplingLeft"); 
         grapplingRightHash = Animator.StringToHash("grapplingRight"); 
@@ -107,6 +109,14 @@ public class AnimatorController : MonoBehaviour
 
         // Is In Air
         animator.SetBool(airHash, (pm.state == PlayerMovementAdvanced.MovementState.air) );
+
+        // Wallrunning
+        if(pm.wallRunScript)
+        {
+            animator.SetBool(wallRunLeftHash, pm.wallRunScript.wallLeft);
+            animator.SetBool(wallRunRightHash, pm.wallRunScript.wallRight);
+        }
+        
 
         /*
          * 
