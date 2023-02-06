@@ -98,7 +98,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
         crouching,
         dashing,
         sliding,
-        air
+        air,
+        ledge
     }
 
     public bool dashing;
@@ -106,6 +107,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public bool wallrunning;
     public bool climbing;
     public bool crouching;
+    public bool hanging;
 
     public bool activeGrapple;
     public bool swinging;

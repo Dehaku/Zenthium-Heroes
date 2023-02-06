@@ -31,6 +31,7 @@ public class AnimatorController : MonoBehaviour
     int slidingHash;
     int airHash;
     int flyingHash;
+    int hangingHash;
 
     int velocityXHash;
     int velocityZHash;
@@ -53,6 +54,7 @@ public class AnimatorController : MonoBehaviour
         slidingHash = Animator.StringToHash("IsSliding");
         airHash = Animator.StringToHash("IsInAir");
         climbingHash = Animator.StringToHash("IsClimbing");
+        hangingHash = Animator.StringToHash("IsHanging");
         dashingHash = Animator.StringToHash("IsDashing");
 
         wallRunLeftHash = Animator.StringToHash("WallRunLeft");
@@ -113,8 +115,18 @@ public class AnimatorController : MonoBehaviour
         // Wallrunning
         if(pm.wallRunScript)
         {
-            animator.SetBool(wallRunLeftHash, pm.wallRunScript.wallLeft);
-            animator.SetBool(wallRunRightHash, pm.wallRunScript.wallRight);
+            if (pm.state == PlayerMovementAdvanced.MovementState.wallrunning)
+            {
+                animator.SetBool(wallRunLeftHash, pm.wallRunScript.wallLeft);
+                animator.SetBool(wallRunRightHash, pm.wallRunScript.wallRight);
+            }
+            else
+            {
+                animator.SetBool(wallRunLeftHash, false);
+                animator.SetBool(wallRunRightHash, false);
+            }
+
+            
         }
 
         // Climbing
@@ -134,6 +146,31 @@ public class AnimatorController : MonoBehaviour
             }
             else if(animator.GetBool(climbingHash))
                 animator.SetBool(climbingHash, false);
+        }
+
+        // Hanging from Ledge
+        if (pm.ledgeGrabScript)
+        {
+            //if (pm.state == PlayerMovementAdvanced.MovementState.ledge)
+            if (pm.ledgeGrabScript.holding)
+            {
+                if (!animator.GetBool(hangingHash))
+                {
+                    animator.SetBool(hangingHash, true);
+                    int hang = Animator.StringToHash("HangingIdle");
+                    //animator.Play(climb);
+                    animator.CrossFade(hang, 0.25f);
+                }
+
+            }
+            else if (animator.GetBool(hangingHash))
+                animator.SetBool(hangingHash, false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            animator.SetBool(climbingHash, true);
+            animator.CrossFade("Climbing", 0.25f);
         }
         
 

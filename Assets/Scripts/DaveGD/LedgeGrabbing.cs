@@ -9,6 +9,7 @@ public class LedgeGrabbing : MonoBehaviour
     public PlayerInput playerInput;
     public PlayerMovementAdvanced pm;
     public Transform orientation;
+    public Transform playerOBJ;
     public Transform cam;
     public Rigidbody rb;
 
@@ -18,6 +19,8 @@ public class LedgeGrabbing : MonoBehaviour
 
     public float minTimeOnLedge;
     private float timeOnLedge;
+
+    public bool faceTowardsLedge = true;
 
     public bool holding;
 
@@ -46,16 +49,33 @@ public class LedgeGrabbing : MonoBehaviour
         SubStateMachine();
     }
 
+    void FaceToLedge()
+    {
+        if (!currLedge)
+            return;
+        if (!ledgeHit.collider)
+            return;
+
+        Vector3 ledgeDirection = transform.position + -ledgeHit.normal;
+        //ledgeDirection.z = 0;
+        playerOBJ.LookAt(ledgeDirection);
+    }
+
     private void SubStateMachine()
     {
         float horizontalInput = playerInput.actions["Movement"].ReadValue<Vector2>().x;
         float verticalInput = playerInput.actions["Movement"].ReadValue<Vector2>().y;
         bool anyInputKeyPressed = horizontalInput != 0 || verticalInput != 0;
 
+        pm.hanging = holding;
+
         // SubState 1 - Holding onto ledge
         if (holding)
         {
             FreezeRigidbodyOnLedge();
+
+            if(faceTowardsLedge)
+                FaceToLedge();
 
             timeOnLedge += Time.deltaTime;
 
