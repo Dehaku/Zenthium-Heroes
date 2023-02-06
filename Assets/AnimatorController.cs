@@ -2,13 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Animations.Rigging;
 
 public class AnimatorController : MonoBehaviour
 {
+    [Header("Rigs")]
+    public Rig leftArm;
+    public Transform leftArmTarget;
+    public Rig rightArm;
+    public Transform rightArmTarget;
+    public Rig HeadTracking;
+    public Transform headTarget;
+
     [Header("References")]
     public Animator animator;
     public PlayerMovementAdvanced pm;
-    public Transform Orientation;
+    public Transform orientation;
+    public Transform playerObj;
     public ThirdPersonCam cam;
 
     [Header("Test Settings")]
@@ -70,7 +80,7 @@ public class AnimatorController : MonoBehaviour
 
         flyingHash = Animator.StringToHash("IsFlying");
 
-
+        
 
     }
 
@@ -83,7 +93,7 @@ public class AnimatorController : MonoBehaviour
         // Hip/Swagger swapper
         animator.SetBool(hipWalkHash, hipWalk);
 
-        var locVel = Orientation.InverseTransformDirection(pm.rb.velocity);
+        var locVel = orientation.InverseTransformDirection(pm.rb.velocity);
 
         // Idle Animation
         animator.SetFloat(idleAnimationHash, idleAnimation);
@@ -112,7 +122,8 @@ public class AnimatorController : MonoBehaviour
         animator.SetBool(slidingHash, pm.sliding);
 
         // Is In Air
-        animator.SetBool(airHash, (pm.state == PlayerMovementAdvanced.MovementState.air) );
+        animator.SetBool(airHash, ((pm.state == PlayerMovementAdvanced.MovementState.air) ||
+            pm.state == PlayerMovementAdvanced.MovementState.swinging));
 
         // Wallrunning
         if(pm.wallRunScript)
@@ -172,16 +183,33 @@ public class AnimatorController : MonoBehaviour
         {
             if (pm.swinging)
             {
+                if(pm.dualHooksScript.swingsActive[0])
+                    leftArmTarget.position = pm.dualHooksScript.swingPoints[0];
+                if (pm.dualHooksScript.swingsActive[1])
+                    rightArmTarget.position = pm.dualHooksScript.swingPoints[1];
+
                 if (!animator.GetBool(isSwingingHash))
                 {
+                    if (pm.dualHooksScript.swingsActive[0])
+                        leftArm.weight = 1;
+                    if (pm.dualHooksScript.swingsActive[1])
+                        rightArm.weight = 1;
+
                     animator.SetBool(isSwingingHash, true);
-                    int swing = Animator.StringToHash("SwingingPose");
+                    int swing = Animator.StringToHash("Falling");
+                    animator.SetBool(airHash, true);
                     animator.CrossFade(swing, 0.25f);
+                    
                 }
 
             }
             else if (animator.GetBool(isSwingingHash))
+            {
+                leftArm.weight = 0;
+                rightArm.weight = 0;
                 animator.SetBool(isSwingingHash, false);
+            }
+                
         }
 
         if (Input.GetKeyDown(KeyCode.C))
@@ -219,5 +247,23 @@ public class AnimatorController : MonoBehaviour
 
 
 
+    }
+
+    private void LateUpdate()
+    {
+        // Swinging
+        if (pm.dualHooksScript)
+        {
+            if (pm.swinging)
+            {
+                if (pm.dualHooksScript.swingPoints[0] != Vector3.zero)
+                {
+                    //playerObj.LookAt(Quaternion.AngleAxis(-45, Vector3.up) * pm.dualHooksScript.swingPoints[0], transform.up);
+                    //Vector3 newDirection = Vector3.RotateTowards(transform.forward, pm.dualHooksScript.swingPoints[0], 1, 0.0f);
+                    //playerObj.rotation = Quaternion.LookRotation(newDirection);
+                }
+                    
+            }
+        }
     }
 }
