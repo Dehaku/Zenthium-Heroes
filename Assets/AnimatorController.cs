@@ -178,7 +178,7 @@ public class AnimatorController : MonoBehaviour
                 animator.SetBool(hangingHash, false);
         }
 
-        // Swinging
+        // Swinging/Grappling
         if (pm.dualHooksScript)
         {
             if (pm.swinging)
@@ -209,7 +209,13 @@ public class AnimatorController : MonoBehaviour
                 rightArm.weight = 0;
                 animator.SetBool(isSwingingHash, false);
             }
-                
+
+            // Bit lazy on this one.
+            if (pm.activeGrapple)
+            {
+                int swing = Animator.StringToHash("StillSlide");
+                animator.CrossFade(swing, 0.25f);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.C))
