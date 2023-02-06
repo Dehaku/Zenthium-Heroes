@@ -80,7 +80,14 @@ public class AnimatorController : MonoBehaviour
 
         flyingHash = Animator.StringToHash("IsFlying");
 
-        
+        // Make ropes come from our hands.
+        if (pm.dualHooksScript)
+        {
+            if (pm.dualHooksScript.gunTips[0])
+                pm.dualHooksScript.gunTips[0] = animator.GetBoneTransform(HumanBodyBones.LeftHand);
+            if (pm.dualHooksScript.gunTips[1])
+                pm.dualHooksScript.gunTips[1] = animator.GetBoneTransform(HumanBodyBones.RightHand);
+        }
 
     }
 
@@ -239,13 +246,7 @@ public class AnimatorController : MonoBehaviour
         {
             //animator.SetBool(climbingHash, true);
             //animator.CrossFade("Climbing", 0.25f);
-            if(pm.dualHooksScript)
-            {
-                if (pm.dualHooksScript.gunTips[0])
-                    pm.dualHooksScript.gunTips[0] = animator.GetBoneTransform(HumanBodyBones.LeftHand);
-                if (pm.dualHooksScript.gunTips[1])
-                    pm.dualHooksScript.gunTips[1] = animator.GetBoneTransform(HumanBodyBones.RightHand);
-            }
+            
             
 
         }

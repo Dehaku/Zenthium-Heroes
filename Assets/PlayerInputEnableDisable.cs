@@ -15,6 +15,7 @@ public class PlayerInputEnableDisable : MonoBehaviour
 
     private void OnDisable()
     {
-        playerInput.currentActionMap.Disable();
+        if(playerInput.currentActionMap != null)
+            playerInput.currentActionMap.Disable();
     }
 }
