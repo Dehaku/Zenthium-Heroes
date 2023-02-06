@@ -11,7 +11,7 @@ public class AnimatorController : MonoBehaviour
     public Transform leftArmTarget;
     public Rig rightArm;
     public Transform rightArmTarget;
-    public Rig HeadTracking;
+    public Rig headTracking;
     public Transform headTarget;
 
     [Header("References")]
@@ -184,16 +184,32 @@ public class AnimatorController : MonoBehaviour
             if (pm.swinging)
             {
                 if(pm.dualHooksScript.swingsActive[0])
+                {
                     leftArmTarget.position = pm.dualHooksScript.swingPoints[0];
+                    headTarget.position = pm.dualHooksScript.swingPoints[0];
+                }
+                    
                 if (pm.dualHooksScript.swingsActive[1])
+                {
                     rightArmTarget.position = pm.dualHooksScript.swingPoints[1];
+                    headTarget.position = pm.dualHooksScript.swingPoints[1];
+                }
+                    
 
                 if (!animator.GetBool(isSwingingHash))
                 {
                     if (pm.dualHooksScript.swingsActive[0])
+                    {
                         leftArm.weight = 1;
+                        headTracking.weight = 0.25f;
+                    }
+                        
                     if (pm.dualHooksScript.swingsActive[1])
+                    {
                         rightArm.weight = 1;
+                        headTracking.weight = 0.25f;
+                    }
+                        
 
                     animator.SetBool(isSwingingHash, true);
                     int swing = Animator.StringToHash("Falling");
@@ -207,6 +223,7 @@ public class AnimatorController : MonoBehaviour
             {
                 leftArm.weight = 0;
                 rightArm.weight = 0;
+                headTracking.weight = 0;
                 animator.SetBool(isSwingingHash, false);
             }
 
