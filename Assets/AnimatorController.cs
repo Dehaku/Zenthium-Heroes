@@ -32,6 +32,7 @@ public class AnimatorController : MonoBehaviour
     int airHash;
     int flyingHash;
     int hangingHash;
+    int isSwingingHash;
 
     int velocityXHash;
     int velocityZHash;
@@ -63,8 +64,9 @@ public class AnimatorController : MonoBehaviour
         grapplingLeftHash = Animator.StringToHash("grapplingLeft"); 
         grapplingRightHash = Animator.StringToHash("grapplingRight"); 
         swingingLeftHash = Animator.StringToHash("swingingLeft"); 
-        swingingRightHash = Animator.StringToHash("swingingRight"); 
-        
+        swingingRightHash = Animator.StringToHash("swingingRight");
+        isSwingingHash = Animator.StringToHash("IsSwinging");
+
 
         flyingHash = Animator.StringToHash("IsFlying");
 
@@ -151,14 +153,12 @@ public class AnimatorController : MonoBehaviour
         // Hanging from Ledge
         if (pm.ledgeGrabScript)
         {
-            //if (pm.state == PlayerMovementAdvanced.MovementState.ledge)
             if (pm.ledgeGrabScript.holding)
             {
                 if (!animator.GetBool(hangingHash))
                 {
                     animator.SetBool(hangingHash, true);
                     int hang = Animator.StringToHash("HangingIdle");
-                    //animator.Play(climb);
                     animator.CrossFade(hang, 0.25f);
                 }
 
@@ -167,13 +167,38 @@ public class AnimatorController : MonoBehaviour
                 animator.SetBool(hangingHash, false);
         }
 
+        // Swinging
+        if (pm.dualHooksScript)
+        {
+            if (pm.swinging)
+            {
+                if (!animator.GetBool(isSwingingHash))
+                {
+                    animator.SetBool(isSwingingHash, true);
+                    int swing = Animator.StringToHash("SwingingPose");
+                    animator.CrossFade(swing, 0.25f);
+                }
+
+            }
+            else if (animator.GetBool(isSwingingHash))
+                animator.SetBool(isSwingingHash, false);
+        }
+
         if (Input.GetKeyDown(KeyCode.C))
         {
-            animator.SetBool(climbingHash, true);
-            animator.CrossFade("Climbing", 0.25f);
+            //animator.SetBool(climbingHash, true);
+            //animator.CrossFade("Climbing", 0.25f);
+            if(pm.dualHooksScript)
+            {
+                if (pm.dualHooksScript.gunTips[0])
+                    pm.dualHooksScript.gunTips[0] = animator.GetBoneTransform(HumanBodyBones.LeftHand);
+                if (pm.dualHooksScript.gunTips[1])
+                    pm.dualHooksScript.gunTips[1] = animator.GetBoneTransform(HumanBodyBones.RightHand);
+            }
+            
+
         }
         
-
         /*
          * 
          * 
