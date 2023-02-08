@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlotSpawner : MonoBehaviour
 {
+    public bool setBuildingAndChildrenToMyLayer = true;
+    [Space]
     public PlotBuildingContainer PBC;
     public GameObject myBuilding;
     [SerializeField] GameObject _plane;
@@ -67,6 +69,24 @@ public class PlotSpawner : MonoBehaviour
 
         GameObject item = PBC.BuildingPrefabs[Random.Range(0, PBC.BuildingPrefabs.Length)];
         myBuilding = Instantiate(item, transform.position, transform.rotation, transform);
+
+        if (setBuildingAndChildrenToMyLayer)
+        {
+            myBuilding.layer = gameObject.layer;
+            SetChildrensLayerRecursive(myBuilding);
+        }
+            
+    }
+
+    void SetChildrensLayerRecursive(GameObject go)
+    {
+        Transform goTran = go.transform;
+        for(int i = 0; i < goTran.childCount; i++)
+        {
+            GameObject childGO = goTran.GetChild(i).gameObject;
+            childGO.layer = go.layer;
+            SetChildrensLayerRecursive(childGO);
+        }
     }
 
     [EButton("Clear")]
