@@ -42,7 +42,7 @@ public class WallRunning : MonoBehaviour
     public float minWallNormalAngleChange;
 
     [Header("Exiting")]
-    private bool exitingWall;
+    public bool exitingWall;
     public float exitWallTime;
     private float exitWallTimer;
 
@@ -233,7 +233,6 @@ public class WallRunning : MonoBehaviour
         // reset y velocity and add force
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(forceToApply, ForceMode.Impulse);
-
         wallRunJumpsLeft--;
 
         // If you jump off your current wall, no returning to it.

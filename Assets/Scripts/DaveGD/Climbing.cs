@@ -46,6 +46,7 @@ public class Climbing : MonoBehaviour
     public Rigidbody rb;
     public PlayerMovementAdvanced pm;
     public LedgeGrabbing lg;
+    public WallRunning wallRunScript;
     public LayerMask whatIsWall;
     
     [Header("Optional")]
@@ -165,6 +166,8 @@ public class Climbing : MonoBehaviour
     {
         if (pm.grounded) return;
         if (lg.holding || lg.exitingLedge) return;
+        if (wallRunScript.exitingWall)
+            return;
 
         exitingWall = true;
         exitWallTimer = exitWallTime;
