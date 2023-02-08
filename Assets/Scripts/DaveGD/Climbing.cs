@@ -5,16 +5,10 @@ using UnityEngine.InputSystem;
 
 public class Climbing : MonoBehaviour
 {
-    [Header("References")]
-    public PlayerInput playerInput;
-    public Transform orientation;
-    public Rigidbody rb;
-    public PlayerMovementAdvanced pm;
-    public LedgeGrabbing lg;
-    public LayerMask whatIsWall;
-    public Transform feet;
+
 
     [Header("Climbing")]
+    public bool allowClimbingWhileGrounded = false;
     public float climbSpeed;
     public float maxClimbTime;
     private float climbTimer;
@@ -46,6 +40,17 @@ public class Climbing : MonoBehaviour
     public float exitWallTime;
     private float exitWallTimer;
 
+    [Header("References")]
+    public PlayerInput playerInput;
+    public Transform orientation;
+    public Rigidbody rb;
+    public PlayerMovementAdvanced pm;
+    public LedgeGrabbing lg;
+    public LayerMask whatIsWall;
+    
+    [Header("Optional")]
+    public Transform sphereCastPosition;
+
     public float ClimbTimer { get => climbTimer; set => climbTimer = value; }
 
     private void Start()
@@ -76,7 +81,18 @@ public class Climbing : MonoBehaviour
             wallLookAngle < maxWallLookAngle && !exitingWall &&
             !pm.swinging)
         {
-            if (!climbing && climbTimer > 0) StartClimbing();
+            if (!climbing && climbTimer > 0)
+            {
+                
+                if (!allowClimbingWhileGrounded)
+                {
+                    if (!pm.grounded)
+                        StartClimbing();
+                }
+                else
+                    StartClimbing();
+
+            }
 
             // timer
             if (climbTimer > 0) climbTimer -= Time.deltaTime;
@@ -103,7 +119,10 @@ public class Climbing : MonoBehaviour
 
     private void WallCheck()
     {
-        wallFront = Physics.SphereCast(feet.position, sphereCastRadius, orientation.forward, out frontWallHit, detectionLength, whatIsWall);
+        if(sphereCastPosition)
+            wallFront = Physics.SphereCast(sphereCastPosition.position, sphereCastRadius, orientation.forward, out frontWallHit, detectionLength, whatIsWall);
+        else
+            wallFront = Physics.SphereCast(transform.position, sphereCastRadius, orientation.forward, out frontWallHit, detectionLength, whatIsWall);
         wallLookAngle = Vector3.Angle(orientation.forward, -frontWallHit.normal);
 
         bool newWall = frontWallHit.transform != lastWall || Mathf.Abs(Vector3.Angle(lastWallNormal, frontWallHit.normal)) > minWallNormalAngleChange;
