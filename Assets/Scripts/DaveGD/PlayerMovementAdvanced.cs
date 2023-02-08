@@ -295,10 +295,10 @@ public class PlayerMovementAdvanced : MonoBehaviour
         {
             state = MovementState.air;
             //desiredMoveSpeed = climbSpeed;
-            if (desiredMoveSpeed < sprintSpeed)
-                desiredMoveSpeed = walkSpeed;
-            else 
-                desiredMoveSpeed = sprintSpeed;
+            //if (desiredMoveSpeed < sprintSpeed)
+            //    desiredMoveSpeed = walkSpeed;
+            //else 
+            desiredMoveSpeed = sprintSpeed;
         }
 
         bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;

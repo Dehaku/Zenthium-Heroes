@@ -12,6 +12,7 @@ public class Climbing : MonoBehaviour
     public PlayerMovementAdvanced pm;
     public LedgeGrabbing lg;
     public LayerMask whatIsWall;
+    public Transform feet;
 
     [Header("Climbing")]
     public float climbSpeed;
@@ -102,7 +103,7 @@ public class Climbing : MonoBehaviour
 
     private void WallCheck()
     {
-        wallFront = Physics.SphereCast(transform.position, sphereCastRadius, orientation.forward, out frontWallHit, detectionLength, whatIsWall);
+        wallFront = Physics.SphereCast(feet.position, sphereCastRadius, orientation.forward, out frontWallHit, detectionLength, whatIsWall);
         wallLookAngle = Vector3.Angle(orientation.forward, -frontWallHit.normal);
 
         bool newWall = frontWallHit.transform != lastWall || Mathf.Abs(Vector3.Angle(lastWallNormal, frontWallHit.normal)) > minWallNormalAngleChange;
