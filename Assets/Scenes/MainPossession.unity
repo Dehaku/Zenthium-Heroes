@@ -17514,6 +17514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowClimbingWhileGrounded: 0
   climbSpeed: 10
+  maxHorizontalClimbSpeed: 0
   maxClimbTime: 0.75
   climbJumpUpForce: 14
   climbJumpBackForce: 12
@@ -48967,6 +48968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowClimbingWhileGrounded: 0
   climbSpeed: 3
+  maxHorizontalClimbSpeed: 0.5
   maxClimbTime: 7.5
   climbJumpUpForce: 8
   climbJumpBackForce: 5
@@ -72888,6 +72890,10 @@ GameObject:
   - component: {fileID: 3774971925115538935}
   - component: {fileID: 3774971925115538936}
   - component: {fileID: 3774971925115538937}
+  - component: {fileID: 3774971925115538938}
+  - component: {fileID: 3774971925115538939}
+  - component: {fileID: 3774971925115538940}
+  - component: {fileID: 3774971925115538941}
   m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
@@ -76076,6 +76082,86 @@ MonoBehaviour:
   - {fileID: 3774971926244198407}
   twistRotation: []
 --- !u!114 &3774971925115538937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774971925115538777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb34da6f42aac4d408b198cfd261ffea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  twistValue: 0.5
+  twistBone:
+  - {fileID: 3774971926423105980}
+  - {fileID: 3774971925662508273}
+  refBone:
+  - {fileID: 3774971925870142794}
+  - {fileID: 3774971926244198407}
+  twistRotation: []
+--- !u!114 &3774971925115538938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774971925115538777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb34da6f42aac4d408b198cfd261ffea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  twistValue: 0.5
+  twistBone:
+  - {fileID: 3774971926423105980}
+  - {fileID: 3774971925662508273}
+  refBone:
+  - {fileID: 3774971925870142794}
+  - {fileID: 3774971926244198407}
+  twistRotation: []
+--- !u!114 &3774971925115538939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774971925115538777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb34da6f42aac4d408b198cfd261ffea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  twistValue: 0.5
+  twistBone:
+  - {fileID: 3774971926423105980}
+  - {fileID: 3774971925662508273}
+  refBone:
+  - {fileID: 3774971925870142794}
+  - {fileID: 3774971926244198407}
+  twistRotation: []
+--- !u!114 &3774971925115538940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774971925115538777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb34da6f42aac4d408b198cfd261ffea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  twistValue: 0.5
+  twistBone:
+  - {fileID: 3774971926423105980}
+  - {fileID: 3774971925662508273}
+  refBone:
+  - {fileID: 3774971925870142794}
+  - {fileID: 3774971926244198407}
+  twistRotation: []
+--- !u!114 &3774971925115538941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

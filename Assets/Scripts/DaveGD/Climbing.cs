@@ -10,6 +10,7 @@ public class Climbing : MonoBehaviour
     [Header("Climbing")]
     public bool allowClimbingWhileGrounded = false;
     public float climbSpeed;
+    public float maxHorizontalClimbSpeed;
     public float maxClimbTime;
     private float climbTimer;
 
@@ -57,7 +58,6 @@ public class Climbing : MonoBehaviour
     private void Start()
     {
         lg = GetComponent<LedgeGrabbing>();
-        Debug.Log("Add x/z drag while climbing.");
     }
 
     private void Update()
@@ -148,7 +148,11 @@ public class Climbing : MonoBehaviour
 
     private void ClimbingMovement()
     {
-        rb.velocity = new Vector3(rb.velocity.x, climbSpeed, rb.velocity.z);
+        
+        rb.velocity = new Vector3(
+            Mathf.Clamp(rb.velocity.x, -maxHorizontalClimbSpeed, maxHorizontalClimbSpeed), 
+            climbSpeed, // velocity.y
+            Mathf.Clamp(rb.velocity.z, -maxHorizontalClimbSpeed, maxHorizontalClimbSpeed));
 
         /// idea - sound effect
     }
