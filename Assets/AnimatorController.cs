@@ -246,8 +246,7 @@ public class AnimatorController : MonoBehaviour
         {
             //animator.SetBool(climbingHash, true);
             //animator.CrossFade("Climbing", 0.25f);
-            
-            
+
 
         }
         
