@@ -148,7 +148,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         {
             rb.drag = 0;
         }
-        else if ((state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching) && !activeGrapple)
+        else if ((grounded) && !activeGrapple)
             rb.drag = groundDrag;
         else
             rb.drag = 0;
@@ -183,7 +183,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
             colliderCrouching.SetActive(true);
             
             playerCollider.localScale = new Vector3(playerCollider.localScale.x, crouchYScale, playerCollider.localScale.z);
-            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+            //rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
 
         // stop crouch
@@ -270,7 +270,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         // Mode - Crouching
-        else if (playerInput.actions["CrouchSlide"].IsPressed())
+        else if (playerInput.actions["CrouchSlide"].IsPressed() && grounded)
         {
             state = MovementState.crouching;
             desiredMoveSpeed = crouchSpeed;
@@ -302,11 +302,18 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;
+
+        //if (rb.velocity.magnitude > 10)
+        //    keepMomentum = true;
+        //else
+        //    keepMomentum = false;
+
         if (lastState == MovementState.dashing) keepMomentum = true;
+        //if (lastState == MovementState.swinging) keepMomentum = true;
+        
 
         // check if desiredMoveSpeed has changed drastically
-        //if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0)
-        if(desiredMoveSpeedHasChanged)
+        if (desiredMoveSpeedHasChanged)
         {
             if(keepMomentum)
             {
@@ -352,7 +359,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         moveSpeed = desiredMoveSpeed;
-        speedChangeFactor = 1f;
+        speedChangeFactor = speedIncreaseMultiplier;
         keepMomentum = false;
     }
 
@@ -374,9 +381,9 @@ public class PlayerMovementAdvanced : MonoBehaviour
         if (OnSlope() && !exitingSlope)
         {
             rb.AddForce(GetSlopeMoveDirection(moveDirection) * moveSpeed * 20f, ForceMode.Force);
-
-            if (rb.velocity.y > 0)
-                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+            // Since gravity is off while on a slope, this is to prevent bobbing while going up slopes.
+            //if (rb.velocity.y > 0)
+                //rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
 
         // on ground
@@ -502,12 +509,15 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public bool OnSlope()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        if (!gameObject.activeInHierarchy)
+            Debug.Log("WHAT");
+
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f, whatIsGround))
         {
+            
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
         }
-
         return false;
     }
 
