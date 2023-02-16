@@ -139,9 +139,9 @@ public class AnimatorController : MonoBehaviour
             if (pm.state == PlayerMovementAdvanced.MovementState.wallrunning && pm.wallRunScript.wallRight)
             {
                 // Animation Speed
-                //animator.SetFloat("ClimbSpeed", pm.climbingScript.climbSpeed);
-                
-                
+                animator.SetFloat("WallRunSpeed", 2f);
+
+
                 if (!animator.GetBool(wallRunRightHash))
                 {
                     animator.SetBool(wallRunRightHash, true);
@@ -158,7 +158,7 @@ public class AnimatorController : MonoBehaviour
             if (pm.state == PlayerMovementAdvanced.MovementState.wallrunning && pm.wallRunScript.wallLeft)
             {
                 // Animation Speed
-                //animator.SetFloat("ClimbSpeed", pm.climbingScript.climbSpeed);
+                animator.SetFloat("WallRunSpeed", 2f);
 
 
                 if (!animator.GetBool(wallRunLeftHash))
