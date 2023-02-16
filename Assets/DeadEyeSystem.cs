@@ -37,6 +37,11 @@ public class DeadEyeSystem : MonoBehaviour
 
     public Volume ppv;
 
+    // Safety Disable
+    float _timeWhenActivated = 0;
+    float _activeTime = 0;
+    public float safetyForceKillAfterSeconds = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,7 +91,12 @@ public class DeadEyeSystem : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.G))
         {
             if (deadEyeState == DeadEyeState.aiming)
+            {
                 deadEyeState = DeadEyeState.shooting;
+                _timeWhenActivated = Time.time;
+                _activeTime = Time.time;
+            }
+                
         }
 
     }
@@ -116,6 +126,7 @@ public class DeadEyeSystem : MonoBehaviour
     {
         if(deadEyeState == DeadEyeState.off)
         {
+            
             // Enable Player Camera Control
             //cam_look.SetActiveCameraInputs(true);
             if (ppv.weight > 0.0f)
@@ -133,6 +144,9 @@ public class DeadEyeSystem : MonoBehaviour
         }
         else
         {
+            // Keep track of time active just in case something goes wrong, we can shut it down.
+            _activeTime += Time.deltaTime;
+
             // DISABLE player camera control, camera is automated.
             cam_look.SetActiveCameraInputs(false);
             if(keepSlowmoWhileShooting)
@@ -146,6 +160,24 @@ public class DeadEyeSystem : MonoBehaviour
             
             Time.fixedDeltaTime = Time.timeScale * fixedDeltaTimeDefault;
             UpdateTargets();
+        }
+
+        if(_activeTime > (_timeWhenActivated+safetyForceKillAfterSeconds))
+        { // We've been active for too long, something probably went wrong.
+            Debug.LogWarning("We were active too long, hard killing deadeye.");
+
+            _activeTime = 0;
+            _timeWhenActivated = 0;
+
+            EndDeadEye();
+
+            for(int i = targets.Count-1; i > -1; i--)
+            {
+                var currTar = targets[i];
+                targets.Remove(currTar);
+                Destroy(currTar.gameObject);
+            }
+                
         }
     }
 
@@ -171,16 +203,17 @@ public class DeadEyeSystem : MonoBehaviour
             diff = (cam.transform.eulerAngles - rot.eulerAngles).magnitude;
             if(diff <= aimErrorAllowance && _cooldownTimer <= 0.0f)
             {
-                Debug.Log("Diff:" + diff);
                 Fire();
                 targets.Remove(currTarget);
                 Destroy(currTarget.gameObject);
             }
 
-            if(targets.Count == 0)
-            {
-                EndDeadEye();
-            }
+            
+        }
+
+        if (targets.Count == 0)
+        {
+            EndDeadEye();
         }
     }
 

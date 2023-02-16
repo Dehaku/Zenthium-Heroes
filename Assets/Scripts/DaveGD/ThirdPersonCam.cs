@@ -31,6 +31,8 @@ public class ThirdPersonCam : MonoBehaviour
 
     Vector3 inputMovement;
 
+    public bool disableCameraInputs = false;
+
     //[Header("Events")]
     public event Action<List<GameObject>> onCameraSwitch;
 
@@ -82,6 +84,9 @@ public class ThirdPersonCam : MonoBehaviour
             SwitchCameraStyle(CameraStyle.Combat);
         if (currentCam == 2)
             SwitchCameraStyle(CameraStyle.FirstPerson);
+
+        // Enable player inputs. (Mostly a bug prevention method with Deadeye style commands.
+        SetActiveCameraInputs(true);
     }
 
     void Inputs()
@@ -96,8 +101,20 @@ public class ThirdPersonCam : MonoBehaviour
 
     }
 
+    public void SetActiveCameraInputs(bool enabled)
+    {
+        var virtCam = GetComponent<Cinemachine.CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<Cinemachine.CinemachineVirtualCamera>();
+        if (virtCam)
+        {
+            virtCam.GetComponent<Cinemachine.CinemachineInputProvider>().enabled = enabled;
+        }
+    }
+
     private void Update()
     {
+        if (disableCameraInputs)
+            return;
+        
         Inputs();
 
         // rotate orientation
@@ -204,6 +221,27 @@ public class ThirdPersonCam : MonoBehaviour
             {
                 Debug.LogError("No virt or free cam detected!");
             }
+        }
+    }
+
+    public void LookAt(Quaternion lookDir)
+    {
+        var virtCam = GetComponent<Cinemachine.CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<Cinemachine.CinemachineVirtualCamera>();
+        if (virtCam)
+        {
+            virtCam.ForceCameraPosition(Vector3.zero, lookDir);
+        }
+    }
+
+    public void LookAt(Vector3 lookPos)
+    {
+        var virtCam = GetComponent<Cinemachine.CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<Cinemachine.CinemachineVirtualCamera>();
+        if (virtCam)
+        {
+            Vector3 relativePos = lookPos - virtCam.transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+            
+            virtCam.ForceCameraPosition(Vector3.zero, rotation);
         }
     }
 

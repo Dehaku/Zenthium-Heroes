@@ -132,6 +132,9 @@ public class PlayerMovementAdvanced : MonoBehaviour
         readyToJump = true;
 
         startYScale = transform.localScale.y;
+
+        Debug.Log("Fix spamming the swing button giving tons of momentum when aiming up/down, use cooldown?");
+        Debug.Log("Dash: Add a midair flip action that recharges your dash.");
     }
 
     private void Update()
@@ -196,8 +199,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
             playerCollider.localScale = new Vector3(playerCollider.localScale.x, startYScale, playerCollider.localScale.z);
         }
 
-        
+       
+
     }
+
+    
 
     public bool keepMomentum;
 
@@ -303,14 +309,17 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;
 
-        //if (rb.velocity.magnitude > 10)
-        //    keepMomentum = true;
-        //else
-        //    keepMomentum = false;
+        if (rb.velocity.magnitude > 10)
+            keepMomentum = true;
+        else
+            keepMomentum = false;
+
+        
 
         if (lastState == MovementState.dashing) keepMomentum = true;
         //if (lastState == MovementState.swinging) keepMomentum = true;
-        
+
+        keepMomentum = false;
 
         // check if desiredMoveSpeed has changed drastically
         if (desiredMoveSpeedHasChanged)
@@ -383,7 +392,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
             rb.AddForce(GetSlopeMoveDirection(moveDirection) * moveSpeed * 20f, ForceMode.Force);
             // Since gravity is off while on a slope, this is to prevent bobbing while going up slopes.
             //if (rb.velocity.y > 0)
-                //rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+            //rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
 
         // on ground
@@ -392,7 +401,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
 
 
-        
+
 
         // in air
         else if (!grounded)
@@ -400,6 +409,26 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         // turn gravity off while on slope
         rb.useGravity = !OnSlope();
+    }
+
+    void AirControlLogic()
+    {
+        // Moving faster than we should be, No extra momentum from us.
+        if (rb.velocity.magnitude > desiredMoveSpeed)
+        {
+            Vector3 moveDirVelocity = moveDirection.normalized * rb.velocity.magnitude;
+            Vector3 newAirVelocity = Vector3.Lerp(rb.velocity, moveDirVelocity, 0.01f);
+            Debug.Log(rb.velocity + " : " + moveDirVelocity + " , makes: " + newAirVelocity);
+            rb.velocity = newAirVelocity;
+        }
+
+        // We can add momentum.
+        else
+        {
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        }
+
+            
     }
 
     private void SpeedControl()
