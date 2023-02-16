@@ -133,6 +133,47 @@ public class AnimatorController : MonoBehaviour
             pm.state == PlayerMovementAdvanced.MovementState.swinging));
 
         // Wallrunning
+        if (pm.wallRunScript)
+        {
+            // Right Wall
+            if (pm.state == PlayerMovementAdvanced.MovementState.wallrunning && pm.wallRunScript.wallRight)
+            {
+                // Animation Speed
+                //animator.SetFloat("ClimbSpeed", pm.climbingScript.climbSpeed);
+                
+                
+                if (!animator.GetBool(wallRunRightHash))
+                {
+                    animator.SetBool(wallRunRightHash, true);
+                    int animClip = Animator.StringToHash("RightWallRun");
+                    //animator.Play(climb);
+                    animator.CrossFade(animClip, 0.25f);
+                }
+
+            }
+            else if (animator.GetBool(wallRunRightHash))
+                animator.SetBool(wallRunRightHash, false);
+
+            // Left Wall
+            if (pm.state == PlayerMovementAdvanced.MovementState.wallrunning && pm.wallRunScript.wallLeft)
+            {
+                // Animation Speed
+                //animator.SetFloat("ClimbSpeed", pm.climbingScript.climbSpeed);
+
+
+                if (!animator.GetBool(wallRunLeftHash))
+                {
+                    animator.SetBool(wallRunLeftHash, true);
+                    int animClip = Animator.StringToHash("LeftWallRun");
+                    //animator.Play(climb);
+                    animator.CrossFade(animClip, 0.25f);
+                }
+
+            }
+            else if (animator.GetBool(wallRunLeftHash))
+                animator.SetBool(wallRunLeftHash, false);
+        }
+        /*
         if(pm.wallRunScript)
         {
             if (pm.state == PlayerMovementAdvanced.MovementState.wallrunning)
@@ -148,9 +189,10 @@ public class AnimatorController : MonoBehaviour
 
             
         }
+        */
 
         // Climbing
-        if(pm.climbingScript)
+        if (pm.climbingScript)
         {
             if(pm.state == PlayerMovementAdvanced.MovementState.climbing)
             {
