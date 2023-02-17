@@ -712,13 +712,13 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 178b8d4d848c30949abd47f15191fe19, type: 2}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: WallRunSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -1212,6 +1212,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 3299819721590882391}
     m_Position: {x: 780, y: 370, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1223297582032479048}
+    m_Position: {x: 83.53174, y: 598.1417, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 509680384432953683}
@@ -1436,6 +1439,32 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1102 &1223297582032479048
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HugCustom
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 06063108fc379e04aaa6f55aaa68bd30, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!206 &1705297199845096160
 BlendTree:
   m_ObjectHideFlags: 1
@@ -1484,13 +1513,13 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: f67b4635c002a804ca951b923a37cb70, type: 2}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: WallRunSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
