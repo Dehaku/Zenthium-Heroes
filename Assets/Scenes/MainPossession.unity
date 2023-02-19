@@ -30047,7 +30047,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2, y: 1}
+    m_SensorSize: {x: 3.2367022, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 1
@@ -46722,7 +46722,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078567363}
-  m_LocalRotation: {x: -0.0071691987, y: -0.06974572, z: 0.0077642384, w: 0.9975088}
+  m_LocalRotation: {x: -0.0071691996, y: -0.06974572, z: 0.0077642393, w: 0.9975088}
   m_LocalPosition: {x: -0.031541508, y: -0.000000026077032, z: -0.00000005401671}
   m_LocalScale: {x: 1.0000005, y: 1.0000002, z: 1.0000004}
   m_Children: []
@@ -48657,7 +48657,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh290326
+  m_Name: pb_Mesh813662
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -54772,6 +54772,7 @@ GameObject:
   - component: {fileID: 1327677042}
   - component: {fileID: 1327677043}
   - component: {fileID: 1327677044}
+  - component: {fileID: 1327677045}
   m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
@@ -55955,6 +55956,26 @@ MonoBehaviour:
   - {fileID: 1759658382}
   twistRotation: []
 --- !u!114 &1327677044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327676984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb34da6f42aac4d408b198cfd261ffea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  twistValue: 0.5
+  twistBone:
+  - {fileID: 1498298074}
+  - {fileID: 857755049}
+  refBone:
+  - {fileID: 1011104927}
+  - {fileID: 1759658382}
+  twistRotation: []
+--- !u!114 &1327677045
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107327,6 +107348,7 @@ GameObject:
   - component: {fileID: 9177336299810051472}
   - component: {fileID: 9177336299810051473}
   - component: {fileID: 9177336299810051474}
+  - component: {fileID: 9177336299810051476}
   m_Layer: 0
   m_Name: UMADynamicCharacterAvatar-LOD
   m_TagString: Untagged
@@ -107611,6 +107633,18 @@ MonoBehaviour:
   ExpressionChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9177336299810051476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9177336299810051471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f722af54094e1244e8d6a5617cd62994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &9177336299810255005
 Transform:
   m_ObjectHideFlags: 0
@@ -107912,7 +107946,7 @@ MonoBehaviour:
       valuesConverted: 0
     - name: Lipstick
       channelMask:
-      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.9528302, g: 0.013483422, b: 0.013483422, a: 1}
       - {r: 1, g: 1, b: 1, a: 1}
       - {r: 1, g: 1, b: 1, a: 1}
       channelAdditiveMask:
@@ -107930,7 +107964,7 @@ MonoBehaviour:
       valuesConverted: 0
     - name: Shirt
       channelMask:
-      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 0.9150943, g: 0.15107687, b: 0.15107687, a: 1}
       - {r: 1, g: 1, b: 1, a: 1}
       - {r: 1, g: 1, b: 1, a: 1}
       channelAdditiveMask:
