@@ -6,7 +6,7 @@ using UMA.CharacterSystem;
 using UnityEngine.UI;
 using System.IO;
 
-public class UMAChacterCreator : MonoBehaviour
+public class UMACharacterCreator : MonoBehaviour
 {
     public DynamicCharacterAvatar avatar;
     public Slider heightSlider;
@@ -73,8 +73,6 @@ public class UMAChacterCreator : MonoBehaviour
     {
         avatar.SetColor("Skin", col);
         avatar.UpdateColors(true);
-
-        Debug.Log(avatar.GetColor("Skin").color);
     }
 
     public void ChangeHair(bool plus)
@@ -101,8 +99,6 @@ public class UMAChacterCreator : MonoBehaviour
             else
                 avatar.SetSlot("Hair", hairModelsFemale[currentHairFemale]);
             avatar.BuildCharacter();
-
-            //Debug.Log(avatar.GetWardrobeItemName("Hair"));
         }
 
         else if (avatar.activeRace.name == "HumanMale")
@@ -128,7 +124,6 @@ public class UMAChacterCreator : MonoBehaviour
                 avatar.SetSlot("Hair", hairModelsMale[currentHairMale]);
             avatar.BuildCharacter();
 
-            //Debug.Log(avatar.GetWardrobeItemName("Hair"));
         }
 
     }
@@ -138,7 +133,6 @@ public class UMAChacterCreator : MonoBehaviour
         myRecipe = avatar.GetCurrentRecipe();
         string path = Application.persistentDataPath + "/charRecipe.txt";
         File.WriteAllText(path,myRecipe);
-        Debug.Log(path);
     }
 
     public void LoadRecipe()
