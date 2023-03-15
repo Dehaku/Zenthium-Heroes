@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e4a32a7d00c3e4fb93972961622508, type: 3}
+  m_Name: TextureArray_BaseTemplate
+  m_EditorClassIdentifier: 
+  Materials:
+  - {fileID: 2100000, guid: b251287cc0cce7b49ab28a0f8a3b2d25, type: 2}
+  - {fileID: 2100000, guid: 149a5ea8d7b50e945b4719f4afef1d8a, type: 2}
+  - {fileID: 2100000, guid: 39e1ff24919b51446b0635980177dd47, type: 2}
+  - {fileID: 2100000, guid: ea20d5b045fec4841a4b585e78b83baf, type: 2}
+  WhiteDefaultTexture: {fileID: 2800000, guid: bebe64da80303a54c90e6cd4c6180278, type: 3}
+  BlackDefaultTexture: {fileID: 2800000, guid: db14eddd3a099074290f4b30f93d20e2, type: 3}
+  NormalDefaultTexture: {fileID: 2800000, guid: ac74305da033e134cb22df6a06f1f128, type: 3}
+  HeightDefaultTexture: {fileID: 2800000, guid: 23e56e2d425f449409b5d780c8ae2817, type: 3}
+  OcclusionTextures:
+  - {fileID: 2800000, guid: bebe64da80303a54c90e6cd4c6180278, type: 3}
+  - {fileID: 2800000, guid: 62de281c8f1b31842b3a661b87799342, type: 3}
+  - {fileID: 2800000, guid: bebe64da80303a54c90e6cd4c6180278, type: 3}
+  - {fileID: 2800000, guid: bebe64da80303a54c90e6cd4c6180278, type: 3}
+  DiffuseTextures:
+  - {fileID: 2800000, guid: bebe64da80303a54c90e6cd4c6180278, type: 3}
+  - {fileID: 2800000, guid: df918513902c93c4286490cdbfd13928, type: 3}
+  - {fileID: 2800000, guid: bebe64da80303a54c90e6cd4c6180278, type: 3}
+  - {fileID: 2800000, guid: 9e7744c02abc67a48a910fcfdd62df5c, type: 3}
+  EmmissiveTextures:
+  - {fileID: 2800000, guid: db14eddd3a099074290f4b30f93d20e2, type: 3}
+  - {fileID: 2800000, guid: db14eddd3a099074290f4b30f93d20e2, type: 3}
+  - {fileID: 2800000, guid: db14eddd3a099074290f4b30f93d20e2, type: 3}
+  - {fileID: 2800000, guid: db14eddd3a099074290f4b30f93d20e2, type: 3}
+  HeightTextures:
+  - {fileID: 2800000, guid: 23e56e2d425f449409b5d780c8ae2817, type: 3}
+  - {fileID: 2800000, guid: 217824f422ccc1c4fa4866495532cee5, type: 3}
+  - {fileID: 2800000, guid: 23e56e2d425f449409b5d780c8ae2817, type: 3}
+  - {fileID: 2800000, guid: 24bb810fbc07a5f40abe4f0e27d6811e, type: 3}
+  MetallicTextures:
+  - {fileID: 2800000, guid: bebe64da80303a54c90e6cd4c6180278, type: 3}
+  - {fileID: 2800000, guid: bbe70552cd15d184690e66ef070d2fb9, type: 3}
+  - {fileID: 2800000, guid: bebe64da80303a54c90e6cd4c6180278, type: 3}
+  - {fileID: 2800000, guid: be1fe7a33497b78498b54e2129d095d9, type: 3}
+  NormalTextures:
+  - {fileID: 2800000, guid: ac74305da033e134cb22df6a06f1f128, type: 3}
+  - {fileID: 2800000, guid: 7f4f5bfffa8b7b747b6269a686f07b60, type: 3}
+  - {fileID: 2800000, guid: ac74305da033e134cb22df6a06f1f128, type: 3}
+  - {fileID: 2800000, guid: 0c24f723b83594243be182a4f5d1bf72, type: 3}
+  BaseTextureMultiplier:
+  - {r: 0.45882356, g: 0.9946441, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.9268169, b: 0.4575472, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  MetallicMultiplier:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  EmissionMultiplier:
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  SmoothnessTextureSource: 00000000000000000000000001000000
+  OutputPath: Assets/HODL/HODLFighter/Element/Holy/Materials/DivineBox
+  FinalName: DivineBox_Atlas
+  TargetMaterial: {fileID: 2100000, guid: 6fddd0b96b16ba84f8d9acb4e0247792, type: 2}
+  UseMaterialPath: 1
+  compressionFormat: 12

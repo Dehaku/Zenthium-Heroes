@@ -1,0 +1,146 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7394931838732844837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7394931838732845019}
+  - component: {fileID: 7394931838732845018}
+  - component: {fileID: 7394931838732845017}
+  - component: {fileID: 7394931838732845016}
+  - component: {fileID: 7394931838732844839}
+  - component: {fileID: 7394931838732845020}
+  m_Layer: 0
+  m_Name: VoxelModifier_V2_Material
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7394931838732845019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394931838732844837}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7394931838732845018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394931838732844837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c56dda55af2bf4cbae2ae1d889f82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetDimension: 1
+  Depth: 6
+  Mode: 2
+  Opacity: 1
+  TargetingModule: {fileID: 7394931838732845017}
+  ShapeModule: {fileID: 7394931838732845016}
+  PostProcessModule:
+  - {fileID: 7394931838732845020}
+  FetchPostProcessModules: 1
+  RequireVoxelData: 1
+  MarchingCubesOffset: 1
+--- !u!114 &7394931838732845017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394931838732844837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2e06063a109f84eb5ca67ca90a9a4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlwaysModify:
+  - {fileID: 0}
+  NeverModify: []
+  SphereCastLayer:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  Maximum: 3
+  Radius: 10
+  lastReference: {fileID: 0}
+--- !u!114 &7394931838732845016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394931838732844837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56bd839dcf387f24b933a23a77fd3701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ApplyObjectRotation: 0
+  boundaryExtension: 1
+  InitialID: 32
+  Radius: 9.71
+--- !u!114 &7394931838732844839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394931838732844837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec23c6d9fe654247a4277ecec13c113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Modifier: {fileID: 7394931838732845018}
+  GameCamera: {fileID: 0}
+  ImpactIndicator: {fileID: 0}
+  TargetLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  MaximumDistance: 0
+  ActivationButton: 306
+  ReliefPainting: 0
+  Paint2D: 0
+  PaintPlaneXY: 1
+  PaintPlaneXZ: 0
+  PaintPlaneYZ: 0
+  PaintPlaneOffset: 0
+  PaintPlaneSize: 1000
+  PaintPlaneColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0.21176471}
+  PaintPosition: {x: 8.865804, y: 0.5, z: -18.563368}
+  ModeLeftClick: 1
+  ModeRightClick: 2
+  ModeMiddletClick: 3
+  PaintNormal: {x: 0, y: 0, z: 0}
+--- !u!114 &7394931838732845020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394931838732844837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d60bff3a4211ad143aad8d2a4090b864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enabled: 1
+  MinimumID: 0
+  MaximumID: 120

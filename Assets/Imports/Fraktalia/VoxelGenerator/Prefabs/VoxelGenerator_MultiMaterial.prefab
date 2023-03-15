@@ -1,0 +1,302 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3094813607943121448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3094813607943121451}
+  - component: {fileID: 3094813607943121450}
+  - component: {fileID: 3094813607943121453}
+  - component: {fileID: 3094813607943121452}
+  m_Layer: 0
+  m_Name: VoxelGenerator_MultiMaterial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3094813607943121451
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3094813607943121448}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -75, y: -34.39536, z: -25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3094813608276651862}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3094813607943121450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3094813607943121448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d677b93ca1a92264fae9ee541de0abe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hullGenerators:
+  - {fileID: 3094813608276651865}
+  RootSize: 40
+  SubdivisionPower: 2
+  DimensionCount: 2
+  InitialValue: 255
+  RestrictDimension: 
+  LockHullUpdates: 0
+  savesystem: {fileID: 3094813607943121453}
+  worldgenerator: {fileID: 0}
+  LODDistance: 0
+  ChunkHash: {x: 0, y: 0, z: 0}
+  MemoryOptimized: 0
+  KeepHulls: 0
+  UseInitPoint: 0
+  Initpoint: {x: 0, y: 0, z: 0}
+  DebugMode: 0
+  instanceID: 35982
+  IsExtension: 0
+  __export_foldout: 0
+  __export_savePath: Assets/
+  __export_meshName: ExportedMesh
+  __export_center: {x: -0.5, y: -0.5, z: -0.5}
+--- !u!114 &3094813607943121453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3094813607943121448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74fc1170045fab94194de54a6fa0b5cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoLoad: 1
+  LoadOnStart: 1
+  __migrated: 1
+  SceneVoxelData:
+    IsValid: 0
+    SubdivisionPower: 2
+    RootSize: 0
+    VoxelCount: 0
+    VoxelData: []
+    DimensionCount: 1
+    AdditionalData: []
+  EditorSaveMode: 0
+  DynamicLoadSpeed: 1000
+  _VoxelMap: {fileID: 11400000, guid: 93b7a5e332cf3e74b89eb7cf7cce0f4f, type: 2}
+  nativevoxelengine: {fileID: 3094813607943121450}
+  WorldFolder: Assets/Exclusion/VoxelGenerator/Samples/Scenes/Underworld/WorldData_Obsidian/
+  WorldToSceneLocation: 1
+  WorldChunk: {x: 0, y: 0, z: 0}
+  WorldRegionSize: 32
+  WorldLoadingRule: 0
+  VoxelName: WorldData_Obsidian
+  DuplicateMapOnClone: 1
+  SaveInSceneSubFolder: 1
+  RemoveVoxelmapOnDelete: 0
+  IsDirty: 0
+  ModuleScene:
+    saveSystem: {fileID: 3094813607943121453}
+    SceneVoxelData:
+      IsValid: 0
+      SubdivisionPower: 2
+      RootSize: 0
+      VoxelCount: 0
+      VoxelData: []
+      DimensionCount: 1
+      AdditionalData: []
+  ModuleScriptableObject:
+    saveSystem: {fileID: 3094813607943121453}
+    _VoxelMap: {fileID: 11400000, guid: 5cbdac1d62c343949b8e093d58c1b9ac, type: 2}
+    DuplicateMapOnClone: 1
+    SaveInSceneSubFolder: 1
+    RemoveVoxelmapOnDelete: 0
+  ModulePersistent:
+    saveSystem: {fileID: 0}
+    VoxelName: WorldData_Obsidian
+  ModuleWorld:
+    saveSystem: {fileID: 0}
+    VoxelName: WorldData_Obsidian
+    WorldChunk: {x: 0, y: 0, z: 0}
+    WorldToSceneLocation: 1
+    WorldFolder: Assets/Exclusion/VoxelGenerator/Samples/Scenes/Underworld/WorldData_Obsidian/
+    WorldLoadingRule: 0
+  ModuleRegion:
+    saveSystem: {fileID: 0}
+    VoxelName: WorldData_Obsidian
+    WorldRegionSize: 32
+    WorldChunk: {x: 0, y: 0, z: 0}
+    WorldToSceneLocation: 1
+    WorldFolder: Assets/Exclusion/VoxelGenerator/Samples/Scenes/Underworld/WorldData_Obsidian/
+    WorldLoadingRule: 0
+  ModulePersistent_V2:
+    saveSystem: {fileID: 0}
+    VoxelName: 
+  ModuleWorld_V2:
+    saveSystem: {fileID: 0}
+    VoxelName: 
+    WorldChunk: {x: 0, y: 0, z: 0}
+    WorldToSceneLocation: 1
+    WorldFolder: 
+    WorldLoadingRule: 0
+  ModulePath_V2:
+    saveSystem: {fileID: 0}
+    CurrentPath: 
+  ModuleByteBuffer_V2:
+    saveSystem: {fileID: 0}
+    Key: 
+  eventsfoldout: 0
+  OnDataSaved:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDataLoaded:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3094813607943121452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3094813607943121448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb129d084c828d04c8ed985ecbe4b80a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetDimension: 1
+  Depth: 8
+  ID: 2
+  Radius: 1.06
+  AdditionalTargets: []
+  Radials: {x: 0, y: 0, z: 0}
+  BoxSize: {x: 0, y: 0, z: 0}
+  Orientation: {x: 0, y: 0, z: 0}
+  Mode: 0
+  Shape: 0
+  AlwaysModify:
+  - {fileID: 3094813607943121450}
+  UseWhiteList: 0
+  WhiteList: []
+  SphereCastLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  MaxChanges: 3
+  onModifyVoxel:
+    m_PersistentCalls:
+      m_Calls: []
+  PaintPosition: {x: -83.22515, y: 38.949574, z: -40.672802}
+  ErrorMessage: '> The Voxel Engine is not initialized
+
+
+'
+  EstimatedModifications: -1
+  EditorTools:
+    IDLeft: 5
+    ModeLeft: 1
+    IDRight: 5
+    ModeRight: 2
+    IDMiddle: 0
+    ModeMiddle: 3
+    EstimatedModifications: 0
+  Paint2D: 0
+  PaintPlaneXY: 0
+  PaintPlaneXZ: 0
+  PaintPlaneYZ: 0
+  PaintPlaneOffset: 0
+  PaintPlaneSize: 2000
+  PaintPlaneColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+--- !u!1 &3094813608276651863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3094813608276651862}
+  - component: {fileID: 3094813608276651865}
+  m_Layer: 0
+  m_Name: HullGenerator_Marching
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3094813608276651862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3094813608276651863}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3094813607943121451}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3094813608276651865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3094813608276651863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd29b12423eb2e408ed2b5014fbbf37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engine: {fileID: 3094813607943121450}
+  AppliedHideflags: 3
+  Locked: 0
+  LockAfterInit: 0
+  NoCollision: 0
+  ConvexCollider: 0
+  Invisible: 0
+  Shrink: 0.001
+  OnHullGenerationStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHullGenerationComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  VoxelMeshes: []
+  instanceID: 0
+  width: 8
+  Cell_Subdivision: 8
+  NumCores: 16
+  NoDistanceCollision: 0
+  FarDistance: 0
+  VoxelMaterial: {fileID: 2100000, guid: aa035cf9fb28a11489f123ecd57226fb, type: 2}
+  VoxelMaterialShell: {fileID: 0}
+  DetailGenerator: []
+  MinimumID: 0
+  MaximumID: 255
+  UVPower: 0.1
+  SmoothAngle: 60
+  TextureDimensionUV3: 1
+  TextureDimensionUV4: -1
+  TextureDimensionUV5: -1
+  TextureDimensionUV6: -1
+  TexturePowerUV3: 1
+  TexturePowerUV4: 1
+  TexturePowerUV5: 1
+  TexturePowerUV6: 1
+  AddTesselationColors: 1
+  UseNewCalculator: 0

@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6011430923735603723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6011430923735603722}
+  - component: {fileID: 6011430923735603721}
+  m_Layer: 0
+  m_Name: TextureToTerrainVoxel_Texture
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &6011430923735603722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6011430923735603723}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6011430923735603721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6011430923735603723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40864244296a7d344b4a771a3b0cc2d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetGenerator: {fileID: 0}
+  Depth: 6
+  TargetDimension: 0
+  Additive: 0
+  ClearBlock: 0
+  ErrorMessage: This setup would modify more than 5 Million Voxels. You do not want
+    to freeze Unity
+  IgnoreErrors: 0
+  TextureToConvert: {fileID: 0}
+  ChannelToRead: 0
+  Invert: 0
+  TopExtension: 10
+  BottomExtension: 10
+  Size: {x: 0, y: 0}
+  FillPositiveSide: 0
+  FillNegativeSide: 1
+  HeightFallOff: 256
+  TextureMultiplier: 0
+  Smoothing: 0
+  finalMultiplier: 1

@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8586362295499147838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2490423692332660791}
+  - component: {fileID: 8193380303960790731}
+  - component: {fileID: 254911872629605753}
+  m_Layer: 0
+  m_Name: Spherical
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2490423692332660791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8586362295499147838}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -26.99, y: 11.06, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &8193380303960790731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8586362295499147838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb129d084c828d04c8ed985ecbe4b80a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetDimension: 0
+  Depth: 7
+  ID: 255
+  Radius: 1
+  AdditionalTargets: []
+  Radials: {x: 0, y: 0, z: 0}
+  BoxSize: {x: 0, y: 0, z: 0}
+  Orientation: {x: 0, y: 0, z: 0}
+  Mode: 2
+  Shape: 0
+  AlwaysModify: []
+  UseWhiteList: 0
+  WhiteList: []
+  SphereCastLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  MaxChanges: 3
+  onModifyVoxel:
+    m_PersistentCalls:
+      m_Calls: []
+  PaintPosition: {x: 0, y: 0, z: 0}
+  ErrorMessage: "> No Generator to check safety found. \n\n"
+  EstimatedModifications: 0
+  EditorTools:
+    IDLeft: 100
+    ModeLeft: 1
+    IDRight: 100
+    ModeRight: 2
+    IDMiddle: 100
+    ModeMiddle: 3
+    EstimatedModifications: 0
+  Paint2D: 0
+  PaintPlaneXY: 0
+  PaintPlaneXZ: 0
+  PaintPlaneYZ: 0
+  PaintPlaneOffset: 0
+  PaintPlaneSize: 2000
+  PaintPlaneColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+--- !u!114 &254911872629605753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8586362295499147838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a71cd925332932478e5bc207749bc54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModifyRadius_Min: 1
+  ModifyRadius_Max: 2
+  CollisionLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  ApplyLocalRotation: 0
+  HitAngle_MIN: {x: 0, y: 0}
+  HitAngle_MAX: {x: 360, y: 360}
+  Boundary: 16.57
+  Spread: 0
+  PositionType: 1

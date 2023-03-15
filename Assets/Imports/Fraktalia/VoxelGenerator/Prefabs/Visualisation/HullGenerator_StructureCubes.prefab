@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &128249487696415893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 128249487696415894}
+  - component: {fileID: 128249487696415895}
+  m_Layer: 0
+  m_Name: HullGenerator_StructureCubes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &128249487696415894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128249487696415893}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &128249487696415895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128249487696415893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8a38845b9a42a445878f5dd2c09d4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engine: {fileID: 0}
+  AppliedHideflags: 3
+  Locked: 0
+  LockAfterInit: 0
+  NoCollision: 0
+  ConvexCollider: 0
+  Invisible: 0
+  Shrink: 0.001
+  OnHullGenerationStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHullGenerationComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  VoxelMeshes: []
+  instanceID: 0
+  MeshDepth: 4
+  FullCubes: 0
+  ScaleMultiplicator: 1
+  NumCores: 8
+  VoxelMaterial: {fileID: 2100000, guid: ad5c80b4fc1512142a0d2948bc6fa70e, type: 2}
+  VoxelMaterialShell: {fileID: 0}

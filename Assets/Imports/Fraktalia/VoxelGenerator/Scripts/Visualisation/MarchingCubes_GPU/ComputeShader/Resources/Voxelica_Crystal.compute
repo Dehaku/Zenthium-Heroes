@@ -1,0 +1,263 @@
+#pragma kernel MeshReconstruction
+#pragma kernel MeshReconstruction
+#pragma kernel MeshReconstruction
+#pragma kernel MeshReconstruction
+#pragma kernel MeshReconstruction
+#pragma kernel MeshReconstruction
+#pragma kernel MeshReconstruction
+#pragma kernel MeshReconstruction
+#pragma kernel WriteCounter
+#pragma kernel WriteCounter
+#pragma kernel WriteCounter
+#pragma kernel WriteCounter
+#pragma kernel WriteCounter
+#pragma kernel WriteCounter
+#pragma kernel WriteCounter
+#pragma kernel WriteCounter
+
+// Workaround for the absence of sizeof operator in HLSL.
+#define SIZEOF_UINT 4
+#define SIZEOF_FLOAT3 12
+
+// Parameters
+uint _BlockWidth;
+float _Target;
+float _VoxelSize;
+uint _Size;
+uint _VertexSize;
+uint _TriangleSize;
+
+StructuredBuffer<float> Voxels;
+
+RWStructuredBuffer<uint> Counter; // used only for counting
+RWStructuredBuffer<float3> PositionOffset;
+
+RWStructuredBuffer<float> _VertexNormalBuffer;
+
+uint mesh_verticeCount;
+uint mesh_triangleCount;
+
+RWStructuredBuffer<float3> mesh_verticeArray;
+RWStructuredBuffer<int> mesh_triangleArray;
+RWStructuredBuffer<float2> mesh_uvArray;
+RWStructuredBuffer<float3> mesh_normalArray;
+
+float3 Offset_min;
+float3 Offset_max;
+float3 Scale_min;
+float3 Scale_max;
+float ScaleFactor_min;
+float ScaleFactor_max;
+float3 Rotation_min;
+float3 Rotation_max;
+
+
+StructuredBuffer<float3> PermutationBuffer;
+
+
+uint EdgeIndexFromTriangleTable(uint2 data, uint index)
+{
+    return 0xfu & (index < 8 ? data.x >> ((index + 0) * 4) :
+                               data.y >> ((index - 8) * 4));
+}
+
+float VoxelValue(uint x, uint y, uint z)
+{
+    return Voxels[x + _BlockWidth * (y + _BlockWidth * z)];
+}
+
+void WriteVertex(uint index, float3 position, float3 normal, float2 uv, float3 positionoffset)
+{
+    float3 pos = position + positionoffset;
+    _VertexNormalBuffer[index * 3 + 0] = pos.x;
+    _VertexNormalBuffer[index * 3 + 1] = pos.y;
+    _VertexNormalBuffer[index * 3 + 2] = pos.z;
+    
+    int normalIndex = _VertexSize * 3;
+ 
+    _VertexNormalBuffer[normalIndex + index * 3 + 0] = normal.x;
+    _VertexNormalBuffer[normalIndex + index * 3 + 1] = normal.y;
+    _VertexNormalBuffer[normalIndex + index * 3 + 2] = normal.z;
+     
+    int uvIndex = _VertexSize * 3 * 2;
+    _VertexNormalBuffer[uvIndex + index * 2 + 0] = uv.x;
+    _VertexNormalBuffer[uvIndex + index * 2 + 1] = uv.y;
+}
+
+void WriteTriangle(uint index, uint triangleIndex)
+{
+    uint position = _VertexSize * 3 * 2 + _VertexSize * 2 + index;
+    _VertexNormalBuffer[position] = asfloat(triangleIndex);
+}
+
+uint3 CubeVertex(uint index)
+{
+    bool x = index & 1;
+    bool y = index & 2;
+    bool z = index & 4;
+    return uint3(x ^ y, y, z);
+}
+
+uint2 EdgeVertexPair(uint index)
+{
+    // (0, 1) (1, 2) (2, 3) (3, 0)
+    // (4, 5) (5, 6) (6, 7) (7, 4)
+    // (0, 4) (1, 5) (2, 6) (3, 7)
+    uint v1 = index & 7;
+    uint v2 = index < 8 ? ((index + 1) & 3) | (index & 4) : v1 + 4;
+    return uint2(v1, v2);
+}
+
+//
+// Marching cube mesh reconstruction kernel
+//
+
+//8/8/4: 2460 ticks average
+//8/4/4: 2421 ticks average
+//4/4/4: 2410 ticks average
+//4/4/2: 2486
+
+float4 qmul(float4 q1, float4 q2)
+{
+    return float4(
+             q2.xyz * q1.w + q1.xyz * q2.w + cross(q1.xyz, q2.xyz),
+             q1.w * q2.w - dot(q1.xyz, q2.xyz)
+         );
+}
+
+float3 rotate_vector(float3 v, float4 r)
+{
+    float4 r_c = r * float4(-1, -1, -1, 1);
+    return qmul(r, qmul(float4(v, 0), r_c)).xyz;
+}
+
+float4 eulertoquaternion(float3 v)
+{
+    float roll = v.x;
+    float pitch = v.y;
+    float yaw = v.z;
+    float qx = sin(roll / 2) * cos(pitch / 2) * cos(yaw / 2) - cos(roll / 2) * sin(pitch / 2) * sin(yaw / 2);
+    float qy = cos(roll / 2) * sin(pitch / 2) * cos(yaw / 2) + sin(roll / 2) * cos(pitch / 2) * sin(yaw / 2);
+    float qz = cos(roll / 2) * cos(pitch / 2) * sin(yaw / 2) - sin(roll / 2) * sin(pitch / 2) * cos(yaw / 2);
+    float qw = cos(roll / 2) * cos(pitch / 2) * cos(yaw / 2) + sin(roll / 2) * sin(pitch / 2) * sin(yaw / 2);
+    return float4(qx, qy, qz, qw);
+}
+
+[numthreads(4, 4, 4)]
+void MeshReconstruction(uint3 id : SV_DispatchThreadID)
+{
+    float3 offset = id;
+    offset.x += 1;
+    offset.y += 1;
+    offset.z += 1;
+    
+    // Voxel samples at each cube vertex
+    float samples[8];
+    for (uint i = 0; i < 8; i++)
+    { 
+        float3 pos = offset + CubeVertex(i);
+        samples[i] = VoxelValue(pos.x, pos.y, pos.z);
+    }
+      
+    // Cube configuration selector
+    // (initialized as a bit field of vertex binary states)
+    uint selector = 0;
+    for (i = 0; i < 8; i++)
+        selector |= (samples[i] < _Target) << i;
+
+    // Special case for empty cubes; Exit ealy if there is no intersection.
+    if (selector == 0 || selector == 0xff) return;
+    uint count = Counter.IncrementCounter();
+    
+    float3 positionoffset = PositionOffset[0]; 
+    float3 voxeloffset = float3(id.x, id.y, id.z) * _VoxelSize;
+    float3 position = positionoffset + voxeloffset;
+    
+    int randomPosition_1 = (id.x * 7 + id.y * 5 + id.z * 13 + (position.x + position.y + position.z) * 97) % 10000;
+    int randomPosition_2 = (id.x * 31 + id.y * 131 + id.z * 491 + (position.x + position.y + position.z)*13) % 10000;
+    int randomPosition_3 = (id.x * 2677 + id.y * 37 + id.z * 53 + (position.x + position.y + position.z)*17) % 10000;
+    
+    float3 random1 = PermutationBuffer[randomPosition_1];
+    float3 random2 = PermutationBuffer[randomPosition_2];
+    float3 random3 = PermutationBuffer[randomPosition_3];
+    
+    float3 scale;
+    scale.x =  lerp(Scale_min.x, Scale_max.x ,random1.x);
+    scale.y = lerp(Scale_min.y, Scale_max.y ,random1.y);
+    scale.z = lerp(Scale_min.z, Scale_max.z, random1.z); 
+    scale *= lerp(ScaleFactor_min, ScaleFactor_max, random2.y);
+    
+    
+    float3 randomoffset;
+    randomoffset.x = lerp(Offset_min.x, Offset_max.x, random3.x) * _VoxelSize;
+    randomoffset.y = lerp(Offset_min.y, Offset_max.y, random3.y) * _VoxelSize;
+    randomoffset.z = lerp(Offset_min.z, Offset_max.z, random3.z) * _VoxelSize;
+   
+    float3 randomrotation;
+    randomrotation.x = lerp(Rotation_min.x, Rotation_max.x, random1.x);
+    randomrotation.y = lerp(Rotation_min.y, Rotation_max.y, random2.y);
+    randomrotation.z = lerp(Rotation_min.z, Rotation_max.z, random3.z);
+    
+    float4 quaternion = eulertoquaternion(randomrotation);
+    
+    
+    uint vertexcount = mesh_verticeCount;
+    uint trianglecount = mesh_triangleCount;
+ 
+    uint idx = count * vertexcount;
+    uint triidx = count * trianglecount;
+    
+    for (i = 0; i < mesh_verticeCount; i++)
+    {
+        float3 vertex = mesh_verticeArray[i];  
+        vertex = rotate_vector(vertex, quaternion);
+       
+        vertex.x *= _VoxelSize * scale.x;
+        vertex.y *= _VoxelSize * scale.y;
+        vertex.z *= _VoxelSize * scale.z;
+        
+        vertex.x += _VoxelSize / 2;
+        vertex.y += _VoxelSize / 2;
+        vertex.z += _VoxelSize / 2;
+        vertex += randomoffset;
+        
+        
+        
+        
+        
+        float3 normal = mesh_normalArray[i];
+        normal = rotate_vector(normal, quaternion);
+       
+        
+        float2 uv = mesh_uvArray[i];
+        
+        
+        
+        WriteVertex(idx + i, vertex, normal, uv, position);
+      
+    }
+    
+    
+    for (i = 0; i < trianglecount; i++)
+    {   
+        uint index = mesh_triangleArray[i];
+        WriteTriangle(triidx + i, idx + index);
+    }
+    
+}
+
+
+
+
+//
+// Cleanup kernel that clears the unused area of the buffers
+//
+[numthreads(1, 1, 1)]
+void WriteCounter(uint id : SV_DispatchThreadID)
+{
+    uint count = Counter.IncrementCounter();
+    
+    uint position = _VertexSize * 3 * 2 + _VertexSize * 2 + _TriangleSize;
+    
+    _VertexNormalBuffer[position] = count;
+}

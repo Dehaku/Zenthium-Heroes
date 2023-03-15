@@ -1,0 +1,254 @@
+#pragma kernel MeshReconstruction
+#pragma kernel MeshReconstruction
+#pragma kernel MeshReconstruction
+#pragma kernel MeshReconstruction
+#pragma kernel MeshReconstruction
+#pragma kernel MeshReconstruction
+#pragma kernel MeshReconstruction
+#pragma kernel MeshReconstruction
+#pragma kernel WriteCounter
+#pragma kernel WriteCounter
+#pragma kernel WriteCounter
+#pragma kernel WriteCounter
+#pragma kernel WriteCounter
+#pragma kernel WriteCounter
+#pragma kernel WriteCounter
+#pragma kernel WriteCounter
+
+// Workaround for the absence of sizeof operator in HLSL.
+#define SIZEOF_UINT 4
+#define SIZEOF_FLOAT3 12
+#define SIZEOF_FLOAT2 8
+
+// Parameters
+uint _BlockWidth;
+float _Target;
+float _VoxelSize;
+uint _VertexSize;
+uint _TriangleSize;
+uint AtlasRow;
+
+StructuredBuffer<float> Voxels;
+
+
+RWStructuredBuffer<uint> Counter; // used only for counting
+RWStructuredBuffer<uint> counterBuffer;
+RWStructuredBuffer<float3> PositionOffset;
+
+RWStructuredBuffer<float> _VertexNormalBuffer;
+
+float VoxelValue(uint x, uint y, uint z)
+{
+    return Voxels[x + _BlockWidth * (y + _BlockWidth * z)];
+}
+
+void WriteVertex(uint index, float3 position, float3 normal, float2 uv, float3 positionoffset)
+{ 
+    float3 pos = position + positionoffset;    
+    _VertexNormalBuffer[index * 3 + 0] = pos.x;
+    _VertexNormalBuffer[index * 3 + 1] = pos.y;
+    _VertexNormalBuffer[index * 3 + 2] = pos.z;
+    
+    int normalIndex = _VertexSize * 3;
+ 
+    _VertexNormalBuffer[normalIndex+ index * 3 + 0] = normal.x;
+    _VertexNormalBuffer[normalIndex+ index * 3 + 1] = normal.y;
+    _VertexNormalBuffer[normalIndex+ index * 3 + 2] = normal.z;
+     
+    int uvIndex = _VertexSize * 3 * 2;
+    _VertexNormalBuffer[uvIndex + index * 2 + 0] = uv.x;
+    _VertexNormalBuffer[uvIndex + index * 2 + 1] = uv.y;
+}
+
+void WriteTriangle(uint index, uint triangleIndex)
+{   
+    uint position = _VertexSize * 3 * 2 + _VertexSize * 2 + index; 
+    _VertexNormalBuffer[position] = asfloat(triangleIndex);
+}
+
+[numthreads(4, 4, 4)]
+void MeshReconstruction(uint3 id : SV_DispatchThreadID)
+{
+    int x = id.x + 1;
+    int y = id.y + 1;
+    int z = id.z + 1;
+       
+    float centerID = VoxelValue(x, y, z);
+    
+    float xhalf = _VoxelSize / 2;
+    float yhalf = _VoxelSize / 2;
+    float zhalf = _VoxelSize / 2;
+
+    float3 blockoffset = PositionOffset[0] + float3(xhalf, xhalf, xhalf);
+    float3 voxeloffset = float3(id.x, id.y, id.z) * _VoxelSize;
+    float3 offset = blockoffset + voxeloffset;
+      
+    if (centerID > _Target)
+    {
+        float leftID = VoxelValue(x, y, (z - 1));
+        float rightID = VoxelValue(x , y ,(z + 1));
+        float upID = VoxelValue(x - 1 , y , z);
+        float downID = VoxelValue(x + 1 ,y , z);
+        float backID = VoxelValue(x , y - 1 ,z);
+        float frontID = VoxelValue(x ,y + 1 , z);
+      
+            //0, 0, -1,
+			//0, 0, 1,
+			//-1, 0, 0,
+			//1, 0, 0,
+			//0, -1, 0,
+			//0, 1, 0
+
+         //SpriteAtlas
+        float uvoffset = 1.0f / AtlasRow;
+        uint subdivision = 256 / (AtlasRow * AtlasRow);
+        int atlaspos_X = (centerID) / subdivision; //2
+        int atlaspos_Y = atlaspos_X / AtlasRow; //1
+        atlaspos_X %= AtlasRow; //1
+
+        float uvoffset_X = uvoffset * atlaspos_X;
+        float uvoffset_XMax = uvoffset_X + uvoffset;
+        float uvoffset_Y = uvoffset * atlaspos_Y;
+        float uvoffset_YMax = uvoffset_Y + uvoffset;
+
+        
+        if (leftID <= _Target)
+        {
+            uint count = Counter.IncrementCounter();
+            counterBuffer[0] = count;
+            uint idx = count * 4;
+            uint triidx = count * 6;
+            
+            WriteVertex(idx + 0, (float3(-xhalf, -yhalf, -zhalf)), (float3(0, 0, -1)), (float2(uvoffset_X, uvoffset_Y)), offset);
+            WriteVertex(idx + 1, (float3(-xhalf, yhalf, -zhalf)), (float3(0, 0, -1)), (float2(uvoffset_X, uvoffset_YMax)), offset);
+            WriteVertex(idx + 2, (float3(xhalf, yhalf, -zhalf)), (float3(0, 0, -1)), (float2(uvoffset_XMax, uvoffset_YMax)), offset);
+            WriteVertex(idx + 3, (float3(xhalf, -yhalf, -zhalf)), (float3(0, 0, -1)), (float2(uvoffset_XMax, uvoffset_Y)), offset);
+           
+               
+            WriteTriangle(triidx + 0, (idx + 0));
+            WriteTriangle(triidx + 1, (idx + 1));
+            WriteTriangle(triidx + 2, (idx + 2));
+            WriteTriangle(triidx + 3, (idx + 2));
+            WriteTriangle(triidx + 4, (idx + 3));
+            WriteTriangle(triidx + 5, (idx + 0));
+        }
+
+        if (rightID <= _Target)
+        {
+            uint count = Counter.IncrementCounter();
+            counterBuffer[0] = count;
+            
+            uint idx = (count) * 4;
+            uint triidx = (count) * 6;
+            
+            WriteVertex(idx + 0, (float3(-xhalf, -yhalf, zhalf)), (float3(0, 0, 1)), (float2(uvoffset_X, uvoffset_Y)), offset);
+            WriteVertex(idx + 1, (float3(-xhalf, yhalf, zhalf)), (float3(0, 0, 1)), (float2(uvoffset_X, uvoffset_YMax)), offset);
+            WriteVertex(idx + 2, (float3(xhalf, yhalf, zhalf)), (float3(0, 0, 1)), (float2(uvoffset_XMax, uvoffset_YMax)), offset);
+            WriteVertex(idx + 3, (float3(xhalf, -yhalf, zhalf)), (float3(0, 0, 1)), (float2(uvoffset_XMax, uvoffset_Y)), offset);
+                                  
+            WriteTriangle(triidx + 0, (idx + 2));
+            WriteTriangle(triidx + 1, (idx + 1));
+            WriteTriangle(triidx + 2, (idx + 0));
+            WriteTriangle(triidx + 3, (idx + 0));
+            WriteTriangle(triidx + 4, (idx + 3));
+            WriteTriangle(triidx + 5, (idx + 2));
+        }
+
+        if (upID <= _Target)
+        {
+            uint count = Counter.IncrementCounter();
+            counterBuffer[0] = count;
+            uint idx = count * 4;
+            uint triidx = count * 6;
+            
+            WriteVertex(idx + 0, (float3(-xhalf, -yhalf, -zhalf)), (float3(-1, 0, 0)), (float2(uvoffset_X, uvoffset_Y)), offset);
+            WriteVertex(idx + 1, (float3(-xhalf, -yhalf, zhalf)),  (float3(-1, 0, 0)), (float2(uvoffset_X, uvoffset_YMax)), offset);
+            WriteVertex(idx + 2, (float3(-xhalf, yhalf, zhalf)),   (float3(-1, 0, 0)), (float2(uvoffset_XMax, uvoffset_YMax)), offset);
+            WriteVertex(idx + 3, (float3(-xhalf, yhalf, -zhalf)), (float3(-1, 0, 0)), (float2(uvoffset_XMax, uvoffset_Y)), offset);
+                       
+            WriteTriangle(triidx + 0, (idx + 0));
+            WriteTriangle(triidx + 1,(idx + 1));
+            WriteTriangle(triidx + 2,(idx + 2));
+            WriteTriangle(triidx + 3,(idx + 2));
+            WriteTriangle(triidx + 4,(idx + 3));
+            WriteTriangle(triidx + 5,(idx + 0));
+        }
+
+        if (downID <= _Target)
+        {
+            uint count = Counter.IncrementCounter();
+            counterBuffer[0] = count;
+            
+            uint idx = (count) * 4;
+            uint triidx = (count) * 6;
+            
+            WriteVertex(idx + 0, (float3(xhalf, -yhalf, -zhalf)), (float3(1, 0, 0)), (float2(uvoffset_X, uvoffset_Y)), offset);
+            WriteVertex(idx + 1, (float3(xhalf, -yhalf, zhalf)), (float3(1, 0, 0)), (float2(uvoffset_X, uvoffset_YMax)), offset);
+            WriteVertex(idx + 2, (float3(xhalf, yhalf, zhalf)), (float3(1, 0, 0)), (float2(uvoffset_XMax, uvoffset_YMax)), offset);
+            WriteVertex(idx + 3, (float3(xhalf, yhalf, -zhalf)), (float3(1, 0, 0)), (float2(uvoffset_XMax, uvoffset_Y)), offset);
+             
+            WriteTriangle(triidx + 0,(idx + 2));
+            WriteTriangle(triidx + 1,(idx + 1));
+            WriteTriangle(triidx + 2,(idx + 0));
+            WriteTriangle(triidx + 3,(idx + 0));
+            WriteTriangle(triidx + 4,(idx + 3));
+            WriteTriangle(triidx + 5, (idx + 2));
+        }
+
+        if (backID <= _Target)
+        {
+            uint count = Counter.IncrementCounter();
+            counterBuffer[0] = count;
+            uint idx = count * 4;
+            uint triidx = count * 6;
+            
+            WriteVertex(idx + 0, (float3(-xhalf, -yhalf, -zhalf)), (float3(0, -1, 0)), (float2(uvoffset_X, uvoffset_Y)), offset);
+            WriteVertex(idx + 1, (float3(-xhalf, -yhalf, zhalf)), (float3(0, -1, 0)), (float2(uvoffset_X, uvoffset_YMax)), offset);
+            WriteVertex(idx + 2, (float3(xhalf, -yhalf, zhalf)), (float3(0, -1, 0)), (float2(uvoffset_XMax, uvoffset_YMax)), offset);
+            WriteVertex(idx + 3, (float3(xhalf, -yhalf, -zhalf)), (float3(0, -1, 0)), (float2(uvoffset_XMax, uvoffset_Y)), offset);
+             
+            WriteTriangle(triidx + 0,(idx + 2));
+            WriteTriangle(triidx + 1,(idx + 1));
+            WriteTriangle(triidx + 2,(idx + 0));
+            WriteTriangle(triidx + 3,(idx + 0));
+            WriteTriangle(triidx + 4,(idx + 3));
+            WriteTriangle(triidx + 5, (idx + 2));
+        }
+
+        if (frontID <= _Target)
+        {
+            uint count = Counter.IncrementCounter();
+            counterBuffer[0] = count;
+            
+            uint idx = (count) * 4;
+            uint triidx = (count) * 6;
+            
+            WriteVertex(idx + 0, (float3(-xhalf, yhalf, -zhalf)), (float3(0, 1, 0)), (float2(uvoffset_X, uvoffset_Y)), offset);
+            WriteVertex(idx + 1, (float3(-xhalf, yhalf, zhalf)), (float3(0, 1, 0)), (float2(uvoffset_X, uvoffset_YMax)), offset);
+            WriteVertex(idx + 2, (float3(xhalf, yhalf, zhalf)), (float3(0, 1, 0)), (float2(uvoffset_XMax, uvoffset_YMax)), offset);
+            WriteVertex(idx + 3, (float3(xhalf, yhalf, -zhalf)), (float3(0, 1, 0)), (float2(uvoffset_XMax, uvoffset_Y)), offset);
+            
+           
+            
+            WriteTriangle(triidx + 0,(idx + 0));
+            WriteTriangle(triidx + 1,(idx + 1));
+            WriteTriangle(triidx + 2,(idx + 2));
+            WriteTriangle(triidx + 3,(idx + 2));
+            WriteTriangle(triidx + 4,(idx + 3));
+            WriteTriangle(triidx + 5, (idx + 0));
+        }
+    }
+}
+
+//
+// Cleanup kernel that clears the unused area of the buffers
+//
+[numthreads(1, 1, 1)]
+void WriteCounter(uint id : SV_DispatchThreadID)
+{
+    uint count = Counter.IncrementCounter();
+    counterBuffer[0] = count; 
+    uint position = _VertexSize * 3 * 2 + _VertexSize * 2 + _TriangleSize;
+    
+    _VertexNormalBuffer[position] = count;
+}

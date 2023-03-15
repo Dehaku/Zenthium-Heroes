@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e4a32a7d00c3e4fb93972961622508, type: 3}
+  m_Name: Obsidian_Atlas
+  m_EditorClassIdentifier: 
+  Materials:
+  - {fileID: 2100000, guid: e86f40d19bbe7404485a7c2ac40b1487, type: 2}
+  - {fileID: 2100000, guid: 03d166f38afb77f48a72afde091c985c, type: 2}
+  - {fileID: 2100000, guid: 582c34b2fa3b63246b87ef4b2b72ebb5, type: 2}
+  - {fileID: 2100000, guid: 3f17f6042cf6be440a3bb507d916761f, type: 2}
+  WhiteDefaultTexture: {fileID: 2800000, guid: bebe64da80303a54c90e6cd4c6180278, type: 3}
+  BlackDefaultTexture: {fileID: 2800000, guid: db14eddd3a099074290f4b30f93d20e2, type: 3}
+  NormalDefaultTexture: {fileID: 2800000, guid: d7037eb02609d484783787713dacfa0d, type: 2}
+  HeightDefaultTexture: {fileID: 2800000, guid: cee901778e24bce4095a7f6b5e577acd, type: 2}
+  OcclusionTextures:
+  - {fileID: 2800000, guid: 417fad8c0634d664792864e4c4b62dd2, type: 3}
+  - {fileID: 2800000, guid: 72b7e4e24d4315f468df667c60f6724a, type: 3}
+  - {fileID: 2800000, guid: bebe64da80303a54c90e6cd4c6180278, type: 3}
+  - {fileID: 2800000, guid: bebe64da80303a54c90e6cd4c6180278, type: 3}
+  DiffuseTextures:
+  - {fileID: 2800000, guid: 20ce68a8d20b51b479cade9e70ad066e, type: 3}
+  - {fileID: 2800000, guid: bee475e32cb2ef246ae38120a5941472, type: 3}
+  - {fileID: 2800000, guid: 490cf7e9b585b1a42993d7edbba86562, type: 3}
+  - {fileID: 2800000, guid: 9fe5a09ff52d19342afe5fb26865ee0c, type: 3}
+  EmmissiveTextures:
+  - {fileID: 2800000, guid: db14eddd3a099074290f4b30f93d20e2, type: 3}
+  - {fileID: 2800000, guid: db14eddd3a099074290f4b30f93d20e2, type: 3}
+  - {fileID: 2800000, guid: dadd5ff0b4f543949b25692e1dc29cb8, type: 3}
+  - {fileID: 2800000, guid: 7f560fc0651cbdd4abaee5ed83f82598, type: 3}
+  HeightTextures:
+  - {fileID: 2800000, guid: 9fe634a7132617f49aeac78a0cacfd5c, type: 3}
+  - {fileID: 2800000, guid: 912fd2d9a1062bd4cbdc6a63b1cd1839, type: 3}
+  - {fileID: 2800000, guid: 684a74c888568de4f844064a023053fd, type: 3}
+  - {fileID: 2800000, guid: e136d9ba3fcf31f4cb9f963cdd239c6b, type: 3}
+  MetallicTextures:
+  - {fileID: 2800000, guid: bebe64da80303a54c90e6cd4c6180278, type: 3}
+  - {fileID: 2800000, guid: 8853beda22f22ae448d76068d8a3f384, type: 3}
+  - {fileID: 2800000, guid: bebe64da80303a54c90e6cd4c6180278, type: 3}
+  - {fileID: 2800000, guid: bebe64da80303a54c90e6cd4c6180278, type: 3}
+  NormalTextures:
+  - {fileID: 2800000, guid: 6822c8c0b57b64a42a65a77817b0c245, type: 3}
+  - {fileID: 2800000, guid: a5e627b3a2d9c8d4b96cbd988cf69998, type: 3}
+  - {fileID: 2800000, guid: 77cf1e7a54df1f34e94ba7fda1efdf24, type: 3}
+  - {fileID: 2800000, guid: 3aba1ca9317631545bbccbc6f7be092d, type: 3}
+  BaseTextureMultiplier:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  MetallicMultiplier:
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  EmissionMultiplier:
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  SmoothnessTextureSource: 01000000000000000100000001000000
+  OutputPath: Assets/Fraktalia/0_Core/Rendering/MultiMaterial/Materials/Obsidian_Atlas
+  FinalName: ObsidianAtlas_Triplanar_inverted
+  TargetMaterial: {fileID: 2100000, guid: 7bbf2ba208bc4584492196ba941c9584, type: 2}
+  UseMaterialPath: 1

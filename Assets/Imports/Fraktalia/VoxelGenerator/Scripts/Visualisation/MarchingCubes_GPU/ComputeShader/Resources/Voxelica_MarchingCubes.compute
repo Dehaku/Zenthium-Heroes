@@ -1,0 +1,210 @@
+#pragma kernel CSMain
+#pragma warning( disable : 4714 )
+
+struct Vert
+{
+	float4 position;
+	float3 normal;
+};
+
+SamplerState _LinearClamp;
+
+float _Target;
+
+int _Width, _Height, _Depth, _Border;
+float4 _Positionoffset;
+float _VoxelSize;
+
+int _BlockWidth;
+
+StructuredBuffer<int> _TriangleConnectionTable;
+
+StructuredBuffer<int> _CubeEdgeFlags;
+
+StructuredBuffer<float> _Voxels;
+
+RWStructuredBuffer<Vert> _Buffer;
+
+// edgeConnection lists the index of the endpoint vertices for each of the 12 edges of the cube
+static int2 edgeConnection[12] =
+{
+	int2(0,1), int2(1,2), int2(2,3), int2(3,0), int2(4,5), int2(5,6), int2(6,7), int2(7,4), int2(0,4), int2(1,5), int2(2,6), int2(3,7)
+};
+
+// edgeDirection lists the direction vector (vertex1-vertex0) for each edge in the cube
+static float3 edgeDirection[12] =
+{
+	float3(1.0f, 0.0f, 0.0f),float3(0.0f, 1.0f, 0.0f),float3(-1.0f, 0.0f, 0.0f),float3(0.0f, -1.0f, 0.0f),
+	float3(1.0f, 0.0f, 0.0f),float3(0.0f, 1.0f, 0.0f),float3(-1.0f, 0.0f, 0.0f),float3(0.0f, -1.0f, 0.0f),
+	float3(0.0f, 0.0f, 1.0f),float3(0.0f, 0.0f, 1.0f),float3(0.0f, 0.0f, 1.0f),float3(0.0f,  0.0f, 1.0f)
+};
+
+// vertexOffset lists the positions, relative to vertex0, of each of the 8 vertices of a cube
+static float3 vertexOffset[8] =
+{
+	float3(0, 0, 0),float3(1, 0, 0),float3(1, 1, 0),float3(0, 1, 0),
+	float3(0, 0, 1),float3(1, 0, 1),float3(1, 1, 1),float3(0, 1, 1)
+};
+
+int Convert3DTo1D(int x, int y, int z, int max_x, int max_y, int max_z)
+{
+    return x + y * max_x + z * max_x * max_y;
+}
+
+float VoxelValue(uint x, uint y, uint z)
+{	
+    return _Voxels[Convert3DTo1D(x, y, z, _BlockWidth, _BlockWidth, _BlockWidth)];
+}
+
+// Voxel value with calculated gradient
+float4 VoxelValueWithGradient(uint3 i)
+{
+    uint3 i_n = i - 1;
+    uint3 i_p = min(i + 1, _BlockWidth - 1);
+    float v = VoxelValue(i.x, i.y, i.z);
+    float v_nx = VoxelValue(i_n.x, i.y, i.z);
+    float v_px = VoxelValue(i_p.x, i.y, i.z);
+    float v_ny = VoxelValue(i.x, i_n.y, i.z);
+    float v_py = VoxelValue(i.x, i_p.y, i.z);
+    float v_nz = VoxelValue(i.x, i.y, i_n.z);
+    float v_pz = VoxelValue(i.x, i.y, i_p.z);
+    return float4(v_px - v_nx, v_py - v_ny, v_pz - v_nz, v);
+}
+
+void FillCube(int x, int y, int z, out float4 cube[8])
+{
+    cube[0] = VoxelValueWithGradient(uint3(x, y, z));
+    cube[1] = VoxelValueWithGradient(uint3(x + 1, y, z));
+    cube[2] = VoxelValueWithGradient(uint3(x + 1, y + 1, z));
+    cube[3] = VoxelValueWithGradient(uint3(x, y + 1, z));
+    cube[4] = VoxelValueWithGradient(uint3(x, y, z + 1));
+    cube[5] = VoxelValueWithGradient(uint3(x + 1, y, z + 1));
+    cube[6] = VoxelValueWithGradient(uint3(x + 1, y + 1, z + 1));
+    cube[7] = VoxelValueWithGradient(uint3(x, y + 1, z + 1));
+}
+
+// GetOffset finds the approximate point of intersection of the surface
+// between two points with the values v1 and v2
+float GetOffset(float v1, float v2)
+{
+	float delta = v2 - v1;
+	return (delta == 0.0f) ? 0.5f : (_Target - v1) / delta;
+}
+
+Vert CreateVertex(float3 position, float3 normal, float3 size)
+{
+	Vert vert;
+    vert.position = float4(position * _VoxelSize, 1.0) + _Positionoffset;
+
+	float3 uv = position / size;
+	//vert.normal = _Normals.SampleLevel(_LinearClamp, uv, 0);
+    vert.normal = normal;
+	return vert;
+}
+
+[numthreads(8, 8, 8)]
+void CSMain(int3 id : SV_DispatchThreadID)
+{
+	//No neighbour check needed as Data Array is one block larger than width
+	//if (id.x >= _Width - 1 - _Border) return;
+	//if (id.y >= _Height - 1 - _Border) return;
+	//if (id.z >= _Depth - 1 - _Border) return;
+
+   
+
+
+	
+	float3 pos = float3(id);
+	float3 centre = float3(_Width, 0, _Depth) / 2.0;
+
+	float4 cube[8];
+	FillCube(id.x+1, id.y+1, id.z+1, cube);
+
+	int i = 0;
+	int flagIndex = 0;
+	float3 edgeVertex[12];
+    float3 normals[12];
+	
+	//Find which vertices are inside of the surface and which are outside
+	for (i = 0; i < 8; i++)
+    {
+        if (cube[i].w <= _Target)
+        { 
+            flagIndex |= 1 << i;
+        }
+    }
+		
+
+	//Find which edges are intersected by the surface
+	int edgeFlags = _CubeEdgeFlags[flagIndex];
+
+	// no connections, return
+	if (edgeFlags == 0) return;
+
+	//Find the point of intersection of the surface with each edge
+	for (i = 0; i < 12; i++)
+	{
+		//if there is an intersection on this edge
+		if ((edgeFlags & (1 << i)) != 0)
+		{
+            float4 sample1 = cube[edgeConnection[i].x];
+            float4 sample2 = cube[edgeConnection[i].y];
+			
+            float offset = GetOffset(sample1.w, sample2.w);
+          	
+			edgeVertex[i] = pos + (vertexOffset[edgeConnection[i].x] + offset * edgeDirection[i]);
+
+            float param = (_Target - sample1.w) / (sample2.w - sample1.w);
+            normals[i] = -normalize(lerp(sample1.xyz, sample2.xyz, param));
+        }
+
+     
+    }
+
+	float3 size = float3(_Width - 1, _Height - 1, _Depth - 1);
+
+	int idx = id.x + id.y * _Width + id.z * _Width * _Height;
+
+    uint e1, e2, e3;
+	//Save the triangles that were found. There can be up to five per cube
+	for (i = 0; i < 5; i++)
+	{
+		//If the connection table is not -1 then this a triangle.
+		if (_TriangleConnectionTable[flagIndex * 16 + 3 * i] >= 0)
+		{
+			float3 position;
+
+            uint e1 = _TriangleConnectionTable[flagIndex * 16 + (3 * i + 0)];
+            uint e2 = _TriangleConnectionTable[flagIndex * 16 + (3 * i + 1)];
+            uint e3 = _TriangleConnectionTable[flagIndex * 16 + (3 * i + 2)];
+			
+			position = edgeVertex[e1];
+			_Buffer[idx * 15 + (3 * i + 0)] = CreateVertex(position, normals[e1], size);
+
+			position = edgeVertex[e2];
+            _Buffer[idx * 15 + (3 * i + 1)] = CreateVertex(position, normals[e2], size);
+
+			position = edgeVertex[e3];
+            _Buffer[idx * 15 + (3 * i + 2)] = CreateVertex(position, normals[e3], size);
+        }
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

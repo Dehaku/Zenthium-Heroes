@@ -1,0 +1,273 @@
+#pragma kernel MeshReconstruction
+#pragma kernel WriteCounter
+#pragma warning( disable : 4714 )
+
+// Workaround for the absence of sizeof operator in HLSL
+#define SIZEOF_UINT 4
+#define SIZEOF_FLOAT3 12
+
+// Parameters
+uint _BlockWidth;
+float3 positionoffset;
+float voxelSize;
+float cellSize;
+
+uint AtlasRow;
+
+StructuredBuffer<float> Voxels;
+
+//Output Array
+RWStructuredBuffer<float3> vertexArray;
+RWStructuredBuffer<float3> normalArray;
+RWStructuredBuffer<uint> triangleArray;
+RWStructuredBuffer<float2> uvArray;
+
+RWStructuredBuffer<uint> Counter; // used only for counting
+RWStructuredBuffer<uint> counterBuffer;
+
+[numthreads(8, 8, 8)]
+void MeshReconstruction(uint3 id : SV_DispatchThreadID)
+{
+   
+    
+    int x = id.x + 1;
+    int y = id.y + 1;
+    int z = id.z + 1;
+
+    float centerID = Voxels[x + _BlockWidth * (y + _BlockWidth * z)];
+
+    float xhalf = voxelSize / 2;
+    float yhalf = voxelSize / 2;
+    float zhalf = voxelSize / 2;
+
+    float3 blockoffset = positionoffset + float3(xhalf, xhalf, xhalf);
+    float3 voxeloffset = float3(id.x, id.y, id.z) * voxelSize;
+    float3 offset = blockoffset + voxeloffset;
+
+  
+    
+    if(centerID > 0.1)
+    {
+        float leftID = Voxels[x + _BlockWidth * (y + _BlockWidth * (z - 1))];
+        float rightID = Voxels[x + _BlockWidth * (y + _BlockWidth * (z + 1))]; 
+        float upID = Voxels[x - 1 + _BlockWidth * (y + _BlockWidth * z)];
+        float downID = Voxels[x + 1 + _BlockWidth * (y + _BlockWidth * z)]; 
+        float backID = Voxels[x + _BlockWidth * (y - 1 + _BlockWidth * z )];
+        float frontID = Voxels[x + _BlockWidth * (y + 1 + _BlockWidth * z)];
+      
+            //0, 0, -1,
+			//0, 0, 1,
+			//-1, 0, 0,
+			//1, 0, 0,
+			//0, -1, 0,
+			//0, 1, 0
+
+         //SpriteAtlas
+        float uvoffset = 1.0f / AtlasRow;
+        uint subdivision = 256 / (AtlasRow * AtlasRow); 
+        int atlaspos_X = (centerID) / subdivision; //2
+        int atlaspos_Y = atlaspos_X / AtlasRow; //1
+        atlaspos_X %= AtlasRow; //1
+
+        float uvoffset_X = uvoffset * atlaspos_X;
+        float uvoffset_XMax = uvoffset_X + uvoffset;
+        float uvoffset_Y = uvoffset * atlaspos_Y;
+        float uvoffset_YMax = uvoffset_Y + uvoffset;
+
+        
+        if (leftID == 0)
+        {
+            uint count = Counter.IncrementCounter();
+            counterBuffer[0] = count;
+            uint idx = count * 4;
+            uint triidx = count * 6;
+            
+            vertexArray[idx + 0] = (float3(-xhalf, -yhalf, -zhalf) + offset);
+            vertexArray[idx + 1] = (float3(-xhalf, yhalf, -zhalf) + offset);
+            vertexArray[idx + 2] = (float3(xhalf, yhalf, -zhalf) + offset);
+            vertexArray[idx + 3] = (float3(xhalf, -yhalf, -zhalf) + offset);
+
+            normalArray[idx + 0] = (float3(0, 0, -1));
+            normalArray[idx + 1] = (float3(0, 0, -1));
+            normalArray[idx + 2] = (float3(0, 0, -1));
+            normalArray[idx + 3] = (float3(0, 0, -1));
+
+            uvArray[idx + 0] = (float2(uvoffset_X, uvoffset_Y));
+            uvArray[idx + 1] = (float2(uvoffset_X, uvoffset_YMax));
+            uvArray[idx + 2] = (float2(uvoffset_XMax, uvoffset_YMax));
+            uvArray[idx + 3] = (float2(uvoffset_XMax, uvoffset_Y));
+            
+            triangleArray[triidx + 0] = (idx + 0);
+            triangleArray[triidx + 1] = (idx + 1);
+            triangleArray[triidx + 2] = (idx + 2);
+            triangleArray[triidx + 3] = (idx + 2);
+            triangleArray[triidx + 4] = (idx + 3);
+            triangleArray[triidx + 5] = (idx + 0);
+        }
+
+        if (rightID == 0)
+        {
+            uint count = Counter.IncrementCounter();
+            counterBuffer[0] = count;
+            
+            uint idx = (count) * 4;
+            uint triidx = (count) * 6;
+            
+            vertexArray[idx + 0] = (float3(-xhalf, -yhalf, zhalf) + offset);
+            vertexArray[idx + 1] = (float3(-xhalf, yhalf, zhalf) + offset);
+            vertexArray[idx + 2] = (float3(xhalf, yhalf, zhalf) + offset);
+            vertexArray[idx + 3] = (float3(xhalf, -yhalf, zhalf) + offset);
+
+            normalArray[idx + 0] = (float3(0, 0, 1));
+            normalArray[idx + 1] = (float3(0, 0, 1));
+            normalArray[idx + 2] = (float3(0, 0, 1));
+            normalArray[idx + 3] = (float3(0, 0, 1));
+
+            uvArray[idx + 0] = (float2(uvoffset_X, uvoffset_Y));
+            uvArray[idx + 1] = (float2(uvoffset_X, uvoffset_YMax));
+            uvArray[idx + 2] = (float2(uvoffset_XMax, uvoffset_YMax));
+            uvArray[idx + 3] = (float2(uvoffset_XMax, uvoffset_Y));
+            
+            triangleArray[triidx + 0] = (idx + 2);
+            triangleArray[triidx + 1] = (idx + 1);
+            triangleArray[triidx + 2] = (idx + 0);
+            triangleArray[triidx + 3] = (idx + 0);
+            triangleArray[triidx + 4] = (idx + 3);
+            triangleArray[triidx + 5] = (idx + 2);
+        }
+
+        if (upID == 0)
+        {
+            uint count = Counter.IncrementCounter();
+            counterBuffer[0] = count;
+            uint idx = count * 4;
+            uint triidx = count * 6;
+            
+            vertexArray[idx + 0] = (float3(-xhalf, -yhalf, -zhalf) + offset);
+            vertexArray[idx + 1] = (float3(-xhalf, -yhalf, zhalf) + offset);
+            vertexArray[idx + 2] = (float3(-xhalf, yhalf, zhalf) + offset);
+            vertexArray[idx + 3] = (float3(-xhalf, yhalf, -zhalf) + offset);
+
+            normalArray[idx + 0] = (float3(-1, 0, 0));
+            normalArray[idx + 1] = (float3(-1, 0, 0));
+            normalArray[idx + 2] = (float3(-1, 0, 0));
+            normalArray[idx + 3] = (float3(-1, 0, 0));
+
+            uvArray[idx + 0] = (float2(uvoffset_X, uvoffset_Y));
+            uvArray[idx + 1] = (float2(uvoffset_X, uvoffset_YMax));
+            uvArray[idx + 2] = (float2(uvoffset_XMax, uvoffset_YMax));
+            uvArray[idx + 3] = (float2(uvoffset_XMax, uvoffset_Y));
+            
+            triangleArray[triidx + 0] = (idx + 0);
+            triangleArray[triidx + 1] = (idx + 1);
+            triangleArray[triidx + 2] = (idx + 2);
+            triangleArray[triidx + 3] = (idx + 2);
+            triangleArray[triidx + 4] = (idx + 3);
+            triangleArray[triidx + 5] = (idx + 0);
+        }
+
+        if (downID == 0)
+        {
+            uint count = Counter.IncrementCounter();
+            counterBuffer[0] = count;
+            
+            uint idx = (count) * 4;
+            uint triidx = (count) * 6;
+            
+            vertexArray[idx + 0] = (float3(xhalf, -yhalf, -zhalf) + offset);
+            vertexArray[idx + 1] = (float3(xhalf, -yhalf, zhalf) + offset);
+            vertexArray[idx + 2] = (float3(xhalf, yhalf, zhalf) + offset);
+            vertexArray[idx + 3] = (float3(xhalf, yhalf, -zhalf) + offset);
+
+            normalArray[idx + 0] = (float3(1, 0, 0));
+            normalArray[idx + 1] = (float3(1, 0, 0));
+            normalArray[idx + 2] = (float3(1, 0, 0));
+            normalArray[idx + 3] = (float3(1, 0, 0));
+
+            uvArray[idx + 0] = (float2(uvoffset_X, uvoffset_Y));
+            uvArray[idx + 1] = (float2(uvoffset_X, uvoffset_YMax));
+            uvArray[idx + 2] = (float2(uvoffset_XMax, uvoffset_YMax));
+            uvArray[idx + 3] = (float2(uvoffset_XMax, uvoffset_Y));
+            
+            triangleArray[triidx + 0] = (idx + 2);
+            triangleArray[triidx + 1] = (idx + 1);
+            triangleArray[triidx + 2] = (idx + 0);
+            triangleArray[triidx + 3] = (idx + 0);
+            triangleArray[triidx + 4] = (idx + 3);
+            triangleArray[triidx + 5] = (idx + 2);
+        }
+
+        if (backID == 0)
+        {
+            uint count = Counter.IncrementCounter();
+            counterBuffer[0] = count;
+            uint idx = count * 4;
+            uint triidx = count * 6;
+            
+            vertexArray[idx + 0] = (float3(-xhalf, -yhalf, -zhalf) + offset);
+            vertexArray[idx + 1] = (float3(-xhalf, -yhalf, zhalf) + offset);
+            vertexArray[idx + 2] = (float3(xhalf, -yhalf, zhalf) + offset);
+            vertexArray[idx + 3] = (float3(xhalf, -yhalf, -zhalf) + offset);
+
+            normalArray[idx + 0] = (float3(0,-1, 0));
+            normalArray[idx + 1] = (float3(0,-1, 0));
+            normalArray[idx + 2] = (float3(0,-1, 0));
+            normalArray[idx + 3] = (float3(0,-1, 0));
+
+            uvArray[idx + 0] = (float2(uvoffset_X, uvoffset_Y));
+            uvArray[idx + 1] = (float2(uvoffset_X, uvoffset_YMax));
+            uvArray[idx + 2] = (float2(uvoffset_XMax, uvoffset_YMax));
+            uvArray[idx + 3] = (float2(uvoffset_XMax, uvoffset_Y));
+            
+            triangleArray[triidx + 0] = (idx + 2);
+            triangleArray[triidx + 1] = (idx + 1);
+            triangleArray[triidx + 2] = (idx + 0);
+            triangleArray[triidx + 3] = (idx + 0);
+            triangleArray[triidx + 4] = (idx + 3);
+            triangleArray[triidx + 5] = (idx + 2);
+        }
+
+        if (frontID == 0)
+        {
+            uint count = Counter.IncrementCounter();
+            counterBuffer[0] = count;
+            
+            uint idx = (count) * 4;
+            uint triidx = (count) * 6;
+            
+            vertexArray[idx + 0] = (float3(-xhalf, yhalf, -zhalf) + offset);
+            vertexArray[idx + 1] = (float3(-xhalf, yhalf, zhalf) + offset);
+            vertexArray[idx + 2] = (float3(xhalf, yhalf, zhalf) + offset);
+            vertexArray[idx + 3] = (float3(xhalf, yhalf, -zhalf) + offset);
+
+            normalArray[idx + 0] = (float3(0,1, 0));
+            normalArray[idx + 1] = (float3(0,1, 0));
+            normalArray[idx + 2] = (float3(0,1, 0));
+            normalArray[idx + 3] = (float3(0,1, 0));
+
+            uvArray[idx + 0] = (float2(uvoffset_X, uvoffset_Y));
+            uvArray[idx + 1] = (float2(uvoffset_X, uvoffset_YMax));
+            uvArray[idx + 2] = (float2(uvoffset_XMax, uvoffset_YMax));
+            uvArray[idx + 3] = (float2(uvoffset_XMax, uvoffset_Y));
+            
+            triangleArray[triidx + 0] = (idx + 0);
+            triangleArray[triidx + 1] = (idx + 1);
+            triangleArray[triidx + 2] = (idx + 2);
+            triangleArray[triidx + 3] = (idx + 2);
+            triangleArray[triidx + 4] = (idx + 3);
+            triangleArray[triidx + 5] = (idx + 0);
+        }
+    }
+
+    
+}
+
+//
+// Cleanup kernel that clears the unused area of the buffers
+//
+[numthreads(1, 1, 1)]
+void WriteCounter(uint id : SV_DispatchThreadID)
+{
+    uint count = Counter.IncrementCounter();
+    counterBuffer[0] = count; 
+}

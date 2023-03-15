@@ -1,0 +1,637 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2502443065009641140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2502443065009641098}
+  - component: {fileID: 2502443065009641099}
+  m_Layer: 0
+  m_Name: WorldAlgorithm_Mountains_Heat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2502443065009641098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443065009641140}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2502443065514848138}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2502443065009641099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443065009641140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c549f7a5021d447a0a578b5518579b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldGenerator: {fileID: 2502443065975001908}
+  ApplyFunction: 0
+  PostProcessFunction: 0
+  Disabled: 0
+  Gradient_Min: {x: 0, y: -0.2, z: 0}
+  Gradient_Max: {x: 0, y: 0.45, z: 0}
+  Gradient_Shift: {x: 0, y: 0.61, z: 0}
+  GradientPower: 255
+--- !u!1 &2502443065343344746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2502443065343344744}
+  - component: {fileID: 2502443065343344745}
+  m_Layer: 0
+  m_Name: HullGenerator_Marching
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2502443065343344744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443065343344746}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2502443065975001866}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2502443065343344745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443065343344746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f3ab75326f7a946903ea7ab07c3604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engine: {fileID: 2502443065975001867}
+  AppliedHideflags: 3
+  Locked: 0
+  LockAfterInit: 0
+  NoCollision: 0
+  ConvexCollider: 0
+  Invisible: 0
+  Shrink: 0.001
+  OnHullGenerationStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHullGenerationComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  VoxelMeshes: []
+  instanceID: 0
+  width: 32
+  Cell_Subdivision: 2
+  NumCores: 64
+  NoDistanceCollision: 0
+  FarDistance: 0
+  VoxelMaterial: {fileID: 2100000, guid: 05efb18ddeb3f884abe1b6c9fa2fab39, type: 2}
+  VoxelMaterialShell: {fileID: 0}
+  DetailGenerator:
+  - {fileID: 8775527139248231010}
+  SurfacePoint: 128
+  Destruction: 0
+  AddBarycentricColors: 0
+  GenerateCubeUV: 0
+  GenerateSphereUV: 0
+  RecalculateNormals: 0
+  NormalAngle: 0
+  UVPower: 1
+  TextureDimensionUV3: 1
+  TextureDimensionUV4: -1
+  TextureDimensionUV5: -1
+  TextureDimensionUV6: -1
+  TexturePowerUV3: 0.01
+  TexturePowerUV4: 1
+  TexturePowerUV5: 1
+  TexturePowerUV6: 1
+  m_marchingCubes: {fileID: 7200000, guid: 9f19ed91e8aa34430ac0ea80fb20eead, type: 3}
+  TargetLOD: 0
+--- !u!1 &2502443065476969732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2502443065476969754}
+  - component: {fileID: 2502443065476969755}
+  m_Layer: 0
+  m_Name: WorldAlgorithm_Mountains
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2502443065476969754
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443065476969732}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2502443066777120786}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2502443065476969755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443065476969732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b2ad60c0fe0b6641bf84c0d5eed5b05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldGenerator: {fileID: 2502443065975001908}
+  ApplyFunction: 0
+  PostProcessFunction: 0
+  Disabled: 0
+  Octaves: 4
+  Lacunarity: 2
+  Gain: 0.5
+  Frequency: 0.24
+  Amplitude: 0.67
+  Offset: {x: 0, y: -0.5, z: 0}
+  Mode: 1
+  StartValue: 0
+--- !u!1 &2502443065514848180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2502443065514848138}
+  - component: {fileID: 2502443065514848139}
+  m_Layer: 0
+  m_Name: WorldAlgorithms (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2502443065514848138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443065514848180}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2502443065009641098}
+  m_Father: {fileID: 2502443065975001866}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2502443065514848139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443065514848180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba4c745df784364a89da1c7e5afda5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetDimension: 1
+  TargetDepth: 6
+  Additive: 0
+  Algorithms:
+  - {fileID: 2502443065009641099}
+  IgnoreWarnings: 0
+--- !u!1 &2502443065975001911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2502443065975001866}
+  - component: {fileID: 2502443065975001867}
+  - component: {fileID: 2502443065975001908}
+  - component: {fileID: 2502443065975001909}
+  - component: {fileID: 2502443065975001910}
+  m_Layer: 0
+  m_Name: VoxelGenerator_GPU_v2_Foliage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2502443065975001866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443065975001911}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2502443066777120786}
+  - {fileID: 2502443065514848138}
+  - {fileID: 2502443065343344744}
+  - {fileID: 8775527139248231013}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2502443065975001867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443065975001911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d677b93ca1a92264fae9ee541de0abe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hullGenerators:
+  - {fileID: 2502443065343344745}
+  RootSize: 512
+  SubdivisionPower: 2
+  DimensionCount: 2
+  InitialValue: 0
+  RestrictDimension: 0000
+  LockHullUpdates: 0
+  savesystem: {fileID: 2502443065975001910}
+  worldgenerator: {fileID: 2502443065975001908}
+  LODDistance: 0
+  ChunkHash: {x: 0, y: 0, z: 0}
+  MemoryOptimized: 1
+  KeepHulls: 0
+  UseInitPoint: 0
+  Initpoint: {x: 0, y: 0, z: 0}
+  DebugMode: 0
+  instanceID: -2278
+  IsExtension: 0
+  __export_foldout: 0
+  __export_savePath: Assets/
+  __export_meshName: ExportedMesh
+  __export_center: {x: -0.5, y: -0.5, z: -0.5}
+--- !u!114 &2502443065975001908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443065975001911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f056d0016b503f34880d79366e0bae3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorldSeed: test123
+  AlgorithmCluster:
+  - {fileID: 2502443066777120787}
+  - {fileID: 2502443065514848139}
+  Works: 0
+  referenceGenerator: {fileID: 2502443065975001867}
+  ScaleInvariant: 1
+  GenerateOnStart: 0
+  AutoLoadInEditor: 0
+--- !u!114 &2502443065975001909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443065975001911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb129d084c828d04c8ed985ecbe4b80a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetDimension: 0
+  Depth: 4
+  ID: 2
+  Radius: 7.5
+  AdditionalTargets: []
+  Radials: {x: 0, y: 0, z: 0}
+  BoxSize: {x: 40, y: 40, z: 200}
+  Orientation: {x: 0, y: 0, z: 0}
+  Mode: 0
+  Shape: 0
+  AlwaysModify:
+  - {fileID: 2502443065975001867}
+  UseWhiteList: 0
+  WhiteList: []
+  SphereCastLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  MaxChanges: 3
+  onModifyVoxel:
+    m_PersistentCalls:
+      m_Calls: []
+  PaintPosition: {x: 447.16968, y: 353.4333, z: 8.154897}
+  ErrorMessage: '> The Voxel Engine is not initialized
+
+
+'
+  EstimatedModifications: -1
+  EditorTools:
+    IDLeft: 10
+    ModeLeft: 1
+    IDRight: 10
+    ModeRight: 2
+    IDMiddle: 10
+    ModeMiddle: 3
+    EstimatedModifications: 0
+  Paint2D: 0
+  PaintPlaneXY: 0
+  PaintPlaneXZ: 0
+  PaintPlaneYZ: 0
+  PaintPlaneOffset: 0
+  PaintPlaneSize: 2000
+  PaintPlaneColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+--- !u!114 &2502443065975001910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443065975001911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74fc1170045fab94194de54a6fa0b5cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoLoad: 0
+  LoadOnStart: 0
+  __migrated: 1
+  SceneVoxelData:
+    IsValid: 0
+    SubdivisionPower: 0
+    RootSize: 0
+    VoxelCount: 0
+    VoxelData: []
+    DimensionCount: 0
+    AdditionalData: []
+  EditorSaveMode: 0
+  DynamicLoadSpeed: 100
+  _VoxelMap: {fileID: 0}
+  nativevoxelengine: {fileID: 2502443065975001867}
+  WorldFolder: 
+  WorldToSceneLocation: 1
+  WorldChunk: {x: 0, y: 0, z: 0}
+  WorldRegionSize: 32
+  WorldLoadingRule: 0
+  VoxelName: 
+  DuplicateMapOnClone: 0
+  SaveInSceneSubFolder: 1
+  RemoveVoxelmapOnDelete: 0
+  IsDirty: 0
+  ModuleScene:
+    saveSystem: {fileID: 0}
+    SceneVoxelData:
+      IsValid: 0
+      SubdivisionPower: 0
+      RootSize: 0
+      VoxelCount: 0
+      VoxelData: []
+      DimensionCount: 0
+      AdditionalData: []
+  ModuleScriptableObject:
+    saveSystem: {fileID: 2502443065975001910}
+    _VoxelMap: {fileID: 11400000, guid: 5cbdac1d62c343949b8e093d58c1b9ac, type: 2}
+    DuplicateMapOnClone: 0
+    SaveInSceneSubFolder: 1
+    RemoveVoxelmapOnDelete: 0
+  ModulePersistent:
+    saveSystem: {fileID: 2502443065975001910}
+    VoxelName: benchmark
+  ModuleWorld:
+    saveSystem: {fileID: 0}
+    VoxelName: 
+    WorldChunk: {x: 0, y: 0, z: 0}
+    WorldToSceneLocation: 1
+    WorldFolder: 
+    WorldLoadingRule: 0
+  ModuleRegion:
+    saveSystem: {fileID: 0}
+    VoxelName: 
+    WorldRegionSize: 32
+    WorldChunk: {x: 0, y: 0, z: 0}
+    WorldToSceneLocation: 1
+    WorldFolder: 
+    WorldLoadingRule: 0
+  ModulePersistent_V2:
+    saveSystem: {fileID: 2502443065975001910}
+    VoxelName: test5641894
+  ModuleWorld_V2:
+    saveSystem: {fileID: 0}
+    VoxelName: 
+    WorldChunk: {x: 0, y: 0, z: 0}
+    WorldToSceneLocation: 1
+    WorldFolder: 
+    WorldLoadingRule: 0
+  ModulePath_V2:
+    saveSystem: {fileID: 0}
+    CurrentPath: 
+  ModuleByteBuffer_V2:
+    saveSystem: {fileID: 0}
+    Key: 
+  eventsfoldout: 0
+  OnDataSaved:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDataLoaded:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &2502443066777120796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2502443066777120786}
+  - component: {fileID: 2502443066777120787}
+  m_Layer: 0
+  m_Name: WorldAlgorithms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2502443066777120786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443066777120796}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2502443065476969754}
+  m_Father: {fileID: 2502443065975001866}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2502443066777120787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502443066777120796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba4c745df784364a89da1c7e5afda5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetDimension: 0
+  TargetDepth: 6
+  Additive: 0
+  Algorithms:
+  - {fileID: 2502443065476969755}
+  IgnoreWarnings: 0
+--- !u!1 &8775527139248231011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8775527139248231013}
+  - component: {fileID: 8775527139248231010}
+  m_Layer: 0
+  m_Name: Grass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8775527139248231013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8775527139248231011}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2502443065975001866}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8775527139248231010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8775527139248231011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c03b20619c8294597da5a463158668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VoxelMeshes: []
+  Width: 32
+  Cell_Subdivision: 2
+  NumCores: 64
+  engine: {fileID: 2502443065975001867}
+  AppliedHideflags: 3
+  Locked: 0
+  LockAfterGeneration: 0
+  NoCollision: 1
+  ConvexCollider: 0
+  Invisible: 0
+  usedHideflags: 3
+  Mode: 0
+  DetailObject: {fileID: 0}
+  CrystalMesh: {fileID: 4300000, guid: 2cbdcfaeb6f2d7647a95e9bfd124a516, type: 2}
+  CrystalMaterial: {fileID: 2100000, guid: 6cb468f2347082f49ba16a4d25424439, type: 2}
+  TrianglePos_min: {x: 0, y: 0}
+  TrianglePos_max: {x: 1, y: 1}
+  Angle_Min: -35
+  Angle_Max: 35
+  Angle_UpwardVector: {x: 0, y: 1, z: 0}
+  CrystalPlacement:
+    Offset_min: {x: 0, y: -0.2, z: 0}
+    Offset_max: {x: 0, y: -0.2, z: 0}
+    Scale_min: {x: 1, y: 1, z: 1}
+    Scale_max: {x: 2, y: 1, z: 2}
+    ScaleFactor_min: 1
+    ScaleFactor_max: 2
+    Rotation_min: {x: 0, y: 0, z: 0}
+    Rotation_max: {x: 0, y: 360, z: 0}
+  CrystalNormalInfluence: 0
+  ObjectPlacement:
+    Offset_min: {x: 0, y: 0, z: 0}
+    Offset_max: {x: 0, y: 0, z: 0}
+    Scale_min: {x: 0, y: 0, z: 0}
+    Scale_max: {x: 0, y: 0, z: 0}
+    ScaleFactor_min: 0
+    ScaleFactor_max: 0
+    Rotation_min: {x: 0, y: 0, z: 0}
+    Rotation_max: {x: 0, y: 0, z: 0}
+  ObjectNormalInfluence: 1
+  CrystalProbability: 0.516
+  ObjectProbability: 0
+  Density: 4
+  Seed: 0
+  RequirementDimension: 1
+  LifeDimension: 1
+  Placement:
+    MinID: 41
+    MaxID: 54
+    FallOff: 0.429

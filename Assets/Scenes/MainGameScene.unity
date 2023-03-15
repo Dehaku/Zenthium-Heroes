@@ -2604,7 +2604,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.6491647, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -19138,6 +19138,76 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3406603697428327638, guid: 30622eb4ec94db74b8d3709bfa97790a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.ctime2
+      value: 21974
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406603697428327638, guid: 30622eb4ec94db74b8d3709bfa97790a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.ctime3
+      value: 39899
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406603697428327638, guid: 30622eb4ec94db74b8d3709bfa97790a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.ctime4
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406603697428327638, guid: 30622eb4ec94db74b8d3709bfa97790a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key0.b
+      value: 1.0327964
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406603697428327638, guid: 30622eb4ec94db74b8d3709bfa97790a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key0.g
+      value: 3.2993956
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406603697428327638, guid: 30622eb4ec94db74b8d3709bfa97790a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key0.r
+      value: 5.3403134
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406603697428327638, guid: 30622eb4ec94db74b8d3709bfa97790a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key1.g
+      value: 14.054902
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406603697428327638, guid: 30622eb4ec94db74b8d3709bfa97790a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key1.r
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406603697428327638, guid: 30622eb4ec94db74b8d3709bfa97790a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key2.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406603697428327638, guid: 30622eb4ec94db74b8d3709bfa97790a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key2.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406603697428327638, guid: 30622eb4ec94db74b8d3709bfa97790a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key3.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406603697428327638, guid: 30622eb4ec94db74b8d3709bfa97790a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key3.g
+      value: 0.89411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406603697428327638, guid: 30622eb4ec94db74b8d3709bfa97790a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key3.r
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406603697428327638, guid: 30622eb4ec94db74b8d3709bfa97790a,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.m_NumColorKeys
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3406603697428327639, guid: 30622eb4ec94db74b8d3709bfa97790a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -27562,7 +27632,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Right Trigger
+  m_Text: Eight
 --- !u!114 &690190894437405363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27834,7 +27904,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: A
+  m_Text: Two
 --- !u!114 &690190895696334903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27868,7 +27938,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Left Trigger
+  m_Text: Seven
 --- !u!1 &691982385399080622
 GameObject:
   m_ObjectHideFlags: 0

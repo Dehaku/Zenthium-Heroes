@@ -1,0 +1,540 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &239673767485812322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 239673767485812348}
+  - component: {fileID: 239673767485812349}
+  m_Layer: 0
+  m_Name: WorldAlgorithm_Mountains
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &239673767485812348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673767485812322}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 239673768769743732}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &239673767485812349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673767485812322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b2ad60c0fe0b6641bf84c0d5eed5b05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldGenerator: {fileID: 239673769055488082}
+  ApplyFunction: 0
+  PostProcessFunction: 0
+  Disabled: 0
+  Octaves: 4
+  Lacunarity: 2
+  Gain: 0.5
+  Frequency: 0.0013
+  Amplitude: 554
+  Offset: {x: 0, y: -464.8, z: 0}
+  Mode: 1
+  StartValue: 0
+--- !u!1 &239673767506916562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 239673767506916588}
+  - component: {fileID: 239673767506916589}
+  m_Layer: 0
+  m_Name: WorldAlgorithms (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &239673767506916588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673767506916562}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 239673767806520812}
+  m_Father: {fileID: 239673769055488108}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &239673767506916589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673767506916562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba4c745df784364a89da1c7e5afda5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetDimension: 1
+  TargetDepth: 6
+  Additive: 0
+  Algorithms:
+  - {fileID: 239673767806520813}
+  IgnoreWarnings: 0
+--- !u!1 &239673767806520786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 239673767806520812}
+  - component: {fileID: 239673767806520813}
+  m_Layer: 0
+  m_Name: WorldAlgorithm_Mountains_Heat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &239673767806520812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673767806520786}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 239673767506916588}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &239673767806520813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673767806520786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c549f7a5021d447a0a578b5518579b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldGenerator: {fileID: 239673769055488082}
+  ApplyFunction: 0
+  PostProcessFunction: 0
+  Disabled: 0
+  Gradient_Min: {x: 0, y: 491.43, z: 0}
+  Gradient_Max: {x: 0, y: -212.5, z: 0}
+  Gradient_Shift: {x: 0, y: 0, z: 0}
+  GradientPower: 257.5
+--- !u!1 &239673768156486412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 239673768156486414}
+  - component: {fileID: 239673768156486415}
+  m_Layer: 0
+  m_Name: HullGenerator_Marching
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &239673768156486414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673768156486412}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 239673769055488108}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &239673768156486415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673768156486412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f3ab75326f7a946903ea7ab07c3604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engine: {fileID: 239673769055488109}
+  AppliedHideflags: 3
+  Locked: 0
+  LockAfterInit: 0
+  NoCollision: 0
+  ConvexCollider: 0
+  Invisible: 0
+  Shrink: 0.001
+  OnHullGenerationStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHullGenerationComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  VoxelMeshes: []
+  instanceID: 33256
+  width: 16
+  Cell_Subdivision: 4
+  NumCores: 64
+  NoDistanceCollision: 0
+  FarDistance: 0
+  VoxelMaterial: {fileID: 2100000, guid: cf00f678ab83f7545a5765a79a1ce534, type: 2}
+  VoxelMaterialShell: {fileID: 0}
+  DetailGenerator: []
+  SurfacePoint: 128
+  Destruction: 0
+  AddBarycentricColors: 0
+  GenerateCubeUV: 0
+  GenerateSphereUV: 0
+  RecalculateNormals: 0
+  NormalAngle: 0
+  UVPower: 1
+  TextureDimensionUV3: 1
+  TextureDimensionUV4: -1
+  TextureDimensionUV5: -1
+  TextureDimensionUV6: -1
+  TexturePowerUV3: 0.01
+  TexturePowerUV4: 1
+  TexturePowerUV5: 1
+  TexturePowerUV6: 1
+  m_marchingCubes: {fileID: 7200000, guid: 9f19ed91e8aa34430ac0ea80fb20eead, type: 3}
+  TargetLOD: 0
+--- !u!1 &239673768769743738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 239673768769743732}
+  - component: {fileID: 239673768769743733}
+  m_Layer: 0
+  m_Name: WorldAlgorithms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &239673768769743732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673768769743738}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 239673767485812348}
+  m_Father: {fileID: 239673769055488108}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &239673768769743733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673768769743738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba4c745df784364a89da1c7e5afda5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetDimension: 0
+  TargetDepth: 6
+  Additive: 0
+  Algorithms:
+  - {fileID: 239673767485812349}
+  IgnoreWarnings: 0
+--- !u!1 &239673769055488081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 239673769055488108}
+  - component: {fileID: 239673769055488109}
+  - component: {fileID: 239673769055488082}
+  - component: {fileID: 239673769055488083}
+  - component: {fileID: 239673769055488080}
+  m_Layer: 0
+  m_Name: VoxelGenerator_GPU_v2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &239673769055488108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673769055488081}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1153, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 239673768769743732}
+  - {fileID: 239673767506916588}
+  - {fileID: 239673768156486414}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &239673769055488109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673769055488081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d677b93ca1a92264fae9ee541de0abe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hullGenerators:
+  - {fileID: 239673768156486415}
+  RootSize: 1024
+  SubdivisionPower: 2
+  DimensionCount: 2
+  InitialValue: 255
+  RestrictDimension: 0000
+  LockHullUpdates: 0
+  savesystem: {fileID: 239673769055488080}
+  worldgenerator: {fileID: 239673769055488082}
+  LODDistance: 0
+  ChunkHash: {x: 0, y: 0, z: 0}
+  MemoryOptimized: 1
+  KeepHulls: 0
+  UseInitPoint: 0
+  Initpoint: {x: 0, y: 0, z: 0}
+  DebugMode: 0
+  instanceID: 33270
+  IsExtension: 0
+  __export_foldout: 0
+  __export_savePath: Assets/
+  __export_meshName: ExportedMesh
+  __export_center: {x: -0.5, y: -0.5, z: -0.5}
+--- !u!114 &239673769055488082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673769055488081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f056d0016b503f34880d79366e0bae3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorldSeed: test123
+  AlgorithmCluster:
+  - {fileID: 239673768769743733}
+  - {fileID: 239673767506916589}
+  Works: 0
+  referenceGenerator: {fileID: 239673769055488109}
+  ScaleInvariant: 0
+  GenerateOnStart: 0
+  AutoLoadInEditor: 0
+--- !u!114 &239673769055488083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673769055488081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb129d084c828d04c8ed985ecbe4b80a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetDimension: 0
+  Depth: 7
+  ID: 2
+  Radius: 112.9
+  AdditionalTargets: []
+  Radials: {x: 0, y: 0, z: 0}
+  BoxSize: {x: 40, y: 40, z: 200}
+  Orientation: {x: 0, y: 0, z: 0}
+  Mode: 0
+  Shape: 0
+  AlwaysModify:
+  - {fileID: 239673769055488109}
+  UseWhiteList: 0
+  WhiteList: []
+  SphereCastLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  MaxChanges: 3
+  onModifyVoxel:
+    m_PersistentCalls:
+      m_Calls: []
+  PaintPosition: {x: 2168.9688, y: 662.9418, z: 699.70605}
+  ErrorMessage: '> The Voxel Engine is not initialized
+
+
+'
+  EstimatedModifications: -1
+  EditorTools:
+    IDLeft: 10
+    ModeLeft: 1
+    IDRight: 10
+    ModeRight: 2
+    IDMiddle: 10
+    ModeMiddle: 3
+    EstimatedModifications: 0
+  Paint2D: 0
+  PaintPlaneXY: 0
+  PaintPlaneXZ: 0
+  PaintPlaneYZ: 0
+  PaintPlaneOffset: 0
+  PaintPlaneSize: 2000
+  PaintPlaneColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+--- !u!114 &239673769055488080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239673769055488081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74fc1170045fab94194de54a6fa0b5cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoLoad: 0
+  LoadOnStart: 0
+  __migrated: 1
+  SceneVoxelData:
+    IsValid: 0
+    SubdivisionPower: 0
+    RootSize: 0
+    VoxelCount: 0
+    VoxelData: []
+    DimensionCount: 0
+    AdditionalData: []
+  EditorSaveMode: 5
+  DynamicLoadSpeed: 100
+  _VoxelMap: {fileID: 0}
+  nativevoxelengine: {fileID: 239673769055488109}
+  WorldFolder: 
+  WorldToSceneLocation: 1
+  WorldChunk: {x: 0, y: 0, z: 0}
+  WorldRegionSize: 32
+  WorldLoadingRule: 0
+  VoxelName: 
+  DuplicateMapOnClone: 0
+  SaveInSceneSubFolder: 1
+  RemoveVoxelmapOnDelete: 0
+  IsDirty: 0
+  ModuleScene:
+    saveSystem: {fileID: 0}
+    SceneVoxelData:
+      IsValid: 0
+      SubdivisionPower: 0
+      RootSize: 0
+      VoxelCount: 0
+      VoxelData: []
+      DimensionCount: 0
+      AdditionalData: []
+  ModuleScriptableObject:
+    saveSystem: {fileID: 239673769055488080}
+    _VoxelMap: {fileID: 0}
+    DuplicateMapOnClone: 0
+    SaveInSceneSubFolder: 1
+    RemoveVoxelmapOnDelete: 0
+  ModulePersistent:
+    saveSystem: {fileID: 239673769055488080}
+    VoxelName: benchmark
+  ModuleWorld:
+    saveSystem: {fileID: 0}
+    VoxelName: 
+    WorldChunk: {x: 0, y: 0, z: 0}
+    WorldToSceneLocation: 1
+    WorldFolder: 
+    WorldLoadingRule: 0
+  ModuleRegion:
+    saveSystem: {fileID: 0}
+    VoxelName: 
+    WorldRegionSize: 32
+    WorldChunk: {x: 0, y: 0, z: 0}
+    WorldToSceneLocation: 1
+    WorldFolder: 
+    WorldLoadingRule: 0
+  ModulePersistent_V2:
+    saveSystem: {fileID: 239673769055488080}
+    VoxelName: test5641894
+  ModuleWorld_V2:
+    saveSystem: {fileID: 0}
+    VoxelName: 
+    WorldChunk: {x: 0, y: 0, z: 0}
+    WorldToSceneLocation: 1
+    WorldFolder: 
+    WorldLoadingRule: 0
+  ModulePath_V2:
+    saveSystem: {fileID: 0}
+    CurrentPath: 
+  ModuleByteBuffer_V2:
+    saveSystem: {fileID: 0}
+    Key: 
+  eventsfoldout: 0
+  OnDataSaved:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDataLoaded:
+    m_PersistentCalls:
+      m_Calls: []

@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3142460695399309944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7612965385900533637}
+  - component: {fileID: 2359093947628600831}
+  m_Layer: 0
+  m_Name: Detail_SurfaceCeiling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7612965385900533637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3142460695399309944}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2359093947628600831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3142460695399309944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83f6feeb5caab245a1a3220b9ea046f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engine: {fileID: 0}
+  AppliedHideflags: 3
+  Locked: 0
+  LockAfterInit: 1
+  NoCollision: 0
+  ConvexCollider: 0
+  Invisible: 0
+  Shrink: 0.001
+  OnHullGenerationStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHullGenerationComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  VoxelMeshes: []
+  instanceID: 0
+  width: 8
+  Cell_Subdivision: 4
+  NumCores: 8
+  DetailPrefabs:
+  - {fileID: 5277853148465093363, guid: 6bd37fc60d7009546a9f8082caced191, type: 3}
+  Offset_min: {x: 0, y: 0, z: 0}
+  Offset_max: {x: 0, y: 0, z: 0}
+  Scale_min: {x: 1, y: 2, z: 1}
+  Scale_max: {x: 1, y: 3, z: 1}
+  ScaleFactor_min: 0.26
+  ScaleFactor_max: 0.83
+  Rotation_min: {x: 0, y: 0, z: 0}
+  Rotation_max: {x: 0, y: 180, z: 0}
+  Probability: 0.256
+  Seed: 240
+  InitialHealth: 1
+  Requirements:
+  - x: 0
+    y: 0
+    z: 0
+    TargetID: 138
+    CompMode: 2
+    CorrectModifier: 0
+    IncorrectModifier: -10
+  - x: 0
+    y: -1
+    z: 0
+    TargetID: 117
+    CompMode: 3
+    CorrectModifier: 0
+    IncorrectModifier: -10
+  - x: 0
+    y: -5
+    z: 0
+    TargetID: 0
+    CompMode: 0
+    CorrectModifier: -10
+    IncorrectModifier: 0
