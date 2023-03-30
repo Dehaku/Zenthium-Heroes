@@ -48,7 +48,7 @@ public class CivilianLifeBrain : MonoBehaviour
 
     }
 
-    float _reservedWaitSpeedBuffer = 0;
+    //float _reservedWaitSpeedBuffer = 0;
     void ApproachTarget()
     {
         if (currentTarget == null)

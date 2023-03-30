@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RandomAreaPrefabSpawner : MonoBehaviour
 {
+    public Transform optionalParent;
     public GameObject[] prefabs;
     public int spawnAmount;
     public Vector3 centerPos;
@@ -59,13 +60,19 @@ public class RandomAreaPrefabSpawner : MonoBehaviour
 
             int prefabNum = Random.Range(0, prefabs.Length - 1);
             GameObject obj = Instantiate(prefabs[prefabNum], hit.point, Quaternion.identity);
+
+            if(optionalParent)
+            {
+                obj.transform.SetParent(optionalParent);
+            }
+
             obj.transform.position += new Vector3(0,SpawnHeightOffset,0);
 
 
 
             obj.transform.localScale = new Vector3(obj.transform.localScale.x + Random.Range(-RandomScale.x, RandomScale.x),
-                obj.transform.localScale.y + Random.Range(-RandomScale.y, RandomScale.y),
-                obj.transform.localScale.z + Random.Range(-RandomScale.z, RandomScale.z));
+            obj.transform.localScale.y + Random.Range(-RandomScale.y, RandomScale.y),
+            obj.transform.localScale.z + Random.Range(-RandomScale.z, RandomScale.z));
 
             obj.transform.Rotate(new Vector3(0, Random.Range(0, 360), 0));
 
