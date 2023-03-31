@@ -5,6 +5,12 @@ using UnityEngine;
 public class DaemonBrain : MonoBehaviour
 {
     public List<Daemon> daemons;
+    public List<Daemon> scouts;
+    public List<Daemon> grunts;
+    public List<Daemon> captains;
+    public List<Daemon> overlords;
+    public List<Daemon> cubis;
+
     public List<Survivor> survivors;
     public List<Camp> camps;
 
@@ -46,7 +52,7 @@ public class DaemonBrain : MonoBehaviour
         {
             if(!daemon.target)
             {
-                Daemon nearestCaptain = FindNearestDemonOfType(daemon.transform, Daemon.DemonType.Captain);
+                Daemon nearestCaptain = FindNearestDemonCaptain(daemon.transform);
                 if (nearestCaptain)
                 {
                     daemon.target = nearestCaptain.transform;
@@ -56,6 +62,36 @@ public class DaemonBrain : MonoBehaviour
             }
             
         }
+        else if(daemon.type == Daemon.DemonType.Captain)
+        {
+            // Sometimes go report to an Overlord
+            if(Random.Range(0,100) == 1)
+            {
+                if (!daemon.target)
+                {
+                    Daemon randomOverlord = overlords[Random.Range(0, overlords.Count - 1)];
+                    if (randomOverlord)
+                    {
+                        daemon.target = randomOverlord.transform;
+                        daemon.GoTo(randomOverlord.transform.position);
+                        daemon.allowedToWander = false;
+                    }
+                }
+            }
+
+            if(daemon.target)
+            {
+                float overlordReportDistance = 2;
+                if(Vector3.Distance(daemon.transform.position,daemon.target.position) <= overlordReportDistance)
+                {
+                    daemon.target = null;
+                    daemon.allowedToWander = true;
+                }
+            }
+            
+        }
+
+
     }
 
     Daemon FindNearestDemonOfType(Transform me, Daemon.DemonType daemonType)
@@ -87,6 +123,31 @@ public class DaemonBrain : MonoBehaviour
         return nearest;
     }
 
+    Daemon FindNearestDemonCaptain(Transform me)
+    {
+        Daemon nearest = null;
+        float Distance = float.MaxValue;
+        foreach (var mon in captains)
+        {
+                float distanceCheck = Vector3.Distance(me.position, mon.transform.position);
+                if (nearest == null)
+                {
+                    nearest = mon;
+                    Distance = distanceCheck;
+                }
+
+                else
+                {
+                    if (distanceCheck < Distance)
+                    {
+                        nearest = mon;
+                        Distance = distanceCheck;
+                    }
+                }
+        }
+        return nearest;
+    }
+
     void DaemonVersusCampLogic(Daemon daemon, Camp camp)
     {
         bool closeEnough = IsNearby(daemon.transform, camp.transform, campDestroyDistance);
@@ -112,11 +173,31 @@ public class DaemonBrain : MonoBehaviour
     static public void AddDaemon(Daemon mon)
     {
         _instance.daemons.Add(mon);
+        if (mon.type == Daemon.DemonType.Scout)
+            _instance.scouts.Add(mon);
+        if (mon.type == Daemon.DemonType.Grunt)
+            _instance.grunts.Add(mon);
+        if (mon.type == Daemon.DemonType.Captain)
+            _instance.captains.Add(mon);
+        if (mon.type == Daemon.DemonType.Overlord)
+            _instance.overlords.Add(mon);
+        if (mon.type == Daemon.DemonType.Cubi)
+            _instance.cubis.Add(mon);
     }
 
     static public void RemoveDaemon(Daemon mon)
     {
         _instance.daemons.Remove(mon);
+        if (mon.type == Daemon.DemonType.Scout)
+            _instance.scouts.Remove(mon);
+        if (mon.type == Daemon.DemonType.Grunt)
+            _instance.grunts.Remove(mon);
+        if (mon.type == Daemon.DemonType.Captain)
+            _instance.captains.Remove(mon);
+        if (mon.type == Daemon.DemonType.Overlord)
+            _instance.overlords.Remove(mon);
+        if (mon.type == Daemon.DemonType.Cubi)
+            _instance.cubis.Remove(mon);
     }
 
     static public void AddSurvivor(Survivor surv)

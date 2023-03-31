@@ -14,6 +14,7 @@ public class Daemon : MonoBehaviour
     public RandomWalk randomWalk;
 
     public bool NeedsTarget = false;
+    public bool allowedToWander = true;
 
     public float pathCheckTime = 1;
     public float pathCheckTimeVariance = 0.25f;
@@ -35,6 +36,19 @@ public class Daemon : MonoBehaviour
             _pathCheckTimer = pathCheckTime + Random.Range(0,pathCheckTimeVariance);
             PathLogic();
         }
+
+
+
+        
+        // Toggle random walk/wander script
+        if (allowedToWander && target == null)
+        {
+            if (!randomWalk.enabled)
+                randomWalk.enabled = true;
+        }
+        else if (randomWalk.enabled)
+            randomWalk.enabled = false;
+
     }
 
     void PathLogic()
@@ -86,16 +100,19 @@ public class Daemon : MonoBehaviour
         if (demonType == DemonType.Scout)
         {
             myGfxObj.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            navAgent.speed = 5; // Pretty fast
         }
 
         if (demonType == DemonType.Captain)
         {
             myGfxObj.localScale = new Vector3(1f, 2f, 1f);
+            navAgent.speed = 3.25f; // Slightly slower than grunts
         }
 
         if (demonType == DemonType.Overlord)
         {
             myGfxObj.localScale = new Vector3(4f, 4f, 4f);
+            navAgent.speed = 2; // Pretty slow
         }
     }
 
